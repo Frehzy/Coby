@@ -1,4 +1,6 @@
-﻿using Storage.Entities;
+﻿#nullable enable
+
+using Storage.Entities;
 using System;
 using System.Collections.Generic;
 
@@ -6,7 +8,7 @@ namespace Storage.Cache.License;
 
 public interface ILicensesCache
 {
-    IReadOnlyCollection<ILicense> Licenses { get; }
+    IReadOnlyList<ILicense> Licenses { get; }
 
     ILicense TryAdd(ILicense license);
 

@@ -11,17 +11,24 @@ namespace Storage.Host;
 [ServiceContract(CallbackContract = typeof(IServerCallback))]
 public interface IService
 {
-    IOrdersCache Orders { get; }
+    [OperationContract]
+    IOrdersCache GetOrdersCache();
 
-    IProductsCache Products { get; }
+    [OperationContract]
+    IProductsCache GetProductsCache();
 
-    IWaitersCache Waiters { get; }
+    [OperationContract]
+    IWaitersCache GetWaitersCache();
 
-    ILicensesCache Licenses { get; }
+    [OperationContract]
+    ILicensesCache GetLicensesCache();
 
-    ITablesCache Tables { get; }
+    [OperationContract]
+    ITablesCache GetTablesCache();
 
-    ILicenseOperation LicenseOperation { get; }
+    [OperationContract]
+    ILicenseOperation LicenseOperation();
 
-    IOrderOperation OrderOperation { get; }
+    [OperationContract]
+    IOrderOperation OrderOperation();
 }

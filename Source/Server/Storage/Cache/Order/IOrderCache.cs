@@ -1,4 +1,6 @@
-﻿using Storage.Entities;
+﻿#nullable enable
+
+using Storage.Entities;
 using System;
 using System.Collections.Generic;
 
@@ -6,7 +8,7 @@ namespace Storage.Cache.Order;
 
 public interface IOrdersCache
 {
-    IReadOnlyCollection<IOrder> Orders { get; }
+    IReadOnlyList<IOrder> Orders { get; }
 
     IOrder TryAdd(IOrder order);
 

@@ -7,11 +7,11 @@ using System.Linq;
 
 namespace Storage.Cache.Table;
 
-internal class TablesCache : ITablesCache
+public class TablesCache : ITablesCache
 {
     private readonly ConcurrentDictionary<Guid, ITable> _tables = new();
 
-    public IReadOnlyCollection<ITable> Tables => _tables.Values.ToList();
+    public IReadOnlyList<ITable> Tables => _tables.Values.ToList();
 
     public ITable TryAdd(ITable table) =>
         _tables.TryAdd(table.Id, table)

@@ -2,7 +2,7 @@
 
 namespace Storage.Entities.EntityCreater;
 
-internal class Product : IProduct
+public class Product : IProduct
 {
     public Guid Id { get; }
 

@@ -11,7 +11,7 @@ public class WaitersCache : IWaitersCache
 {
     private readonly ConcurrentDictionary<Guid, IWaiter> _waiters = new();
 
-    public IReadOnlyCollection<IWaiter> Waiters => _waiters.Values.ToList();
+    public IReadOnlyList<IWaiter> Waiters => _waiters.Values.ToList();
 
     public IWaiter TryAdd(IWaiter waiter) =>
         _waiters.TryAdd(waiter.Id, waiter)

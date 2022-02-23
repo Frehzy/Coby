@@ -11,12 +11,15 @@ public class OrdersCache : IOrdersCache
 {
     private readonly ConcurrentDictionary<Guid, IOrder> _orders = new();
 
-    public IReadOnlyCollection<IOrder> Orders => _orders.Values.ToList();
+    public IReadOnlyList<IOrder> Orders => _orders.Values.ToList();
 
-    public IOrder TryAdd(IOrder order) =>
-        _orders.TryAdd(order.Id, order)
-        ? order
-        : throw new OverflowException($"An element with the same Guid [{order.Id}] already exists.");
+    public IOrder TryAdd(IOrder order)
+    {
+        var result = _orders.TryAdd(order.Id, order)
+            ? order
+            : throw new OverflowException($"An element with the same Guid [{order.Id}] already exists.");
+        return result;
+    }
 
     public IOrder TryFind(Guid orderId) =>
         _orders.TryGetValue(orderId, out var license)

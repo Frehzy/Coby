@@ -2,7 +2,7 @@
 
 namespace Storage.Entities.EntityCreater;
 
-internal class Table : ITable
+public class Table : ITable
 {
     public Guid Id { get; }
 

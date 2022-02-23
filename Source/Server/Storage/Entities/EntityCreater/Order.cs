@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Storage.Entities.EntityCreater;
 
-internal class Order : IOrder
+public class Order : IOrder
 {
     private readonly ConcurrentDictionary<Guid, IGuest> _guests = new();
 

@@ -4,33 +4,32 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Storage.Entities.EntityCreater
+namespace Storage.Entities.EntityCreater;
+
+public class Guest : IGuest
 {
-    internal class Guest : IGuest
+    private readonly ConcurrentDictionary<Guid, IProduct> _products = new();
+
+    public Guid Id { get; }
+
+    public string Name { get; }
+
+    public IReadOnlyList<IProduct> Products => _products.Values.ToList();
+
+    public Guest(string name)
     {
-        private readonly ConcurrentDictionary<Guid, IProduct> _products = new();
+        Id = Guid.NewGuid();
+        Name = name;
+    }
 
-        public Guid Id { get; }
+    public IProduct AddProduct(IProduct product) =>
+        _products.TryAdd(product.Id, product)
+        ? product
+        : throw new EntityNotFound(product.Id);
 
-        public string Name { get; }
-
-        public IReadOnlyList<IProduct> Products => _products.Values.ToList();
-
-        public Guest(string name)
-        {
-            Id = Guid.NewGuid();
-            Name = name;
-        }
-
-        public IProduct AddProduct(IProduct product) =>
-            _products.TryAdd(product.Id, product)
-            ? product
-            : throw new EntityNotFound(product.Id);
-
-        public void RemoveProduct(Guid productId)
-        {
-            if (_products.TryRemove(productId, out _) is false)
-                throw new EntityNotFound(productId);
-        }
+    public void RemoveProduct(Guid productId)
+    {
+        if (_products.TryRemove(productId, out _) is false)
+            throw new EntityNotFound(productId);
     }
 }

@@ -11,7 +11,7 @@ public class LicensesCache : ILicensesCache
 {
     private readonly ConcurrentDictionary<Guid, ILicense> _licenses = new();
 
-    public IReadOnlyCollection<ILicense> Licenses => _licenses.Values.ToList();
+    public IReadOnlyList<ILicense> Licenses => _licenses.Values.ToList();
 
     public ILicense TryAdd(ILicense license) =>
         _licenses.TryAdd(license.WaiterId, license)

@@ -2,18 +2,19 @@
 using System;
 using System.ServiceModel;
 
-namespace Host
+namespace Host;
+
+internal class Program
 {
-    internal class Program
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            using (var host = new ServiceHost(typeof(Service)))
-            {
-                host.Open();
-                Console.WriteLine("Хост стартовал!");
-                Console.ReadLine();
-            }
-        }
+        using var host = new ServiceHost(typeof(Service));
+        host.Open();
+        Console.WriteLine("Хост стартовал!");
+
+        foreach(var uri in host.BaseAddresses)
+            Console.WriteLine(uri.AbsoluteUri);
+
+        Console.ReadLine();
     }
 }

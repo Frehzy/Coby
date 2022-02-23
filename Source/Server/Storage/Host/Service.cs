@@ -18,17 +18,17 @@ public class Service : IService
     private readonly LicensesCache _licenses = new();
     private readonly TablesCache _tables = new();
 
-    public IOrdersCache Orders => _orders;
+    public ILicensesCache GetLicensesCache() => _licenses;
 
-    public IProductsCache Products => _products;
+    public IOrdersCache GetOrdersCache() => _orders;
 
-    public IWaitersCache Waiters => _waiters;
+    public IProductsCache GetProductsCache() => _products;
 
-    public ILicensesCache Licenses => _licenses;
+    public ITablesCache GetTablesCache() => _tables;
 
-    public ITablesCache Tables => _tables;
+    public IWaitersCache GetWaitersCache() => _waiters;
 
-    public ILicenseOperation LicenseOperation => new LicenseOperation(Licenses, Waiters);
+    ILicenseOperation IService.LicenseOperation() => new LicenseOperation(_licenses, _waiters);
 
-    public IOrderOperation OrderOperation => new OrderOperation(Licenses, Waiters, Tables, Orders);
+    IOrderOperation IService.OrderOperation() => new OrderOperation(_licenses, _waiters, _tables, _orders);
 }

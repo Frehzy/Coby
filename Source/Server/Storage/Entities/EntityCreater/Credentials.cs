@@ -2,7 +2,7 @@
 
 namespace Storage.Entities.EntityCreater;
 
-internal class Credentials : ICredentials
+public class Credentials : ICredentials
 {
     public Guid WaiterId { get; }
 

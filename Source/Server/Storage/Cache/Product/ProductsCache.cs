@@ -11,7 +11,7 @@ public class ProductsCache : IProductsCache
 {
     private readonly ConcurrentDictionary<Guid, IProduct> _products = new();
 
-    public IReadOnlyCollection<IProduct> Products => _products.Values.ToList();
+    public IReadOnlyList<IProduct> Products => _products.Values.ToList();
 
     public IProduct TryAdd(IProduct product) =>
         _products.TryAdd(product.Id, product)

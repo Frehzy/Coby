@@ -2,7 +2,7 @@
 
 namespace Storage.Entities.EntityCreater;
 
-internal class Waiter : IWaiter
+public class Waiter : IWaiter
 {
     public Guid Id { get; }
 
