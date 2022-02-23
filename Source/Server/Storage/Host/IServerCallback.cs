@@ -1,4 +1,5 @@
 ﻿using Storage.Entities;
+using System.Collections.Generic;
 using System.ServiceModel;
 
 namespace Storage.Host;
@@ -6,5 +7,5 @@ namespace Storage.Host;
 internal interface IServerCallback
 {
     [OperationContract(IsOneWay = true)]
-    void OrdersCallback(IOrder order);
+    void OrdersCallback(IReadOnlyList<IOrder> order);
 }

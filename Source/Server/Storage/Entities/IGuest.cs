@@ -10,4 +10,8 @@ public interface IGuest
     string Name { get; }
 
     IReadOnlyList<IProduct> Products { get; }
+
+    IProduct AddProduct(IProduct product);
+
+    void RemoveProduct(Guid id);
 }

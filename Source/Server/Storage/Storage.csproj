@@ -48,18 +48,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cache\License\ILicensesCache.cs" />
+    <Compile Include="Cache\License\LicensesCache.cs" />
+    <Compile Include="Cache\Order\IOrderCache.cs" />
+    <Compile Include="Cache\Order\OrdersCache.cs" />
+    <Compile Include="Cache\Product\IProductsCache.cs" />
+    <Compile Include="Cache\Product\ProductsCache.cs" />
+    <Compile Include="Cache\Table\ITablesCache.cs" />
+    <Compile Include="Cache\Table\TablesCache.cs" />
+    <Compile Include="Cache\Waiters\IWaitersCache.cs" />
+    <Compile Include="Cache\Waiters\WaitersCache.cs" />
+    <Compile Include="Entities\EntityCreater\Credentials.cs" />
+    <Compile Include="Entities\EntityCreater\Guest.cs" />
+    <Compile Include="Entities\EntityCreater\Order.cs" />
+    <Compile Include="Entities\EntityCreater\Product.cs" />
+    <Compile Include="Entities\EntityCreater\Table.cs" />
+    <Compile Include="Entities\EntityCreater\Waiter.cs" />
     <Compile Include="Entities\ICredentials.cs" />
     <Compile Include="Entities\IGuest.cs" />
+    <Compile Include="Entities\ILicense.cs" />
     <Compile Include="Entities\IOrder.cs" />
     <Compile Include="Entities\IProduct.cs" />
     <Compile Include="Entities\ITable.cs" />
     <Compile Include="Entities\IWaiter.cs" />
+    <Compile Include="Enums\OrderStatus.cs" />
     <Compile Include="Exceptions\BaseException.cs" />
     <Compile Include="Exceptions\EntityNotFound.cs" />
     <Compile Include="Exceptions\LicenseException.cs" />
     <Compile Include="Host\IService.cs" />
     <Compile Include="Host\IServerCallback.cs" />
-    <Compile Include="Operations\ILicense.cs" />
+    <Compile Include="Operations\ILicenseOperation.cs" />
+    <Compile Include="Operations\Implementation\LicenseOperation.cs" />
+    <Compile Include="Operations\Implementation\OrderOperation.cs" />
+    <Compile Include="Operations\IOrderOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Host\Service.cs" />
   </ItemGroup>

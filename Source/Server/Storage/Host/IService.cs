@@ -1,5 +1,9 @@
-﻿using Storage.Entities;
-using System;
+﻿using Storage.Cache.License;
+using Storage.Cache.Order;
+using Storage.Cache.Product;
+using Storage.Cache.Table;
+using Storage.Cache.Waiters;
+using Storage.Operations;
 using System.ServiceModel;
 
 namespace Storage.Host;
@@ -7,9 +11,17 @@ namespace Storage.Host;
 [ServiceContract(CallbackContract = typeof(IServerCallback))]
 public interface IService
 {
-    [OperationContract]
-    void GetCredentials(Guid userId, string password);
+    IOrdersCache Orders { get; }
 
-    [OperationContract]
-    IOrder CreateOrder(ICredentials credentials, ITable table);
+    IProductsCache Products { get; }
+
+    IWaitersCache Waiters { get; }
+
+    ILicensesCache Licenses { get; }
+
+    ITablesCache Tables { get; }
+
+    ILicenseOperation LicenseOperation { get; }
+
+    IOrderOperation OrderOperation { get; }
 }
