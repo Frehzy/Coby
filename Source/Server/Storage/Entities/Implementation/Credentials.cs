@@ -7,8 +7,6 @@ public class Credentials : ICredentials
 {
     public Guid WaiterId { get; }
 
-    public Credentials(Guid waiterId)
-    {
+    public Credentials(Guid waiterId) =>
         WaiterId = waiterId;
-    }
 }

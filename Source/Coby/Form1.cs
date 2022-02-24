@@ -1,13 +1,12 @@
-﻿using System;
+﻿using Coby.ClientOperation;
 using System.Windows.Forms;
 
-namespace Coby
+namespace Coby;
+
+public partial class Form1 : Form
 {
-    public partial class Form1 : Form
+    public Form1(IClient client)
     {
-        public Form1()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

@@ -8,13 +8,19 @@ internal class Program
 {
     static void Main(string[] args)
     {
-        using var host = new ServiceHost(typeof(Service));
-        host.Open();
-        Console.WriteLine("Хост стартовал!");
+        var serviceAddress = "127.0.0.1:10000";
+        var serviceName = "CobyServer";
 
-        foreach(var uri in host.BaseAddresses)
+        var host = new ServiceHost(typeof(Service), new Uri($"net.tcp://{serviceAddress}/{serviceName}"));
+        var serverBinding = new NetTcpBinding();
+        serverBinding.Security.Mode = SecurityMode.None;
+        host.AddServiceEndpoint(typeof(IService), serverBinding, "");
+        host.Open();
+
+        Console.WriteLine("Server started:");
+        foreach (var uri in host.BaseAddresses)
             Console.WriteLine(uri.AbsoluteUri);
 
-        Console.ReadLine();
+        Console.ReadKey();
     }
 }

@@ -1,4 +1,4 @@
-﻿using Shared.Entities.Enums;
+﻿using Storage.Enums;
 using System;
 using System.Collections.Generic;
 

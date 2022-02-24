@@ -1,6 +1,6 @@
-﻿using Shared.Entities.Enums;
-using Shared.Exceptions;
-using Storage.Entities.Interface;
+﻿using Storage.Entities.Interface;
+using Storage.Enums;
+using Storage.Exceptions;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -28,6 +28,15 @@ public class Order : IOrder
 
     public DateTime? EndTime { get; }
 
+    public Order(Guid orderId, ITable table, IWaiter waiter)
+    {
+        Id = orderId;
+        Table = table;
+        Waiter = waiter;
+        OrderStatus = OrderStatus.New;
+        StartTime = DateTime.Now;
+    }
+
     public IGuest TryAddGuest(IGuest guest)
     {
         var result = _guests.TryAdd(guest.Id, guest)
@@ -42,14 +51,5 @@ public class Order : IOrder
     {
         if (_guests.TryRemove(guestId, out _) is false)
             throw new EntityNotFound(guestId);
-    }
-
-    public Order(Guid orderId, ITable table, IWaiter waiter)
-    {
-        Id = orderId;
-        Table = table;
-        Waiter = waiter;
-        OrderStatus = OrderStatus.New;
-        StartTime = DateTime.Now;
     }
 }

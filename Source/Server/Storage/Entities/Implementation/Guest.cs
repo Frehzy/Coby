@@ -1,5 +1,5 @@
-﻿using Shared.Exceptions;
-using Storage.Entities.Interface;
+﻿using Storage.Entities.Interface;
+using Storage.Exceptions;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -17,6 +17,14 @@ internal class Guest : IGuest
 
     public IReadOnlyCollection<IProduct> Products => _products.Values.ToList();
 
+    public Guest(Guid guestId, string name, List<IProduct> products)
+    {
+        Id = guestId;
+        Name = name;
+        foreach (var product in products)
+            _products.TryAdd(product.Id, product);
+    }
+
     public IProduct TryAddProduct(IProduct product)
     {
         var result = _products.TryAdd(product.Id, product)
@@ -29,13 +37,5 @@ internal class Guest : IGuest
     {
         if (_products.TryRemove(productId, out _) is false)
             throw new EntityNotFound(productId);
-    }
-
-    public Guest(Guid guestId, string name, List<IProduct> products)
-    {
-        Id = guestId;
-        Name = name;
-        foreach (var product in products)
-            _products.TryAdd(product.Id, product);
     }
 }

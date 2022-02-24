@@ -49,6 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientOperation\Client.cs" />
+    <Compile Include="ClientOperation\IClient.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,13 +82,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{03ab8917-19eb-4129-88ea-bb2bb15959ee}</Project>
-      <Name>Shared</Name>
+    <ProjectReference Include="..\Server\Storage\Storage.csproj">
+      <Project>{3d5fd935-7ec3-4124-ad51-36dd8914e8c7}</Project>
+      <Name>Storage</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

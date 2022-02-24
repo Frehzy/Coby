@@ -1,5 +1,5 @@
 ﻿using Storage.Cache;
-using Storage.Operations.Implementation;
+using Storage.Operations;
 using System.ServiceModel;
 
 namespace Storage.Host;
@@ -7,23 +7,16 @@ namespace Storage.Host;
 [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
 public class Service : IService
 {
-    private readonly LicensesCache _licenses = new();
-    private readonly OrdersCache _orders = new();
-    private readonly ProductsCache _products = new();
-    private readonly TablesCache _tables = new();
-    private readonly WaitersCache _waiters = new();
+    private readonly AllCache _allCache;
+    private readonly AllOperations _allOperations;
 
-    public LicensesCache GetLicensesCache() => _licenses;
+    public Service()
+    {
+        _allCache = new();
+        _allOperations = new(_allCache);
+    }
 
-    public OrdersCache GetOrdersCache() => _orders;
+    public AllCache GetCache() => _allCache;
 
-    public ProductsCache GetProductsCache() => _products;
-
-    public TablesCache GetTablesCache() => _tables;
-
-    public WaitersCache GetWaitersCache() => _waiters;
-
-    public LicenseOperation LicenseOperation() => new(_licenses, _waiters);
-
-    public OrderOperation OrderOperation() => new(_licenses, _waiters, _tables, _orders);
+    public AllOperations GetOperations() => _allOperations;
 }
