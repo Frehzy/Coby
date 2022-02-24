@@ -8,22 +8,22 @@ namespace Storage.Cache;
 
 public class AllCache
 {
-    public ILicensesCache Licenses { get; }
+    public ILicensesCache LicensesCache { get; }
 
-    public IOrdersCache Orders { get; }
+    public IOrdersCache OrdersCache { get; }
 
-    public IProductsCache Products { get; }
+    public IProductsCache ProductsCache { get; }
 
-    public ITablesCache Tables { get; }
+    public ITablesCache TablesCache { get; }
 
-    public IWaitersCache Waiters { get; }
+    public IWaitersCache WaitersCache { get; }
 
     public AllCache()
     {
-        Licenses = new LicensesCache();
-        Orders = new OrdersCache();
-        Products = new ProductsCache();
-        Tables = new TablesCache();
-        Waiters = new WaitersCache();
+        LicensesCache = new LicensesCache();
+        OrdersCache = new OrdersCache();
+        ProductsCache = new ProductsCache();
+        TablesCache = new TablesCache();
+        WaitersCache = new WaitersCache();
     }
 }

@@ -6,9 +6,7 @@ namespace Coby.ClientOperation;
 
 public interface IClient
 {
-    AllCache Cache { get; }
-
-    AllOperations AllOperations { get; }
+    ClientInstance ClientInstance { get; }
 
     IService CreateClient();
 }

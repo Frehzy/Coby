@@ -1,22 +1,14 @@
-﻿using Storage.Cache;
-using Storage.Operations;
-using System.ServiceModel;
+﻿using System.ServiceModel;
 
 namespace Storage.Host;
 
 [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
 public class Service : IService
 {
-    private readonly AllCache _allCache;
-    private readonly AllOperations _allOperations;
+    private readonly ClientInstance _client;
 
-    public Service()
-    {
-        _allCache = new();
-        _allOperations = new(_allCache);
-    }
+    public Service() =>
+        _client = new();
 
-    public AllCache GetCache() => _allCache;
-
-    public AllOperations GetOperations() => _allOperations;
+    public ClientInstance GetClient() => _client;
 }

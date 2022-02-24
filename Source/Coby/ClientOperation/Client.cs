@@ -1,6 +1,4 @@
-﻿using Storage.Cache;
-using Storage.Host;
-using Storage.Operations;
+﻿using Storage.Host;
 using System;
 using System.ServiceModel;
 
@@ -10,15 +8,12 @@ public class Client : IClient
 {
     private readonly IService _service;
 
-    public AllCache Cache { get; }
-
-    public AllOperations AllOperations { get; }
+    public ClientInstance ClientInstance { get; }
 
     public Client()
     {
         _service = CreateClient();
-        Cache = _service.GetCache();
-        AllOperations = _service.GetOperations();
+        ClientInstance = _service.GetClient();
     }
 
     public IService CreateClient()

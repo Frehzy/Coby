@@ -1,6 +1,4 @@
-﻿using Storage.Cache;
-using Storage.Operations;
-using System.ServiceModel;
+﻿using System.ServiceModel;
 
 namespace Storage.Host;
 
@@ -8,8 +6,5 @@ namespace Storage.Host;
 public interface IService
 {
     [OperationContract]
-    AllCache GetCache();
-
-    [OperationContract]
-    AllOperations GetOperations();
+    ClientInstance GetClient();
 }

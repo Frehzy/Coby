@@ -15,7 +15,7 @@ public class LicenseOperation : ILicenseOperation
         Cache = cache;
 
     public ICredentials GetCredentials(Guid userId, string password) =>
-        Cache.Waiters.Waiters.SingleOrDefault(x => x.Id.Equals(userId) && x.Password.Equals(password)) is not null
+        Cache.WaitersCache.Waiters.SingleOrDefault(x => x.Id.Equals(userId) && x.Password.Equals(password)) is not null
         ? new Credentials(userId)
         : throw new EntityNotFound(userId);
 }

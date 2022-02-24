@@ -69,6 +69,7 @@
     <Compile Include="Exceptions\BaseException.cs" />
     <Compile Include="Exceptions\EntityNotFound.cs" />
     <Compile Include="Exceptions\LicenseException.cs" />
+    <Compile Include="Host\ClientInstance.cs" />
     <Compile Include="Host\IService.cs" />
     <Compile Include="Entities\Interface\ICredentials.cs" />
     <Compile Include="Entities\Interface\IGuest.cs" />

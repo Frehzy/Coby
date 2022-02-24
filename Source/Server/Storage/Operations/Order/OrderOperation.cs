@@ -15,10 +15,10 @@ public class OrderOperation : IOrderOperation
 
     public IOrder CreateOrder(ICredentials credentials, IWaiter waiter, ITable table)
     {
-        if (Cache.Licenses.TryFind(credentials.WaiterId) is null)
+        if (Cache.LicensesCache.TryFind(credentials.WaiterId) is null)
             throw new EntityNotFound(credentials.WaiterId);
 
         var order = new EntityOrder(Guid.NewGuid(), table, waiter);
-        return Cache.Orders.TryAdd(order);
+        return Cache.OrdersCache.TryAdd(order);
     }
 }
