@@ -1,9 +1,5 @@
-﻿using Storage.Cache.License;
-using Storage.Cache.Order;
-using Storage.Cache.Product;
-using Storage.Cache.Table;
-using Storage.Cache.Waiters;
-using Storage.Operations;
+﻿using Storage.Cache;
+using Storage.Operations.Implementation;
 using System.ServiceModel;
 
 namespace Storage.Host;
@@ -12,23 +8,23 @@ namespace Storage.Host;
 public interface IService
 {
     [OperationContract]
-    IOrdersCache GetOrdersCache();
+    OrdersCache GetOrdersCache();
 
     [OperationContract]
-    IProductsCache GetProductsCache();
+    ProductsCache GetProductsCache();
 
     [OperationContract]
-    IWaitersCache GetWaitersCache();
+    WaitersCache GetWaitersCache();
 
     [OperationContract]
-    ILicensesCache GetLicensesCache();
+    LicensesCache GetLicensesCache();
 
     [OperationContract]
-    ITablesCache GetTablesCache();
+    TablesCache GetTablesCache();
 
     [OperationContract]
-    ILicenseOperation LicenseOperation();
+    LicenseOperation LicenseOperation();
 
     [OperationContract]
-    IOrderOperation OrderOperation();
+    OrderOperation OrderOperation();
 }

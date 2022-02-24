@@ -1,25 +1,32 @@
-﻿using Storage.Cache.License;
-using Storage.Cache.Order;
-using Storage.Cache.Table;
-using Storage.Cache.Waiters;
-using Storage.Entities;
-using Storage.Entities.EntityCreater;
-using Storage.Enums;
-using Storage.Exceptions;
+﻿using Shared.Exceptions;
+using Storage.Cache;
+using Storage.Entities.Implementation;
+using Storage.Entities.Interface;
+using System;
+using System.Runtime.Serialization;
+using System.ServiceModel;
 
 namespace Storage.Operations.Implementation;
 
-internal class OrderOperation : IOrderOperation
+[DataContract]
+public class OrderOperation : IOrderOperation
 {
-    public ILicensesCache LicensesCache { get; }
-    public IWaitersCache WaitersCache { get; }
-    public ITablesCache TablesCache { get; }
-    public IOrdersCache OrdersCache { get; }
+    [DataMember]
+    public LicensesCache LicensesCache { get; }
 
-    public OrderOperation(ILicensesCache licensesCache,
-                          IWaitersCache waitersCache,
-                          ITablesCache tablesCache,
-                          IOrdersCache ordersCache)
+    [DataMember]
+    public WaitersCache WaitersCache { get; }
+
+    [DataMember]
+    public TablesCache TablesCache { get; }
+
+    [DataMember]
+    public OrdersCache OrdersCache { get; }
+
+    public OrderOperation(LicensesCache licensesCache,
+                          WaitersCache waitersCache,
+                          TablesCache tablesCache,
+                          OrdersCache ordersCache)
     {
         LicensesCache = licensesCache;
         WaitersCache = waitersCache;
@@ -27,12 +34,13 @@ internal class OrderOperation : IOrderOperation
         OrdersCache = ordersCache;
     }
 
-    public IOrder CreateOrder(ICredentials credentials, IWaiter waiter, ITable table)
+    [OperationContract]
+    public IOrder CreateOrder(Credentials credentials, Waiter waiter, Table table)
     {
         if (LicensesCache.TryFind(credentials.WaiterId) is null)
             throw new EntityNotFound(credentials.WaiterId);
 
-        var order = new Order(table, waiter, OrderStatus.New);
+        var order = new Order(Guid.NewGuid(), table, waiter);
         return OrdersCache.TryAdd(order);
     }
 }

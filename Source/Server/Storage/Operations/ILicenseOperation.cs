@@ -1,4 +1,4 @@
-﻿using Storage.Entities;
+﻿using Storage.Entities.Interface;
 using System;
 using System.ServiceModel;
 

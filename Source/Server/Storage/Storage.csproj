@@ -47,35 +47,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cache\License\ILicensesCache.cs" />
-    <Compile Include="Cache\License\LicensesCache.cs" />
-    <Compile Include="Cache\Order\IOrderCache.cs" />
-    <Compile Include="Cache\Order\OrdersCache.cs" />
-    <Compile Include="Cache\Product\IProductsCache.cs" />
-    <Compile Include="Cache\Product\ProductsCache.cs" />
-    <Compile Include="Cache\Table\ITablesCache.cs" />
-    <Compile Include="Cache\Table\TablesCache.cs" />
-    <Compile Include="Cache\Waiters\IWaitersCache.cs" />
-    <Compile Include="Cache\Waiters\WaitersCache.cs" />
-    <Compile Include="Entities\EntityCreater\Credentials.cs" />
-    <Compile Include="Entities\EntityCreater\Guest.cs" />
-    <Compile Include="Entities\EntityCreater\Order.cs" />
-    <Compile Include="Entities\EntityCreater\Product.cs" />
-    <Compile Include="Entities\EntityCreater\Table.cs" />
-    <Compile Include="Entities\EntityCreater\Waiter.cs" />
-    <Compile Include="Entities\ICredentials.cs" />
-    <Compile Include="Entities\IGuest.cs" />
-    <Compile Include="Entities\ILicense.cs" />
-    <Compile Include="Entities\IOrder.cs" />
-    <Compile Include="Entities\IProduct.cs" />
-    <Compile Include="Entities\ITable.cs" />
-    <Compile Include="Entities\IWaiter.cs" />
-    <Compile Include="Enums\OrderStatus.cs" />
-    <Compile Include="Exceptions\BaseException.cs" />
-    <Compile Include="Exceptions\EntityNotFound.cs" />
-    <Compile Include="Exceptions\LicenseException.cs" />
+    <Compile Include="Cache\LicensesCache.cs" />
+    <Compile Include="Cache\OrdersCache.cs" />
+    <Compile Include="Cache\ProductsCache.cs" />
+    <Compile Include="Cache\TablesCache.cs" />
+    <Compile Include="Cache\WaitersCache.cs" />
+    <Compile Include="Entities\ConverterToDto\ToGuestDto.cs" />
+    <Compile Include="Entities\ConverterToDto\ToOrderDto.cs" />
+    <Compile Include="Entities\ConverterToDto\ToProductDto.cs" />
+    <Compile Include="Entities\ConverterToDto\ToTableDto.cs" />
+    <Compile Include="Entities\ConverterToDto\ToWaiterDto.cs" />
+    <Compile Include="Entities\Implementation\Credentials.cs" />
+    <Compile Include="Entities\Implementation\Guest.cs" />
+    <Compile Include="Entities\Implementation\License.cs" />
+    <Compile Include="Entities\Implementation\Order.cs" />
+    <Compile Include="Entities\Implementation\Product.cs" />
+    <Compile Include="Entities\Implementation\Table.cs" />
+    <Compile Include="Entities\Implementation\Waiter.cs" />
     <Compile Include="Host\IService.cs" />
     <Compile Include="Host\IServerCallback.cs" />
+    <Compile Include="Entities\Interface\ICredentials.cs" />
+    <Compile Include="Entities\Interface\IGuest.cs" />
+    <Compile Include="Entities\Interface\ILicense.cs" />
+    <Compile Include="Entities\Interface\IOrder.cs" />
+    <Compile Include="Entities\Interface\IProduct.cs" />
+    <Compile Include="Entities\Interface\ITable.cs" />
+    <Compile Include="Entities\Interface\IWaiter.cs" />
     <Compile Include="Operations\ILicenseOperation.cs" />
     <Compile Include="Operations\Implementation\LicenseOperation.cs" />
     <Compile Include="Operations\Implementation\OrderOperation.cs" />
@@ -86,5 +83,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\Shared.csproj">
+      <Project>{03ab8917-19eb-4129-88ea-bb2bb15959ee}</Project>
+      <Name>Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

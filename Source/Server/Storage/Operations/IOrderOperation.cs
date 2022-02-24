@@ -1,4 +1,5 @@
-﻿using Storage.Entities;
+﻿using Storage.Entities.Implementation;
+using Storage.Entities.Interface;
 using System.ServiceModel;
 
 namespace Storage.Operations;
@@ -6,5 +7,5 @@ namespace Storage.Operations;
 public interface IOrderOperation
 {
     [OperationContract]
-    IOrder CreateOrder(ICredentials credentials, IWaiter waiter, ITable table);
+    IOrder CreateOrder(Credentials credentials, Waiter waiter, Table table);
 }
