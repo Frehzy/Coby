@@ -1,4 +1,5 @@
-﻿using Storage.Host;
+﻿using Storage;
+using Storage.Host;
 using System;
 using System.ServiceModel;
 using System.Threading;
@@ -20,13 +21,17 @@ internal class Program
             host.AddServiceEndpoint(typeof(IService), serverBinding, "");
             host.Open();
 
-            Console.WriteLine("Server started:");
+            Log.Info("Сервер запущен по следующим адресам:");
             foreach (var uri in host.BaseAddresses)
-                Console.WriteLine(uri.AbsoluteUri);
+                Log.Info(uri.AbsoluteUri);
 
             Console.ReadKey();
             host.Close();
         }
+        else
+            Log.Fatal("Только один экземпляр сервера может быть запущен.");
+
+        Log.Info("Сервер выключен.");
     }
 
     static bool IsSingleInstance()
