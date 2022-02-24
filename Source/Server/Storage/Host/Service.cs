@@ -7,11 +7,11 @@ namespace Storage.Host;
 [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
 public class Service : IService
 {
+    private readonly LicensesCache _licenses = new();
     private readonly OrdersCache _orders = new();
     private readonly ProductsCache _products = new();
-    private readonly WaitersCache _waiters = new();
-    private readonly LicensesCache _licenses = new();
     private readonly TablesCache _tables = new();
+    private readonly WaitersCache _waiters = new();
 
     public LicensesCache GetLicensesCache() => _licenses;
 

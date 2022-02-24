@@ -18,5 +18,6 @@ internal class ToOrderDto
             new ToWaiterDto(Order.Waiter).Convert(),
             Order.Sum,
             new ToGuestDto(Order.Guests).Convert(),
-            Order.OrderStatus);
+            Order.OrderStatus,
+            Order.StartTime);
 }

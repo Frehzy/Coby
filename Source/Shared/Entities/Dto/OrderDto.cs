@@ -19,12 +19,15 @@ public class OrderDto
 
     public OrderStatus OrderStatus { get; }
 
+    public DateTime StartTime { get; }
+
     public OrderDto(Guid orderId,
                     TableDto table,
                     WaiterDto waiter,
                     decimal sum,
                     IReadOnlyList<GuestDto> guestDto,
-                    OrderStatus orderStatus)
+                    OrderStatus orderStatus,
+                    DateTime startTime)
     {
         Id = orderId;
         Table = table;
@@ -32,5 +35,6 @@ public class OrderDto
         Sum = sum;
         Guests = guestDto;
         OrderStatus = orderStatus;
+        StartTime = startTime;
     }
 }
