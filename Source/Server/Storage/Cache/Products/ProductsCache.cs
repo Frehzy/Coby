@@ -19,8 +19,8 @@ public class ProductsCache : IProductsCache
         : throw new OverflowException($"An element with the same Guid [{product.Id}] already exists.");
 
     public IProduct TryFind(Guid productId) =>
-        _products.TryGetValue(productId, out var license)
-            ? license : default;
+        _products.TryGetValue(productId, out var product)
+            ? product : default;
 
     public void TryRemove(Guid productId)
     {

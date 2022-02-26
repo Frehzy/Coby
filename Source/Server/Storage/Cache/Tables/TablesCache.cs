@@ -19,8 +19,8 @@ public class TablesCache : ITablesCache
         : throw new OverflowException($"An element with the same Guid [{table.Id}] already exists.");
 
     public ITable TryFind(Guid tableId) =>
-        _tables.TryGetValue(tableId, out var license)
-            ? license : default;
+        _tables.TryGetValue(tableId, out var table)
+            ? table : default;
 
     public void TryRemove(Guid tableId)
     {

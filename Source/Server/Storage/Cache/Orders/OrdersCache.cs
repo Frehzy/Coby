@@ -19,8 +19,8 @@ public class OrdersCache : IOrdersCache
             : throw new OverflowException($"An element with the same Guid [{order.Id}] already exists.");
 
     public IOrder TryFind(Guid orderId) =>
-        _orders.TryGetValue(orderId, out var license)
-            ? license : default;
+        _orders.TryGetValue(orderId, out var order)
+            ? order : default;
 
     public void TryRemove(Guid orderId)
     {

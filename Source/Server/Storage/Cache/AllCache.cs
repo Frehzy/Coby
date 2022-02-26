@@ -1,5 +1,6 @@
 ﻿using Storage.Cache.Licenses;
 using Storage.Cache.Orders;
+using Storage.Cache.PaymentTypes;
 using Storage.Cache.Products;
 using Storage.Cache.Tables;
 using Storage.Cache.Waiters;
@@ -18,6 +19,8 @@ public class AllCache
 
     public IWaitersCache WaitersCache { get; }
 
+    public IPaymentTypeCache PaymentTypeCache { get; }
+
     public AllCache()
     {
         LicensesCache = new LicensesCache();
@@ -25,5 +28,6 @@ public class AllCache
         ProductsCache = new ProductsCache();
         TablesCache = new TablesCache();
         WaitersCache = new WaitersCache();
+        PaymentTypeCache = new PaymentTypeCache();
     }
 }

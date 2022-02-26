@@ -19,8 +19,8 @@ public class WaitersCache : IWaitersCache
         : throw new OverflowException($"An element with the same Guid [{waiter.Id}] already exists.");
 
     public IWaiter TryFind(Guid waiterId) =>
-        _waiters.TryGetValue(waiterId, out var license)
-            ? license : default;
+        _waiters.TryGetValue(waiterId, out var waiter)
+            ? waiter : default;
 
     public void TryRemove(Guid waiterId)
     {

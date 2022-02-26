@@ -1,11 +1,14 @@
 ﻿using MySql.Data.MySqlClient;
 using Storage.Enums;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
+using System.Linq;
 
 namespace Storage.DataBase;
 
-public class DBInteraction
+internal class DBInteraction
 {
     public string Host { get; }
 
@@ -26,24 +29,21 @@ public class DBInteraction
         Password = password;
     }
 
-    #region Использовать в формате: using (MySqlConnection myConnection = GetDBConnection())
     public MySqlConnection GetDBConnection(int timeOut = 30)
     {
-        string connString = "Server=" + Host 
-            + ";Database=" + DataBaseName 
-            + ";port=" + Port 
-            + ";User Id=" + Username 
-            + ";password=" + Password 
+        string connString = "Server=" + Host
+            + ";Database=" + DataBaseName
+            + ";port=" + Port
+            + ";User Id=" + Username
+            + ";password=" + Password
             + ";Connection Timeout=" + timeOut;
 
         MySqlConnection conn = new(connString);
 
         return conn;
     }
-    #endregion
 
-    #region методы для проверки соединения с бд
-    public DataBaseStatus CheckDB()
+    public DBConnectionStatus CheckDB()
     {
         using MySqlConnection myConnection = GetDBConnection(1);
         try
@@ -51,18 +51,16 @@ public class DBInteraction
             if (myConnection.State == ConnectionState.Closed)
                 myConnection.Open();
 
-            return DataBaseStatus.Success;
+            return DBConnectionStatus.Success;
         }
         catch (Exception ex)
         {
             Log.Error(ex.ToString());
-            return DataBaseStatus.Error;
+            return DBConnectionStatus.Error;
         }
     }
-    #endregion
 
-    #region Метод для создания запросов для получения ТАБЛИЦЫ
-    public DataTable QueryDBForTable(string query)
+    public DataTable GetDBTableByQuery(string query)
     {
         using MySqlConnection myConnection = GetDBConnection();
         try
@@ -84,10 +82,47 @@ public class DBInteraction
             return null;
         }
     }
-    #endregion
 
-    #region Метод для создания запросов для добавления, удаления и тд
-    public bool DBNonQuery(string query)
+    public List<T> SqlQuery<T>(string query)
+    {
+        var result = new List<T>();
+
+        using (MySqlConnection connection = GetDBConnection(1))
+        {
+            connection.Open();
+            using var command = connection.CreateCommand();
+            command.CommandText = query;
+            using var reader = command.ExecuteReader();
+            var columns = Enumerable.Range(0, reader.FieldCount).Select(reader.GetName).ToArray();
+            var properties = typeof(T).GetProperties();
+
+            while (reader.Read())
+            {
+                var data = new object[reader.FieldCount];
+                reader.GetValues(data);
+
+                var instance = (T)Activator.CreateInstance(typeof(T));
+
+                for (var i = 0; i < data.Length; ++i)
+                {
+                    if (data[i] == DBNull.Value)
+                        data[i] = null;
+
+                    var property = properties.SingleOrDefault(x => x.Name.Equals(columns[i], StringComparison.InvariantCultureIgnoreCase));
+
+                    if (property is not null)
+                    {
+                        var dataValue = Guid.TryParse(data[i].ToString(), out Guid res) is true ? res : data[i];
+                        property.SetValue(instance, Convert.ChangeType(dataValue, property.PropertyType));
+                    }
+                }
+                result.Add(instance);
+            }
+        }
+        return result;
+    }
+
+    public DBResponseStatus AddRowOnDB(string query)
     {
         using MySqlConnection myConnection = GetDBConnection();
         try
@@ -97,18 +132,16 @@ public class DBInteraction
 
             MySqlCommand command = new(query, myConnection);
             command.ExecuteNonQuery();
-            return true;
+            return DBResponseStatus.OK;
         }
         catch (Exception ex)
         {
             Log.Error(ex.ToString());
-            return false;
+            return DBResponseStatus.Error;
         }
     }
-    #endregion
 
-    #region Метод для создания запросов для добавления, удаления и тд
-    public string DBScalar(string query)
+    public string ExecuteScalar(string query)
     {
         using MySqlConnection myConnection = GetDBConnection();
         try
@@ -125,5 +158,4 @@ public class DBInteraction
             return "";
         }
     }
-    #endregion
 }

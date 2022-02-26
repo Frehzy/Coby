@@ -11,6 +11,7 @@ namespace Storage.Entities.Implementation;
 public class Order : IOrder
 {
     private readonly ConcurrentDictionary<Guid, IGuest> _guests = new();
+    private readonly ConcurrentDictionary<Guid, IPayment> _paymentTypes = new();
 
     public Guid Id { get; }
 
@@ -19,6 +20,8 @@ public class Order : IOrder
     public IWaiter Waiter { get; }
 
     public decimal Sum { get; private set; }
+
+    public IReadOnlyCollection<IPayment> Payment => _paymentTypes.Values.ToList();
 
     public IReadOnlyCollection<IGuest> Guests => _guests.Values.ToList();
 
@@ -37,19 +40,27 @@ public class Order : IOrder
         StartTime = DateTime.Now;
     }
 
-    public IGuest TryAddGuest(IGuest guest)
-    {
-        var result = _guests.TryAdd(guest.Id, guest)
+    public void ChangeSum(decimal sum) => Sum = sum;
+
+    public IGuest TryAddGuest(IGuest guest) =>
+        _guests.TryAdd(guest.Id, guest)
             ? guest
             : throw new OverflowException($"An element with the same Guid [{guest.Id}] already exists.");
-        return result;
-    }
-
-    public void ChangeSum(decimal sum) => Sum = sum;
 
     public void RemoveGuestById(Guid guestId)
     {
         if (_guests.TryRemove(guestId, out _) is false)
             throw new EntityNotFound(guestId);
+    }
+
+    public IPayment TryAddPayment(IPayment payment) =>
+        _paymentTypes.TryAdd(payment.Id, payment)
+            ? payment
+            : throw new OverflowException($"An element with the same Guid [{payment.Id}] already exists.");
+
+    public void RemovePayment(Guid paymentId)
+    {
+        if (_paymentTypes.TryRemove(paymentId, out _) is false)
+            throw new EntityNotFound(paymentId);
     }
 }

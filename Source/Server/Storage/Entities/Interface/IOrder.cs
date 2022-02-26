@@ -14,6 +14,8 @@ public interface IOrder
 
     decimal Sum { get; }
 
+    IReadOnlyCollection<IPayment> Payment { get; }
+
     IReadOnlyCollection<IGuest> Guests { get; }
 
     OrderStatus OrderStatus { get; }
@@ -27,4 +29,8 @@ public interface IOrder
     IGuest TryAddGuest(IGuest guest);
 
     void RemoveGuestById(Guid guestId);
+
+    IPayment TryAddPayment(IPayment payment);
+
+    void RemovePayment(Guid paymentId);
 }
