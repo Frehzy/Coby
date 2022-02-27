@@ -37,7 +37,6 @@
             this.TablesPage = new System.Windows.Forms.TabPage();
             this.ProductsPage = new System.Windows.Forms.TabPage();
             this.PaymentTypesPage = new System.Windows.Forms.TabPage();
-            this.OrdersPage = new System.Windows.Forms.TabPage();
             this.TablesDgv = new System.Windows.Forms.DataGridView();
             this.RemoveTableButton = new MaterialSkin.Controls.MaterialButton();
             this.AddTableButton = new MaterialSkin.Controls.MaterialButton();
@@ -46,13 +45,20 @@
             this.RemovePaymentTypeButton = new MaterialSkin.Controls.MaterialButton();
             this.AddPaymentTypeButton = new MaterialSkin.Controls.MaterialButton();
             this.PaymentTypeUpdateButton = new MaterialSkin.Controls.MaterialButton();
+            this.ProductsDgv = new System.Windows.Forms.DataGridView();
+            this.RemoveProductButton = new MaterialSkin.Controls.MaterialButton();
+            this.AddProductButton = new MaterialSkin.Controls.MaterialButton();
+            this.ProductUpdateButton = new MaterialSkin.Controls.MaterialButton();
+            this.OpenNomenclature = new MaterialSkin.Controls.MaterialButton();
             this.TabControl.SuspendLayout();
             this.WaitersPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.WaitersDgv)).BeginInit();
             this.TablesPage.SuspendLayout();
+            this.ProductsPage.SuspendLayout();
             this.PaymentTypesPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TablesDgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PaymentTypesDgv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ProductsDgv)).BeginInit();
             this.SuspendLayout();
             // 
             // TabControl
@@ -61,7 +67,6 @@
             this.TabControl.Controls.Add(this.TablesPage);
             this.TabControl.Controls.Add(this.ProductsPage);
             this.TabControl.Controls.Add(this.PaymentTypesPage);
-            this.TabControl.Controls.Add(this.OrdersPage);
             this.TabControl.Depth = 0;
             this.TabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TabControl.Location = new System.Drawing.Point(3, 64);
@@ -112,7 +117,7 @@
             this.DeleteWaiterButton.Depth = 0;
             this.DeleteWaiterButton.HighEmphasis = true;
             this.DeleteWaiterButton.Icon = null;
-            this.DeleteWaiterButton.Location = new System.Drawing.Point(697, 9);
+            this.DeleteWaiterButton.Location = new System.Drawing.Point(697, 10);
             this.DeleteWaiterButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.DeleteWaiterButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.DeleteWaiterButton.Name = "DeleteWaiterButton";
@@ -133,7 +138,7 @@
             this.AddWaiterButton.Depth = 0;
             this.AddWaiterButton.HighEmphasis = true;
             this.AddWaiterButton.Icon = null;
-            this.AddWaiterButton.Location = new System.Drawing.Point(625, 9);
+            this.AddWaiterButton.Location = new System.Drawing.Point(625, 10);
             this.AddWaiterButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.AddWaiterButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.AddWaiterButton.Name = "AddWaiterButton";
@@ -153,7 +158,7 @@
             this.UpdateWaitersButton.Depth = 0;
             this.UpdateWaitersButton.HighEmphasis = true;
             this.UpdateWaitersButton.Icon = null;
-            this.UpdateWaitersButton.Location = new System.Drawing.Point(7, 9);
+            this.UpdateWaitersButton.Location = new System.Drawing.Point(7, 10);
             this.UpdateWaitersButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.UpdateWaitersButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.UpdateWaitersButton.Name = "UpdateWaitersButton";
@@ -182,6 +187,11 @@
             // 
             // ProductsPage
             // 
+            this.ProductsPage.Controls.Add(this.OpenNomenclature);
+            this.ProductsPage.Controls.Add(this.ProductsDgv);
+            this.ProductsPage.Controls.Add(this.RemoveProductButton);
+            this.ProductsPage.Controls.Add(this.AddProductButton);
+            this.ProductsPage.Controls.Add(this.ProductUpdateButton);
             this.ProductsPage.Location = new System.Drawing.Point(4, 25);
             this.ProductsPage.Name = "ProductsPage";
             this.ProductsPage.Size = new System.Drawing.Size(786, 404);
@@ -201,15 +211,6 @@
             this.PaymentTypesPage.TabIndex = 3;
             this.PaymentTypesPage.Text = "PaymentTypes";
             this.PaymentTypesPage.UseVisualStyleBackColor = true;
-            // 
-            // OrdersPage
-            // 
-            this.OrdersPage.Location = new System.Drawing.Point(4, 25);
-            this.OrdersPage.Name = "OrdersPage";
-            this.OrdersPage.Size = new System.Drawing.Size(786, 404);
-            this.OrdersPage.TabIndex = 4;
-            this.OrdersPage.Text = "Orders";
-            this.OrdersPage.UseVisualStyleBackColor = true;
             // 
             // TablesDgv
             // 
@@ -237,7 +238,7 @@
             this.RemoveTableButton.Depth = 0;
             this.RemoveTableButton.HighEmphasis = true;
             this.RemoveTableButton.Icon = null;
-            this.RemoveTableButton.Location = new System.Drawing.Point(702, 8);
+            this.RemoveTableButton.Location = new System.Drawing.Point(702, 9);
             this.RemoveTableButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.RemoveTableButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.RemoveTableButton.Name = "RemoveTableButton";
@@ -258,7 +259,7 @@
             this.AddTableButton.Depth = 0;
             this.AddTableButton.HighEmphasis = true;
             this.AddTableButton.Icon = null;
-            this.AddTableButton.Location = new System.Drawing.Point(630, 8);
+            this.AddTableButton.Location = new System.Drawing.Point(630, 9);
             this.AddTableButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.AddTableButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.AddTableButton.Name = "AddTableButton";
@@ -278,7 +279,7 @@
             this.TableUpdateButton.Depth = 0;
             this.TableUpdateButton.HighEmphasis = true;
             this.TableUpdateButton.Icon = null;
-            this.TableUpdateButton.Location = new System.Drawing.Point(12, 8);
+            this.TableUpdateButton.Location = new System.Drawing.Point(12, 9);
             this.TableUpdateButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.TableUpdateButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.TableUpdateButton.Name = "TableUpdateButton";
@@ -317,7 +318,7 @@
             this.RemovePaymentTypeButton.Depth = 0;
             this.RemovePaymentTypeButton.HighEmphasis = true;
             this.RemovePaymentTypeButton.Icon = null;
-            this.RemovePaymentTypeButton.Location = new System.Drawing.Point(702, 8);
+            this.RemovePaymentTypeButton.Location = new System.Drawing.Point(702, 9);
             this.RemovePaymentTypeButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.RemovePaymentTypeButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.RemovePaymentTypeButton.Name = "RemovePaymentTypeButton";
@@ -338,7 +339,7 @@
             this.AddPaymentTypeButton.Depth = 0;
             this.AddPaymentTypeButton.HighEmphasis = true;
             this.AddPaymentTypeButton.Icon = null;
-            this.AddPaymentTypeButton.Location = new System.Drawing.Point(630, 8);
+            this.AddPaymentTypeButton.Location = new System.Drawing.Point(630, 9);
             this.AddPaymentTypeButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.AddPaymentTypeButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.AddPaymentTypeButton.Name = "AddPaymentTypeButton";
@@ -358,7 +359,7 @@
             this.PaymentTypeUpdateButton.Depth = 0;
             this.PaymentTypeUpdateButton.HighEmphasis = true;
             this.PaymentTypeUpdateButton.Icon = null;
-            this.PaymentTypeUpdateButton.Location = new System.Drawing.Point(12, 8);
+            this.PaymentTypeUpdateButton.Location = new System.Drawing.Point(12, 9);
             this.PaymentTypeUpdateButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.PaymentTypeUpdateButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.PaymentTypeUpdateButton.Name = "PaymentTypeUpdateButton";
@@ -370,6 +371,107 @@
             this.PaymentTypeUpdateButton.UseAccentColor = false;
             this.PaymentTypeUpdateButton.UseVisualStyleBackColor = true;
             this.PaymentTypeUpdateButton.Click += new System.EventHandler(this.PaymentTypeUpdateButton_Click);
+            // 
+            // ProductsDgv
+            // 
+            this.ProductsDgv.AllowUserToAddRows = false;
+            this.ProductsDgv.AllowUserToDeleteRows = false;
+            this.ProductsDgv.AllowUserToResizeRows = false;
+            this.ProductsDgv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProductsDgv.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.ProductsDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ProductsDgv.Location = new System.Drawing.Point(12, 54);
+            this.ProductsDgv.Name = "ProductsDgv";
+            this.ProductsDgv.ReadOnly = true;
+            this.ProductsDgv.RowHeadersWidth = 51;
+            this.ProductsDgv.RowTemplate.Height = 24;
+            this.ProductsDgv.Size = new System.Drawing.Size(763, 343);
+            this.ProductsDgv.TabIndex = 15;
+            // 
+            // RemoveProductButton
+            // 
+            this.RemoveProductButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.RemoveProductButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.RemoveProductButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.RemoveProductButton.Depth = 0;
+            this.RemoveProductButton.HighEmphasis = true;
+            this.RemoveProductButton.Icon = null;
+            this.RemoveProductButton.Location = new System.Drawing.Point(702, 8);
+            this.RemoveProductButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.RemoveProductButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.RemoveProductButton.Name = "RemoveProductButton";
+            this.RemoveProductButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.RemoveProductButton.Size = new System.Drawing.Size(73, 36);
+            this.RemoveProductButton.TabIndex = 14;
+            this.RemoveProductButton.Text = "Delete";
+            this.RemoveProductButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.RemoveProductButton.UseAccentColor = false;
+            this.RemoveProductButton.UseVisualStyleBackColor = true;
+            this.RemoveProductButton.Click += new System.EventHandler(this.RemoveProductButton_Click);
+            // 
+            // AddProductButton
+            // 
+            this.AddProductButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddProductButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.AddProductButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.AddProductButton.Depth = 0;
+            this.AddProductButton.HighEmphasis = true;
+            this.AddProductButton.Icon = null;
+            this.AddProductButton.Location = new System.Drawing.Point(630, 9);
+            this.AddProductButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.AddProductButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.AddProductButton.Name = "AddProductButton";
+            this.AddProductButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.AddProductButton.Size = new System.Drawing.Size(64, 36);
+            this.AddProductButton.TabIndex = 13;
+            this.AddProductButton.Text = "Add";
+            this.AddProductButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.AddProductButton.UseAccentColor = false;
+            this.AddProductButton.UseVisualStyleBackColor = true;
+            this.AddProductButton.Click += new System.EventHandler(this.AddProductButton_Click);
+            // 
+            // ProductUpdateButton
+            // 
+            this.ProductUpdateButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ProductUpdateButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.ProductUpdateButton.Depth = 0;
+            this.ProductUpdateButton.HighEmphasis = true;
+            this.ProductUpdateButton.Icon = null;
+            this.ProductUpdateButton.Location = new System.Drawing.Point(12, 9);
+            this.ProductUpdateButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.ProductUpdateButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.ProductUpdateButton.Name = "ProductUpdateButton";
+            this.ProductUpdateButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.ProductUpdateButton.Size = new System.Drawing.Size(147, 36);
+            this.ProductUpdateButton.TabIndex = 12;
+            this.ProductUpdateButton.Text = "Product update";
+            this.ProductUpdateButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.ProductUpdateButton.UseAccentColor = false;
+            this.ProductUpdateButton.UseVisualStyleBackColor = true;
+            this.ProductUpdateButton.Click += new System.EventHandler(this.ProductUpdateButton_Click);
+            // 
+            // OpenNomenclature
+            // 
+            this.OpenNomenclature.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.OpenNomenclature.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.OpenNomenclature.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.OpenNomenclature.Depth = 0;
+            this.OpenNomenclature.HighEmphasis = true;
+            this.OpenNomenclature.Icon = null;
+            this.OpenNomenclature.Location = new System.Drawing.Point(485, 9);
+            this.OpenNomenclature.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.OpenNomenclature.MouseState = MaterialSkin.MouseState.HOVER;
+            this.OpenNomenclature.Name = "OpenNomenclature";
+            this.OpenNomenclature.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.OpenNomenclature.Size = new System.Drawing.Size(137, 36);
+            this.OpenNomenclature.TabIndex = 16;
+            this.OpenNomenclature.Text = "Nomenclature";
+            this.OpenNomenclature.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.OpenNomenclature.UseAccentColor = false;
+            this.OpenNomenclature.UseVisualStyleBackColor = true;
+            this.OpenNomenclature.Click += new System.EventHandler(this.OpenNomenclature_Click);
             // 
             // MainForm
             // 
@@ -388,10 +490,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.WaitersDgv)).EndInit();
             this.TablesPage.ResumeLayout(false);
             this.TablesPage.PerformLayout();
+            this.ProductsPage.ResumeLayout(false);
+            this.ProductsPage.PerformLayout();
             this.PaymentTypesPage.ResumeLayout(false);
             this.PaymentTypesPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TablesDgv)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PaymentTypesDgv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ProductsDgv)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -403,7 +508,6 @@
         private System.Windows.Forms.TabPage TablesPage;
         private System.Windows.Forms.TabPage ProductsPage;
         private System.Windows.Forms.TabPage PaymentTypesPage;
-        private System.Windows.Forms.TabPage OrdersPage;
         private MaterialSkin.Controls.MaterialButton UpdateWaitersButton;
         private MaterialSkin.Controls.MaterialButton DeleteWaiterButton;
         private MaterialSkin.Controls.MaterialButton AddWaiterButton;
@@ -416,6 +520,11 @@
         private MaterialSkin.Controls.MaterialButton RemovePaymentTypeButton;
         private MaterialSkin.Controls.MaterialButton AddPaymentTypeButton;
         private MaterialSkin.Controls.MaterialButton PaymentTypeUpdateButton;
+        private System.Windows.Forms.DataGridView ProductsDgv;
+        private MaterialSkin.Controls.MaterialButton RemoveProductButton;
+        private MaterialSkin.Controls.MaterialButton AddProductButton;
+        private MaterialSkin.Controls.MaterialButton ProductUpdateButton;
+        private MaterialSkin.Controls.MaterialButton OpenNomenclature;
     }
 }
 

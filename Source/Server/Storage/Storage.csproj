@@ -99,6 +99,7 @@
     <Compile Include="Entities\ExtentionDictionary.cs" />
     <Compile Include="Entities\Factory\GuestFactory.cs" />
     <Compile Include="Entities\Factory\LicenceFactory.cs" />
+    <Compile Include="Entities\Factory\NomenclatureFactory.cs" />
     <Compile Include="Entities\Factory\OrderFactory.cs" />
     <Compile Include="Entities\Factory\PaymentFactory.cs" />
     <Compile Include="Entities\Factory\PaymentTypeFactory.cs" />
@@ -108,6 +109,7 @@
     <Compile Include="Entities\Implementation\Credentials.cs" />
     <Compile Include="Entities\Implementation\Guest.cs" />
     <Compile Include="Entities\Implementation\License.cs" />
+    <Compile Include="Entities\Implementation\Nomenclature.cs" />
     <Compile Include="Entities\Implementation\Order.cs" />
     <Compile Include="Entities\Implementation\Payment.cs" />
     <Compile Include="Entities\Implementation\PaymentType.cs" />
@@ -115,6 +117,7 @@
     <Compile Include="Entities\Implementation\Table.cs" />
     <Compile Include="Entities\Implementation\Waiter.cs" />
     <Compile Include="Host\ILicenseCache.cs" />
+    <Compile Include="Host\INomenclatureCache.cs" />
     <Compile Include="Host\IOrderCache.cs" />
     <Compile Include="Host\IPaymentTypeCache.cs" />
     <Compile Include="Host\IProductCache.cs" />

@@ -6,7 +6,7 @@ using System.ServiceModel;
 namespace Storage.Host;
 
 [ServiceContract]
-public interface IService : ILicenseCache, IOrderCache, IPaymentTypeCache, IProductCache, ITableCache, IWaiterCache
+public interface IService : ILicenseCache, IOrderCache, IPaymentTypeCache, IProductCache, ITableCache, IWaiterCache, INomenclatureCache
 {
     [OperationContract]
     LicenseOperation GetLicenseOperation(AllCache cache);

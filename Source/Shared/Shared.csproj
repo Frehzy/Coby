@@ -45,6 +45,7 @@
     <Compile Include="Dto\Enities\CredentialsDto.cs" />
     <Compile Include="Dto\Enities\GuestDto.cs" />
     <Compile Include="Dto\Enities\LicenseDto.cs" />
+    <Compile Include="Dto\Enities\NomenclatureDto.cs" />
     <Compile Include="Dto\Enities\OrderDto.cs" />
     <Compile Include="Dto\Enities\PaymentDto.cs" />
     <Compile Include="Dto\Enities\PaymentTypeDto.cs" />

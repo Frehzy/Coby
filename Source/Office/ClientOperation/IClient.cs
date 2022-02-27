@@ -21,6 +21,8 @@ public interface IClient
 
     IWaiterCache WaitersCache { get; }
 
+    INomenclatureCache NomenclatureCache { get; }
+
     LicenseOperation LicenseOperation { get; }
 
     OrderOperation OrderOperation { get; }

@@ -3,6 +3,7 @@ using Office.ClientOperation;
 using Office.Forms.MessageForm;
 using Office.Helper;
 using System;
+using System.Linq;
 
 namespace Office.Forms;
 
@@ -31,9 +32,9 @@ public partial class MainForm : MaterialForm
 
     private void DeleteWaiterButton_Click(object sender, EventArgs e)
     {
-        var result = new RemoveRow(WaitersDgv).GetIdBySelectedRow();
+        var result = new RowHelper<Guid>(WaitersDgv).RemoveRow();
         if (result is not null)
-            Client.WaitersCache.RemoveWaiter(result.Id);
+            Client.WaitersCache.RemoveWaiter(result.Value);
 
         UpdateWaitersButton.PerformClick();
     }
@@ -52,11 +53,48 @@ public partial class MainForm : MaterialForm
 
     private void RemoveTableButton_Click(object sender, EventArgs e)
     {
-        var result = new RemoveRow(TablesDgv).GetIdBySelectedRow();
+        var result = new RowHelper<Guid>(TablesDgv).RemoveRow();
         if (result is not null)
-            Client.TablesCache.RemoveTable(result.Id);
+            Client.TablesCache.RemoveTable(result.Value);
 
         TableUpdateButton.PerformClick();
+    }
+
+    private void ProductUpdateButton_Click(object sender, EventArgs e) =>
+        DataGridHelper.FillTable(ProductsDgv, Client.ProductsCache.GetProductsCache());
+
+    private void AddProductButton_Click(object sender, EventArgs e)
+    {
+        var product = new AddProductForm().GetNewProduct();
+        if (product is not null)
+            Client.ProductsCache.AddProduct(product);
+
+        ProductUpdateButton.PerformClick();
+    }
+
+    private void RemoveProductButton_Click(object sender, EventArgs e)
+    {
+        var result = new RowHelper<Guid>(ProductsDgv).RemoveRow();
+        if (result is not null)
+        {
+            Client.ProductsCache.RemoveProduct(result.Value);
+            Client.NomenclatureCache.GetNomenclaturesCache()
+                                    .Where(x => x.ParentId.Equals(result))
+                                    .Select(x => Client.NomenclatureCache.RemoveNomenclature(result.Value, x.ChildId));
+        }
+
+        ProductUpdateButton.PerformClick();
+    }
+
+    private void OpenNomenclature_Click(object sender, EventArgs e)
+    {
+        var parentId = new RowHelper<Guid>(ProductsDgv).GetIdBySelectedRow("Id");
+
+        var parentProduct = Client.ProductsCache.GetProductsCache().First(x => x.Id.Equals(parentId));
+        if (parentProduct.IsItForSale is true)
+            new NomenclatureForm(Client, parentProduct).Show();
+        else
+            MaterialMessageBox.Show("Продукт не для продажи не может иметь номенклатуры");
     }
 
     private void PaymentTypeUpdateButton_Click(object sender, EventArgs e) =>
@@ -73,9 +111,9 @@ public partial class MainForm : MaterialForm
 
     private void RemovePaymentTypeButton_Click(object sender, EventArgs e)
     {
-        var result = new RemoveRow(PaymentTypesDgv).GetIdBySelectedRow();
+        var result = new RowHelper<Guid>(PaymentTypesDgv).RemoveRow();
         if (result is not null)
-            Client.PaymentTypesCache.RemovePaymentType(result.Id);
+            Client.PaymentTypesCache.RemovePaymentType(result.Value);
 
         PaymentTypeUpdateButton.PerformClick();
     }

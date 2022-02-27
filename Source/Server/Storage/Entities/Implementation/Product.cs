@@ -10,12 +10,15 @@ public class Product
 
     public decimal Price { get; set; }
 
+    public bool IsItForSale { get; set; }
+
     public Product() { }
 
-    public Product(Guid productId, string productName, decimal price)
+    public Product(Guid productId, string productName, decimal price, bool isItForSale)
     {
         Id = productId;
         ProductName = productName;
         Price = price;
+        IsItForSale = isItForSale;
     }
 }

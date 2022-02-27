@@ -22,6 +22,7 @@ public class Service : IService
     private readonly ConcurrentDictionary<Guid, ProductDto> _productsCache = new();
     private readonly ConcurrentDictionary<Guid, TableDto> _tablesCache = new();
     private readonly ConcurrentDictionary<Guid, WaiterDto> _waitersCache = new();
+    private readonly List<NomenclatureDto> _nomenclatureCache = new();
     private bool _canWork = true;
 
     public LicenseDto AddLicense(License license) =>
@@ -42,6 +43,9 @@ public class Service : IService
     public WaiterDto AddWaiter(Waiter waiter) =>
         _waitersCache.AddOrUpdate(waiter.Id, WaiterFactory.CreateDto(waiter), (key, oldValue) => WaiterFactory.CreateDto(waiter));
 
+    public void AddNomenclature(Nomenclature nomenclature) =>
+        _nomenclatureCache.Add(NomenclatureFactory.CreateDto(nomenclature));
+
     public List<License> GetLicensesCache() =>
         _licensesCache.Values.Select(x => LicenceFactory.Create(x)).ToList();
 
@@ -60,6 +64,9 @@ public class Service : IService
     public List<Waiter> GetWaitersCache() =>
         _waitersCache.Values.Select(x => WaiterFactory.Create(x)).ToList();
 
+    public List<Nomenclature> GetNomenclaturesCache() =>
+        _nomenclatureCache.Select(x => NomenclatureFactory.Create(x)).ToList();
+
     public bool RemoveLicense(Guid licenseId) => _licensesCache.TryRemove(licenseId, out _);
 
     public bool RemoveOrder(Guid orderId) => _ordersCache.TryRemove(orderId, out _);
@@ -71,6 +78,9 @@ public class Service : IService
     public bool RemoveTable(Guid tableId) => _tablesCache.TryRemove(tableId, out _);
 
     public bool RemoveWaiter(Guid waiterId) => _waitersCache.TryRemove(waiterId, out _);
+
+    public int RemoveNomenclature(Guid parentId, Guid childId) => 
+        _nomenclatureCache.RemoveAll(x => x.ParentId.Equals(parentId) && x.ChildId.Equals(childId));
 
     public LicenseOperation GetLicenseOperation(AllCache cache) => new() { Cache = cache };
 
@@ -87,6 +97,7 @@ public class Service : IService
             GetPaymentTypes().ForEach(x => AddPaymentType(PaymentTypeFactory.Create(x)));
             GetWaiters().ForEach(x => AddWaiter(WaiterFactory.Create(x)));
             GetProducts().ForEach(x => AddProduct(ProductFactory.Create(x)));
+            GetNomenclature().ForEach(x => AddNomenclature(NomenclatureFactory.Create(x)));
 
             _canWork = false;
         }
@@ -101,6 +112,9 @@ public class Service : IService
             DB.SqlQuery<WaiterDto>("SELECT * FROM waiters");
 
         List<ProductDto> GetProducts() =>
-            DB.SqlQuery<ProductDto>("SELECT * FROM `products` WHERE IsItForSale=1");
+            DB.SqlQuery<ProductDto>("SELECT * FROM products");
+
+        List<NomenclatureDto> GetNomenclature() =>
+            DB.SqlQuery<NomenclatureDto>("SELECT * FROM nomenclature");
     }
 }

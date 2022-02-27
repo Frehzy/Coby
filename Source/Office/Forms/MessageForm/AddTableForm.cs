@@ -15,10 +15,10 @@ public partial class AddTableForm : MaterialForm
     }
 
     public Table GetNewTable() =>
-        ShowDialog() is DialogResult.OK ? CreateTable(TableNumberTextBox.Text) : default;
+        ShowDialog() is DialogResult.OK ? CreateTable(int.Parse(TableNumberTextBox.Text)) : default;
 
-    private Table CreateTable(string tableNumber) =>
-        new(Guid.NewGuid(), int.Parse(tableNumber));
+    private Table CreateTable(int tableNumber) =>
+        new(Guid.NewGuid(), tableNumber);
 
     private void SaveButton_Click(object sender, EventArgs e)
     {

@@ -21,13 +21,15 @@ internal class Program
             host.AddServiceEndpoint(typeof(IService), serverBinding, "");
             host.Open();
 
-            SetCache(serviceAddress, serviceName);
+            var client = SetCache(serviceAddress, serviceName);
 
             Log.Info("Сервер запущен по следующим адресам:");
             foreach (var uri in host.BaseAddresses)
                 Log.Info(uri.AbsoluteUri);
 
             Console.ReadKey();
+
+            client.Close();
             host.Close();
         }
         else
@@ -36,12 +38,12 @@ internal class Program
         Log.Info("Сервер выключен.");
     }
 
-    private static void SetCache(string serviceAddress, string serviceName)
+    private static ChannelFactory<IService> SetCache(string serviceAddress, string serviceName)
     {
         var factory = CreateClient();
         var client = factory.CreateChannel();
         client.SetCache();
-        factory.Close();
+        return factory;
 
         ChannelFactory<IService> CreateClient()
         {

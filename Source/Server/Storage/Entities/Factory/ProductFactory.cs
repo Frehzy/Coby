@@ -10,9 +10,10 @@ internal static class ProductFactory
         {
             Id = product.Id,
             Price = product.Price,
-            ProductName = product.ProductName
+            ProductName = product.ProductName,
+            IsItForSale = product.IsItForSale
         };
 
     public static Product Create(ProductDto productDto) =>
-        new(productDto.Id, productDto.ProductName, productDto.Price);
+        new(productDto.Id, productDto.ProductName, productDto.Price, productDto.IsItForSale);
 }

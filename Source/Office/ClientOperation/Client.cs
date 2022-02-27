@@ -29,6 +29,8 @@ public class Client : IClient
 
     public IWaiterCache WaitersCache { get; }
 
+    public INomenclatureCache NomenclatureCache { get; }
+
     public Client()
     {
         _service = CreateClient();
@@ -38,6 +40,7 @@ public class Client : IClient
         ProductsCache = _service;
         TablesCache = _service;
         WaitersCache = _service;
+        NomenclatureCache = _service;
         AllCache = new(_service);
         LicenseOperation = _service.GetLicenseOperation(AllCache);
         LicenseOperation.Cache = AllCache;

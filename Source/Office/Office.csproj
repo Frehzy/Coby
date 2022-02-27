@@ -57,6 +57,18 @@
   <ItemGroup>
     <Compile Include="ClientOperation\Client.cs" />
     <Compile Include="ClientOperation\IClient.cs" />
+    <Compile Include="Forms\MessageForm\AddNomenclatureForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MessageForm\AddNomenclatureForm.Designer.cs">
+      <DependentUpon>AddNomenclatureForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MessageForm\AddProductForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MessageForm\AddProductForm.Designer.cs">
+      <DependentUpon>AddProductForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MessageForm\AddPaymentTypeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,12 +94,24 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\RemoveRow.cs" />
+    <Compile Include="Forms\NomenclatureForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NomenclatureForm.Designer.cs">
+      <DependentUpon>NomenclatureForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RowHelper.cs" />
     <Compile Include="Helper\FormHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MessageForm\AddNomenclatureForm.resx">
+      <DependentUpon>AddNomenclatureForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MessageForm\AddProductForm.resx">
+      <DependentUpon>AddProductForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MessageForm\AddPaymentTypeForm.resx">
       <DependentUpon>AddPaymentTypeForm.cs</DependentUpon>
@@ -97,6 +121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MessageForm\AddWaiterForm.resx">
       <DependentUpon>AddWaiterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NomenclatureForm.resx">
+      <DependentUpon>NomenclatureForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

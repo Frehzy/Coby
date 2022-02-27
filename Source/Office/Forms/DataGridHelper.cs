@@ -11,6 +11,9 @@ internal static class DataGridHelper
     {
         DgvClear(dgv);
 
+        if (content is null || content.Count() <= 0)
+            return;
+
         var properties = content.First().GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
         foreach (var property in properties)
             dgv.Columns.Add(property.Name, property.Name);
