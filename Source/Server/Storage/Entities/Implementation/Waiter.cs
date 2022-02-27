@@ -1,20 +1,25 @@
-﻿using Storage.Entities.Interface;
+﻿using Shared.Dto.Enums;
 using System;
 
 namespace Storage.Entities.Implementation;
 
-public class Waiter : IWaiter
+public class Waiter
 {
-    public Guid Id { get; }
+    public Guid Id { get; set; }
 
-    public string Name { get; }
+    public string Name { get; set; }
 
-    public string Password { get; }
+    public string Password { get; set; }
 
-    public Waiter(Guid waiterId, string name, string password)
+    public WaiterSessionStatus Status { get; set; }
+
+    public Waiter() { }
+
+    public Waiter(Guid waiterId, string name, string password, WaiterSessionStatus status)
     {
         Id = waiterId;
         Name = name;
         Password = password;
+        Status = status;
     }
 }

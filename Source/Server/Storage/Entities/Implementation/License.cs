@@ -1,12 +1,13 @@
-﻿using Storage.Entities.Interface;
-using System;
+﻿using System;
 
 namespace Storage.Entities.Implementation;
 
-public class License : ILicense
+public class License
 {
-    public Guid WaiterId { get; }
+    public Guid Id { get; set; }
+
+    public License() { }
 
     public License(Guid waiterId) =>
-        WaiterId = waiterId;
+        Id = waiterId;
 }

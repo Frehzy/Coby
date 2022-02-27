@@ -1,11 +1,12 @@
-﻿using Storage.Entities.Interface;
-using System;
+﻿using System;
 
 namespace Storage.Entities.Implementation;
 
-public class Credentials : ICredentials
+public class Credentials
 {
     public Guid WaiterId { get; }
+
+    public Credentials() { }
 
     public Credentials(Guid waiterId) =>
         WaiterId = waiterId;

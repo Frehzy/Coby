@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coby", "Source\Coby\Coby.cs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Office", "Source\Office\Office.csproj", "{6B1B8943-FC54-47C2-8A23-F96B3D8B9F5C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Source\Shared\Shared.csproj", "{0EF5552A-F509-4741-AF0A-68392D1CD746}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{6B1B8943-FC54-47C2-8A23-F96B3D8B9F5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B1B8943-FC54-47C2-8A23-F96B3D8B9F5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B1B8943-FC54-47C2-8A23-F96B3D8B9F5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EF5552A-F509-4741-AF0A-68392D1CD746}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EF5552A-F509-4741-AF0A-68392D1CD746}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EF5552A-F509-4741-AF0A-68392D1CD746}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EF5552A-F509-4741-AF0A-68392D1CD746}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -47,6 +53,7 @@ Global
 		{B5443618-3E2D-4697-A980-E1BD54796ABB} = {DC7C0A06-659D-4001-BB00-FCB537AAFBC6}
 		{1C8B9A2E-0DAC-4615-8149-FECD2A8374C5} = {FCD1244B-8270-4B1E-A82E-4AF2AC76068F}
 		{6B1B8943-FC54-47C2-8A23-F96B3D8B9F5C} = {FCD1244B-8270-4B1E-A82E-4AF2AC76068F}
+		{0EF5552A-F509-4741-AF0A-68392D1CD746} = {FCD1244B-8270-4B1E-A82E-4AF2AC76068F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4E810C79-C1FE-416A-A341-2ED573BEE209}

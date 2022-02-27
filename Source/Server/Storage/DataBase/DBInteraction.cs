@@ -1,8 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
-using Storage.Enums;
+using Shared.Dto.Enums;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Linq;
 

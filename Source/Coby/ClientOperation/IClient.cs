@@ -1,12 +1,29 @@
 ﻿using Storage.Cache;
 using Storage.Host;
-using Storage.Operations;
+using Storage.Operations.LicenseOperation;
+using Storage.Operations.OrderOperation;
 
 namespace Coby.ClientOperation;
 
 public interface IClient
 {
-    ClientInstance ClientInstance { get; }
+    AllCache AllCache { get; }
+
+    ILicenseCache LicensesCache { get; }
+
+    IOrderCache OrdersCache { get; }
+
+    IPaymentTypeCache PaymentTypesCache { get; }
+
+    IProductCache ProductsCache { get; }
+
+    ITableCache TablesCache { get; }
+
+    IWaiterCache WaitersCache { get; }
+
+    LicenseOperation LicenseOperation { get; }
+
+    OrderOperation OrderOperation { get; }
 
     IService CreateClient();
 }

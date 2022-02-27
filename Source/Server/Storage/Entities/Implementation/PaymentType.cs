@@ -1,13 +1,14 @@
-﻿using Storage.Entities.Interface;
-using System;
+﻿using System;
 
 namespace Storage.Entities.Implementation;
 
-public class PaymentType : IPaymentType
+public class PaymentType
 {
-    public Guid Id { get; }
+    public Guid Id { get; set; }
 
-    public string Name { get; }
+    public string Name { get; set; }
+
+    public PaymentType() { }
 
     public PaymentType(Guid paymentId, string name)
     {

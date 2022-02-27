@@ -95,23 +95,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cache\AllCache.cs" />
-    <Compile Include="Cache\Licenses\ILicensesCache.cs" />
-    <Compile Include="Cache\Licenses\LicensesCache.cs" />
-    <Compile Include="Cache\Orders\IOrdersCache.cs" />
-    <Compile Include="Cache\Orders\OrdersCache.cs" />
-    <Compile Include="Cache\PaymentTypes\IPaymentTypeCache.cs" />
-    <Compile Include="Cache\PaymentTypes\PaymentTypeCache.cs" />
-    <Compile Include="Cache\Products\IProductsCache.cs" />
-    <Compile Include="Cache\Products\ProductsCache.cs" />
-    <Compile Include="Cache\Tables\ITablesCache.cs" />
-    <Compile Include="Cache\Tables\TablesCache.cs" />
-    <Compile Include="Cache\Waiters\IWaitersCache.cs" />
-    <Compile Include="Cache\Waiters\WaitersCache.cs" />
-    <Compile Include="DataBase\ConvertType\PaymentType.cs" />
-    <Compile Include="DataBase\ConvertType\ProductType.cs" />
-    <Compile Include="DataBase\ConvertType\TableType.cs" />
-    <Compile Include="DataBase\ConvertType\WaiterType.cs" />
     <Compile Include="DataBase\DBInteraction.cs" />
+    <Compile Include="Entities\Factory\GuestFactory.cs" />
+    <Compile Include="Entities\Factory\LicenceFactory.cs" />
+    <Compile Include="Entities\Factory\OrderFactory.cs" />
+    <Compile Include="Entities\Factory\PaymentFactory.cs" />
+    <Compile Include="Entities\Factory\PaymentTypeFactory.cs" />
+    <Compile Include="Entities\Factory\ProductFactory.cs" />
+    <Compile Include="Entities\Factory\TableFactory.cs" />
+    <Compile Include="Entities\Factory\WaiterFactory.cs" />
     <Compile Include="Entities\Implementation\Credentials.cs" />
     <Compile Include="Entities\Implementation\Guest.cs" />
     <Compile Include="Entities\Implementation\License.cs" />
@@ -121,29 +113,18 @@
     <Compile Include="Entities\Implementation\Product.cs" />
     <Compile Include="Entities\Implementation\Table.cs" />
     <Compile Include="Entities\Implementation\Waiter.cs" />
-    <Compile Include="Entities\Interface\IPayment.cs" />
-    <Compile Include="Entities\Interface\IPaymentType.cs" />
-    <Compile Include="Enums\DBConnectionStatus.cs" />
-    <Compile Include="Enums\DBResponseStatus.cs" />
-    <Compile Include="Enums\OrderStatus.cs" />
-    <Compile Include="Exceptions\BaseException.cs" />
-    <Compile Include="Exceptions\EntityNotFound.cs" />
-    <Compile Include="Exceptions\LicenseException.cs" />
-    <Compile Include="Host\ClientInstance.cs" />
+    <Compile Include="Host\ILicenseCache.cs" />
+    <Compile Include="Host\IOrderCache.cs" />
+    <Compile Include="Host\IPaymentTypeCache.cs" />
+    <Compile Include="Host\IProductCache.cs" />
     <Compile Include="Host\IService.cs" />
-    <Compile Include="Entities\Interface\ICredentials.cs" />
-    <Compile Include="Entities\Interface\IGuest.cs" />
-    <Compile Include="Entities\Interface\ILicense.cs" />
-    <Compile Include="Entities\Interface\IOrder.cs" />
-    <Compile Include="Entities\Interface\IProduct.cs" />
-    <Compile Include="Entities\Interface\ITable.cs" />
-    <Compile Include="Entities\Interface\IWaiter.cs" />
+    <Compile Include="Host\ITableCache.cs" />
+    <Compile Include="Host\IWaiterCache.cs" />
     <Compile Include="Log.cs" />
-    <Compile Include="Operations\License\ILicenseOperation.cs" />
-    <Compile Include="Operations\License\LicenseOperation.cs" />
-    <Compile Include="Operations\Order\OrderOperation.cs" />
-    <Compile Include="Operations\Order\IOrderOperation.cs" />
-    <Compile Include="Operations\AllOperations.cs" />
+    <Compile Include="Operations\LicenseOperation\ILicenseOperation.cs" />
+    <Compile Include="Operations\LicenseOperation\LicenseOperation.cs" />
+    <Compile Include="Operations\OrderOperation\OrderOperation.cs" />
+    <Compile Include="Operations\OrderOperation\IOrderOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Host\Service.cs" />
   </ItemGroup>
@@ -154,6 +135,12 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\Shared.csproj">
+      <Project>{0ef5552a-f509-4741-af0a-68392d1cd746}</Project>
+      <Name>Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

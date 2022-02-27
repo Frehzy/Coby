@@ -21,6 +21,8 @@ internal class Program
             host.AddServiceEndpoint(typeof(IService), serverBinding, "");
             host.Open();
 
+            SetCache(serviceAddress, serviceName);
+
             Log.Info("Сервер запущен по следующим адресам:");
             foreach (var uri in host.BaseAddresses)
                 Log.Info(uri.AbsoluteUri);
@@ -32,6 +34,24 @@ internal class Program
             Log.Fatal("Только один экземпляр сервера может быть запущен.");
 
         Log.Info("Сервер выключен.");
+    }
+
+    private static void SetCache(string serviceAddress, string serviceName)
+    {
+        var factory = CreateClient();
+        var client = factory.CreateChannel();
+        client.SetCache();
+        factory.Close();
+
+        ChannelFactory<IService> CreateClient()
+        {
+            var tcpUri = new Uri($"net.tcp://{serviceAddress}/{serviceName}");
+            var address = new EndpointAddress(tcpUri);
+            var clientBinding = new NetTcpBinding();
+            clientBinding.Security.Mode = SecurityMode.None;
+            ChannelFactory<IService> factory = new(clientBinding, address);
+            return factory;
+        }
     }
 
     static bool IsSingleInstance()

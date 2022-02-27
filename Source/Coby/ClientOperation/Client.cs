@@ -1,4 +1,7 @@
-﻿using Storage.Host;
+﻿using Storage.Cache;
+using Storage.Host;
+using Storage.Operations.LicenseOperation;
+using Storage.Operations.OrderOperation;
 using System;
 using System.ServiceModel;
 
@@ -8,12 +11,36 @@ public class Client : IClient
 {
     private readonly IService _service;
 
-    public ClientInstance ClientInstance { get; }
+    public LicenseOperation LicenseOperation { get; }
+
+    public OrderOperation OrderOperation { get; }
+
+    public AllCache AllCache { get; }
+
+    public ILicenseCache LicensesCache { get; }
+
+    public IOrderCache OrdersCache { get; }
+
+    public IPaymentTypeCache PaymentTypesCache { get; }
+
+    public IProductCache ProductsCache { get; }
+
+    public ITableCache TablesCache { get; }
+
+    public IWaiterCache WaitersCache { get; }
 
     public Client()
     {
         _service = CreateClient();
-        ClientInstance = _service.GetClient();
+        LicensesCache = _service;
+        OrdersCache = _service;
+        PaymentTypesCache = _service;
+        ProductsCache = _service;
+        TablesCache = _service;
+        WaitersCache = _service;
+        AllCache = new(_service);
+        LicenseOperation = _service.GetLicenseOperation(AllCache);
+        OrderOperation = _service.GetOrderOperation(AllCache);
     }
 
     public IService CreateClient()

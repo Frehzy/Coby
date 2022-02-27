@@ -1,15 +1,16 @@
-﻿using Storage.Entities.Interface;
-using System;
+﻿using System;
 
 namespace Storage.Entities.Implementation;
 
-public class Product : IProduct
+public class Product
 {
-    public Guid Id { get; }
+    public Guid Id { get; set; }
 
-    public string ProductName { get; }
+    public string ProductName { get; set; }
 
-    public decimal Price { get; }
+    public decimal Price { get; set; }
+
+    public Product() { }
 
     public Product(Guid productId, string productName, decimal price)
     {

@@ -1,10 +1,19 @@
-﻿using System.ServiceModel;
+﻿using Storage.Cache;
+using Storage.Operations.LicenseOperation;
+using Storage.Operations.OrderOperation;
+using System.ServiceModel;
 
 namespace Storage.Host;
 
 [ServiceContract]
-public interface IService
+public interface IService : ILicenseCache, IOrderCache, IPaymentTypeCache, IProductCache, ITableCache, IWaiterCache
 {
     [OperationContract]
-    ClientInstance GetClient();
+    LicenseOperation GetLicenseOperation(AllCache cache);
+
+    [OperationContract]
+    OrderOperation GetOrderOperation(AllCache cache);
+
+    [OperationContract]
+    void SetCache();
 }

@@ -1,5 +1,4 @@
-﻿using Storage.Entities.Interface;
-using Storage.Exceptions;
+﻿using Shared.Dto.Exceptions;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -7,17 +6,19 @@ using System.Linq;
 
 namespace Storage.Entities.Implementation;
 
-internal class Guest : IGuest
+public class Guest
 {
-    private readonly ConcurrentDictionary<Guid, IProduct> _products = new();
+    private readonly ConcurrentDictionary<Guid, Product> _products = new();
 
-    public Guid Id { get; }
+    public Guid Id { get; set; }
 
-    public string Name { get; }
+    public string Name { get; set; }
 
-    public IReadOnlyCollection<IProduct> Products => _products.Values.ToList();
+    public IReadOnlyCollection<Product> Products => _products.Values.ToList();
 
-    public Guest(Guid guestId, string name, List<IProduct> products)
+    public Guest() { }
+
+    public Guest(Guid guestId, string name, List<Product> products)
     {
         Id = guestId;
         Name = name;
@@ -25,7 +26,7 @@ internal class Guest : IGuest
             _products.TryAdd(product.Id, product);
     }
 
-    public IProduct TryAddProduct(IProduct product)
+    public Product TryAddProduct(Product product)
     {
         var result = _products.TryAdd(product.Id, product)
             ? product

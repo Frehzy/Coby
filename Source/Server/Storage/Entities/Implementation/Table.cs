@@ -1,13 +1,14 @@
-﻿using Storage.Entities.Interface;
-using System;
+﻿using System;
 
 namespace Storage.Entities.Implementation;
 
-public class Table : ITable
+public class Table
 {
-    public Guid Id { get; }
+    public Guid Id { get; set; }
 
-    public int TableNumber { get; }
+    public int TableNumber { get; set; }
+
+    public Table() { }
 
     public Table(Guid tableId, int tableNumber)
     {

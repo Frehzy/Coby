@@ -1,33 +1,40 @@
-﻿using Storage.Cache.Licenses;
-using Storage.Cache.Orders;
-using Storage.Cache.PaymentTypes;
-using Storage.Cache.Products;
-using Storage.Cache.Tables;
-using Storage.Cache.Waiters;
+﻿#nullable enable
+
+using Storage.Host;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Storage.Cache;
 
 public class AllCache
 {
-    public ILicensesCache LicensesCache { get; }
+    public ILicenseCache LicensesCache { get; }
 
-    public IOrdersCache OrdersCache { get; }
+    public IOrderCache OrdersCache { get; }
 
-    public IProductsCache ProductsCache { get; }
+    public IPaymentTypeCache PaymentTypesCache { get; }
 
-    public ITablesCache TablesCache { get; }
+    public IProductCache ProductsCache { get; }
 
-    public IWaitersCache WaitersCache { get; }
+    public ITableCache TablesCache { get; }
 
-    public IPaymentTypeCache PaymentTypeCache { get; }
+    public IWaiterCache WaitersCache { get; }
 
-    public AllCache()
+#pragma warning disable CS8618 // Поле, не допускающее значения NULL, должно содержать значение, отличное от NULL, при выходе из конструктора. Возможно, стоит объявить поле как допускающее значения NULL.
+    public AllCache() { }
+#pragma warning restore CS8618 // Поле, не допускающее значения NULL, должно содержать значение, отличное от NULL, при выходе из конструктора. Возможно, стоит объявить поле как допускающее значения NULL.
+
+    public AllCache(IService service)
     {
-        LicensesCache = new LicensesCache();
-        OrdersCache = new OrdersCache();
-        ProductsCache = new ProductsCache();
-        TablesCache = new TablesCache();
-        WaitersCache = new WaitersCache();
-        PaymentTypeCache = new PaymentTypeCache();
+        LicensesCache = service;
+        OrdersCache = service;
+        PaymentTypesCache = service;
+        ProductsCache = service;
+        TablesCache = service;
+        WaitersCache = service;
     }
+
+    public T? TryGetValue<T>(IReadOnlyCollection<T> dictionary, Guid id) =>
+        dictionary.FirstOrDefault(x => x.Equals(id));
 }
