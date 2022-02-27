@@ -14,9 +14,9 @@ public class OrderDto
 
     public decimal Sum { get; init; }
 
-    public IReadOnlyCollection<PaymentDto> Payment { get; init; }
+    public Dictionary<Guid, PaymentDto> Payment { get; init; }
 
-    public IReadOnlyCollection<GuestDto> Guests { get; init; }
+    public Dictionary<Guid, GuestDto> Guests { get; init; }
 
     public OrderStatus OrderStatus { get; set; }
 
@@ -40,8 +40,8 @@ public class OrderDto
         Table = table;
         Waiter = waiter;
         Sum = sum;
-        Payment = paymentDtos;
-        Guests = guestDtos;
+        paymentDtos.ForEach(x => Payment.Add(x.Id, x));
+        guestDtos.ForEach(x => Guests.Add(x.Id, x));
         OrderStatus = status;
         StartTime = startTime;
         EndTime = endTime;

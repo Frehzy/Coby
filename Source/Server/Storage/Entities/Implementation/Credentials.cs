@@ -4,7 +4,7 @@ namespace Storage.Entities.Implementation;
 
 public class Credentials
 {
-    public Guid WaiterId { get; }
+    public Guid WaiterId { get; set; }
 
     public Credentials() { }
 

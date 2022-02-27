@@ -11,11 +11,11 @@ internal static class GuestFactory
         {
             Id = guest.Id,
             Name = guest.Name,
-            Products = guest.Products.Select(x => ProductFactory.CreateDto(x)).ToList()
+            Products = guest.Products.Select(x => ProductFactory.CreateDto(x.Value)).ToDictionary(x => x.Id, x => x)
         };
 
     public static Guest Create(GuestDto guestDto) =>
         new(guestDto.Id,
             guestDto.Name,
-            guestDto.Products.Select(x => ProductFactory.Create(x)).ToList());
+            guestDto.Products.Select(x => ProductFactory.Create(x.Value)).ToList());
 }

@@ -1,34 +1,29 @@
 ﻿using Shared.Dto.Enums;
 using Shared.Dto.Exceptions;
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Storage.Entities.Implementation;
 
 public class Order
 {
-    private readonly ConcurrentDictionary<Guid, Guest> _guests = new();
-    private readonly ConcurrentDictionary<Guid, Payment> _paymentTypes = new();
+    public Guid Id { get; set; }
 
-    public Guid Id { get; }
+    public Table Table { get; set; }
 
-    public Table Table { get; }
+    public Waiter Waiter { get; set; }
 
-    public Waiter Waiter { get; }
+    public decimal Sum { get; set; }
 
-    public decimal Sum { get; private set; }
+    public Dictionary<Guid, Payment> Payment { get; set; }
 
-    public IReadOnlyCollection<Payment> Payment => _paymentTypes.Values.ToList();
+    public Dictionary<Guid, Guest> Guests { get; set; }
 
-    public IReadOnlyCollection<Guest> Guests => _guests.Values.ToList();
+    public OrderStatus OrderStatus { get; set; }
 
-    public OrderStatus OrderStatus { get; }
+    public DateTime StartTime { get; set; }
 
-    public DateTime StartTime { get; }
-
-    public DateTime? EndTime { get; }
+    public DateTime? EndTime { get; set; }
 
     public Order() { }
 
@@ -47,8 +42,8 @@ public class Order
         Table = table;
         Waiter = waiter;
         Sum = sum;
-        payments.ForEach(x => _paymentTypes.TryAdd(x.Id, x));
-        guests.ForEach(x => _guests.TryAdd(x.Id, x));
+        payments.ForEach(x => Payment.Add(x.Id, x));
+        guests.ForEach(x => Guests.Add(x.Id, x));
         OrderStatus = status;
         StartTime = startTime;
         EndTime = endTime;
@@ -57,24 +52,20 @@ public class Order
     public void ChangeSum(decimal sum) => Sum = sum;
 
     public Guest TryAddGuest(Guest guest) =>
-        _guests.TryAdd(guest.Id, guest)
-            ? guest
-            : throw new OverflowException($"An element with the same Guid [{guest.Id}] already exists.");
+        Guests.TryAdd(guest.Id, guest);
 
-    public void RemoveGuestById(Guid guestId)
-    {
-        if (_guests.TryRemove(guestId, out _) is false)
-            throw new EntityNotFound(guestId);
-    }
+    public Guest AddOrUpdate(Guest guest) =>
+        Guests.AddOrUpdate(guest.Id, guest);
+
+    public bool RemoveGuestById(Guid guestId) =>
+        Guests.TryRemove(guestId) ? true : throw new EntityNotFound(guestId);
 
     public Payment TryAddPayment(Payment payment) =>
-        _paymentTypes.TryAdd(payment.Id, payment)
-            ? payment
-            : throw new OverflowException($"An element with the same Guid [{payment.Id}] already exists.");
+        Payment.TryAdd(payment.Id, payment);
 
-    public void RemovePayment(Guid paymentId)
-    {
-        if (_paymentTypes.TryRemove(paymentId, out _) is false)
-            throw new EntityNotFound(paymentId);
-    }
+    public Payment AddOrUpdate(Payment payment) =>
+        Payment.AddOrUpdate(payment.Id, payment);
+
+    public bool RemovePayment(Guid paymentId) =>
+        Payment.TryRemove(paymentId) ? true : throw new EntityNotFound(paymentId);
 }

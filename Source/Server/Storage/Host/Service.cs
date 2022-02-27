@@ -83,24 +83,24 @@ public class Service : IService
         if (_canWork)
         {
             DB = new DBInteraction("localhost", "coby", 3306, "coby", "1234");
-            GetTables().ForEach(x => AddTable(x));
-            GetPaymentTypes().ForEach(x => AddPaymentType(x));
-            GetWaiters().ForEach(x => AddWaiter(x));
-            GetProducts().ForEach(x => AddProduct(x));
+            GetTables().ForEach(x => AddTable(TableFactory.Create(x)));
+            GetPaymentTypes().ForEach(x => AddPaymentType(PaymentTypeFactory.Create(x)));
+            GetWaiters().ForEach(x => AddWaiter(WaiterFactory.Create(x)));
+            GetProducts().ForEach(x => AddProduct(ProductFactory.Create(x)));
 
             _canWork = false;
         }
 
-        List<Table> GetTables() =>
-            DB.SqlQuery<Table>("SELECT * FROM tables");
+        List<TableDto> GetTables() =>
+            DB.SqlQuery<TableDto>("SELECT * FROM tables");
 
-        List<PaymentType> GetPaymentTypes() =>
-            DB.SqlQuery<PaymentType>("SELECT * FROM paymentTypes");
+        List<PaymentTypeDto> GetPaymentTypes() =>
+            DB.SqlQuery<PaymentTypeDto>("SELECT * FROM paymentTypes");
 
-        List<Waiter> GetWaiters() =>
-            DB.SqlQuery<Waiter>("SELECT * FROM waiters");
+        List<WaiterDto> GetWaiters() =>
+            DB.SqlQuery<WaiterDto>("SELECT * FROM waiters");
 
-        List<Product> GetProducts() =>
-            DB.SqlQuery<Product>("SELECT * FROM `products` WHERE IsItForSale=1");
+        List<ProductDto> GetProducts() =>
+            DB.SqlQuery<ProductDto>("SELECT * FROM `products` WHERE IsItForSale=1");
     }
 }

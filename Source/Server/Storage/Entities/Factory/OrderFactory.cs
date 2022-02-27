@@ -13,11 +13,11 @@ internal static class OrderFactory
             Id = order.Id,
             Table = TableFactory.CreateDto(order.Table),
             Waiter = WaiterFactory.CreateDto(order.Waiter),
-            Payment = order.Payment.Select(x => PaymentFactory.CreateDto(x)).ToList(),
+            Payment = order.Payment.Select(x => PaymentFactory.CreateDto(x.Value)).ToDictionary(x => x.Id, x => x),
             Sum = order.Sum,
             StartTime = order.StartTime,
             EndTime = order.EndTime,
-            Guests = order.Guests.Select(x => GuestFactory.CreateDto(x)).ToList(),
+            Guests = order.Guests.Select(x => GuestFactory.CreateDto(x.Value)).ToDictionary(x => x.Id, x => x),
             OrderStatus = order.OrderStatus
         };
     }
@@ -27,8 +27,8 @@ internal static class OrderFactory
             TableFactory.Create(orderDto.Table),
             WaiterFactory.Create(orderDto.Waiter),
             orderDto.Sum,
-            orderDto.Payment.Select(x => PaymentFactory.Create(x)).ToList(),
-            orderDto.Guests.Select(x => GuestFactory.Create(x)).ToList(),
+            orderDto.Payment.Select(x => PaymentFactory.Create(x.Value)).ToList(),
+            orderDto.Guests.Select(x => GuestFactory.Create(x.Value)).ToList(),
             orderDto.OrderStatus,
             orderDto.StartTime,
             orderDto.EndTime);

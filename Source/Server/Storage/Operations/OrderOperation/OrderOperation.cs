@@ -9,9 +9,12 @@ public class OrderOperation : IOrderOperation
 {
     public AllCache Cache { get; set; }
 
-    public Order CreateOrder(Credentials credentials, Waiter waiter, Table table, AllCache cache)
+    public Order CreateOrder(Credentials credentials, Waiter waiter, Table table)
     {
-        if (cache.TryGetValue(cache.LicensesCache.GetLicensesCache(), credentials.WaiterId) is null)
+        if (Cache is null)
+            throw new ArgumentNullException("Cache cannot be null.");
+
+        if (Cache.TryGetValue(Cache.LicensesCache.GetLicensesCache(), credentials.WaiterId) is null)
             throw new EntityNotFound(credentials.WaiterId);
 
         return new Order(Guid.NewGuid(), table, waiter);

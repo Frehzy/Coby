@@ -96,6 +96,7 @@
   <ItemGroup>
     <Compile Include="Cache\AllCache.cs" />
     <Compile Include="DataBase\DBInteraction.cs" />
+    <Compile Include="Entities\ExtentionDictionary.cs" />
     <Compile Include="Entities\Factory\GuestFactory.cs" />
     <Compile Include="Entities\Factory\LicenceFactory.cs" />
     <Compile Include="Entities\Factory\OrderFactory.cs" />

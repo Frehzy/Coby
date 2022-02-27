@@ -1,6 +1,8 @@
-﻿namespace Storage.Operations.LicenseOperation;
+﻿using Storage.Entities.Implementation;
+
+namespace Storage.Operations.LicenseOperation;
 
 public interface ILicenseOperation
 {
-    //ICredentials GetCredentials(Guid userId, string password, AllCache cache);
+    Credentials GetCredentials(string password);
 }

@@ -40,7 +40,9 @@ public class Client : IClient
         WaitersCache = _service;
         AllCache = new(_service);
         LicenseOperation = _service.GetLicenseOperation(AllCache);
+        LicenseOperation.Cache = AllCache;
         OrderOperation = _service.GetOrderOperation(AllCache);
+        OrderOperation.Cache = AllCache;
     }
 
     public IService CreateClient()

@@ -33,6 +33,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="MaterialSkin, Version=2.3.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\MaterialSkin.2.2.3.1\lib\net48\MaterialSkin.dll</HintPath>
@@ -54,15 +57,47 @@
   <ItemGroup>
     <Compile Include="ClientOperation\Client.cs" />
     <Compile Include="ClientOperation\IClient.cs" />
+    <Compile Include="Forms\MessageForm\AddPaymentTypeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MessageForm\AddPaymentTypeForm.Designer.cs">
+      <DependentUpon>AddPaymentTypeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MessageForm\AddTableForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MessageForm\AddTableForm.Designer.cs">
+      <DependentUpon>AddTableForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MessageForm\AddWaiterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MessageForm\AddWaiterForm.Designer.cs">
+      <DependentUpon>AddWaiterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataGridHelper.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\RemoveRow.cs" />
     <Compile Include="Helper\FormHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MessageForm\AddPaymentTypeForm.resx">
+      <DependentUpon>AddPaymentTypeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MessageForm\AddTableForm.resx">
+      <DependentUpon>AddTableForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MessageForm\AddWaiterForm.resx">
+      <DependentUpon>AddWaiterForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -72,6 +107,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="app.manifest" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -96,5 +132,6 @@
       <Name>Shared</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

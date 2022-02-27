@@ -9,7 +9,7 @@ public record GuestDto
 
     public string Name { get; init; }
 
-    public IReadOnlyCollection<ProductDto> Products { get; init; }
+    public Dictionary<Guid, ProductDto> Products { get; init; }
 
     public GuestDto() { }
 
@@ -17,6 +17,6 @@ public record GuestDto
     {
         Id = guestId;
         Name = name;
-        Products = products;
+        products.ForEach(x => Products.Add(x.Id, x));
     }
 }
