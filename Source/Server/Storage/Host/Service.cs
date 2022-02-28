@@ -5,6 +5,7 @@ using Shared.Dto.Enums;
 using Storage.Cache;
 using Storage.DataBase;
 using Storage.Extention;
+using Storage.Operations.GuestOperation;
 using Storage.Operations.LicenseOperation;
 using Storage.Operations.NomenclatureOperation;
 using Storage.Operations.OrderOperation;
@@ -112,6 +113,8 @@ public class Service : IService
 
     public NomenclatureOperation GetNomenclatureOperation(AllCache cache) => new() { Cache = cache };
 
+    public GuestOperation GetGuestOperation(AllCache cache) => new() { Cache = cache };
+
     public void SetCache()
     {
         DBInteraction DB = default;
@@ -144,28 +147,42 @@ public class Service : IService
             DB.SqlQuery<Nomenclature>("SELECT * FROM nomenclature");
     }
 
-    public void LoadClosedOrderOnDB()
+    public void CloseCafeShift()
     {
-        var db = GetDBInteraction();
-        foreach (var order in _ordersCache.Values.Where(x => x.OrderStatus is OrderStatus.Closed))
+        LoadClosedOrderOnDB();
+        CloseAllWaiterShift();
+        _ordersCache.Clear();
+        _licensesCache.Clear();
+
+        void LoadClosedOrderOnDB()
         {
-            var orderDB = new OrderDB(order.Id, order.Table.Id, order.Waiter.Id, order.Sum, order.StartTime, DateTime.Now);
-            db.ExecuteNonQuery(SQLString.GetInsertSqlString(orderDB, "orders"));
-            foreach (var payment in order.Payment.Values)
+            var db = GetDBInteraction();
+            foreach (var order in _ordersCache.Values.Where(x => x.OrderStatus is OrderStatus.Closed))
             {
-                var paymentDB = new PaymentDB(order.Id, payment.Id, payment.Sum);
-                db.ExecuteNonQuery(SQLString.GetInsertSqlString(paymentDB, "orderspayments"));
-            }
-            foreach (var guest in order.Guests.Values)
-            {
-                var guestDB = new GuestDB(order.Id, guest.Id, guest.Name);
-                db.ExecuteNonQuery(SQLString.GetInsertSqlString(guestDB, "ordersguests"));
-                foreach (var product in guest.Products.Values)
+                var orderDB = new OrderDB(order.Id, order.Table.Id, order.Waiter.Id, order.Sum, order.StartTime, DateTime.Now);
+                db.ExecuteNonQuery(SQLString.GetInsertSqlString(orderDB, "orders"));
+                foreach (var payment in order.Payment.Values)
                 {
-                    var productDB = new ProductDB(order.Id, product.Id);
-                    db.ExecuteNonQuery(SQLString.GetInsertSqlString(productDB, "ordersproducts"));
+                    var paymentDB = new PaymentDB(order.Id, payment.Id, payment.Sum);
+                    db.ExecuteNonQuery(SQLString.GetInsertSqlString(paymentDB, "orderspayments"));
+                }
+                foreach (var guest in order.Guests.Values)
+                {
+                    var guestDB = new GuestDB(order.Id, guest.Id, guest.Name);
+                    db.ExecuteNonQuery(SQLString.GetInsertSqlString(guestDB, "ordersguests"));
+                    foreach (var product in guest.Products.Values)
+                    {
+                        var productDB = new ProductDB(order.Id, product.Id);
+                        db.ExecuteNonQuery(SQLString.GetInsertSqlString(productDB, "ordersproducts"));
+                    }
                 }
             }
+        }
+
+        void CloseAllWaiterShift()
+        {
+            foreach (var waiter in _waitersCache.Values)
+                waiter.Status = WaiterSessionStatus.Closed;
         }
     }
 

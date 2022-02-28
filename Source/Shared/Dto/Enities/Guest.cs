@@ -9,16 +9,13 @@ public class Guest
 
     public string Name { get; set; }
 
-    public Dictionary<Guid, Product> Products { get; set; }
+    public Dictionary<int, Product> Products { get; set; }
 
     public Guest() { }
 
-    /*public Product TryAddProduct(Product product) =>
-        Products.TryAdd(product.Id, product);
-
-    public Product AddOrUpdate(Product product) =>
-        Products.AddOrUpdate(product.Id, product);
-
-    public bool TryRemoveProduct(Guid productId) =>
-        Products.TryRemove(productId) ? true : throw new EntityNotFound(productId);*/
+    public Guest(Guid id, string name)
+    {
+        Id = id;
+        Name = name;
+    }
 }

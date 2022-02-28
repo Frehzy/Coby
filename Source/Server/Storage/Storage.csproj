@@ -113,6 +113,8 @@
     <Compile Include="Host\ITableCache.cs" />
     <Compile Include="Host\IWaiterCache.cs" />
     <Compile Include="Log.cs" />
+    <Compile Include="Operations\GuestOperation\GuestOperation.cs" />
+    <Compile Include="Operations\GuestOperation\IGuestOperation.cs" />
     <Compile Include="Operations\Helper.cs" />
     <Compile Include="Operations\LicenseOperation\ILicenseOperation.cs" />
     <Compile Include="Operations\LicenseOperation\LicenseOperation.cs" />

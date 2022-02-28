@@ -1,5 +1,6 @@
 ﻿using Storage.Cache;
 using Storage.Host;
+using Storage.Operations.GuestOperation;
 using Storage.Operations.LicenseOperation;
 using Storage.Operations.NomenclatureOperation;
 using Storage.Operations.OrderOperation;
@@ -41,6 +42,8 @@ public interface IClient
     PaymentOperation PaymentOperation { get; }
 
     NomenclatureOperation NomenclatureOperation { get; }
+
+    GuestOperation GuestOperation { get; }
 
     IService CreateClient();
 }

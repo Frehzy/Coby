@@ -1,5 +1,6 @@
 ﻿using Storage.Cache;
 using Storage.Host;
+using Storage.Operations.GuestOperation;
 using Storage.Operations.LicenseOperation;
 using Storage.Operations.NomenclatureOperation;
 using Storage.Operations.OrderOperation;
@@ -29,6 +30,8 @@ public class Client : IClient
     public PaymentOperation PaymentOperation { get; }
 
     public NomenclatureOperation NomenclatureOperation { get; }
+
+    public GuestOperation GuestOperation { get; }
 
     public AllCache AllCache { get; }
 
@@ -71,6 +74,8 @@ public class Client : IClient
         PaymentOperation.Cache = AllCache;
         NomenclatureOperation = _service.GetNomenclatureOperation(AllCache);
         NomenclatureOperation.Cache = AllCache;
+        GuestOperation = _service.GetGuestOperation(AllCache);
+        GuestOperation.Cache = AllCache;
     }
 
     public IService CreateClient()

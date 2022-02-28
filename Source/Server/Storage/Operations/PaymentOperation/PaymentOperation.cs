@@ -11,7 +11,7 @@ public class PaymentOperation : IPaymentOperation
 
     public Payment CreatePayment(Guid orderId, Guid paymentTypeId, decimal sum)
     {
-        if (Helper.PaymentOnOrderById(Cache, orderId, paymentTypeId, out Payment paymentOnOrder) is not null)
+        if (Helper.PaymentById(Cache, orderId, paymentTypeId, out Payment paymentOnOrder) is not null)
             throw new EntityAlreadyExistsException(paymentOnOrder.Id);
 
         var order = Helper.OrderById(Cache, orderId, out _);
@@ -27,5 +27,31 @@ public class PaymentOperation : IPaymentOperation
             throw new EntityAlreadyExistsException(paymentTypeOnCache.Id);
 
         return Cache.PaymentTypesCache.AddPaymentType(new PaymentType(Guid.NewGuid(), name));
+    }
+
+    public Payment AddPaymentOnOrder(Guid orderId, Guid paymentTypeId, decimal sum)
+    {
+        if (Helper.OrderById(Cache, orderId, out Order orderOnCache) is null)
+            throw new EntityNotFound(orderId);
+
+        if (Helper.PaymentById(Cache, orderId, paymentTypeId, out Payment paymentOnOrder) is not null)
+            throw new EntityAlreadyExistsException(paymentOnOrder.Id);
+
+        var paymentType = Helper.PaymentTypeById(Cache, paymentTypeId);
+        var payment = new Payment(paymentType.Id, paymentType.Name, sum);
+        orderOnCache.Payment.Add(payment.Id, payment);
+
+        return payment;
+    }
+
+    public void RemovePaymentOnOrder(Guid orderId, Guid paymentId)
+    {
+        if (Helper.OrderById(Cache, orderId, out Order orderOnCache) is null)
+            throw new EntityNotFound(orderId);
+
+        if (Helper.PaymentById(Cache, orderId, paymentId, out Payment paymentOnOrder) is null)
+            throw new EntityNotFound(paymentId);
+
+        orderOnCache.Payment.Remove(paymentOnOrder.Id);
     }
 }

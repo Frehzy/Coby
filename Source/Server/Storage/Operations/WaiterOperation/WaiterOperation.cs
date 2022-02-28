@@ -3,7 +3,6 @@ using Shared.Dto.Enums;
 using Shared.Dto.Exceptions;
 using Storage.Cache;
 using System;
-using System.Linq;
 
 namespace Storage.Operations.WaiterOperation;
 
@@ -13,14 +12,27 @@ public class WaiterOperation : IWaiterOperation
 
     public Waiter CreateWaiter(string name, string password)
     {
-        if (Cache is null)
-            throw new ArgumentNullException("Cache cannot be null.");
-
-        var waiterOnCache = Cache.WaitersCache.GetWaitersCache().FirstOrDefault(x => x.Password.Equals(password));
-        if (waiterOnCache is not null)
+        if (Helper.WaiterByPassword(Cache, password, out Waiter waiterOnCache) is not null)
             throw new EntityAlreadyExistsException(waiterOnCache.Id);
 
         return Cache.WaitersCache.AddWaiter(new Waiter(Guid.NewGuid(), name, password, WaiterSessionStatus.Closed));
+    }
 
+    public Waiter OpenPersonalShift(Guid waiterId)
+    {
+        if (Helper.WaiterById(Cache, waiterId, out Waiter waiterOnCache) is null)
+            throw new EntityNotFound(waiterId);
+
+        waiterOnCache.Status = WaiterSessionStatus.Open;
+        return waiterOnCache;
+    }
+
+    public Waiter ClosePersonalShift(Guid waiterId)
+    {
+        if (Helper.WaiterById(Cache, waiterId, out Waiter waiterOnCache) is null)
+            throw new EntityNotFound(waiterId);
+
+        waiterOnCache.Status = WaiterSessionStatus.Closed;
+        return waiterOnCache;
     }
 }

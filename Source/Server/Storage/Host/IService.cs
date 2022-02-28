@@ -1,4 +1,5 @@
 ﻿using Storage.Cache;
+using Storage.Operations.GuestOperation;
 using Storage.Operations.LicenseOperation;
 using Storage.Operations.NomenclatureOperation;
 using Storage.Operations.OrderOperation;
@@ -35,8 +36,11 @@ public interface IService : ILicenseCache, IOrderCache, IPaymentTypeCache, IProd
     NomenclatureOperation GetNomenclatureOperation(AllCache cache);
 
     [OperationContract]
+    GuestOperation GetGuestOperation(AllCache cache);
+
+    [OperationContract]
     void SetCache();
 
     [OperationContract]
-    void LoadClosedOrderOnDB();
+    void CloseCafeShift();
 }

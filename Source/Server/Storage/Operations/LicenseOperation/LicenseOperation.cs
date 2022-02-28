@@ -9,7 +9,7 @@ public class LicenseOperation : ILicenseOperation
 
     public Credentials GetCredentials(string password)
     {
-        var waiter = Helper.WaiterByPassword(Cache, password);
+        var waiter = Helper.WaiterByPassword(Cache, password, out _);
         return waiter is not null ? new Credentials(waiter.Id) : default;
     }
 }

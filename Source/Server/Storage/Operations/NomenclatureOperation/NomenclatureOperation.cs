@@ -12,9 +12,8 @@ public class NomenclatureOperation : INomenclatureOperation
 
     public Nomenclature CreateNomenclature(Guid parentId, Guid childId, decimal amount)
     {
-        var childProductOnCache = Helper.NomenclatureByParentAndChildId(Cache, parentId, childId);
-        if (childProductOnCache is not null)
-            throw new EntityAlreadyExistsException(new List<Guid>() { parentId, childId });
+        if (Helper.NomenclatureByParentAndChildId(Cache, parentId, childId, out Nomenclature nomenclatureOnCache) is not null)
+            throw new EntityAlreadyExistsException(new List<Guid>() { nomenclatureOnCache.ParentId, nomenclatureOnCache.ChildId });
 
         var nomenclature = new Nomenclature(parentId, childId, amount);
         Cache.NomenclatureCache.AddNomenclature(nomenclature);
