@@ -1,7 +1,6 @@
 ﻿#nullable enable
 
 using Shared.Dto.Enities;
-using Storage.Entities.Implementation;
 using System;
 using System.Collections.Generic;
 using System.ServiceModel;
@@ -15,9 +14,9 @@ public interface IWaiterCache
     List<Waiter> GetWaitersCache();
 
     [OperationContract]
-    WaiterDto AddWaiter(Waiter waiter);
+    Waiter AddWaiter(Waiter waiter);
 
     [OperationContract]
-    WaiterDto? RemoveWaiter(Guid waiterId);
+    Waiter? RemoveWaiter(Guid waiterId);
 
 }

@@ -2,7 +2,7 @@
 using Office.ClientOperation;
 using Office.Forms.MessageForm;
 using Office.Helper;
-using Storage.Entities.Implementation;
+using Shared.Dto.Enities;
 using System;
 using System.Linq;
 
@@ -34,10 +34,8 @@ public partial class NomenclatureForm : MaterialForm
 
     private void AddNomenclatureButton_Click(object sender, EventArgs e)
     {
-        var nomenclature = new AddNomenclatureForm(Product.Id, Client.ProductsCache.GetProductsCache().Where(x => x.IsItForSale is false)).GetNewNomenclature();
-        if (nomenclature is not null)
-            Client.NomenclatureCache.AddNomenclature(nomenclature);
-
+        _ = new AddNomenclatureForm(Product.Id,
+                                    Client.ProductsCache.GetProductsCache().Where(x => x.IsItForSale is false)).GetNewNomenclature(Client.NomenclatureOperation);
         NomenclatureUpdateButton.PerformClick();
     }
 }

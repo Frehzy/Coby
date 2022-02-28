@@ -4,11 +4,14 @@ using Shared.Dto.Enities;
 using Shared.Dto.Enums;
 using Storage.Cache;
 using Storage.DataBase;
-using Storage.Entities.Factory;
-using Storage.Entities.Implementation;
 using Storage.Extention;
 using Storage.Operations.LicenseOperation;
+using Storage.Operations.NomenclatureOperation;
 using Storage.Operations.OrderOperation;
+using Storage.Operations.PaymentOperation;
+using Storage.Operations.ProductOperation;
+using Storage.Operations.TableOperation;
+using Storage.Operations.WaiterOperation;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -20,70 +23,70 @@ namespace Storage.Host;
 [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
 public class Service : IService
 {
-    private readonly ConcurrentDictionary<Guid, LicenseDto> _licensesCache = new();
-    private readonly ConcurrentDictionary<Guid, OrderDto> _ordersCache = new();
-    private readonly ConcurrentDictionary<Guid, PaymentTypeDto> _paymentTypes = new();
-    private readonly ConcurrentDictionary<Guid, ProductDto> _productsCache = new();
-    private readonly ConcurrentDictionary<Guid, TableDto> _tablesCache = new();
-    private readonly ConcurrentDictionary<Guid, WaiterDto> _waitersCache = new();
-    private readonly List<NomenclatureDto> _nomenclatureCache = new();
+    private readonly ConcurrentDictionary<Guid, License> _licensesCache = new();
+    private readonly ConcurrentDictionary<Guid, Order> _ordersCache = new();
+    private readonly ConcurrentDictionary<Guid, PaymentType> _paymentTypes = new();
+    private readonly ConcurrentDictionary<Guid, Product> _productsCache = new();
+    private readonly ConcurrentDictionary<Guid, Table> _tablesCache = new();
+    private readonly ConcurrentDictionary<Guid, Waiter> _waitersCache = new();
+    private readonly List<Nomenclature> _nomenclatureCache = new();
     private bool _canWork = true;
 
-    public LicenseDto AddLicense(License license) =>
-        _licensesCache.AddOrUpdate(license.Id, LicenceFactory.CreateDto(license), (key, oldValue) => LicenceFactory.CreateDto(license));
+    public License AddLicense(License license) =>
+        _licensesCache.AddOrUpdate(license.Id, license, (key, oldValue) => license);
 
-    public OrderDto AddOrder(Order order) =>
-        _ordersCache.AddOrUpdate(order.Id, OrderFactory.CreateDto(order), (key, oldValue) => OrderFactory.CreateDto(order));
+    public Order AddOrder(Order order) =>
+        _ordersCache.AddOrUpdate(order.Id, order, (key, oldValue) => order);
 
-    public PaymentTypeDto AddPaymentType(PaymentType paymentType) =>
-        _paymentTypes.AddOrUpdateDB(paymentType.Id, PaymentTypeFactory.CreateDto(paymentType), GetDBInteraction(), "paymenttypes");
+    public PaymentType AddPaymentType(PaymentType paymentType) =>
+        _paymentTypes.AddOrUpdateDB(paymentType.Id, paymentType, GetDBInteraction(), "paymenttypes");
 
-    public ProductDto AddProduct(Product product) =>
-        _productsCache.AddOrUpdateDB(product.Id, ProductFactory.CreateDto(product), GetDBInteraction(), "products");
+    public Product AddProduct(Product product) =>
+        _productsCache.AddOrUpdateDB(product.Id, product, GetDBInteraction(), "products");
 
-    public TableDto AddTable(Table table) =>
-        _tablesCache.AddOrUpdateDB(table.Id, TableFactory.CreateDto(table), GetDBInteraction(), "tables");
+    public Table AddTable(Table table) =>
+        _tablesCache.AddOrUpdateDB(table.Id, table, GetDBInteraction(), "tables");
 
-    public WaiterDto AddWaiter(Waiter waiter) =>
-        _waitersCache.AddOrUpdateDB(waiter.Id, WaiterFactory.CreateDto(waiter), GetDBInteraction(), "waiters");
+    public Waiter AddWaiter(Waiter waiter) =>
+        _waitersCache.AddOrUpdateDB(waiter.Id, waiter, GetDBInteraction(), "waiters");
 
     public void AddNomenclature(Nomenclature nomenclature) =>
-        _nomenclatureCache.AddDB(NomenclatureFactory.CreateDto(nomenclature), GetDBInteraction(), "nomenclature");
+        _nomenclatureCache.AddDB(nomenclature, GetDBInteraction(), "nomenclature");
 
     public List<License> GetLicensesCache() =>
-        _licensesCache.Values.Select(x => LicenceFactory.Create(x)).ToList();
+        _licensesCache.Values.ToList();
 
     public List<Order> GetOrdersCache() =>
-        _ordersCache.Values.Select(x => OrderFactory.Create(x)).ToList();
+        _ordersCache.Values.ToList();
 
     public List<PaymentType> GetPaymentTypesCache() =>
-        _paymentTypes.Values.Select(x => PaymentTypeFactory.Create(x)).ToList();
+        _paymentTypes.Values.ToList();
 
     public List<Product> GetProductsCache() =>
-        _productsCache.Values.Select(x => ProductFactory.Create(x)).ToList();
+        _productsCache.Values.ToList();
 
     public List<Table> GetTablesCache() =>
-        _tablesCache.Values.Select(x => TableFactory.Create(x)).ToList();
+        _tablesCache.Values.ToList();
 
     public List<Waiter> GetWaitersCache() =>
-        _waitersCache.Values.Select(x => WaiterFactory.Create(x)).ToList();
+        _waitersCache.Values.ToList();
 
     public List<Nomenclature> GetNomenclaturesCache() =>
-        _nomenclatureCache.Select(x => NomenclatureFactory.Create(x)).ToList();
+        _nomenclatureCache.ToList();
 
     public bool RemoveLicense(Guid licenseId) => _licensesCache.TryRemove(licenseId, out _);
 
     public bool RemoveOrder(Guid orderId) => _ordersCache.TryRemove(orderId, out _);
 
-    public PaymentTypeDto? RemovePaymentType(Guid paymentTypeId) => _paymentTypes.TryRemoveDB(paymentTypeId, GetDBInteraction(), "paymenttypes");
+    public PaymentType? RemovePaymentType(Guid paymentTypeId) => _paymentTypes.TryRemoveDB(paymentTypeId, GetDBInteraction(), "paymenttypes");
 
-    public ProductDto? RemoveProduct(Guid productId) => _productsCache.TryRemoveDB(productId, GetDBInteraction(), "products");
+    public Product? RemoveProduct(Guid productId) => _productsCache.TryRemoveDB(productId, GetDBInteraction(), "products");
 
-    public TableDto? RemoveTable(Guid tableId) => _tablesCache.TryRemoveDB(tableId, GetDBInteraction(), "tables");
+    public Table? RemoveTable(Guid tableId) => _tablesCache.TryRemoveDB(tableId, GetDBInteraction(), "tables");
 
-    public WaiterDto? RemoveWaiter(Guid waiterId) => _waitersCache.TryRemoveDB(waiterId, GetDBInteraction(), "waiters");
+    public Waiter? RemoveWaiter(Guid waiterId) => _waitersCache.TryRemoveDB(waiterId, GetDBInteraction(), "waiters");
 
-    public List<NomenclatureDto> RemoveNomenclature(Guid parentId, Guid childId)
+    public List<Nomenclature> RemoveNomenclature(Guid parentId, Guid childId)
     {
         var removeNomenclature = _nomenclatureCache.Where(x => x.ParentId.Equals(parentId) && x.ChildId.Equals(childId)).ToList();
         var db = GetDBInteraction();
@@ -98,6 +101,16 @@ public class Service : IService
     public LicenseOperation GetLicenseOperation(AllCache cache) => new() { Cache = cache };
 
     public OrderOperation GetOrderOperation(AllCache cache) => new() { Cache = cache };
+
+    public TableOperation GetTableOperation(AllCache cache) => new() { Cache = cache };
+
+    public ProductOperation GetProductOperation(AllCache cache) => new() { Cache = cache };
+
+    public WaiterOperation GetWaiterOperation(AllCache cache) => new() { Cache = cache };
+
+    public PaymentOperation GetPaymentOperation(AllCache cache) => new() { Cache = cache };
+
+    public NomenclatureOperation GetNomenclatureOperation(AllCache cache) => new() { Cache = cache };
 
     public void SetCache()
     {
@@ -115,20 +128,20 @@ public class Service : IService
             _canWork = false;
         }
 
-        List<TableDto> GetTables() =>
-            DB.SqlQuery<TableDto>("SELECT * FROM tables");
+        List<Table> GetTables() =>
+            DB.SqlQuery<Table>("SELECT * FROM tables");
 
-        List<PaymentTypeDto> GetPaymentTypes() =>
-            DB.SqlQuery<PaymentTypeDto>("SELECT * FROM paymentTypes");
+        List<PaymentType> GetPaymentTypes() =>
+            DB.SqlQuery<PaymentType>("SELECT * FROM paymentTypes");
 
-        List<WaiterDto> GetWaiters() =>
-            DB.SqlQuery<WaiterDto>("SELECT * FROM waiters");
+        List<Waiter> GetWaiters() =>
+            DB.SqlQuery<Waiter>("SELECT * FROM waiters");
 
-        List<ProductDto> GetProducts() =>
-            DB.SqlQuery<ProductDto>("SELECT * FROM products");
+        List<Product> GetProducts() =>
+            DB.SqlQuery<Product>("SELECT * FROM products");
 
-        List<NomenclatureDto> GetNomenclature() =>
-            DB.SqlQuery<NomenclatureDto>("SELECT * FROM nomenclature");
+        List<Nomenclature> GetNomenclature() =>
+            DB.SqlQuery<Nomenclature>("SELECT * FROM nomenclature");
     }
 
     public void LoadClosedOrderOnDB()

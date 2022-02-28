@@ -1,4 +1,4 @@
-﻿using Storage.Entities.Implementation;
+﻿using Shared.Dto.Enities;
 
 namespace Storage.Operations.LicenseOperation;
 

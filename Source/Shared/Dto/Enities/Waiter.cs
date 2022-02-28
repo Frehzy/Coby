@@ -1,7 +1,7 @@
 ﻿using Shared.Dto.Enums;
 using System;
 
-namespace Storage.Entities.Implementation;
+namespace Shared.Dto.Enities;
 
 public class Waiter
 {

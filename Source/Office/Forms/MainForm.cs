@@ -23,10 +23,7 @@ public partial class MainForm : MaterialForm
 
     private void AddWaiterButton_Click(object sender, EventArgs e)
     {
-        var waiter = new AddWaiterForm().GetNewWaiter();
-        if (waiter is not null)
-            Client.WaitersCache.AddWaiter(waiter);
-
+        _ = new AddWaiterForm().GetNewWaiter(Client.WaiterOperation);
         UpdateWaitersButton.PerformClick();
     }
 
@@ -44,10 +41,7 @@ public partial class MainForm : MaterialForm
 
     private void AddTableButton_Click(object sender, EventArgs e)
     {
-        var table = new AddTableForm().GetNewTable();
-        if (table is not null)
-            Client.TablesCache.AddTable(table);
-
+        _ = new AddTableForm().GetNewTable(Client.TableOperation);
         TableUpdateButton.PerformClick();
     }
 
@@ -65,10 +59,7 @@ public partial class MainForm : MaterialForm
 
     private void AddProductButton_Click(object sender, EventArgs e)
     {
-        var product = new AddProductForm().GetNewProduct();
-        if (product is not null)
-            Client.ProductsCache.AddProduct(product);
-
+        _ = new AddProductForm().GetNewProduct(Client.ProductOperation);
         ProductUpdateButton.PerformClick();
     }
 
@@ -102,10 +93,7 @@ public partial class MainForm : MaterialForm
 
     private void AddPaymentTypeButton_Click(object sender, EventArgs e)
     {
-        var paymentType = new AddPaymentTypeForm().GetNewPaymentType();
-        if (paymentType is not null)
-            Client.PaymentTypesCache.AddPaymentType(paymentType);
-
+        _ = new AddPaymentTypeForm().GetNewPaymentType(Client.PaymentOperation);
         PaymentTypeUpdateButton.PerformClick();
     }
 

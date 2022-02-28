@@ -1,6 +1,7 @@
 ﻿using MaterialSkin.Controls;
 using Office.Helper;
-using Storage.Entities.Implementation;
+using Shared.Dto.Enities;
+using Storage.Operations.TableOperation;
 using System;
 using System.Windows.Forms;
 
@@ -14,11 +15,8 @@ public partial class AddTableForm : MaterialForm
         _ = FormHelper.CreateMaterialSkinManager(this);
     }
 
-    public Table GetNewTable() =>
-        ShowDialog() is DialogResult.OK ? CreateTable(int.Parse(TableNumberTextBox.Text)) : default;
-
-    private Table CreateTable(int tableNumber) =>
-        new(Guid.NewGuid(), tableNumber);
+    public Table GetNewTable(TableOperation tableOperation) =>
+        ShowDialog() is DialogResult.OK ? tableOperation.CreateTable(int.Parse(TableNumberTextBox.Text)) : default;
 
     private void SaveButton_Click(object sender, EventArgs e)
     {

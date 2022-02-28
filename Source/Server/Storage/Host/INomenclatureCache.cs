@@ -1,5 +1,4 @@
 ﻿using Shared.Dto.Enities;
-using Storage.Entities.Implementation;
 using System;
 using System.Collections.Generic;
 using System.ServiceModel;
@@ -16,5 +15,5 @@ public interface INomenclatureCache
     void AddNomenclature(Nomenclature nomenclature);
 
     [OperationContract]
-    List<NomenclatureDto> RemoveNomenclature(Guid parentId, Guid childId);
+    List<Nomenclature> RemoveNomenclature(Guid parentId, Guid childId);
 }

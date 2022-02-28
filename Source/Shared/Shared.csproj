@@ -42,22 +42,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dto\Enities\CredentialsDto.cs" />
-    <Compile Include="Dto\Enities\GuestDto.cs" />
-    <Compile Include="Dto\Enities\LicenseDto.cs" />
-    <Compile Include="Dto\Enities\NomenclatureDto.cs" />
-    <Compile Include="Dto\Enities\OrderDto.cs" />
-    <Compile Include="Dto\Enities\PaymentDto.cs" />
-    <Compile Include="Dto\Enities\PaymentTypeDto.cs" />
-    <Compile Include="Dto\Enities\ProductDto.cs" />
-    <Compile Include="Dto\Enities\TableDto.cs" />
-    <Compile Include="Dto\Enities\WaiterDto.cs" />
+    <Compile Include="Dto\Enities\Credentials.cs" />
+    <Compile Include="Dto\Enities\Guest.cs" />
+    <Compile Include="Dto\Enities\License.cs" />
+    <Compile Include="Dto\Enities\Nomenclature.cs" />
+    <Compile Include="Dto\Enities\Order.cs" />
+    <Compile Include="Dto\Enities\Payment.cs" />
+    <Compile Include="Dto\Enities\PaymentType.cs" />
+    <Compile Include="Dto\Enities\Product.cs" />
+    <Compile Include="Dto\Enities\Table.cs" />
+    <Compile Include="Dto\Enities\Waiter.cs" />
     <Compile Include="Dto\Enums\CafeSessionStatus.cs" />
     <Compile Include="Dto\Enums\DBConnectionStatus.cs" />
     <Compile Include="Dto\Enums\DBResponseStatus.cs" />
     <Compile Include="Dto\Enums\OrderStatus.cs" />
     <Compile Include="Dto\Enums\WaiterSessionStatus.cs" />
     <Compile Include="Dto\Exceptions\BaseException.cs" />
+    <Compile Include="Dto\Exceptions\EntityAlreadyExistsException.cs" />
     <Compile Include="Dto\Exceptions\EntityNotFound.cs" />
     <Compile Include="Dto\Exceptions\LicenseException.cs" />
     <Compile Include="IsExternalInit.cs" />

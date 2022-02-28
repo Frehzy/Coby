@@ -1,10 +1,10 @@
-﻿using Shared.Dto.Enums;
-using Shared.Dto.Exceptions;
-using Storage.Extention;
+﻿#nullable enable
+
+using Shared.Dto.Enums;
 using System;
 using System.Collections.Generic;
 
-namespace Storage.Entities.Implementation;
+namespace Shared.Dto.Enities;
 
 public class Order
 {
@@ -16,9 +16,9 @@ public class Order
 
     public decimal Sum { get; set; }
 
-    public Dictionary<Guid, Payment> Payment { get; set; }
+    public Dictionary<Guid, Payment>? Payment { get; set; }
 
-    public Dictionary<Guid, Guest> Guests { get; set; }
+    public Dictionary<Guid, Guest>? Guests { get; set; }
 
     public OrderStatus OrderStatus { get; set; }
 
@@ -37,22 +37,9 @@ public class Order
         StartTime = DateTime.Now;
     }
 
-    public Order(Guid orderId, Table table, Waiter waiter, decimal sum, List<Payment> payments, List<Guest> guests, OrderStatus status, DateTime startTime, DateTime? endTime = default)
-    {
-        Id = orderId;
-        Table = table;
-        Waiter = waiter;
-        Sum = sum;
-        payments.ForEach(x => Payment.Add(x.Id, x));
-        guests.ForEach(x => Guests.Add(x.Id, x));
-        OrderStatus = status;
-        StartTime = startTime;
-        EndTime = endTime;
-    }
-
     public void ChangeSum(decimal sum) => Sum = sum;
 
-    public Guest TryAddGuest(Guest guest) =>
+    /*public Guest TryAddGuest(Guest guest) =>
         Guests.TryAdd(guest.Id, guest);
 
     public Guest AddOrUpdate(Guest guest) =>
@@ -68,5 +55,5 @@ public class Order
         Payment.AddOrUpdate(payment.Id, payment);
 
     public bool RemovePayment(Guid paymentId) =>
-        Payment.TryRemove(paymentId) ? true : throw new EntityNotFound(paymentId);
+        Payment.TryRemove(paymentId) ? true : throw new EntityNotFound(paymentId);*/
 }

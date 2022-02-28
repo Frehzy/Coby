@@ -1,6 +1,7 @@
 ﻿using MaterialSkin.Controls;
 using Office.Helper;
-using Storage.Entities.Implementation;
+using Shared.Dto.Enities;
+using Storage.Operations.PaymentOperation;
 using System;
 using System.Windows.Forms;
 
@@ -14,11 +15,8 @@ public partial class AddPaymentTypeForm : MaterialForm
         _ = FormHelper.CreateMaterialSkinManager(this);
     }
 
-    public PaymentType GetNewPaymentType() =>
-        ShowDialog() is DialogResult.OK ? CreatePaymentType(PaymentTypeTextBox.Text) : default;
-
-    private PaymentType CreatePaymentType(string name) =>
-        new(Guid.NewGuid(), name);
+    public PaymentType GetNewPaymentType(PaymentOperation paymentOperation) =>
+        ShowDialog() is DialogResult.OK ? paymentOperation.CreatePaymentType(PaymentTypeTextBox.Text) : default;
 
     private void SaveButton_Click(object sender, EventArgs e)
     {

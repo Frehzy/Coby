@@ -1,5 +1,4 @@
 ﻿using Shared.Dto.Enities;
-using Storage.Entities.Implementation;
 using System;
 using System.Collections.Generic;
 using System.ServiceModel;
@@ -13,7 +12,7 @@ public interface IOrderCache
     List<Order> GetOrdersCache();
 
     [OperationContract]
-    OrderDto AddOrder(Order order);
+    Order AddOrder(Order order);
 
     [OperationContract]
     bool RemoveOrder(Guid orderId);

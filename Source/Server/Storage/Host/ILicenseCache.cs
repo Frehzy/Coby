@@ -1,5 +1,4 @@
 ﻿using Shared.Dto.Enities;
-using Storage.Entities.Implementation;
 using System;
 using System.Collections.Generic;
 using System.ServiceModel;
@@ -13,7 +12,7 @@ public interface ILicenseCache
     List<License> GetLicensesCache();
 
     [OperationContract]
-    LicenseDto AddLicense(License license);
+    License AddLicense(License license);
 
     [OperationContract]
     bool RemoveLicense(Guid licenseId);

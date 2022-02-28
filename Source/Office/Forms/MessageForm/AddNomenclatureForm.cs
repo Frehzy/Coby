@@ -1,6 +1,7 @@
 ﻿using MaterialSkin.Controls;
 using Office.Helper;
-using Storage.Entities.Implementation;
+using Shared.Dto.Enities;
+using Storage.Operations.NomenclatureOperation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,11 +22,10 @@ public partial class AddNomenclatureForm : MaterialForm
         ComboBoxSet(products.ToList());
     }
 
-    public Nomenclature GetNewNomenclature() =>
-        ShowDialog() is DialogResult.OK ? CreateNomenclature(SelectedItem.Id, decimal.Parse(AmountTextBox.Text)) : default;
-
-    private Nomenclature CreateNomenclature(Guid childId, decimal amount) =>
-        new(_parentId, childId, amount);
+    public Nomenclature GetNewNomenclature(NomenclatureOperation nomenclatureOperation) =>
+        ShowDialog() is DialogResult.OK
+        ? nomenclatureOperation.CreateNomenclature(_parentId, SelectedItem.Id, decimal.Parse(AmountTextBox.Text))
+        : default;
 
     private void ComboBoxSet(List<Product> products)
     {

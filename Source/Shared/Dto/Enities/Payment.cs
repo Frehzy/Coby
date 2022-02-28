@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Storage.Entities.Implementation;
+namespace Shared.Dto.Enities;
 
 public class Payment : PaymentType
 {

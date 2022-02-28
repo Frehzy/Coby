@@ -1,7 +1,6 @@
 ﻿#nullable enable
 
 using Shared.Dto.Enities;
-using Storage.Entities.Implementation;
 using System;
 using System.Collections.Generic;
 using System.ServiceModel;
@@ -15,8 +14,8 @@ public interface ITableCache
     List<Table> GetTablesCache();
 
     [OperationContract]
-    TableDto AddTable(Table table);
+    Table AddTable(Table table);
 
     [OperationContract]
-    TableDto? RemoveTable(Guid tableId);
+    Table? RemoveTable(Guid tableId);
 }

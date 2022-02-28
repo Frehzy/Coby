@@ -1,7 +1,6 @@
 ﻿#nullable enable
 
 using Shared.Dto.Enities;
-using Storage.Entities.Implementation;
 using System;
 using System.Collections.Generic;
 using System.ServiceModel;
@@ -15,9 +14,9 @@ public interface IPaymentTypeCache
     List<PaymentType> GetPaymentTypesCache();
 
     [OperationContract]
-    PaymentTypeDto AddPaymentType(PaymentType paymentType);
+    PaymentType AddPaymentType(PaymentType paymentType);
 
     [OperationContract]
-    PaymentTypeDto? RemovePaymentType(Guid paymentTypeId);
+    PaymentType? RemovePaymentType(Guid paymentTypeId);
 
 }

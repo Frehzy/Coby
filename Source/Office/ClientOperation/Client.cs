@@ -1,7 +1,12 @@
 ﻿using Storage.Cache;
 using Storage.Host;
 using Storage.Operations.LicenseOperation;
+using Storage.Operations.NomenclatureOperation;
 using Storage.Operations.OrderOperation;
+using Storage.Operations.PaymentOperation;
+using Storage.Operations.ProductOperation;
+using Storage.Operations.TableOperation;
+using Storage.Operations.WaiterOperation;
 using System;
 using System.ServiceModel;
 
@@ -14,6 +19,16 @@ public class Client : IClient
     public LicenseOperation LicenseOperation { get; }
 
     public OrderOperation OrderOperation { get; }
+
+    public TableOperation TableOperation { get; }
+
+    public ProductOperation ProductOperation { get; }
+
+    public WaiterOperation WaiterOperation { get; }
+
+    public PaymentOperation PaymentOperation { get; }
+
+    public NomenclatureOperation NomenclatureOperation { get; }
 
     public AllCache AllCache { get; }
 
@@ -46,6 +61,16 @@ public class Client : IClient
         LicenseOperation.Cache = AllCache;
         OrderOperation = _service.GetOrderOperation(AllCache);
         OrderOperation.Cache = AllCache;
+        TableOperation = _service.GetTableOperation(AllCache);
+        TableOperation.Cache = AllCache;
+        ProductOperation = _service.GetProductOperation(AllCache);
+        ProductOperation.Cache = AllCache;
+        WaiterOperation = _service.GetWaiterOperation(AllCache);
+        WaiterOperation.Cache = AllCache;
+        PaymentOperation = _service.GetPaymentOperation(AllCache);
+        PaymentOperation.Cache = AllCache;
+        NomenclatureOperation = _service.GetNomenclatureOperation(AllCache);
+        NomenclatureOperation.Cache = AllCache;
     }
 
     public IService CreateClient()

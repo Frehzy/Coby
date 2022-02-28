@@ -1,6 +1,7 @@
 ﻿using MaterialSkin.Controls;
 using Office.Helper;
-using Storage.Entities.Implementation;
+using Shared.Dto.Enities;
+using Storage.Operations.ProductOperation;
 using System;
 using System.Windows.Forms;
 
@@ -14,11 +15,8 @@ public partial class AddProductForm : MaterialForm
         _ = FormHelper.CreateMaterialSkinManager(this);
     }
 
-    public Product GetNewProduct() =>
-        ShowDialog() is DialogResult.OK ? CreateProduct(ProductNameTextBox.Text, decimal.Parse(PriceTextBox.Text), IsItForSaleCheckBox.Checked) : default;
-
-    private Product CreateProduct(string productName, decimal price, bool isItForSale) =>
-        new(Guid.NewGuid(), productName, price, isItForSale);
+    public Product GetNewProduct(ProductOperation productOperation) =>
+        ShowDialog() is DialogResult.OK ? productOperation.CreateProduct(ProductNameTextBox.Text, decimal.Parse(PriceTextBox.Text), IsItForSaleCheckBox.Checked) : default;
 
     private void SaveButton_Click(object sender, EventArgs e)
     {

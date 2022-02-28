@@ -1,9 +1,6 @@
 ﻿#nullable enable
 
 using Storage.Host;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Storage.Cache;
 
@@ -37,7 +34,4 @@ public class AllCache
         WaitersCache = service;
         NomenclatureCache = service;
     }
-
-    public T? TryGetValue<T>(IReadOnlyCollection<T> dictionary, Guid id) =>
-        dictionary.FirstOrDefault(x => x.Equals(id));
 }

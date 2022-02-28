@@ -1,7 +1,5 @@
-﻿using Storage.Cache;
-using Storage.Entities.Implementation;
-using System;
-using System.Linq;
+﻿using Shared.Dto.Enities;
+using Storage.Cache;
 
 namespace Storage.Operations.LicenseOperation;
 
@@ -11,11 +9,7 @@ public class LicenseOperation : ILicenseOperation
 
     public Credentials GetCredentials(string password)
     {
-        if (Cache is null)
-            throw new ArgumentNullException("Cache cannot be null.");
-
-        var waiter = Cache.WaitersCache.GetWaitersCache()
-                                       .FirstOrDefault(x => x.Password.Equals(password));
+        var waiter = Helper.WaiterByPassword(Cache, password);
         return waiter is not null ? new Credentials(waiter.Id) : default;
     }
 }
