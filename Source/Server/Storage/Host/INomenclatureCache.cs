@@ -16,5 +16,5 @@ public interface INomenclatureCache
     void AddNomenclature(Nomenclature nomenclature);
 
     [OperationContract]
-    int RemoveNomenclature(Guid parentId, Guid childId);
+    List<NomenclatureDto> RemoveNomenclature(Guid parentId, Guid childId);
 }

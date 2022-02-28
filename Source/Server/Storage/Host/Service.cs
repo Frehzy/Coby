@@ -1,8 +1,12 @@
-﻿using Shared.Dto.Enities;
+﻿#nullable enable
+
+using Shared.Dto.Enities;
+using Shared.Dto.Enums;
 using Storage.Cache;
 using Storage.DataBase;
 using Storage.Entities.Factory;
 using Storage.Entities.Implementation;
+using Storage.Extention;
 using Storage.Operations.LicenseOperation;
 using Storage.Operations.OrderOperation;
 using System;
@@ -32,19 +36,19 @@ public class Service : IService
         _ordersCache.AddOrUpdate(order.Id, OrderFactory.CreateDto(order), (key, oldValue) => OrderFactory.CreateDto(order));
 
     public PaymentTypeDto AddPaymentType(PaymentType paymentType) =>
-        _paymentTypes.AddOrUpdate(paymentType.Id, PaymentTypeFactory.CreateDto(paymentType), (key, oldValue) => PaymentTypeFactory.CreateDto(paymentType));
+        _paymentTypes.AddOrUpdateDB(paymentType.Id, PaymentTypeFactory.CreateDto(paymentType), GetDBInteraction(), "paymenttypes");
 
     public ProductDto AddProduct(Product product) =>
-        _productsCache.AddOrUpdate(product.Id, ProductFactory.CreateDto(product), (key, oldValue) => ProductFactory.CreateDto(product));
+        _productsCache.AddOrUpdateDB(product.Id, ProductFactory.CreateDto(product), GetDBInteraction(), "products");
 
     public TableDto AddTable(Table table) =>
-        _tablesCache.AddOrUpdate(table.Id, TableFactory.CreateDto(table), (key, oldValue) => TableFactory.CreateDto(table));
+        _tablesCache.AddOrUpdateDB(table.Id, TableFactory.CreateDto(table), GetDBInteraction(), "tables");
 
     public WaiterDto AddWaiter(Waiter waiter) =>
-        _waitersCache.AddOrUpdate(waiter.Id, WaiterFactory.CreateDto(waiter), (key, oldValue) => WaiterFactory.CreateDto(waiter));
+        _waitersCache.AddOrUpdateDB(waiter.Id, WaiterFactory.CreateDto(waiter), GetDBInteraction(), "waiters");
 
     public void AddNomenclature(Nomenclature nomenclature) =>
-        _nomenclatureCache.Add(NomenclatureFactory.CreateDto(nomenclature));
+        _nomenclatureCache.AddDB(NomenclatureFactory.CreateDto(nomenclature), GetDBInteraction(), "nomenclature");
 
     public List<License> GetLicensesCache() =>
         _licensesCache.Values.Select(x => LicenceFactory.Create(x)).ToList();
@@ -71,16 +75,25 @@ public class Service : IService
 
     public bool RemoveOrder(Guid orderId) => _ordersCache.TryRemove(orderId, out _);
 
-    public bool RemovePaymentType(Guid paymentTypeId) => _paymentTypes.TryRemove(paymentTypeId, out _);
+    public PaymentTypeDto? RemovePaymentType(Guid paymentTypeId) => _paymentTypes.TryRemoveDB(paymentTypeId, GetDBInteraction(), "paymenttypes");
 
-    public bool RemoveProduct(Guid productId) => _productsCache.TryRemove(productId, out _);
+    public ProductDto? RemoveProduct(Guid productId) => _productsCache.TryRemoveDB(productId, GetDBInteraction(), "products");
 
-    public bool RemoveTable(Guid tableId) => _tablesCache.TryRemove(tableId, out _);
+    public TableDto? RemoveTable(Guid tableId) => _tablesCache.TryRemoveDB(tableId, GetDBInteraction(), "tables");
 
-    public bool RemoveWaiter(Guid waiterId) => _waitersCache.TryRemove(waiterId, out _);
+    public WaiterDto? RemoveWaiter(Guid waiterId) => _waitersCache.TryRemoveDB(waiterId, GetDBInteraction(), "waiters");
 
-    public int RemoveNomenclature(Guid parentId, Guid childId) => 
-        _nomenclatureCache.RemoveAll(x => x.ParentId.Equals(parentId) && x.ChildId.Equals(childId));
+    public List<NomenclatureDto> RemoveNomenclature(Guid parentId, Guid childId)
+    {
+        var removeNomenclature = _nomenclatureCache.Where(x => x.ParentId.Equals(parentId) && x.ChildId.Equals(childId)).ToList();
+        var db = GetDBInteraction();
+        foreach (var item in removeNomenclature)
+        {
+            _nomenclatureCache.Remove(item);
+            db.ExecuteNonQuery($"DELETE FROM nomenclature WHERE ParentId = '{item.ParentId}' AND ChildId = '{item.ChildId}'");
+        }
+        return removeNomenclature;
+    }
 
     public LicenseOperation GetLicenseOperation(AllCache cache) => new() { Cache = cache };
 
@@ -92,12 +105,12 @@ public class Service : IService
 
         if (_canWork)
         {
-            DB = new DBInteraction("localhost", "coby", 3306, "coby", "1234");
-            GetTables().ForEach(x => AddTable(TableFactory.Create(x)));
-            GetPaymentTypes().ForEach(x => AddPaymentType(PaymentTypeFactory.Create(x)));
-            GetWaiters().ForEach(x => AddWaiter(WaiterFactory.Create(x)));
-            GetProducts().ForEach(x => AddProduct(ProductFactory.Create(x)));
-            GetNomenclature().ForEach(x => AddNomenclature(NomenclatureFactory.Create(x)));
+            DB = GetDBInteraction();
+            GetTables().ForEach(x => _tablesCache.TryAdd(x.Id, x));
+            GetPaymentTypes().ForEach(x => _paymentTypes.TryAdd(x.Id, x));
+            GetWaiters().ForEach(x => _waitersCache.TryAdd(x.Id, x));
+            GetProducts().ForEach(x => _productsCache.TryAdd(x.Id, x));
+            GetNomenclature().ForEach(x => _nomenclatureCache.Add(x));
 
             _canWork = false;
         }
@@ -117,4 +130,32 @@ public class Service : IService
         List<NomenclatureDto> GetNomenclature() =>
             DB.SqlQuery<NomenclatureDto>("SELECT * FROM nomenclature");
     }
+
+    public void LoadClosedOrderOnDB()
+    {
+        var db = GetDBInteraction();
+        foreach (var order in _ordersCache.Values.Where(x => x.OrderStatus is OrderStatus.Closed))
+        {
+            var orderDB = new OrderDB(order.Id, order.Table.Id, order.Waiter.Id, order.Sum, order.StartTime, DateTime.Now);
+            db.ExecuteNonQuery(SQLString.GetInsertSqlString(orderDB, "orders"));
+            foreach (var payment in order.Payment.Values)
+            {
+                var paymentDB = new PaymentDB(order.Id, payment.Id, payment.Sum);
+                db.ExecuteNonQuery(SQLString.GetInsertSqlString(paymentDB, "orderspayments"));
+            }
+            foreach (var guest in order.Guests.Values)
+            {
+                var guestDB = new GuestDB(order.Id, guest.Id, guest.Name);
+                db.ExecuteNonQuery(SQLString.GetInsertSqlString(guestDB, "ordersguests"));
+                foreach (var product in guest.Products.Values)
+                {
+                    var productDB = new ProductDB(order.Id, product.Id);
+                    db.ExecuteNonQuery(SQLString.GetInsertSqlString(productDB, "ordersproducts"));
+                }
+            }
+        }
+    }
+
+    private DBInteraction GetDBInteraction() =>
+        new("localhost", "coby", 3306, "coby", "1234");
 }

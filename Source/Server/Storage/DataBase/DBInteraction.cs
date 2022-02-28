@@ -121,7 +121,7 @@ internal class DBInteraction
         return result;
     }
 
-    public DBResponseStatus AddRowOnDB(string query)
+    public DBResponseStatus ExecuteNonQuery(string query)
     {
         using MySqlConnection myConnection = GetDBConnection();
         try

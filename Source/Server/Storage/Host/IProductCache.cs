@@ -1,4 +1,6 @@
-﻿using Shared.Dto.Enities;
+﻿#nullable enable
+
+using Shared.Dto.Enities;
 using Storage.Entities.Implementation;
 using System;
 using System.Collections.Generic;
@@ -16,6 +18,6 @@ public interface IProductCache
     ProductDto AddProduct(Product product);
 
     [OperationContract]
-    bool RemoveProduct(Guid productId);
+    ProductDto? RemoveProduct(Guid productId);
 
 }

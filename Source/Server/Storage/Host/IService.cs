@@ -16,4 +16,7 @@ public interface IService : ILicenseCache, IOrderCache, IPaymentTypeCache, IProd
 
     [OperationContract]
     void SetCache();
+
+    [OperationContract]
+    void LoadClosedOrderOnDB();
 }

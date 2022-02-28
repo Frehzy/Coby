@@ -28,11 +28,11 @@ internal class RowHelper<T>
 
     public T GetIdBySelectedRow(string columnName)
     {
-        var Row = _dgv.CurrentCell?.RowIndex;
+        Row = _dgv.CurrentCell?.RowIndex;
         if (Row is null)
             throw new NullReferenceException("Должна быть выделена хотя-бы одна строка.");
 
-        var Column = DataGridHelper.GetIndexByName(_dgv, columnName);
+        Column = DataGridHelper.GetIndexByName(_dgv, columnName);
         if (Column is null)
             throw new NullReferenceException($"Не был найден столбец с именем {columnName}");
 

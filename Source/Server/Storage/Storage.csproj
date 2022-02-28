@@ -96,7 +96,14 @@
   <ItemGroup>
     <Compile Include="Cache\AllCache.cs" />
     <Compile Include="DataBase\DBInteraction.cs" />
-    <Compile Include="Entities\ExtentionDictionary.cs" />
+    <Compile Include="DataBase\GuestDB.cs" />
+    <Compile Include="DataBase\OrderDB.cs" />
+    <Compile Include="DataBase\PaymentDB.cs" />
+    <Compile Include="DataBase\ProductDB.cs" />
+    <Compile Include="DataBase\SQLString.cs" />
+    <Compile Include="Extention\ListExtentions.cs" />
+    <Compile Include="Extention\ConcurrentDictionaryExtentions.cs" />
+    <Compile Include="Extention\DictionaryExtentions.cs" />
     <Compile Include="Entities\Factory\GuestFactory.cs" />
     <Compile Include="Entities\Factory\LicenceFactory.cs" />
     <Compile Include="Entities\Factory\NomenclatureFactory.cs" />

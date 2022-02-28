@@ -2,9 +2,9 @@
 
 using System.Collections.Generic;
 
-namespace Storage.Entities;
+namespace Storage.Extention;
 
-internal static class ExtentionDictionary
+internal static class DictionaryExtentions
 {
     public static TValue? TryAdd<Guid, TValue>(this Dictionary<Guid, TValue> dictionary, Guid key, TValue value)
     {
