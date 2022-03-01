@@ -7,6 +7,8 @@ public interface IWaiterOperation
 {
     Waiter CreateWaiter(string name, string password);
 
+    Waiter GetWaiterById(Guid waiterId);
+
     Waiter OpenPersonalShift(Guid waiterId);
 
     Waiter ClosePersonalShift(Guid waiterId);

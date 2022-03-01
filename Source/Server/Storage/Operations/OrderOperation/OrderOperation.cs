@@ -16,4 +16,26 @@ public class OrderOperation : IOrderOperation
 
         return Cache.OrdersCache.AddOrder(new Order(Guid.NewGuid(), table, waiter));
     }
+
+    public Order GetOrderById(Credentials credentials, Guid orderId)
+    {
+        if (Helper.CheckLicense(Cache, credentials) is null)
+            throw new EntityNotFound(credentials.WaiterId);
+
+        if (Helper.OrderById(Cache, orderId, out Order orderOnCache) is null)
+            throw new EntityNotFound(orderId);
+
+        return orderOnCache;
+    }
+
+    public bool RemoveOrder(Credentials credentials, Guid orderId)
+    {
+        if (Helper.CheckLicense(Cache, credentials) is null)
+            throw new EntityNotFound(credentials.WaiterId);
+
+        if (Helper.OrderById(Cache, orderId, out Order orderOnCache) is null)
+            throw new EntityNotFound(orderId);
+
+        return Cache.OrdersCache.RemoveOrder(orderId);
+    }
 }

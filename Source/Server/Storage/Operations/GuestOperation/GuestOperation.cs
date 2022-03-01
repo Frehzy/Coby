@@ -19,12 +19,11 @@ public class GuestOperation : IGuestOperation
         return guest;
     }
 
-    public void RemoveGuestOnOrder(Guid orderId, Guid guestId)
+    public void RemoveGuestOnOrderById(Guid orderId, Guid guestId)
     {
-        if (Helper.GuestOnOrderById(Cache, orderId, guestId, out Guest guest) is null)
+        if (Helper.GuestOnOrderById(Cache, orderId, guestId, out Order orderOnCache, out Guest guestOnOrder) is null)
             throw new EntityNotFound(orderId);
 
-        var order = Helper.OrderById(Cache, orderId, out _);
-        order.Guests.Remove(guest.Id);
+        orderOnCache.Guests.Remove(guestOnOrder.Id);
     }
 }

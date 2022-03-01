@@ -7,7 +7,7 @@ public interface IPaymentOperation
 {
     PaymentType CreatePaymentType(string name);
 
-    Payment CreatePayment(Guid orderId, Guid paymentTypeId, decimal sum);
+    PaymentType GetPaymentTypeById(Guid paymentTypeId);
 
     Payment AddPaymentOnOrder(Guid orderId, Guid paymentTypeId, decimal sum);
 

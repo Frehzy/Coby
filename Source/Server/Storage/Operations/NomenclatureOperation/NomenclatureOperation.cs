@@ -19,4 +19,9 @@ public class NomenclatureOperation : INomenclatureOperation
         Cache.NomenclatureCache.AddNomenclature(nomenclature);
         return nomenclature;
     }
+
+    public List<Nomenclature> GetNomenclaturesByParentId(Guid parentId) =>
+        Helper.NomenclatureByParentId(Cache, parentId, out List<Nomenclature> nomenclatures) is null
+            ? throw new EntityNotFound(parentId)
+            : nomenclatures;
 }

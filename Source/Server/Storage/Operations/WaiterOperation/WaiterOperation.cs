@@ -10,13 +10,10 @@ public class WaiterOperation : IWaiterOperation
 {
     public AllCache Cache { get; set; }
 
-    public Waiter CreateWaiter(string name, string password)
-    {
-        if (Helper.WaiterByPassword(Cache, password, out Waiter waiterOnCache) is not null)
-            throw new EntityAlreadyExistsException(waiterOnCache.Id);
-
-        return Cache.WaitersCache.AddWaiter(new Waiter(Guid.NewGuid(), name, password, WaiterSessionStatus.Closed));
-    }
+    public Waiter CreateWaiter(string name, string password) =>
+        Helper.WaiterByPassword(Cache, password, out Waiter waiterOnCache) is not null
+            ? throw new EntityAlreadyExistsException(waiterOnCache.Id)
+            : Cache.WaitersCache.AddWaiter(new Waiter(Guid.NewGuid(), name, password, WaiterSessionStatus.Closed));
 
     public Waiter OpenPersonalShift(Guid waiterId)
     {
@@ -35,4 +32,9 @@ public class WaiterOperation : IWaiterOperation
         waiterOnCache.Status = WaiterSessionStatus.Closed;
         return waiterOnCache;
     }
+
+    public Waiter GetWaiterById(Guid waiterId) =>
+        Helper.WaiterById(Cache, waiterId, out Waiter waiterOnCache) is null
+            ? throw new EntityNotFound(waiterId)
+            : waiterOnCache;
 }

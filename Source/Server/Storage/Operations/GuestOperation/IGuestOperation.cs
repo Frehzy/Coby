@@ -7,5 +7,5 @@ internal interface IGuestOperation
 {
     Guest AddGuestOnOrder(Guid orderId);
 
-    void RemoveGuestOnOrder(Guid orderId, Guid guestId);
+    void RemoveGuestOnOrderById(Guid orderId, Guid guestId);
 }

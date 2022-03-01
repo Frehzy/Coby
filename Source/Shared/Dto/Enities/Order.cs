@@ -3,6 +3,7 @@
 using Shared.Dto.Enums;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Shared.Dto.Enities;
 
@@ -14,7 +15,7 @@ public class Order
 
     public Waiter Waiter { get; set; }
 
-    public decimal Sum { get; set; }
+    public decimal? Sum => Guests?.Values.Select(x => x.Products.Values.Sum(x => x.Price)).Sum();
 
     public Dictionary<Guid, Payment>? Payment { get; set; }
 
@@ -36,6 +37,4 @@ public class Order
         OrderStatus = OrderStatus.New;
         StartTime = DateTime.Now;
     }
-
-    public void ChangeSum(decimal sum) => Sum = sum;
 }

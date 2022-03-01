@@ -4,6 +4,7 @@ using Shared.Dto.Enities;
 using Shared.Dto.Exceptions;
 using Storage.Cache;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Storage.Operations;
@@ -13,29 +14,39 @@ internal static class Helper
     public static Waiter? WaiterById(AllCache cache, Guid waiterId, out Waiter? waiter)
     {
         CheckCacheOnNull(cache);
-        waiter = cache.WaitersCache.GetWaitersCache().FirstOrDefault(x => x.Id.Equals(waiterId));
-        return waiter;
+        return waiter = cache.WaitersCache.GetWaitersCache().FirstOrDefault(x => x.Id.Equals(waiterId));
     }
 
     public static Waiter? WaiterByPassword(AllCache cache, string password, out Waiter? waiter)
     {
         CheckCacheOnNull(cache);
-        waiter = cache.WaitersCache.GetWaitersCache().FirstOrDefault(x => x.Password.Equals(password));
-        return waiter;
+        return waiter = cache.WaitersCache.GetWaitersCache().FirstOrDefault(x => x.Password.Equals(password));
+    }
+
+    public static Table? TableById(AllCache cache, Guid tableId, out Table? table)
+    {
+        CheckCacheOnNull(cache);
+        return table = cache.TablesCache.GetTablesCache().FirstOrDefault(x => x.Id.Equals(tableId));
     }
 
     public static Table? TableByNumber(AllCache cache, int tableNumber, out Table? table)
     {
         CheckCacheOnNull(cache);
-        table = cache.TablesCache.GetTablesCache().FirstOrDefault(x => x.TableNumber.Equals(tableNumber));
-        return table;
+        return table = cache.TablesCache.GetTablesCache().FirstOrDefault(x => x.TableNumber.Equals(tableNumber));
+    }
+
+    public static List<Nomenclature> NomenclatureByParentId(AllCache cache, Guid parentId, out List<Nomenclature> nomenclature)
+    {
+        CheckCacheOnNull(cache);
+        return nomenclature = cache.NomenclatureCache.GetNomenclaturesCache()
+                                                     .Where(x => x.ParentId.Equals(parentId)).ToList();
     }
 
     public static Nomenclature NomenclatureByParentAndChildId(AllCache cache, Guid parentId, Guid childId, out Nomenclature nomenclature)
     {
         CheckCacheOnNull(cache);
-        nomenclature = cache.NomenclatureCache.GetNomenclaturesCache().FirstOrDefault(x => x.ParentId.Equals(parentId) && x.ChildId.Equals(childId));
-        return nomenclature;
+        return nomenclature = cache.NomenclatureCache.GetNomenclaturesCache()
+                                                     .FirstOrDefault(x => x.ParentId.Equals(parentId) && x.ChildId.Equals(childId));
     }
 
     public static License CheckLicense(AllCache cache, Credentials credentials)
@@ -47,63 +58,59 @@ internal static class Helper
     public static Order OrderById(AllCache cache, Guid orderId, out Order order)
     {
         CheckCacheOnNull(cache);
-        order = cache.OrdersCache.GetOrdersCache().FirstOrDefault(x => x.Id.Equals(orderId));
-        return order;
+        return order = cache.OrdersCache.GetOrdersCache().FirstOrDefault(x => x.Id.Equals(orderId));
     }
 
-    public static PaymentType PaymentTypeById(AllCache cache, Guid paymentTypeId)
+    public static PaymentType PaymentTypeById(AllCache cache, Guid paymentTypeId, out PaymentType paymentType)
     {
         CheckCacheOnNull(cache);
-        return cache.PaymentTypesCache.GetPaymentTypesCache().FirstOrDefault(x => x.Id.Equals(paymentTypeId));
+        return paymentType = cache.PaymentTypesCache.GetPaymentTypesCache().FirstOrDefault(x => x.Id.Equals(paymentTypeId));
     }
 
-    public static Guest? GuestOnOrderById(AllCache cache, Guid orderId, Guid guestId, out Guest? guest)
+    public static Guest? GuestOnOrderById(AllCache cache, Guid orderId, Guid guestId, out Order order, out Guest? guest)
     {
         if (OrderById(cache, orderId, out Order orderOnCache) is null)
             throw new EntityNotFound(orderOnCache.Id);
 
-        guest = orderOnCache.Guests?.Values.FirstOrDefault(x => x.Id.Equals(guestId));
-        return guest;
+        order = orderOnCache;
+        return guest = orderOnCache.Guests?.Values.FirstOrDefault(x => x.Id.Equals(guestId));
     }
 
     public static Product? ProductById(AllCache cache, Guid productId, out Product product)
     {
         CheckCacheOnNull(cache);
-        product = cache.ProductsCache.GetProductsCache().FirstOrDefault(x => x.Id.Equals(productId));
-        return product;
+        return product = cache.ProductsCache.GetProductsCache().FirstOrDefault(x => x.Id.Equals(productId));
     }
 
     public static Product? ProductByName(AllCache cache, string name, out Product product)
     {
         CheckCacheOnNull(cache);
-        product = cache.ProductsCache.GetProductsCache().FirstOrDefault(x => x.ProductName.Equals(name));
-        return product;
+        return product = cache.ProductsCache.GetProductsCache().FirstOrDefault(x => x.ProductName.Equals(name));
     }
 
-    public static Product? ProductOnOrderById(AllCache cache, Guid orderId, Guid productId, int rank, out Product? product)
+    public static Product? ProductOnOrderById(AllCache cache, Guid orderId, Guid productId, int rank, out Order order, out Product? product)
     {
         if (OrderById(cache, orderId, out Order orderOnCache) is null)
             throw new EntityNotFound(orderOnCache.Id);
 
-        product = orderOnCache.Guests?.Values.Select(x => x.Products)
-            .FirstOrDefault(x => x.Any(x => x.Key.Equals(rank) && x.Value.Id.Equals(productId))).Values?.First();
-        return product;
+        order = orderOnCache;
+        return product = orderOnCache.Guests?.Values.Select(x => x.Products)
+                                                    .FirstOrDefault(x => x.Any(x => x.Key.Equals(rank) && x.Value.Id.Equals(productId))).Values?.First();
     }
 
     public static PaymentType PaymentTypeByName(AllCache cache, string name, out PaymentType paymentType)
     {
         CheckCacheOnNull(cache);
-        paymentType = cache.PaymentTypesCache.GetPaymentTypesCache().FirstOrDefault(x => x.Name.Equals(name));
-        return paymentType;
+        return paymentType = cache.PaymentTypesCache.GetPaymentTypesCache().FirstOrDefault(x => x.Name.Equals(name));
     }
 
-    public static Payment? PaymentById(AllCache cache, Guid orderId, Guid paymentTypeId, out Payment? payment)
+    public static Payment? PaymentById(AllCache cache, Guid orderId, Guid paymentTypeId, out Order order, out Payment? payment)
     {
         if (OrderById(cache, orderId, out Order orderOnCache) is null)
             throw new EntityNotFound(orderOnCache.Id);
 
-        payment = orderOnCache.Payment?.Values.FirstOrDefault(x => x.Id.Equals(paymentTypeId));
-        return payment;
+        order = orderOnCache;
+        return payment = orderOnCache.Payment?.Values.FirstOrDefault(x => x.Id.Equals(paymentTypeId));
     }
 
     private static bool CheckCacheOnNull(AllCache cache) =>

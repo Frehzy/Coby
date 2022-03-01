@@ -159,7 +159,7 @@ public class Service : IService
             var db = GetDBInteraction();
             foreach (var order in _ordersCache.Values.Where(x => x.OrderStatus is OrderStatus.Closed))
             {
-                var orderDB = new OrderDB(order.Id, order.Table.Id, order.Waiter.Id, order.Sum, order.StartTime, DateTime.Now);
+                var orderDB = new OrderDB(order.Id, order.Table.Id, order.Waiter.Id, (decimal)order.Sum, order.StartTime, DateTime.Now);
                 db.ExecuteNonQuery(SQLString.GetInsertSqlString(orderDB, "orders"));
                 foreach (var payment in order.Payment.Values)
                 {

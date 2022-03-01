@@ -9,11 +9,13 @@ public class TableOperation : ITableOperation
 {
     public AllCache Cache { get; set; }
 
-    public Table CreateTable(int tableNumber)
-    {
-        if (Helper.TableByNumber(Cache, tableNumber, out Table tableOnCache) is not null)
-            throw new EntityAlreadyExistsException(tableOnCache.Id);
+    public Table CreateTable(int tableNumber) =>
+        Helper.TableByNumber(Cache, tableNumber, out Table tableOnCache) is not null
+            ? throw new EntityAlreadyExistsException(tableOnCache.Id)
+            : Cache.TablesCache.AddTable(new Table(Guid.NewGuid(), tableNumber));
 
-        return Cache.TablesCache.AddTable(new Table(Guid.NewGuid(), tableNumber));
-    }
+    public Table GetTableById(Guid tableId) =>
+        Helper.TableById(Cache, tableId, out Table tableOnCache) is null
+            ? throw new EntityNotFound(tableId)
+            : tableOnCache;
 }
