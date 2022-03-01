@@ -20,6 +20,11 @@ public class NomenclatureOperation : INomenclatureOperation
         return nomenclature;
     }
 
+    public List<Nomenclature> GetNomenclaturesByChildId(Guid childId) =>
+        Helper.NomenclatureByChildId(Cache, childId, out List<Nomenclature> nomenclatures) is null
+            ? throw new EntityNotFound(childId)
+            : nomenclatures;
+
     public List<Nomenclature> GetNomenclaturesByParentId(Guid parentId) =>
         Helper.NomenclatureByParentId(Cache, parentId, out List<Nomenclature> nomenclatures) is null
             ? throw new EntityNotFound(parentId)

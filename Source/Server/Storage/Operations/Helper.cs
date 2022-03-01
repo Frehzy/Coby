@@ -42,6 +42,13 @@ internal static class Helper
                                                      .Where(x => x.ParentId.Equals(parentId)).ToList();
     }
 
+    public static List<Nomenclature> NomenclatureByChildId(AllCache cache, Guid childId, out List<Nomenclature> nomenclature)
+    {
+        CheckCacheOnNull(cache);
+        return nomenclature = cache.NomenclatureCache.GetNomenclaturesCache()
+                                                     .Where(x => x.ChildId.Equals(childId)).ToList();
+    }
+
     public static Nomenclature NomenclatureByParentAndChildId(AllCache cache, Guid parentId, Guid childId, out Nomenclature nomenclature)
     {
         CheckCacheOnNull(cache);

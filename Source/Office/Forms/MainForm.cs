@@ -29,7 +29,7 @@ public partial class MainForm : MaterialForm
 
     private void DeleteWaiterButton_Click(object sender, EventArgs e)
     {
-        var result = new RowHelper<Guid>(WaitersDgv).RemoveRow();
+        var result = new RowHelper<Guid>(WaitersDgv).GetValueByColumnName();
         if (result is not null)
             Client.WaitersCache.RemoveWaiter(result.Value);
 
@@ -47,7 +47,7 @@ public partial class MainForm : MaterialForm
 
     private void RemoveTableButton_Click(object sender, EventArgs e)
     {
-        var result = new RowHelper<Guid>(TablesDgv).RemoveRow();
+        var result = new RowHelper<Guid>(TablesDgv).GetValueByColumnName();
         if (result is not null)
             Client.TablesCache.RemoveTable(result.Value);
 
@@ -65,13 +65,17 @@ public partial class MainForm : MaterialForm
 
     private void RemoveProductButton_Click(object sender, EventArgs e)
     {
-        var result = new RowHelper<Guid>(ProductsDgv).RemoveRow();
+        var result = new RowHelper<Guid>(ProductsDgv).GetValueByColumnName();
         if (result is not null)
         {
+            var product = Client.ProductOperation.GetProductById(result.Value);
             Client.ProductsCache.RemoveProduct(result.Value);
-            Client.NomenclatureCache.GetNomenclaturesCache()
-                                    .Where(x => x.ParentId.Equals(result))
-                                    .Select(x => Client.NomenclatureCache.RemoveNomenclature(result.Value, x.ChildId));
+            if (product.IsItForSale is true)
+                Client.NomenclatureCache.GetNomenclaturesCache()
+                                        .Where(x => x.ParentId.Equals(result))
+                                        .Select(x => Client.NomenclatureCache.RemoveNomenclatureByParentAndChildId(result.Value, x.ChildId));
+            else
+                Client.NomenclatureCache.RemoveNomenclatureByChildId(result.Value);
         }
 
         ProductUpdateButton.PerformClick();
@@ -99,7 +103,7 @@ public partial class MainForm : MaterialForm
 
     private void RemovePaymentTypeButton_Click(object sender, EventArgs e)
     {
-        var result = new RowHelper<Guid>(PaymentTypesDgv).RemoveRow();
+        var result = new RowHelper<Guid>(PaymentTypesDgv).GetValueByColumnName();
         if (result is not null)
             Client.PaymentTypesCache.RemovePaymentType(result.Value);
 

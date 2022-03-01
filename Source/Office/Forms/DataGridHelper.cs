@@ -27,7 +27,9 @@ internal static class DataGridHelper
             dgv.Rows.Add(row);
         }
 
+        dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         dgv.AutoResizeColumns();
+        dgv.RowHeadersVisible = false;
     }
 
     public static int? GetIndexByName(DataGridView dgv, string name = "Id")

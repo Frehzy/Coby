@@ -4,5 +4,5 @@ namespace Storage.Operations.LicenseOperation;
 
 public interface ILicenseOperation
 {
-    Credentials GetCredentials(string password);
+    Credentials GetCredentials(string password, out Credentials credentials);
 }

@@ -9,4 +9,6 @@ public interface INomenclatureOperation
     Nomenclature CreateNomenclature(Guid parentId, Guid childId, decimal amount);
 
     List<Nomenclature> GetNomenclaturesByParentId(Guid parentId);
+
+    List<Nomenclature> GetNomenclaturesByChildId(Guid childId);
 }

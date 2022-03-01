@@ -87,7 +87,7 @@ public class Service : IService
 
     public Waiter? RemoveWaiter(Guid waiterId) => _waitersCache.TryRemoveDB(waiterId, GetDBInteraction(), "waiters");
 
-    public List<Nomenclature> RemoveNomenclature(Guid parentId, Guid childId)
+    public List<Nomenclature> RemoveNomenclatureByParentAndChildId(Guid parentId, Guid childId)
     {
         var removeNomenclature = _nomenclatureCache.Where(x => x.ParentId.Equals(parentId) && x.ChildId.Equals(childId)).ToList();
         var db = GetDBInteraction();
@@ -95,6 +95,18 @@ public class Service : IService
         {
             _nomenclatureCache.Remove(item);
             db.ExecuteNonQuery($"DELETE FROM nomenclature WHERE ParentId = '{item.ParentId}' AND ChildId = '{item.ChildId}'");
+        }
+        return removeNomenclature;
+    }
+
+    public List<Nomenclature> RemoveNomenclatureByChildId(Guid childId)
+    {
+        var removeNomenclature = _nomenclatureCache.Where(x => x.ChildId.Equals(childId)).ToList();
+        var db = GetDBInteraction();
+        foreach (var item in removeNomenclature)
+        {
+            _nomenclatureCache.Remove(item);
+            db.ExecuteNonQuery($"DELETE FROM nomenclature WHERE ChildId = '{item.ChildId}'");
         }
         return removeNomenclature;
     }
@@ -184,6 +196,13 @@ public class Service : IService
             foreach (var waiter in _waitersCache.Values)
                 waiter.Status = WaiterSessionStatus.Closed;
         }
+    }
+
+    public Waiter ChangeWaiterStatus(Guid waiterId, WaiterSessionStatus status)
+    {
+        _waitersCache.TryGetValue(waiterId, out Waiter waiter);
+        waiter.Status = status;
+        return waiter;
     }
 
     private DBInteraction GetDBInteraction() =>

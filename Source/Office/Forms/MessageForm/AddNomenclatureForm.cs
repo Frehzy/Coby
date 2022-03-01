@@ -20,6 +20,9 @@ public partial class AddNomenclatureForm : MaterialForm
         _ = FormHelper.CreateMaterialSkinManager(this);
         _parentId = parentId;
         ComboBoxSet(products.ToList());
+        SelectedItem = ChildProductComboBox.Items.Count > 0 
+            ? (Product)ChildProductComboBox.Items[0] 
+            : default;
     }
 
     public Nomenclature GetNewNomenclature(NomenclatureOperation nomenclatureOperation) =>

@@ -33,49 +33,26 @@ public class Client : IClient
 
     public GuestOperation GuestOperation { get; }
 
-    public AllCache AllCache { get; }
-
-    public ILicenseCache LicensesCache { get; }
-
-    public IOrderCache OrdersCache { get; }
-
-    public IPaymentTypeCache PaymentTypesCache { get; }
-
-    public IProductCache ProductsCache { get; }
-
-    public ITableCache TablesCache { get; }
-
-    public IWaiterCache WaitersCache { get; }
-
-    public INomenclatureCache NomenclatureCache { get; }
-
     public Client()
     {
         _service = CreateClient();
-        LicensesCache = _service;
-        OrdersCache = _service;
-        PaymentTypesCache = _service;
-        ProductsCache = _service;
-        TablesCache = _service;
-        WaitersCache = _service;
-        NomenclatureCache = _service;
-        AllCache = new(_service);
-        LicenseOperation = _service.GetLicenseOperation(AllCache);
-        LicenseOperation.Cache = AllCache;
-        OrderOperation = _service.GetOrderOperation(AllCache);
-        OrderOperation.Cache = AllCache;
-        TableOperation = _service.GetTableOperation(AllCache);
-        TableOperation.Cache = AllCache;
-        ProductOperation = _service.GetProductOperation(AllCache);
-        ProductOperation.Cache = AllCache;
-        WaiterOperation = _service.GetWaiterOperation(AllCache);
-        WaiterOperation.Cache = AllCache;
-        PaymentOperation = _service.GetPaymentOperation(AllCache);
-        PaymentOperation.Cache = AllCache;
-        NomenclatureOperation = _service.GetNomenclatureOperation(AllCache);
-        NomenclatureOperation.Cache = AllCache;
-        GuestOperation = _service.GetGuestOperation(AllCache);
-        GuestOperation.Cache = AllCache;
+        AllCache cache = new(_service);
+        LicenseOperation = _service.GetLicenseOperation(cache);
+        LicenseOperation.Cache = cache;
+        OrderOperation = _service.GetOrderOperation(cache);
+        OrderOperation.Cache = cache;
+        TableOperation = _service.GetTableOperation(cache);
+        TableOperation.Cache = cache;
+        ProductOperation = _service.GetProductOperation(cache);
+        ProductOperation.Cache = cache;
+        WaiterOperation = _service.GetWaiterOperation(cache);
+        WaiterOperation.Cache = cache;
+        PaymentOperation = _service.GetPaymentOperation(cache);
+        PaymentOperation.Cache = cache;
+        NomenclatureOperation = _service.GetNomenclatureOperation(cache);
+        NomenclatureOperation.Cache = cache;
+        GuestOperation = _service.GetGuestOperation(cache);
+        GuestOperation.Cache = cache;
     }
 
     public IService CreateClient()

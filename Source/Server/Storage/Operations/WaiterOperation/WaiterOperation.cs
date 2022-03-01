@@ -17,20 +17,20 @@ public class WaiterOperation : IWaiterOperation
 
     public Waiter OpenPersonalShift(Guid waiterId)
     {
-        if (Helper.WaiterById(Cache, waiterId, out Waiter waiterOnCache) is null)
+        if (Helper.WaiterById(Cache, waiterId, out _) is null)
             throw new EntityNotFound(waiterId);
 
-        waiterOnCache.Status = WaiterSessionStatus.Open;
-        return waiterOnCache;
+        Cache.LicensesCache.AddLicense(new License(waiterId));
+        return Cache.WaitersCache.ChangeWaiterStatus(waiterId, WaiterSessionStatus.Open);
     }
 
     public Waiter ClosePersonalShift(Guid waiterId)
     {
-        if (Helper.WaiterById(Cache, waiterId, out Waiter waiterOnCache) is null)
+        if (Helper.WaiterById(Cache, waiterId, out _) is null)
             throw new EntityNotFound(waiterId);
 
-        waiterOnCache.Status = WaiterSessionStatus.Closed;
-        return waiterOnCache;
+        Cache.LicensesCache.RemoveLicense(waiterId);
+        return Cache.WaitersCache.ChangeWaiterStatus(waiterId, WaiterSessionStatus.Closed);
     }
 
     public Waiter GetWaiterById(Guid waiterId) =>

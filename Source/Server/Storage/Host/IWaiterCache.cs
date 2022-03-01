@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using Shared.Dto.Enities;
+using Shared.Dto.Enums;
 using System;
 using System.Collections.Generic;
 using System.ServiceModel;
@@ -19,4 +20,6 @@ public interface IWaiterCache
     [OperationContract]
     Waiter? RemoveWaiter(Guid waiterId);
 
+    [OperationContract]
+    Waiter ChangeWaiterStatus(Guid waiterId, WaiterSessionStatus status);
 }

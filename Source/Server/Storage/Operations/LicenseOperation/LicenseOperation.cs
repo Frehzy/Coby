@@ -7,9 +7,9 @@ public class LicenseOperation : ILicenseOperation
 {
     public AllCache Cache { get; set; }
 
-    public Credentials GetCredentials(string password)
+    public Credentials GetCredentials(string password, out Credentials credentials)
     {
         var waiter = Helper.WaiterByPassword(Cache, password, out _);
-        return waiter is not null ? new Credentials(waiter.Id) : default;
+        return credentials = waiter is not null ? new Credentials(waiter.Id) : default;
     }
 }

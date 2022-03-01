@@ -16,14 +16,16 @@ internal class RowHelper<T>
     public RowHelper(DataGridView dgv) =>
         _dgv = dgv;
 
-    public RowHelper<T> RemoveRow(string columnName = "Id")
+    public RowHelper<T> GetValueByColumnName(string columnName = "Id", bool needShowDeleteMessage = true)
     {
         Value = GetIdBySelectedRow(columnName);
 
-        return MessageBox.Show(
-            $"Вы действительно хотите удалить {Row} строку?", default, MessageBoxButtons.YesNo) is DialogResult.Yes
-            ? this
-            : default;
+        return needShowDeleteMessage
+            ? MessageBox.Show(
+                $"Вы действительно хотите удалить {Row} строку?", default, MessageBoxButtons.YesNo) is DialogResult.Yes
+                ? this
+                : default
+            : this;
     }
 
     public T GetIdBySelectedRow(string columnName)

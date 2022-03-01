@@ -2,6 +2,7 @@
 using Shared.Dto.Exceptions;
 using Storage.Cache;
 using System;
+using System.Collections.Generic;
 
 namespace Storage.Operations.OrderOperation;
 
@@ -9,12 +10,13 @@ public class OrderOperation : IOrderOperation
 {
     public AllCache Cache { get; set; }
 
-    public Order CreateOrder(Credentials credentials, Waiter waiter, Table table)
+    public Order CreateOrder(Credentials credentials, Table table)
     {
         if (Helper.CheckLicense(Cache, credentials) is null)
             throw new EntityNotFound(credentials.WaiterId);
 
-        return Cache.OrdersCache.AddOrder(new Order(Guid.NewGuid(), table, waiter));
+        Helper.WaiterById(Cache, credentials.WaiterId, out Waiter waiterOnCache);
+        return Cache.OrdersCache.AddOrder(new Order(Guid.NewGuid(), table, waiterOnCache));
     }
 
     public Order GetOrderById(Credentials credentials, Guid orderId)
@@ -27,6 +29,9 @@ public class OrderOperation : IOrderOperation
 
         return orderOnCache;
     }
+
+    public List<Order> GetOrders() =>
+        Cache.OrdersCache.GetOrdersCache();
 
     public bool RemoveOrder(Credentials credentials, Guid orderId)
     {
