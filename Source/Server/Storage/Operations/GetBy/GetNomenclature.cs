@@ -12,7 +12,7 @@ public class GetNomenclature
 
     public GetNomenclature(AllCache cache) =>
         Cache = cache;
-    
+
     public List<Nomenclature> GetNomenclaturesByChildId(Guid childId) =>
         Helper.NomenclatureByChildId(Cache, childId, out List<Nomenclature> nomenclatures) is null
             ? throw new EntityNotFound(childId)

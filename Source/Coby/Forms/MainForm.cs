@@ -81,8 +81,8 @@ public partial class MainForm : MaterialForm
         try
         { Client.CloseCafeShift(); }
         catch (Exception ex)
-        { 
-            Log.Error(ex.ToString()); 
+        {
+            Log.Error(ex.ToString());
             MaterialMessageBox.Show($"Ошибка: {ex}.",
                                     false,
                                     FlexibleMaterialForm.ButtonsPosition.Center);

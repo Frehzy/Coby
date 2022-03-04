@@ -4,7 +4,6 @@ using Storage.Operations;
 using Storage.Operations.CreateRemove;
 using Storage.Operations.GetBy;
 using Storage.Operations.OrderOperation;
-using Storage.Operations.PaymentOperation;
 using System;
 using System.ServiceModel;
 

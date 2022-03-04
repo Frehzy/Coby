@@ -26,6 +26,6 @@ public class Remover
     public Table? RemoveTableById(Guid tableId) =>
         Cache.TablesCache.RemoveTable(tableId);
 
-    public Waiter? RemoveWaiterById(Guid waiterId) => 
+    public Waiter? RemoveWaiterById(Guid waiterId) =>
         Cache.WaitersCache.RemoveWaiter(waiterId);
 }
