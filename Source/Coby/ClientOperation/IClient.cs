@@ -1,13 +1,9 @@
-﻿using Storage.Cache;
-using Storage.Host;
-using Storage.Operations.GuestOperation;
-using Storage.Operations.LicenseOperation;
-using Storage.Operations.NomenclatureOperation;
+﻿using Storage.Host;
+using Storage.Operations;
+using Storage.Operations.CreateRemove;
+using Storage.Operations.GetBy;
 using Storage.Operations.OrderOperation;
-using Storage.Operations.PaymentOperation;
-using Storage.Operations.ProductOperation;
-using Storage.Operations.TableOperation;
-using Storage.Operations.WaiterOperation;
+using static Coby.ClientOperation.Client;
 
 namespace Coby.ClientOperation;
 
@@ -15,19 +11,19 @@ public interface IClient
 {
     LicenseOperation LicenseOperation { get; }
 
-    OrderOperation OrderOperation { get; }
-
-    TableOperation TableOperation { get; }
+    Creater Creater { get; }
 
     ProductOperation ProductOperation { get; }
 
+    TableOperation TableOperation { get; }
+
     WaiterOperation WaiterOperation { get; }
 
-    PaymentOperation PaymentOperation { get; }
+    OrderOperation OrderOperation { get; }
 
-    NomenclatureOperation NomenclatureOperation { get; }
+    GetByCache GetByCacheOperation { get; }
 
-    GuestOperation GuestOperation { get; }
+    CloseCafeShiftDelegate CloseCafeShift { get; }
 
     IService CreateClient();
 }

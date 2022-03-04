@@ -78,7 +78,10 @@
             this.ClientSize = new System.Drawing.Size(243, 164);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.TableNumberTextBox);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "AddTableForm";
+            this.Sizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add table";
             this.ResumeLayout(false);

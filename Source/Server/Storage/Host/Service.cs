@@ -5,14 +5,9 @@ using Shared.Dto.Enums;
 using Storage.Cache;
 using Storage.DataBase;
 using Storage.Extention;
-using Storage.Operations.GuestOperation;
-using Storage.Operations.LicenseOperation;
-using Storage.Operations.NomenclatureOperation;
+using Storage.Operations;
+using Storage.Operations.CreateRemove;
 using Storage.Operations.OrderOperation;
-using Storage.Operations.PaymentOperation;
-using Storage.Operations.ProductOperation;
-using Storage.Operations.TableOperation;
-using Storage.Operations.WaiterOperation;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -36,8 +31,23 @@ public class Service : IService
     public License AddLicense(License license) =>
         _licensesCache.AddOrUpdate(license.Id, license, (key, oldValue) => license);
 
-    public Order AddOrder(Order order) =>
-        _ordersCache.AddOrUpdate(order.Id, order, (key, oldValue) => order);
+    public Order AddOrUpdateOrder(Order source)
+    {
+        if (_ordersCache.TryGetValue(source.Id, out var orderOnCache))
+            return SubmitChanges(orderOnCache, source);
+        _ordersCache.TryAdd(source.Id, source);
+        return source;
+
+        static T SubmitChanges<T>(T orderTarger, T source)
+        {
+            foreach (var prop in typeof(T).GetProperties().Where(prop => prop.CanRead && prop.CanWrite))
+            {
+                var value = prop.GetValue(source, null);
+                prop.SetValue(orderTarger, value, null);
+            }
+            return orderTarger;
+        }
+    }
 
     public PaymentType AddPaymentType(PaymentType paymentType) =>
         _paymentTypes.AddOrUpdateDB(paymentType.Id, paymentType, GetDBInteraction(), "paymenttypes");
@@ -121,11 +131,16 @@ public class Service : IService
 
     public WaiterOperation GetWaiterOperation(AllCache cache) => new() { Cache = cache };
 
-    public PaymentOperation GetPaymentOperation(AllCache cache) => new() { Cache = cache };
+    public Creater GetCreater(AllCache cache) => new() { Cache = cache };
 
-    public NomenclatureOperation GetNomenclatureOperation(AllCache cache) => new() { Cache = cache };
+    public Remover GetRemover(AllCache cache) => new() { Cache = cache };
 
-    public GuestOperation GetGuestOperation(AllCache cache) => new() { Cache = cache };
+    public Waiter ChangeWaiterStatus(Guid waiterId, WaiterSessionStatus status)
+    {
+        _waitersCache.TryGetValue(waiterId, out Waiter waiter);
+        waiter.Status = status;
+        return waiter;
+    }
 
     public void SetCache()
     {
@@ -196,13 +211,6 @@ public class Service : IService
             foreach (var waiter in _waitersCache.Values)
                 waiter.Status = WaiterSessionStatus.Closed;
         }
-    }
-
-    public Waiter ChangeWaiterStatus(Guid waiterId, WaiterSessionStatus status)
-    {
-        _waitersCache.TryGetValue(waiterId, out Waiter waiter);
-        waiter.Status = status;
-        return waiter;
     }
 
     private DBInteraction GetDBInteraction() =>

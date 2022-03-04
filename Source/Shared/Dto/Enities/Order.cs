@@ -36,5 +36,11 @@ public class Order
         Waiter = waiter;
         OrderStatus = OrderStatus.New;
         StartTime = DateTime.Now;
+        Payment = new();
+        Guests = new();
     }
+
+    public List<Payment>? GetPayments() => (Payment?.Values ?? Enumerable.Empty<Payment>()).ToList();
+
+    public List<Guest>? GetGuests() => (Guests?.Values ?? Enumerable.Empty<Guest>()).ToList();
 }

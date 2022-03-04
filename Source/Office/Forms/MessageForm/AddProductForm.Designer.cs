@@ -78,7 +78,7 @@
             this.PriceTextBox.AnimateReadOnly = false;
             this.PriceTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.PriceTextBox.Depth = 0;
-            this.PriceTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.PriceTextBox.Font = new System.Drawing.Font("Roboto Medium", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.PriceTextBox.Hint = "Price";
             this.PriceTextBox.LeadingIcon = null;
             this.PriceTextBox.Location = new System.Drawing.Point(6, 123);
@@ -116,9 +116,12 @@
             this.Controls.Add(this.PriceTextBox);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.ProductNameTextBox);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "AddProductForm";
+            this.Sizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Add payment type";
+            this.Text = "Add product";
             this.ResumeLayout(false);
             this.PerformLayout();
 

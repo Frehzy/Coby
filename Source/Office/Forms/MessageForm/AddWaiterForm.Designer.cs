@@ -98,7 +98,10 @@
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.PasswordTextBox);
             this.Controls.Add(this.UsernameTextBox);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "AddWaiterForm";
+            this.Sizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add waiter";
             this.ResumeLayout(false);

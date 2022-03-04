@@ -1,6 +1,7 @@
 ﻿using Shared.Dto.Enities;
 using Shared.Dto.Exceptions;
 using Storage.Cache;
+using Storage.Operations.PaymentOperation;
 using System;
 using System.Collections.Generic;
 
@@ -10,24 +11,17 @@ public class OrderOperation : IOrderOperation
 {
     public AllCache Cache { get; set; }
 
+    public GuestOperations GetGuestOperations(Order order) => new(order);
+
+    public PaymentOperations GetPaymentOperations(Order order) => new(order, Cache.PaymentTypesCache.GetPaymentTypesCache());
+
     public Order CreateOrder(Credentials credentials, Table table)
     {
         if (Helper.CheckLicense(Cache, credentials) is null)
             throw new EntityNotFound(credentials.WaiterId);
 
         Helper.WaiterById(Cache, credentials.WaiterId, out Waiter waiterOnCache);
-        return Cache.OrdersCache.AddOrder(new Order(Guid.NewGuid(), table, waiterOnCache));
-    }
-
-    public Order GetOrderById(Credentials credentials, Guid orderId)
-    {
-        if (Helper.CheckLicense(Cache, credentials) is null)
-            throw new EntityNotFound(credentials.WaiterId);
-
-        if (Helper.OrderById(Cache, orderId, out Order orderOnCache) is null)
-            throw new EntityNotFound(orderId);
-
-        return orderOnCache;
+        return Cache.OrdersCache.AddOrUpdateOrder(new Order(Guid.NewGuid(), table, waiterOnCache));
     }
 
     public List<Order> GetOrders() =>
@@ -43,4 +37,7 @@ public class OrderOperation : IOrderOperation
 
         return Cache.OrdersCache.RemoveOrder(orderId);
     }
+
+    public Order SaveOrder(Order order) =>
+        Cache.OrdersCache.AddOrUpdateOrder(order);
 }

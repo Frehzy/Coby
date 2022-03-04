@@ -4,16 +4,11 @@ using Shared.Dto.Exceptions;
 using Storage.Cache;
 using System;
 
-namespace Storage.Operations.WaiterOperation;
+namespace Storage.Operations;
 
-public class WaiterOperation : IWaiterOperation
+public class WaiterOperation
 {
     public AllCache Cache { get; set; }
-
-    public Waiter CreateWaiter(string name, string password) =>
-        Helper.WaiterByPassword(Cache, password, out Waiter waiterOnCache) is not null
-            ? throw new EntityAlreadyExistsException(waiterOnCache.Id)
-            : Cache.WaitersCache.AddWaiter(new Waiter(Guid.NewGuid(), name, password, WaiterSessionStatus.Closed));
 
     public Waiter OpenPersonalShift(Guid waiterId)
     {
@@ -32,9 +27,4 @@ public class WaiterOperation : IWaiterOperation
         Cache.LicensesCache.RemoveLicense(waiterId);
         return Cache.WaitersCache.ChangeWaiterStatus(waiterId, WaiterSessionStatus.Closed);
     }
-
-    public Waiter GetWaiterById(Guid waiterId) =>
-        Helper.WaiterById(Cache, waiterId, out Waiter waiterOnCache) is null
-            ? throw new EntityNotFound(waiterId)
-            : waiterOnCache;
 }

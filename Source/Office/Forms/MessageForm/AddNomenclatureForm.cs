@@ -1,7 +1,8 @@
 ﻿using MaterialSkin.Controls;
 using Office.Helper;
 using Shared.Dto.Enities;
-using Storage.Operations.NomenclatureOperation;
+using Storage.Operations.CreateRemove;
+using Storage.Operations.GetBy;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,14 +21,14 @@ public partial class AddNomenclatureForm : MaterialForm
         _ = FormHelper.CreateMaterialSkinManager(this);
         _parentId = parentId;
         ComboBoxSet(products.ToList());
-        SelectedItem = ChildProductComboBox.Items.Count > 0 
-            ? (Product)ChildProductComboBox.Items[0] 
+        SelectedItem = ChildProductComboBox.Items.Count > 0
+            ? (Product)ChildProductComboBox.Items[0]
             : default;
     }
 
-    public Nomenclature GetNewNomenclature(NomenclatureOperation nomenclatureOperation) =>
+    public Nomenclature GetNewNomenclature(Creater creater) =>
         ShowDialog() is DialogResult.OK
-        ? nomenclatureOperation.CreateNomenclature(_parentId, SelectedItem.Id, decimal.Parse(AmountTextBox.Text))
+        ? creater.CreateNomenclature(_parentId, SelectedItem.Id, decimal.Parse(AmountTextBox.Text))
         : default;
 
     private void ComboBoxSet(List<Product> products)

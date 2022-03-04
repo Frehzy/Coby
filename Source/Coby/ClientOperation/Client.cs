@@ -1,13 +1,9 @@
 ﻿using Storage.Cache;
 using Storage.Host;
-using Storage.Operations.GuestOperation;
-using Storage.Operations.LicenseOperation;
-using Storage.Operations.NomenclatureOperation;
+using Storage.Operations;
+using Storage.Operations.CreateRemove;
+using Storage.Operations.GetBy;
 using Storage.Operations.OrderOperation;
-using Storage.Operations.PaymentOperation;
-using Storage.Operations.ProductOperation;
-using Storage.Operations.TableOperation;
-using Storage.Operations.WaiterOperation;
 using System;
 using System.ServiceModel;
 
@@ -16,43 +12,42 @@ namespace Coby.ClientOperation;
 public class Client : IClient
 {
     private readonly IService _service;
+    public delegate void CloseCafeShiftDelegate();
 
     public LicenseOperation LicenseOperation { get; }
 
-    public OrderOperation OrderOperation { get; }
+    public ProductOperation ProductOperation { get; }
 
     public TableOperation TableOperation { get; }
 
-    public ProductOperation ProductOperation { get; }
-
     public WaiterOperation WaiterOperation { get; }
 
-    public PaymentOperation PaymentOperation { get; }
+    public OrderOperation OrderOperation { get; }
 
-    public NomenclatureOperation NomenclatureOperation { get; }
+    public GetByCache GetByCacheOperation { get; }
 
-    public GuestOperation GuestOperation { get; }
+    public Creater Creater { get; }
+
+    public CloseCafeShiftDelegate CloseCafeShift { get; }
 
     public Client()
     {
         _service = CreateClient();
+        CloseCafeShift = _service.CloseCafeShift;
         AllCache cache = new(_service);
+        GetByCacheOperation = new(cache);
         LicenseOperation = _service.GetLicenseOperation(cache);
         LicenseOperation.Cache = cache;
-        OrderOperation = _service.GetOrderOperation(cache);
-        OrderOperation.Cache = cache;
-        TableOperation = _service.GetTableOperation(cache);
-        TableOperation.Cache = cache;
         ProductOperation = _service.GetProductOperation(cache);
         ProductOperation.Cache = cache;
+        TableOperation = _service.GetTableOperation(cache);
+        TableOperation.Cache = cache;
         WaiterOperation = _service.GetWaiterOperation(cache);
         WaiterOperation.Cache = cache;
-        PaymentOperation = _service.GetPaymentOperation(cache);
-        PaymentOperation.Cache = cache;
-        NomenclatureOperation = _service.GetNomenclatureOperation(cache);
-        NomenclatureOperation.Cache = cache;
-        GuestOperation = _service.GetGuestOperation(cache);
-        GuestOperation.Cache = cache;
+        OrderOperation = _service.GetOrderOperation(cache);
+        OrderOperation.Cache = cache;
+        Creater = _service.GetCreater(cache);
+        Creater.Cache = cache;
     }
 
     public IService CreateClient()

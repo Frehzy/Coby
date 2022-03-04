@@ -8,9 +8,9 @@ public interface IOrderOperation
 {
     Order CreateOrder(Credentials credentials, Table table);
 
-    Order GetOrderById(Credentials credentials, Guid orderId);
+    bool RemoveOrder(Credentials credentials, Guid orderId);
 
     List<Order> GetOrders();
 
-    bool RemoveOrder(Credentials credentials, Guid orderId);
+    Order SaveOrder(Order order);
 }

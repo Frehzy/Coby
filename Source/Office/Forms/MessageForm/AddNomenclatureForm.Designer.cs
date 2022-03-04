@@ -102,9 +102,12 @@
             this.Controls.Add(this.ChildProductComboBox);
             this.Controls.Add(this.AmountTextBox);
             this.Controls.Add(this.SaveButton);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "AddNomenclatureForm";
+            this.Sizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Add payment type";
+            this.Text = "Add nomenclature";
             this.ResumeLayout(false);
             this.PerformLayout();
 

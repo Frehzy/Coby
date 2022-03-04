@@ -1,12 +1,7 @@
 ﻿using Storage.Cache;
-using Storage.Operations.GuestOperation;
-using Storage.Operations.LicenseOperation;
-using Storage.Operations.NomenclatureOperation;
+using Storage.Operations;
+using Storage.Operations.CreateRemove;
 using Storage.Operations.OrderOperation;
-using Storage.Operations.PaymentOperation;
-using Storage.Operations.ProductOperation;
-using Storage.Operations.TableOperation;
-using Storage.Operations.WaiterOperation;
 using System.ServiceModel;
 
 namespace Storage.Host;
@@ -30,13 +25,10 @@ public interface IService : ILicenseCache, IOrderCache, IPaymentTypeCache, IProd
     WaiterOperation GetWaiterOperation(AllCache cache);
 
     [OperationContract]
-    PaymentOperation GetPaymentOperation(AllCache cache);
+    Creater GetCreater(AllCache cache);
 
     [OperationContract]
-    NomenclatureOperation GetNomenclatureOperation(AllCache cache);
-
-    [OperationContract]
-    GuestOperation GetGuestOperation(AllCache cache);
+    Remover GetRemover(AllCache cache);
 
     [OperationContract]
     void SetCache();

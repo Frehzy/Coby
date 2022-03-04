@@ -32,12 +32,14 @@ public partial class NomenclatureForm : MaterialForm
     }
 
     private void NomenclatureUpdateButton_Click(object sender, EventArgs e) =>
-        DataGridHelper.FillTable(NomenclatureDgv, Client.NomenclatureOperation.GetNomenclaturesByParentId(Product.Id));
+        DataGridHelper.FillTable(NomenclatureDgv, Client.GetByCacheOperation.GetNomenclatureOperation().GetNomenclaturesByParentId(Product.Id));
 
     private void AddNomenclatureButton_Click(object sender, EventArgs e)
     {
         _ = new AddNomenclatureForm(Product.Id,
-                                    Client.ProductsCache.GetProductsCache().Where(x => x.IsItForSale is false)).GetNewNomenclature(Client.NomenclatureOperation);
+                                    Client.GetByCacheOperation.GetProduct()
+                                    .GetProducts()
+                                    .Where(x => x.IsItForSale is false)).GetNewNomenclature(Client.Creater);
         NomenclatureUpdateButton.PerformClick();
     }
 
@@ -46,7 +48,7 @@ public partial class NomenclatureForm : MaterialForm
         var parentId = new RowHelper<Guid>(NomenclatureDgv).GetValueByColumnName("ParentId");
         var childId = new RowHelper<Guid>(NomenclatureDgv).GetValueByColumnName("ChildId", false);
         if (parentId is not null && childId is not null)
-            Client.NomenclatureCache.RemoveNomenclatureByParentAndChildId(parentId.Value, childId.Value);
+            Client.Remover.RemoveNomenclatureByParentAndChildId(parentId.Value, childId.Value);
 
         NomenclatureUpdateButton.PerformClick();
     }
@@ -55,6 +57,6 @@ public partial class NomenclatureForm : MaterialForm
     {
         var childId = new RowHelper<Guid>(NomenclatureDgv).GetValueByColumnName("ChildId", false);
         if (childId is not null)
-            LoadInfo(Client.ProductOperation.GetProductById(childId.Value), ChildInfoTextBox);
+            LoadInfo(Client.GetByCacheOperation.GetProduct().GetProductById(childId.Value), ChildInfoTextBox);
     }
 }

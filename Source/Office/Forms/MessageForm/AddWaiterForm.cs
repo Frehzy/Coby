@@ -1,7 +1,7 @@
 ﻿using MaterialSkin.Controls;
 using Office.Helper;
 using Shared.Dto.Enities;
-using Storage.Operations.WaiterOperation;
+using Storage.Operations.CreateRemove;
 using System;
 using System.Windows.Forms;
 
@@ -15,8 +15,8 @@ public partial class AddWaiterForm : MaterialForm
         _ = FormHelper.CreateMaterialSkinManager(this);
     }
 
-    public Waiter GetNewWaiter(WaiterOperation waiterOperation) =>
-        ShowDialog() is DialogResult.OK ? waiterOperation.CreateWaiter(UsernameTextBox.Text, PasswordTextBox.Text) : default;
+    public Waiter GetNewWaiter(Creater creater) =>
+        ShowDialog() is DialogResult.OK ? creater.CreateWaiter(UsernameTextBox.Text, PasswordTextBox.Text) : default;
 
     private void SaveButton_Click(object sender, EventArgs e)
     {

@@ -1,9 +1,9 @@
 ﻿using Shared.Dto.Enities;
 using Storage.Cache;
 
-namespace Storage.Operations.LicenseOperation;
+namespace Storage.Operations;
 
-public class LicenseOperation : ILicenseOperation
+public class LicenseOperation
 {
     public AllCache Cache { get; set; }
 

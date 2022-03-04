@@ -1,13 +1,9 @@
 ﻿using Storage.Cache;
 using Storage.Host;
-using Storage.Operations.GuestOperation;
-using Storage.Operations.LicenseOperation;
-using Storage.Operations.NomenclatureOperation;
+using Storage.Operations;
+using Storage.Operations.CreateRemove;
+using Storage.Operations.GetBy;
 using Storage.Operations.OrderOperation;
-using Storage.Operations.PaymentOperation;
-using Storage.Operations.ProductOperation;
-using Storage.Operations.TableOperation;
-using Storage.Operations.WaiterOperation;
 
 namespace Office.ClientOperation;
 
@@ -15,35 +11,21 @@ public interface IClient
 {
     AllCache AllCache { get; }
 
-    ILicenseCache LicensesCache { get; }
-
-    IOrderCache OrdersCache { get; }
-
-    IPaymentTypeCache PaymentTypesCache { get; }
-
-    IProductCache ProductsCache { get; }
-
-    ITableCache TablesCache { get; }
-
-    IWaiterCache WaitersCache { get; }
-
-    INomenclatureCache NomenclatureCache { get; }
-
     LicenseOperation LicenseOperation { get; }
 
-    OrderOperation OrderOperation { get; }
+    Creater Creater { get; }
 
-    TableOperation TableOperation { get; }
+    Remover Remover { get; }
 
     ProductOperation ProductOperation { get; }
 
+    TableOperation TableOperation { get; }
+
     WaiterOperation WaiterOperation { get; }
 
-    PaymentOperation PaymentOperation { get; }
+    OrderOperation OrderOperation { get; }
 
-    NomenclatureOperation NomenclatureOperation { get; }
-
-    GuestOperation GuestOperation { get; }
+    GetByCache GetByCacheOperation { get; }
 
     IService CreateClient();
 }

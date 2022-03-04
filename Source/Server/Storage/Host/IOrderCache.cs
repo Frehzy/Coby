@@ -12,9 +12,8 @@ public interface IOrderCache
     List<Order> GetOrdersCache();
 
     [OperationContract]
-    Order AddOrder(Order order);
+    Order AddOrUpdateOrder(Order order);
 
     [OperationContract]
     bool RemoveOrder(Guid orderId);
-
 }
