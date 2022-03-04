@@ -127,8 +127,6 @@ public class Service : IService
 
     public TableOperation GetTableOperation(AllCache cache) => new() { Cache = cache };
 
-    public ProductOperation GetProductOperation(AllCache cache) => new() { Cache = cache };
-
     public WaiterOperation GetWaiterOperation(AllCache cache) => new() { Cache = cache };
 
     public Creater GetCreater(AllCache cache) => new() { Cache = cache };

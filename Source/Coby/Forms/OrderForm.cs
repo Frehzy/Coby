@@ -1,17 +1,43 @@
 ﻿using Coby.ClientOperation;
+using Coby.Entities;
 using MaterialSkin.Controls;
 using Office.Helper;
 using Shared.Dto.Enities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 namespace Coby.Forms;
 
-public partial class OrderForm : MaterialForm
+public partial class OrderForm : MaterialForm, INotifyPropertyChanged
 {
-    private int page = 0;
+    private int _page;
+    private BindingList<OrderInfo> _orderInfoBinding = new();
+    private OrderInfo _selected;
+
+    public int Page
+    {
+        get => _page;
+        set
+        {
+            int cellCount = ProductLayoutPanel.ColumnCount * ProductLayoutPanel.RowCount;
+            if (value >= 0 && value <= Math.Ceiling((decimal)(Products.Count() / cellCount)))
+                _page = value;
+        }
+    }
+
+    public BindingList<OrderInfo> OrderInfoBinding
+    {
+        get => _orderInfoBinding;
+        set
+        {
+            _orderInfoBinding = value;
+            OnPropertyChanged();
+        }
+    }
 
     public IClient Client { get; }
 
@@ -19,27 +45,32 @@ public partial class OrderForm : MaterialForm
 
     public Order Order { get; }
 
+    public List<Product> Products { get; private set; }
+
     public OrderForm(IClient client, Guid orderId)
     {
         InitializeComponent();
         Client = client;
         Order = Client.GetByCacheOperation.GetOrder().GetOrderById(orderId);
+        Products = Client.GetByCacheOperation.GetProduct().GetProducts();
+        Page = 0;
         _ = FormHelper.CreateMaterialSkinManager(this);
+        OrderInfoListView.DataBindings.Add("DataSource", this, nameof(OrderInfoBinding));
+        OrderInfoBinding = new();
         LoadOrderInfo();
-        UpdateSumTextBox();
-        LoadProductInfo(page);
+        LoadProductInfo(_page);
     }
 
     private void LoadOrderInfo()
     {
-        OrderInfoListView.Rows.Clear();
+        OrderInfoBinding.Clear();
         foreach (var guest in Order.GetGuests())
         {
-            OrderInfoListView.Rows.Add(guest.Name, default, default);
-            foreach (var product in guest.GetProducts())
-                OrderInfoListView.Rows.Add(default, product.ProductName, product.Price);
+            OrderInfoBinding.Add(new OrderInfo(guest));
+            foreach(var product in guest.Products)
+                OrderInfoBinding.Add(new OrderInfo(guest, product.Key, product.Value));
         }
-        OrderInfoListView.AutoResizeColumns();
+        UpdateSumTextBox();
     }
 
     private void LoadProductInfo(int page)
@@ -47,7 +78,7 @@ public partial class OrderForm : MaterialForm
         ProductLayoutPanel.Controls.Clear();
 
         int cellCount = ProductLayoutPanel.ColumnCount * ProductLayoutPanel.RowCount;
-        var products = Client.GetByCacheOperation.GetProduct().GetProducts().Skip(cellCount * page).Take(cellCount);
+        var products = Products.Skip(cellCount * page).Take(cellCount);
 
         List<MaterialButton> buttons = new();
         foreach (var product in products)
@@ -64,7 +95,13 @@ public partial class OrderForm : MaterialForm
 
     private void AddProductOnOrder(object sender, EventArgs e, Guid productId)
     {
-        Client.ProductOperation.AddProductOnOrder(Order.Id, default, productId);
+        if (_selected is null)
+        {
+            MaterialMessageBox.Show("Не выбран гость.", false, FlexibleMaterialForm.ButtonsPosition.Center);
+            return;
+        }
+        Client.OrderOperation.GetProductOperation(Order).AddProductOnOrder(_selected.GuestId, productId);
+        LoadOrderInfo();
     }
 
     private void UpdateSumTextBox() => SumTextBox.Text = $"Total price: {Order.Sum}";
@@ -83,18 +120,20 @@ public partial class OrderForm : MaterialForm
 
     private void UpButton_Click(object sender, EventArgs e)
     {
-        page++;
-        LoadProductInfo(page);
+        Page--;
+        LoadProductInfo(Page);
     }
 
     private void DownButton_Click(object sender, EventArgs e)
     {
-        page--;
-        LoadProductInfo(page);
+        Page++;
+        LoadProductInfo(Page);
     }
 
-    private void OrderInfoListView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-    {
+    private void OrderInfoListView_CellContentClick(object sender, DataGridViewCellEventArgs e) =>
+        _selected = (OrderInfo)OrderInfoListView.CurrentRow.DataBoundItem;
 
-    }
+    public event PropertyChangedEventHandler PropertyChanged;
+    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+       => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 }

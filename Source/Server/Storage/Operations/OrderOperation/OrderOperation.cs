@@ -15,6 +15,8 @@ public class OrderOperation : IOrderOperation
 
     public PaymentOperations GetPaymentOperations(Order order) => new(order, Cache.PaymentTypesCache.GetPaymentTypesCache());
 
+    public ProductOperation GetProductOperation(Order order) => new(order, Cache.ProductsCache.GetProductsCache());
+
     public Order CreateOrder(Credentials credentials, Table table)
     {
         if (Helper.CheckLicense(Cache, credentials) is null)

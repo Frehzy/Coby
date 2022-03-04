@@ -15,8 +15,6 @@ public class Client : IClient
 
     public LicenseOperation LicenseOperation { get; }
 
-    public ProductOperation ProductOperation { get; }
-
     public TableOperation TableOperation { get; }
 
     public WaiterOperation WaiterOperation { get; }
@@ -38,8 +36,6 @@ public class Client : IClient
         GetByCacheOperation = new(AllCache);
         LicenseOperation = _service.GetLicenseOperation(AllCache);
         LicenseOperation.Cache = AllCache;
-        ProductOperation = _service.GetProductOperation(AllCache);
-        ProductOperation.Cache = AllCache;
         TableOperation = _service.GetTableOperation(AllCache);
         TableOperation.Cache = AllCache;
         WaiterOperation = _service.GetWaiterOperation(AllCache);

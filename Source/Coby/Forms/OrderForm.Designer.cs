@@ -34,7 +34,6 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.SumTextBox = new MaterialSkin.Controls.MaterialTextBox2();
-            this.OrderInfoListView = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.DownButton = new MaterialSkin.Controls.MaterialButton();
@@ -42,13 +41,14 @@
             this.ProductLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.CreateGuestButton = new MaterialSkin.Controls.MaterialButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.OrderInfoListView = new System.Windows.Forms.DataGridView();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.OrderInfoListView)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.OrderInfoListView)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
@@ -142,7 +142,7 @@
             // 
             // SumTextBox
             // 
-            this.SumTextBox.AnimateReadOnly = false;
+            this.SumTextBox.AnimateReadOnly = true;
             this.SumTextBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.SumTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.SumTextBox.Depth = 0;
@@ -156,7 +156,7 @@
             this.SumTextBox.Name = "SumTextBox";
             this.SumTextBox.PasswordChar = '\0';
             this.SumTextBox.PrefixSuffixText = null;
-            this.SumTextBox.ReadOnly = false;
+            this.SumTextBox.ReadOnly = true;
             this.SumTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.SumTextBox.SelectedText = "";
             this.SumTextBox.SelectionLength = 0;
@@ -168,26 +168,8 @@
             this.SumTextBox.Text = "Sum";
             this.SumTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.SumTextBox.TrailingIcon = null;
+            this.SumTextBox.UseAccent = false;
             this.SumTextBox.UseSystemPasswordChar = false;
-            // 
-            // OrderInfoListView
-            // 
-            this.OrderInfoListView.AllowUserToAddRows = false;
-            this.OrderInfoListView.AllowUserToDeleteRows = false;
-            this.OrderInfoListView.AllowUserToResizeColumns = false;
-            this.OrderInfoListView.AllowUserToResizeRows = false;
-            this.OrderInfoListView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.OrderInfoListView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.OrderInfoListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.OrderInfoListView.Location = new System.Drawing.Point(3, 3);
-            this.OrderInfoListView.Name = "OrderInfoListView";
-            this.OrderInfoListView.ReadOnly = true;
-            this.OrderInfoListView.RowHeadersVisible = false;
-            this.OrderInfoListView.RowHeadersWidth = 51;
-            this.OrderInfoListView.RowTemplate.Height = 24;
-            this.OrderInfoListView.Size = new System.Drawing.Size(305, 271);
-            this.OrderInfoListView.TabIndex = 1;
-            this.OrderInfoListView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.OrderInfoListView_CellContentClick);
             // 
             // tableLayoutPanel3
             // 
@@ -310,6 +292,26 @@
             this.panel1.Size = new System.Drawing.Size(794, 45);
             this.panel1.TabIndex = 1;
             // 
+            // OrderInfoListView
+            // 
+            this.OrderInfoListView.AllowUserToAddRows = false;
+            this.OrderInfoListView.AllowUserToDeleteRows = false;
+            this.OrderInfoListView.AllowUserToResizeColumns = false;
+            this.OrderInfoListView.AllowUserToResizeRows = false;
+            this.OrderInfoListView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.OrderInfoListView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.OrderInfoListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.OrderInfoListView.Location = new System.Drawing.Point(3, 3);
+            this.OrderInfoListView.Name = "OrderInfoListView";
+            this.OrderInfoListView.ReadOnly = true;
+            this.OrderInfoListView.RowHeadersVisible = false;
+            this.OrderInfoListView.RowHeadersWidth = 51;
+            this.OrderInfoListView.RowTemplate.Height = 24;
+            this.OrderInfoListView.Size = new System.Drawing.Size(305, 271);
+            this.OrderInfoListView.TabIndex = 1;
+            this.OrderInfoListView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.OrderInfoListView_CellContentClick);
+            this.OrderInfoListView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.OrderInfoListView_CellContentClick);
+            // 
             // OrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -331,12 +333,12 @@
             this.panel2.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.OrderInfoListView)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.OrderInfoListView)).EndInit();
             this.ResumeLayout(false);
 
         }

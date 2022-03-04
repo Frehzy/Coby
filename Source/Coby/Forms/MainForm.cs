@@ -43,6 +43,7 @@ public partial class MainForm : MaterialForm
         if (Waiter.Status is WaiterSessionStatus.Open)
         {
             MainFormTabController.SelectTab(OrdersPage);
+            UpdateOrdersLayoutPanel(Client.OrderOperation.GetOrders());
             ChangeControlEnable(CreateOrderPage.Controls, true);
             ChangeControlEnable(OrdersPage.Controls, true);
             PersonalShiftController.Text = "Закрыть личную смену";

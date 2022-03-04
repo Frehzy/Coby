@@ -1,37 +1,47 @@
 ﻿using Shared.Dto.Enities;
 using Shared.Dto.Exceptions;
-using Storage.Cache;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Storage.Operations;
 
 public class ProductOperation
 {
-    public AllCache Cache { get; set; }
+    public Order Order { get; }
 
-    public Product AddProductOnOrder(Guid orderId, Guid guestId, Guid productId)
+    public List<Product> Products { get; }
+
+    public ProductOperation(Order order, List<Product> products)
     {
-        if (Helper.GuestOnOrderById(Cache, orderId, guestId, out Order sourceOrder, out Guest guest) is null)
-            throw new EntityNotFound(guestId);
-
-        if (Helper.ProductById(Cache, productId, out Product productOnCache) is null)
-            throw new EntityNotFound(productId);
-
-        var orderProducts = sourceOrder.Guests.First(x => x.Value.Id.Equals(guest.Id)).Value.Products;
-        int maxRank = orderProducts.Keys.Max();
-        orderProducts.Add(maxRank + 1, productOnCache);
-
-        return productOnCache;
+        Order = order;
+        Products = products;
     }
 
-    public void RemoveProductOnOrder(Guid orderId, Guid guestId, Guid productId, int rank)
+    public Product AddProductOnOrder(Guid guestId, Guid productId)
     {
-        if (Helper.GuestOnOrderById(Cache, orderId, guestId, out Order sourceOrder, out Guest guest) is null)
+        if (Order.Guests.TryGetValue(guestId, out var guests) is false)
             throw new EntityNotFound(guestId);
 
-        sourceOrder.Guests
-            .First(x => x.Value.Id.Equals(guest.Id)).Value.Products
-            .Where(x => x.Key.Equals(rank) && x.Value.Id.Equals(productId));
+        var product = Products.FirstOrDefault(x => x.Id.Equals(productId));
+        if (product is null)
+            throw new EntityNotFound(productId);
+
+
+        int maxRank = guests.GetProducts().Count();
+        guests.Products.Add(maxRank + 1, product);
+
+        return product;
+    }
+
+    public void RemoveProductOnOrder(Guid guestId, Guid productId, int rank)
+    {
+        if (Order.Guests.TryGetValue(guestId, out var guests) is false)
+            throw new EntityNotFound(guestId);
+
+        var removeProductList = guests.Products.Where(x => x.Key.Equals(rank) && x.Value.Id.Equals(productId))
+                                               .ToDictionary(x => x.Key, x => x.Value);
+        foreach (var product in removeProductList)
+            guests.Products.Remove(product.Key);
     }
 }
