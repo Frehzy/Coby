@@ -16,7 +16,6 @@ public partial class OrderForm : MaterialForm, INotifyPropertyChanged
 {
     private int _page;
     private BindingList<OrderInfo> _orderInfoBinding = new();
-    private OrderInfo _selected;
 
     public int Page
     {
@@ -55,7 +54,8 @@ public partial class OrderForm : MaterialForm, INotifyPropertyChanged
         Products = Client.GetByCacheOperation.GetProduct().GetProducts();
         Page = 0;
         _ = FormHelper.CreateMaterialSkinManager(this);
-        OrderInfoListView.DataBindings.Add("DataSource", this, nameof(OrderInfoBinding));
+        OrderInfoListView.SetDataBinding("DataSource", this, nameof(OrderInfoBinding));
+        OrderInfoListView.SetDGVColor(BackColor);
         OrderInfoBinding = new();
         LoadOrderInfo();
         LoadProductInfo(_page);
@@ -95,12 +95,12 @@ public partial class OrderForm : MaterialForm, INotifyPropertyChanged
 
     private void AddProductOnOrder(object sender, EventArgs e, Guid productId)
     {
-        if (_selected is null)
+        if (OrderInfoListView.Selected is null)
         {
             MaterialMessageBox.Show("Не выбран гость.", false, FlexibleMaterialForm.ButtonsPosition.Center);
             return;
         }
-        Client.OrderOperation.GetProductOperation(Order).AddProductOnOrder(_selected.GuestId, productId);
+        Client.OrderOperation.GetProductOperation(Order).AddProductOnOrder(OrderInfoListView.Selected.GuestId, productId);
         LoadOrderInfo();
     }
 
@@ -129,9 +129,6 @@ public partial class OrderForm : MaterialForm, INotifyPropertyChanged
         Page++;
         LoadProductInfo(Page);
     }
-
-    private void OrderInfoListView_CellContentClick(object sender, DataGridViewCellEventArgs e) =>
-        _selected = (OrderInfo)OrderInfoListView.CurrentRow.DataBoundItem;
 
     public event PropertyChangedEventHandler PropertyChanged;
     protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
