@@ -33,4 +33,7 @@ public partial class LoginForm : MaterialForm
         new MainForm(Client, credentials).Show();
         Hide();
     }
+
+    private void ExitButton_Click(object sender, EventArgs e) =>
+        Environment.Exit(0);
 }

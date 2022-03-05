@@ -43,6 +43,12 @@ public partial class CustomDataGridView : UserControl
     public void SetDataBinding(string propertyName, object dataSource, string dataMember) =>
         DGV.DataBindings.Add(propertyName, dataSource, dataMember);
 
-    private void DGV_CellClick(object sender, DataGridViewCellEventArgs e) =>
+    private void DGV_Click(object sender, DataGridViewCellEventArgs e) =>
+        UpdateSelectedRows();
+
+    private void DGV_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e) =>
+        UpdateSelectedRows();
+
+    private void UpdateSelectedRows() =>
         _selected = (OrderInfo)DGV.CurrentRow?.DataBoundItem;
 }

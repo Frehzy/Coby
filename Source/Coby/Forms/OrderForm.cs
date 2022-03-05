@@ -108,8 +108,6 @@ public partial class OrderForm : MaterialForm, INotifyPropertyChanged
 
     private void SaveButton_Click(object sender, EventArgs e)
     {
-        Client.OrderOperation.SaveOrder(Order);
-        Close();
     }
 
     private void CreateGuestButton_Click(object sender, EventArgs e)
@@ -128,6 +126,34 @@ public partial class OrderForm : MaterialForm, INotifyPropertyChanged
     {
         Page++;
         LoadProductInfo(Page);
+    }
+
+    private void BackButton_Click(object sender, EventArgs e)
+    {
+        Client.OrderOperation.SaveOrder(Order);
+        Close();
+    }
+
+    private void DeleteButton_Click(object sender, EventArgs e)
+    {
+        var selected = OrderInfoListView.Selected;
+        if (selected is null)
+        {
+            MaterialMessageBox.Show("Не выбран элемент для удаления.", false, FlexibleMaterialForm.ButtonsPosition.Center);
+            return;
+        }
+        if (selected.ProductId.Equals(Guid.Empty))
+        {
+            if (Order.GetGuests().First(x => x.Id.Equals(selected.GuestId)).GetProducts().Count() > 0)
+            {
+                MaterialMessageBox.Show("Невозможно удалить гостя, у которого есть продукты.", false, FlexibleMaterialForm.ButtonsPosition.Center);
+                return;
+            }
+            Client.OrderOperation.GetGuestOperations(Order).RemoveGuestOnOrderById(selected.GuestId);
+        }
+        else
+            Client.OrderOperation.GetProductOperation(Order).RemoveProductOnOrder(selected.GuestId, selected.ProductId, selected.Rank);
+        LoadOrderInfo();
     }
 
     public event PropertyChangedEventHandler PropertyChanged;

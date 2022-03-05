@@ -44,14 +44,12 @@ public partial class MainForm : MaterialForm
         {
             MainFormTabController.SelectTab(OrdersPage);
             UpdateOrdersLayoutPanel(Client.OrderOperation.GetOrders());
-            ChangeControlEnable(CreateOrderPage.Controls, true);
             ChangeControlEnable(OrdersPage.Controls, true);
             PersonalShiftController.Text = "Закрыть личную смену";
         }
         else
         {
             MainFormTabController.SelectTab(OptionsPage);
-            ChangeControlEnable(CreateOrderPage.Controls, false);
             ChangeControlEnable(OrdersPage.Controls, false);
             PersonalShiftController.Text = "Открыть личную смену";
         }
@@ -93,8 +91,6 @@ public partial class MainForm : MaterialForm
     private void MainFormTabController_Selecting(object sender, TabControlCancelEventArgs e)
     {
         TabPage currentPage = (sender as TabControl).SelectedTab;
-        if (currentPage.Name.Equals(nameof(CreateOrderPage)))
-            UpdateTableLayoutPanel(Client.TableOperation.GetTables());
         if (currentPage.Name.Equals(nameof(OrdersPage)))
             UpdateOrdersLayoutPanel(Client.OrderOperation.GetOrders());
     }
@@ -133,30 +129,18 @@ public partial class MainForm : MaterialForm
         OpenOrderLayoutPanel.Controls.AddRange(panels.ToArray());
     }
 
-    private void UpdateTableLayoutPanel(IEnumerable<Table> source)
-    {
-        CreateOrderLayoutPanel.Controls.Clear();
-
-        List<MaterialButton> buttons = new();
-        foreach (var item in source)
-        {
-            MaterialButton button = new();
-            button.Click += (sender, e) => CreateOrder(sender, e, item.Id);
-            button.Text = $"Стол #{item.TableNumber}";
-            button.Dock = DockStyle.Fill;
-            buttons.Add(button);
-        }
-
-        CreateOrderLayoutPanel.Controls.AddRange(buttons.OrderBy(x => x.Text).ToArray());
-    }
-
     private void OpenOrder(object sender, EventArgs e, Guid orderId) =>
         new OrderForm(Client, orderId).Show();
 
-    private void CreateOrder(object sender, EventArgs e, Guid tableId)
+    private void CreateOrderButton_Click(object sender, EventArgs e)
     {
-        var table = Client.GetByCacheOperation.GetTable().GetTableById(tableId);
-        var order = Client.OrderOperation.CreateOrder(Credentials, table);
-        new OrderForm(Client, order.Id).Show();
+        this.Enabled = false;
+        var createOrderForm = new CreateOrderForm(Client, Credentials);
+        createOrderForm.Show();
+
+        createOrderForm.FormClosing += (sender, e) => 
+        {
+            this.Enabled = true;
+        };
     }
 }

@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.MainFormTabController = new MaterialSkin.Controls.MaterialTabControl();
-            this.CreateOrderPage = new System.Windows.Forms.TabPage();
-            this.CreateOrderLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.OrdersPage = new System.Windows.Forms.TabPage();
             this.OpenOrderLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.OptionsPage = new System.Windows.Forms.TabPage();
@@ -39,17 +37,18 @@
             this.PersonalShiftController = new MaterialSkin.Controls.MaterialButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.LockButton = new MaterialSkin.Controls.MaterialButton();
+            this.CreateOrderPanel = new System.Windows.Forms.Panel();
+            this.CreateOrderButton = new MaterialSkin.Controls.MaterialButton();
             this.MainFormTabController.SuspendLayout();
-            this.CreateOrderPage.SuspendLayout();
             this.OrdersPage.SuspendLayout();
             this.OptionsPage.SuspendLayout();
             this.OptionsLayoutPanel.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.CreateOrderPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainFormTabController
             // 
-            this.MainFormTabController.Controls.Add(this.CreateOrderPage);
             this.MainFormTabController.Controls.Add(this.OrdersPage);
             this.MainFormTabController.Controls.Add(this.OptionsPage);
             this.MainFormTabController.Depth = 0;
@@ -63,40 +62,10 @@
             this.MainFormTabController.TabIndex = 0;
             this.MainFormTabController.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.MainFormTabController_Selecting);
             // 
-            // CreateOrderPage
-            // 
-            this.CreateOrderPage.Controls.Add(this.CreateOrderLayoutPanel);
-            this.CreateOrderPage.Location = new System.Drawing.Point(4, 25);
-            this.CreateOrderPage.Name = "CreateOrderPage";
-            this.CreateOrderPage.Padding = new System.Windows.Forms.Padding(3);
-            this.CreateOrderPage.Size = new System.Drawing.Size(786, 309);
-            this.CreateOrderPage.TabIndex = 2;
-            this.CreateOrderPage.Text = "Create order";
-            this.CreateOrderPage.UseVisualStyleBackColor = true;
-            // 
-            // CreateOrderLayoutPanel
-            // 
-            this.CreateOrderLayoutPanel.ColumnCount = 5;
-            this.CreateOrderLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.CreateOrderLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.CreateOrderLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.CreateOrderLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.CreateOrderLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.CreateOrderLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CreateOrderLayoutPanel.Location = new System.Drawing.Point(3, 3);
-            this.CreateOrderLayoutPanel.Name = "CreateOrderLayoutPanel";
-            this.CreateOrderLayoutPanel.RowCount = 5;
-            this.CreateOrderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.CreateOrderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.CreateOrderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.CreateOrderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.CreateOrderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.CreateOrderLayoutPanel.Size = new System.Drawing.Size(780, 303);
-            this.CreateOrderLayoutPanel.TabIndex = 2;
-            // 
             // OrdersPage
             // 
             this.OrdersPage.Controls.Add(this.OpenOrderLayoutPanel);
+            this.OrdersPage.Controls.Add(this.CreateOrderPanel);
             this.OrdersPage.Location = new System.Drawing.Point(4, 25);
             this.OrdersPage.Name = "OrdersPage";
             this.OrdersPage.Padding = new System.Windows.Forms.Padding(3);
@@ -122,7 +91,7 @@
             this.OpenOrderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.OpenOrderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.OpenOrderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.OpenOrderLayoutPanel.Size = new System.Drawing.Size(780, 303);
+            this.OpenOrderLayoutPanel.Size = new System.Drawing.Size(780, 258);
             this.OpenOrderLayoutPanel.TabIndex = 3;
             // 
             // OptionsPage
@@ -229,6 +198,36 @@
             this.LockButton.UseVisualStyleBackColor = true;
             this.LockButton.Click += new System.EventHandler(this.LockButton_Click);
             // 
+            // CreateOrderPanel
+            // 
+            this.CreateOrderPanel.Controls.Add(this.CreateOrderButton);
+            this.CreateOrderPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.CreateOrderPanel.Location = new System.Drawing.Point(3, 261);
+            this.CreateOrderPanel.Name = "CreateOrderPanel";
+            this.CreateOrderPanel.Size = new System.Drawing.Size(780, 45);
+            this.CreateOrderPanel.TabIndex = 4;
+            // 
+            // CreateOrderButton
+            // 
+            this.CreateOrderButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.CreateOrderButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.CreateOrderButton.Depth = 0;
+            this.CreateOrderButton.Dock = System.Windows.Forms.DockStyle.Right;
+            this.CreateOrderButton.HighEmphasis = true;
+            this.CreateOrderButton.Icon = null;
+            this.CreateOrderButton.Location = new System.Drawing.Point(654, 0);
+            this.CreateOrderButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.CreateOrderButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.CreateOrderButton.Name = "CreateOrderButton";
+            this.CreateOrderButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.CreateOrderButton.Size = new System.Drawing.Size(126, 45);
+            this.CreateOrderButton.TabIndex = 3;
+            this.CreateOrderButton.Text = "Create order";
+            this.CreateOrderButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.CreateOrderButton.UseAccentColor = false;
+            this.CreateOrderButton.UseVisualStyleBackColor = true;
+            this.CreateOrderButton.Click += new System.EventHandler(this.CreateOrderButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -241,17 +240,19 @@
             this.MinimizeBox = false;
             this.Name = "MainForm";
             this.Sizable = false;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Coby";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.MainFormTabController.ResumeLayout(false);
-            this.CreateOrderPage.ResumeLayout(false);
             this.OrdersPage.ResumeLayout(false);
             this.OptionsPage.ResumeLayout(false);
             this.OptionsLayoutPanel.ResumeLayout(false);
             this.OptionsLayoutPanel.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.CreateOrderPanel.ResumeLayout(false);
+            this.CreateOrderPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -261,13 +262,13 @@
         private MaterialSkin.Controls.MaterialTabControl MainFormTabController;
         private System.Windows.Forms.TabPage OrdersPage;
         private System.Windows.Forms.TabPage OptionsPage;
-        private System.Windows.Forms.TabPage CreateOrderPage;
         private MaterialSkin.Controls.MaterialButton PersonalShiftController;
         private System.Windows.Forms.TableLayoutPanel OptionsLayoutPanel;
         private MaterialSkin.Controls.MaterialButton CafeSessionClose;
         private System.Windows.Forms.Panel panel1;
         private MaterialSkin.Controls.MaterialButton LockButton;
-        private System.Windows.Forms.TableLayoutPanel CreateOrderLayoutPanel;
         private System.Windows.Forms.TableLayoutPanel OpenOrderLayoutPanel;
+        private System.Windows.Forms.Panel CreateOrderPanel;
+        private MaterialSkin.Controls.MaterialButton CreateOrderButton;
     }
 }

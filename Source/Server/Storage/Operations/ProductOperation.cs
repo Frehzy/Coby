@@ -28,7 +28,7 @@ public class ProductOperation
             throw new EntityNotFound(productId);
 
 
-        int maxRank = guests.GetProducts().Count();
+        int maxRank = guests.Products.DefaultIfEmpty().Max(x => x.Key);
         guests.Products.Add(maxRank + 1, product);
 
         return product;

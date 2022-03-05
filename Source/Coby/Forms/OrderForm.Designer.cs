@@ -29,57 +29,38 @@
         private void InitializeComponent()
         {
             this.panel2 = new System.Windows.Forms.Panel();
-            this.SaveButton = new MaterialSkin.Controls.MaterialButton();
             this.PayButton = new MaterialSkin.Controls.MaterialButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.SumTextBox = new MaterialSkin.Controls.MaterialTextBox2();
-            this.OrderInfoListView = new Coby.Forms.CustomControls.CustomDataGridView();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.DownButton = new MaterialSkin.Controls.MaterialButton();
             this.UpButton = new MaterialSkin.Controls.MaterialButton();
             this.ProductLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.CreateGuestButton = new MaterialSkin.Controls.MaterialButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.BackButton = new MaterialSkin.Controls.MaterialButton();
+            this.CreateGuestButton = new MaterialSkin.Controls.MaterialButton();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.SumTextBox = new MaterialSkin.Controls.MaterialTextBox2();
+            this.DeleteButton = new MaterialSkin.Controls.MaterialButton();
+            this.OrderInfoListView = new Coby.Forms.CustomControls.CustomDataGridView();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.SaveButton);
             this.panel2.Controls.Add(this.PayButton);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(3, 402);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(794, 45);
             this.panel2.TabIndex = 2;
-            // 
-            // SaveButton
-            // 
-            this.SaveButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.SaveButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.SaveButton.Depth = 0;
-            this.SaveButton.Dock = System.Windows.Forms.DockStyle.Right;
-            this.SaveButton.HighEmphasis = true;
-            this.SaveButton.Icon = null;
-            this.SaveButton.Location = new System.Drawing.Point(666, 0);
-            this.SaveButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.SaveButton.MouseState = MaterialSkin.MouseState.HOVER;
-            this.SaveButton.Name = "SaveButton";
-            this.SaveButton.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.SaveButton.Size = new System.Drawing.Size(64, 45);
-            this.SaveButton.TabIndex = 3;
-            this.SaveButton.Text = "Save";
-            this.SaveButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.SaveButton.UseAccentColor = false;
-            this.SaveButton.UseVisualStyleBackColor = true;
-            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // PayButton
             // 
@@ -109,74 +90,27 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 69);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 45);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(794, 333);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(794, 357);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.SumTextBox, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.OrderInfoListView, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.panel4, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 85F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(311, 327);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(311, 351);
             this.tableLayoutPanel2.TabIndex = 0;
-            // 
-            // SumTextBox
-            // 
-            this.SumTextBox.AnimateReadOnly = true;
-            this.SumTextBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.SumTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
-            this.SumTextBox.Depth = 0;
-            this.SumTextBox.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.SumTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.SumTextBox.HideSelection = true;
-            this.SumTextBox.LeadingIcon = null;
-            this.SumTextBox.Location = new System.Drawing.Point(3, 280);
-            this.SumTextBox.MaxLength = 32767;
-            this.SumTextBox.MouseState = MaterialSkin.MouseState.OUT;
-            this.SumTextBox.Name = "SumTextBox";
-            this.SumTextBox.PasswordChar = '\0';
-            this.SumTextBox.PrefixSuffixText = null;
-            this.SumTextBox.ReadOnly = true;
-            this.SumTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.SumTextBox.SelectedText = "";
-            this.SumTextBox.SelectionLength = 0;
-            this.SumTextBox.SelectionStart = 0;
-            this.SumTextBox.ShortcutsEnabled = true;
-            this.SumTextBox.Size = new System.Drawing.Size(305, 48);
-            this.SumTextBox.TabIndex = 0;
-            this.SumTextBox.TabStop = false;
-            this.SumTextBox.Text = "Sum";
-            this.SumTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.SumTextBox.TrailingIcon = null;
-            this.SumTextBox.UseAccent = false;
-            this.SumTextBox.UseSystemPasswordChar = false;
-            // 
-            // OrderInfoListView
-            // 
-            this.OrderInfoListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.OrderInfoListView.Location = new System.Drawing.Point(3, 3);
-            this.OrderInfoListView.Name = "OrderInfoListView";
-            this.OrderInfoListView.Size = new System.Drawing.Size(305, 271);
-            this.OrderInfoListView.TabIndex = 1;
             // 
             // tableLayoutPanel3
             // 
@@ -191,7 +125,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 85F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(471, 327);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(471, 351);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
             // panel3
@@ -199,9 +133,9 @@
             this.panel3.Controls.Add(this.DownButton);
             this.panel3.Controls.Add(this.UpButton);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(3, 280);
+            this.panel3.Location = new System.Drawing.Point(3, 301);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(465, 44);
+            this.panel3.Size = new System.Drawing.Size(465, 47);
             this.panel3.TabIndex = 0;
             // 
             // DownButton
@@ -212,7 +146,7 @@
             this.DownButton.Depth = 0;
             this.DownButton.HighEmphasis = true;
             this.DownButton.Icon = null;
-            this.DownButton.Location = new System.Drawing.Point(160, 2);
+            this.DownButton.Location = new System.Drawing.Point(160, 3);
             this.DownButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.DownButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.DownButton.Name = "DownButton";
@@ -233,7 +167,7 @@
             this.UpButton.Depth = 0;
             this.UpButton.HighEmphasis = true;
             this.UpButton.Icon = null;
-            this.UpButton.Location = new System.Drawing.Point(232, 2);
+            this.UpButton.Location = new System.Drawing.Point(232, 3);
             this.UpButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.UpButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.UpButton.Name = "UpButton";
@@ -266,8 +200,39 @@
             this.ProductLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.ProductLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.ProductLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.ProductLayoutPanel.Size = new System.Drawing.Size(465, 271);
+            this.ProductLayoutPanel.Size = new System.Drawing.Size(465, 292);
             this.ProductLayoutPanel.TabIndex = 1;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.CreateGuestButton);
+            this.panel1.Controls.Add(this.BackButton);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(3, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(794, 45);
+            this.panel1.TabIndex = 1;
+            // 
+            // BackButton
+            // 
+            this.BackButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BackButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.BackButton.Depth = 0;
+            this.BackButton.Dock = System.Windows.Forms.DockStyle.Left;
+            this.BackButton.HighEmphasis = true;
+            this.BackButton.Icon = null;
+            this.BackButton.Location = new System.Drawing.Point(0, 0);
+            this.BackButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.BackButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.BackButton.Name = "BackButton";
+            this.BackButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.BackButton.Size = new System.Drawing.Size(64, 45);
+            this.BackButton.TabIndex = 4;
+            this.BackButton.Text = "<-";
+            this.BackButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.BackButton.UseAccentColor = false;
+            this.BackButton.UseVisualStyleBackColor = true;
+            this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
             // 
             // CreateGuestButton
             // 
@@ -277,27 +242,88 @@
             this.CreateGuestButton.Dock = System.Windows.Forms.DockStyle.Left;
             this.CreateGuestButton.HighEmphasis = true;
             this.CreateGuestButton.Icon = null;
-            this.CreateGuestButton.Location = new System.Drawing.Point(0, 0);
+            this.CreateGuestButton.Location = new System.Drawing.Point(64, 0);
             this.CreateGuestButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.CreateGuestButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.CreateGuestButton.Name = "CreateGuestButton";
             this.CreateGuestButton.NoAccentTextColor = System.Drawing.Color.Empty;
             this.CreateGuestButton.Size = new System.Drawing.Size(125, 45);
-            this.CreateGuestButton.TabIndex = 2;
+            this.CreateGuestButton.TabIndex = 5;
             this.CreateGuestButton.Text = "Create Guest";
             this.CreateGuestButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.CreateGuestButton.UseAccentColor = false;
             this.CreateGuestButton.UseVisualStyleBackColor = true;
             this.CreateGuestButton.Click += new System.EventHandler(this.CreateGuestButton_Click);
             // 
-            // panel1
+            // panel4
             // 
-            this.panel1.Controls.Add(this.CreateGuestButton);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(3, 24);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(794, 45);
-            this.panel1.TabIndex = 1;
+            this.panel4.Controls.Add(this.SumTextBox);
+            this.panel4.Controls.Add(this.DeleteButton);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(3, 304);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(305, 44);
+            this.panel4.TabIndex = 2;
+            // 
+            // SumTextBox
+            // 
+            this.SumTextBox.AnimateReadOnly = true;
+            this.SumTextBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.SumTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
+            this.SumTextBox.Depth = 0;
+            this.SumTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SumTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.SumTextBox.HideSelection = true;
+            this.SumTextBox.LeadingIcon = null;
+            this.SumTextBox.Location = new System.Drawing.Point(0, 0);
+            this.SumTextBox.MaxLength = 32767;
+            this.SumTextBox.MouseState = MaterialSkin.MouseState.OUT;
+            this.SumTextBox.Name = "SumTextBox";
+            this.SumTextBox.PasswordChar = '\0';
+            this.SumTextBox.PrefixSuffixText = null;
+            this.SumTextBox.ReadOnly = true;
+            this.SumTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.SumTextBox.SelectedText = "";
+            this.SumTextBox.SelectionLength = 0;
+            this.SumTextBox.SelectionStart = 0;
+            this.SumTextBox.ShortcutsEnabled = true;
+            this.SumTextBox.Size = new System.Drawing.Size(241, 48);
+            this.SumTextBox.TabIndex = 1;
+            this.SumTextBox.TabStop = false;
+            this.SumTextBox.Text = "Sum";
+            this.SumTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.SumTextBox.TrailingIcon = null;
+            this.SumTextBox.UseAccent = false;
+            this.SumTextBox.UseSystemPasswordChar = false;
+            // 
+            // DeleteButton
+            // 
+            this.DeleteButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.DeleteButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.DeleteButton.Depth = 0;
+            this.DeleteButton.Dock = System.Windows.Forms.DockStyle.Right;
+            this.DeleteButton.HighEmphasis = true;
+            this.DeleteButton.Icon = null;
+            this.DeleteButton.Location = new System.Drawing.Point(241, 0);
+            this.DeleteButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.DeleteButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.DeleteButton.Name = "DeleteButton";
+            this.DeleteButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.DeleteButton.Size = new System.Drawing.Size(64, 44);
+            this.DeleteButton.TabIndex = 3;
+            this.DeleteButton.Text = "X";
+            this.DeleteButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.DeleteButton.UseAccentColor = false;
+            this.DeleteButton.UseVisualStyleBackColor = true;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
+            // 
+            // OrderInfoListView
+            // 
+            this.OrderInfoListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.OrderInfoListView.Location = new System.Drawing.Point(3, 3);
+            this.OrderInfoListView.Name = "OrderInfoListView";
+            this.OrderInfoListView.Size = new System.Drawing.Size(305, 295);
+            this.OrderInfoListView.TabIndex = 1;
             // 
             // OrderForm
             // 
@@ -307,12 +333,13 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.FormStyle = MaterialSkin.Controls.MaterialForm.FormStyles.ActionBar_None;
+            this.FormStyle = MaterialSkin.Controls.MaterialForm.FormStyles.StatusAndActionBar_None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "OrderForm";
-            this.Padding = new System.Windows.Forms.Padding(3, 24, 3, 3);
+            this.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.Sizable = false;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Coby";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -325,16 +352,16 @@
             this.panel3.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private System.Windows.Forms.Panel panel2;
-        private MaterialSkin.Controls.MaterialButton SaveButton;
         private MaterialSkin.Controls.MaterialButton PayButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private MaterialSkin.Controls.MaterialButton CreateGuestButton;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Panel panel3;
@@ -342,7 +369,11 @@
         private MaterialSkin.Controls.MaterialButton UpButton;
         private System.Windows.Forms.TableLayoutPanel ProductLayoutPanel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private MaterialSkin.Controls.MaterialTextBox2 SumTextBox;
         private CustomControls.CustomDataGridView OrderInfoListView;
+        private MaterialSkin.Controls.MaterialButton CreateGuestButton;
+        private MaterialSkin.Controls.MaterialButton BackButton;
+        private System.Windows.Forms.Panel panel4;
+        private MaterialSkin.Controls.MaterialTextBox2 SumTextBox;
+        private MaterialSkin.Controls.MaterialButton DeleteButton;
     }
 }
