@@ -31,20 +31,22 @@
             this.MainFormTabController = new MaterialSkin.Controls.MaterialTabControl();
             this.OrdersPage = new System.Windows.Forms.TabPage();
             this.OpenOrderLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.CreateOrderPanel = new System.Windows.Forms.Panel();
+            this.CreateOrderButton = new MaterialSkin.Controls.MaterialButton();
             this.OptionsPage = new System.Windows.Forms.TabPage();
             this.OptionsLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.CafeSessionClose = new MaterialSkin.Controls.MaterialButton();
             this.PersonalShiftController = new MaterialSkin.Controls.MaterialButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.LockButton = new MaterialSkin.Controls.MaterialButton();
-            this.CreateOrderPanel = new System.Windows.Forms.Panel();
-            this.CreateOrderButton = new MaterialSkin.Controls.MaterialButton();
+            this.DownButton = new MaterialSkin.Controls.MaterialButton();
+            this.UpButton = new MaterialSkin.Controls.MaterialButton();
             this.MainFormTabController.SuspendLayout();
             this.OrdersPage.SuspendLayout();
+            this.CreateOrderPanel.SuspendLayout();
             this.OptionsPage.SuspendLayout();
             this.OptionsLayoutPanel.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.CreateOrderPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainFormTabController
@@ -76,23 +78,55 @@
             // 
             // OpenOrderLayoutPanel
             // 
-            this.OpenOrderLayoutPanel.ColumnCount = 5;
-            this.OpenOrderLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.OpenOrderLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.OpenOrderLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.OpenOrderLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.OpenOrderLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.OpenOrderLayoutPanel.ColumnCount = 3;
+            this.OpenOrderLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.OpenOrderLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.OpenOrderLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.OpenOrderLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.OpenOrderLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.OpenOrderLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.OpenOrderLayoutPanel.Location = new System.Drawing.Point(3, 3);
             this.OpenOrderLayoutPanel.Name = "OpenOrderLayoutPanel";
-            this.OpenOrderLayoutPanel.RowCount = 5;
-            this.OpenOrderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.OpenOrderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.OpenOrderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.OpenOrderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.OpenOrderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.OpenOrderLayoutPanel.RowCount = 3;
+            this.OpenOrderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.OpenOrderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.OpenOrderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.OpenOrderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.OpenOrderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.OpenOrderLayoutPanel.Size = new System.Drawing.Size(780, 258);
             this.OpenOrderLayoutPanel.TabIndex = 3;
+            // 
+            // CreateOrderPanel
+            // 
+            this.CreateOrderPanel.Controls.Add(this.DownButton);
+            this.CreateOrderPanel.Controls.Add(this.UpButton);
+            this.CreateOrderPanel.Controls.Add(this.CreateOrderButton);
+            this.CreateOrderPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.CreateOrderPanel.Location = new System.Drawing.Point(3, 261);
+            this.CreateOrderPanel.Name = "CreateOrderPanel";
+            this.CreateOrderPanel.Size = new System.Drawing.Size(780, 45);
+            this.CreateOrderPanel.TabIndex = 4;
+            // 
+            // CreateOrderButton
+            // 
+            this.CreateOrderButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.CreateOrderButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.CreateOrderButton.Depth = 0;
+            this.CreateOrderButton.Dock = System.Windows.Forms.DockStyle.Right;
+            this.CreateOrderButton.HighEmphasis = true;
+            this.CreateOrderButton.Icon = null;
+            this.CreateOrderButton.Location = new System.Drawing.Point(654, 0);
+            this.CreateOrderButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.CreateOrderButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.CreateOrderButton.Name = "CreateOrderButton";
+            this.CreateOrderButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.CreateOrderButton.Size = new System.Drawing.Size(126, 45);
+            this.CreateOrderButton.TabIndex = 3;
+            this.CreateOrderButton.Text = "Create order";
+            this.CreateOrderButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.CreateOrderButton.UseAccentColor = false;
+            this.CreateOrderButton.UseVisualStyleBackColor = true;
+            this.CreateOrderButton.Click += new System.EventHandler(this.CreateOrderButton_Click);
             // 
             // OptionsPage
             // 
@@ -198,35 +232,47 @@
             this.LockButton.UseVisualStyleBackColor = true;
             this.LockButton.Click += new System.EventHandler(this.LockButton_Click);
             // 
-            // CreateOrderPanel
+            // DownButton
             // 
-            this.CreateOrderPanel.Controls.Add(this.CreateOrderButton);
-            this.CreateOrderPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.CreateOrderPanel.Location = new System.Drawing.Point(3, 261);
-            this.CreateOrderPanel.Name = "CreateOrderPanel";
-            this.CreateOrderPanel.Size = new System.Drawing.Size(780, 45);
-            this.CreateOrderPanel.TabIndex = 4;
+            this.DownButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.DownButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.DownButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.DownButton.Depth = 0;
+            this.DownButton.HighEmphasis = true;
+            this.DownButton.Icon = null;
+            this.DownButton.Location = new System.Drawing.Point(322, 4);
+            this.DownButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.DownButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.DownButton.Name = "DownButton";
+            this.DownButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.DownButton.Size = new System.Drawing.Size(64, 36);
+            this.DownButton.TabIndex = 7;
+            this.DownButton.Text = "↓";
+            this.DownButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.DownButton.UseAccentColor = false;
+            this.DownButton.UseVisualStyleBackColor = true;
+            this.DownButton.Click += new System.EventHandler(this.DownButton_Click);
             // 
-            // CreateOrderButton
+            // UpButton
             // 
-            this.CreateOrderButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.CreateOrderButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.CreateOrderButton.Depth = 0;
-            this.CreateOrderButton.Dock = System.Windows.Forms.DockStyle.Right;
-            this.CreateOrderButton.HighEmphasis = true;
-            this.CreateOrderButton.Icon = null;
-            this.CreateOrderButton.Location = new System.Drawing.Point(654, 0);
-            this.CreateOrderButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.CreateOrderButton.MouseState = MaterialSkin.MouseState.HOVER;
-            this.CreateOrderButton.Name = "CreateOrderButton";
-            this.CreateOrderButton.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.CreateOrderButton.Size = new System.Drawing.Size(126, 45);
-            this.CreateOrderButton.TabIndex = 3;
-            this.CreateOrderButton.Text = "Create order";
-            this.CreateOrderButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.CreateOrderButton.UseAccentColor = false;
-            this.CreateOrderButton.UseVisualStyleBackColor = true;
-            this.CreateOrderButton.Click += new System.EventHandler(this.CreateOrderButton_Click);
+            this.UpButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.UpButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.UpButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.UpButton.Depth = 0;
+            this.UpButton.HighEmphasis = true;
+            this.UpButton.Icon = null;
+            this.UpButton.Location = new System.Drawing.Point(394, 4);
+            this.UpButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.UpButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.UpButton.Name = "UpButton";
+            this.UpButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.UpButton.Size = new System.Drawing.Size(64, 36);
+            this.UpButton.TabIndex = 6;
+            this.UpButton.Text = "↑";
+            this.UpButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.UpButton.UseAccentColor = false;
+            this.UpButton.UseVisualStyleBackColor = true;
+            this.UpButton.Click += new System.EventHandler(this.UpButton_Click);
             // 
             // MainForm
             // 
@@ -246,13 +292,13 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.MainFormTabController.ResumeLayout(false);
             this.OrdersPage.ResumeLayout(false);
+            this.CreateOrderPanel.ResumeLayout(false);
+            this.CreateOrderPanel.PerformLayout();
             this.OptionsPage.ResumeLayout(false);
             this.OptionsLayoutPanel.ResumeLayout(false);
             this.OptionsLayoutPanel.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.CreateOrderPanel.ResumeLayout(false);
-            this.CreateOrderPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -270,5 +316,7 @@
         private System.Windows.Forms.TableLayoutPanel OpenOrderLayoutPanel;
         private System.Windows.Forms.Panel CreateOrderPanel;
         private MaterialSkin.Controls.MaterialButton CreateOrderButton;
+        private MaterialSkin.Controls.MaterialButton DownButton;
+        private MaterialSkin.Controls.MaterialButton UpButton;
     }
 }

@@ -67,7 +67,7 @@ public partial class OrderForm : MaterialForm, INotifyPropertyChanged
         foreach (var guest in Order.GetGuests())
         {
             OrderInfoBinding.Add(new OrderInfo(guest));
-            foreach(var product in guest.Products)
+            foreach (var product in guest.GetProducts())
                 OrderInfoBinding.Add(new OrderInfo(guest, product.Key, product.Value));
         }
         UpdateSumTextBox();
@@ -105,10 +105,6 @@ public partial class OrderForm : MaterialForm, INotifyPropertyChanged
     }
 
     private void UpdateSumTextBox() => SumTextBox.Text = $"Total price: {Order.Sum}";
-
-    private void SaveButton_Click(object sender, EventArgs e)
-    {
-    }
 
     private void CreateGuestButton_Click(object sender, EventArgs e)
     {

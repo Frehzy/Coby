@@ -40,14 +40,14 @@ public partial class CreateOrderForm : MaterialForm
         }
 
         CreateOrderLayoutPanel.Controls.AddRange(buttons.OrderBy(x => x.Text).ToArray());
-    }
 
-    private void CreateOrder(object sender, EventArgs e, Guid tableId)
-    {
-        var table = Client.GetByCacheOperation.GetTable().GetTableById(tableId);
-        var order = Client.OrderOperation.CreateOrder(Credentials, table);
-        new OrderForm(Client, order.Id).Show();
-        Close();
+        void CreateOrder(object sender, EventArgs e, Guid tableId)
+        {
+            var table = Client.GetByCacheOperation.GetTable().GetTableById(tableId);
+            var order = Client.OrderOperation.CreateOrder(Credentials, table);
+            new OrderForm(Client, order.Id).Show();
+            Close();
+        }
     }
 
     private void BackButton_Click(object sender, EventArgs e) => Close();

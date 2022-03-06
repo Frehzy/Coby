@@ -1,4 +1,6 @@
 ﻿using Coby.ClientOperation;
+using Coby.Forms.CustomControls.CardView;
+using Coby.Forms.CustomControls.CardView.Anim;
 using MaterialSkin.Controls;
 using Office.Helper;
 using Shared.Dto.Enities;
@@ -13,11 +15,26 @@ namespace Coby.Forms;
 
 public partial class MainForm : MaterialForm
 {
+    private int _page;
+
     public IClient Client { get; }
 
     public Waiter Waiter { get; private set; }
 
     public Credentials Credentials { get; }
+
+    public List<Order> Orders { get; private set; }
+
+    public int Page
+    {
+        get => _page;
+        set
+        {
+            int cellCount = OpenOrderLayoutPanel.ColumnCount * OpenOrderLayoutPanel.RowCount;
+            if (value >= 0 && value <= Math.Ceiling((decimal)(Orders.Count() / cellCount)))
+                _page = value;
+        }
+    }
 
     public MainForm(IClient client, Credentials credentials)
     {
@@ -25,8 +42,10 @@ public partial class MainForm : MaterialForm
         Client = client;
         Credentials = credentials;
         Waiter = Client.GetByCacheOperation.GetWaiter().GetWaiterById(Credentials.WaiterId);
-        AfterUpdateStatus();
+        Orders = Client.GetByCacheOperation.GetOrder().GetOrders();
         _ = FormHelper.CreateMaterialSkinManager(this);
+        AfterUpdateStatus();
+        Animator.Start();
     }
 
     private void ChangePersonalShiftStatus_Click(object sender, EventArgs e)
@@ -36,29 +55,6 @@ public partial class MainForm : MaterialForm
             : Client.WaiterOperation.OpenPersonalShift(Waiter.Id);
         AfterUpdateStatus();
         MaterialMessageBox.Show($"Личная смена имеет статус: {Waiter.Status}", false, FlexibleMaterialForm.ButtonsPosition.Center);
-    }
-
-    private void AfterUpdateStatus()
-    {
-        if (Waiter.Status is WaiterSessionStatus.Open)
-        {
-            MainFormTabController.SelectTab(OrdersPage);
-            UpdateOrdersLayoutPanel(Client.OrderOperation.GetOrders());
-            ChangeControlEnable(OrdersPage.Controls, true);
-            PersonalShiftController.Text = "Закрыть личную смену";
-        }
-        else
-        {
-            MainFormTabController.SelectTab(OptionsPage);
-            ChangeControlEnable(OrdersPage.Controls, false);
-            PersonalShiftController.Text = "Открыть личную смену";
-        }
-
-        static void ChangeControlEnable(Control.ControlCollection controls, bool status)
-        {
-            foreach (Control control in controls)
-                control.Enabled = status;
-        }
     }
 
     private void LockButton_Click(object sender, EventArgs e)
@@ -88,59 +84,100 @@ public partial class MainForm : MaterialForm
         }
     }
 
+    private void CreateOrderButton_Click(object sender, EventArgs e) =>
+        OpenForm(new CreateOrderForm(Client, Credentials));
+
     private void MainFormTabController_Selecting(object sender, TabControlCancelEventArgs e)
     {
         TabPage currentPage = (sender as TabControl).SelectedTab;
         if (currentPage.Name.Equals(nameof(OrdersPage)))
-            UpdateOrdersLayoutPanel(Client.OrderOperation.GetOrders());
+        {
+            Page = 0;
+            UpdateOrdersLayoutPanel(Page);
+        }
     }
 
-    private void UpdateOrdersLayoutPanel(IEnumerable<Order> orders)
+    private void AfterUpdateStatus()
+    {
+        if (Waiter.Status is WaiterSessionStatus.Open)
+        {
+            Page = 0;
+            UpdateOrdersLayoutPanel(Page);
+            MainFormTabController.SelectTab(OrdersPage);
+            ChangeControlEnable(OrdersPage.Controls, true);
+            PersonalShiftController.Text = "Закрыть личную смену";
+        }
+        else
+        {
+            MainFormTabController.SelectTab(OptionsPage);
+            ChangeControlEnable(OrdersPage.Controls, false);
+            PersonalShiftController.Text = "Открыть личную смену";
+        }
+
+        static void ChangeControlEnable(Control.ControlCollection controls, bool status)
+        {
+            foreach (Control control in controls)
+                control.Enabled = status;
+        }
+    }
+
+    private void UpdateOrdersLayoutPanel(int page)
     {
         OpenOrderLayoutPanel.Controls.Clear();
 
-        List<TableLayoutPanel> panels = new();
+        int cellCount = OpenOrderLayoutPanel.ColumnCount * OpenOrderLayoutPanel.RowCount;
+        Orders = Client.GetByCacheOperation.GetOrder().GetOrders();
+        var orders = Orders.Skip(cellCount * page).Take(cellCount);
+
+        List<CustomCardView> cardViews = new();
         foreach (var order in orders)
         {
-            TableLayoutPanel panel = new();
-
-            panel.RowStyles.Add(new RowStyle(SizeType.Percent));
-            MaterialButton button = new();
-            button.Click += (sender, e) => OpenOrder(sender, e, order.Id);
-            button.Text = $"GuestCount: {order.GetGuests().Count()}\n" +
-                          $"TableNumber: {order.Table.TableNumber}\n" +
-                          $"Waiter: {order.Waiter.Name}\n" +
-                          $"Sum: {order.Sum}";
-            button.Dock = DockStyle.Fill;
-            panel.Controls.Add(button);
-
-            panel.RowStyles.Add(new RowStyle(SizeType.Percent));
-            MaterialListView view = new();
-            view.Columns.Add("Products");
-            foreach (var products in order.GetGuests().Select(x => x.GetProducts()))
-                foreach (var product in products)
-                    view.Items.Add(product.ProductName);
+            CustomCardView view = new();
+            view.SetColorAndFont(BackColor, Font);
+            view.TextHeader = $"Table {order.Table.TableNumber}";
+            view.Text = "More information";
+            string products = string.Join(string.Format("{0}-", Environment.NewLine), order.GetGuests().SelectMany(x => x.GetProducts()).Take(6).Select(x => x.ProductName));
+            view.TextDescrition = $"GuestCount: {order.GetGuests().Count()}\n" +
+                                  $"Sum: {order.Sum}\n" +
+                                  $"StartTime: {order.StartTime}\n" +
+                                  $"Products: \n-{products}";
+            view.MouseClick += (sender, e) => OpenOrder(sender, e, order.Id, view.CurtainHeight);
             view.Dock = DockStyle.Fill;
-            panel.Controls.Add(view);
 
-            panels.Add(panel);
+            cardViews.Add(view);
         }
 
-        OpenOrderLayoutPanel.Controls.AddRange(panels.ToArray());
+        OpenOrderLayoutPanel.Controls.AddRange(cardViews.OrderBy(x => x.Name).ToArray());
+
+        void OpenOrder(object sender, MouseEventArgs e, Guid orderId, int y)
+        {
+            if (e.Y <= y)
+                OpenForm(new OrderForm(Client, orderId));
+        }
     }
 
-    private void OpenOrder(object sender, EventArgs e, Guid orderId) =>
-        new OrderForm(Client, orderId).Show();
-
-    private void CreateOrderButton_Click(object sender, EventArgs e)
+    private void OpenForm(MaterialForm newForm)
     {
-        this.Enabled = false;
-        var createOrderForm = new CreateOrderForm(Client, Credentials);
-        createOrderForm.Show();
+        Enabled = false;
+        newForm.Show();
 
-        createOrderForm.FormClosing += (sender, e) => 
+        newForm.FormClosing += (sender, e) =>
         {
-            this.Enabled = true;
+            Enabled = true;
+            Page = 0;
+            UpdateOrdersLayoutPanel(Page);
         };
+    }
+
+    private void UpButton_Click(object sender, EventArgs e)
+    {
+        Page--;
+        UpdateOrdersLayoutPanel(Page);
+    }
+
+    private void DownButton_Click(object sender, EventArgs e)
+    {
+        Page++;
+        UpdateOrdersLayoutPanel(Page);
     }
 }

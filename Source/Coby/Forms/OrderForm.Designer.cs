@@ -32,25 +32,25 @@
             this.PayButton = new MaterialSkin.Controls.MaterialButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.OrderInfoListView = new Coby.Forms.CustomControls.CustomDataGridView();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.SumTextBox = new MaterialSkin.Controls.MaterialTextBox2();
+            this.DeleteButton = new MaterialSkin.Controls.MaterialButton();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.DownButton = new MaterialSkin.Controls.MaterialButton();
             this.UpButton = new MaterialSkin.Controls.MaterialButton();
             this.ProductLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.BackButton = new MaterialSkin.Controls.MaterialButton();
             this.CreateGuestButton = new MaterialSkin.Controls.MaterialButton();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.SumTextBox = new MaterialSkin.Controls.MaterialTextBox2();
-            this.DeleteButton = new MaterialSkin.Controls.MaterialButton();
-            this.OrderInfoListView = new Coby.Forms.CustomControls.CustomDataGridView();
+            this.BackButton = new MaterialSkin.Controls.MaterialButton();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -111,6 +111,76 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(311, 351);
             this.tableLayoutPanel2.TabIndex = 0;
+            // 
+            // OrderInfoListView
+            // 
+            this.OrderInfoListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.OrderInfoListView.Location = new System.Drawing.Point(3, 3);
+            this.OrderInfoListView.Name = "OrderInfoListView";
+            this.OrderInfoListView.Size = new System.Drawing.Size(305, 295);
+            this.OrderInfoListView.TabIndex = 1;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.SumTextBox);
+            this.panel4.Controls.Add(this.DeleteButton);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(3, 304);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(305, 44);
+            this.panel4.TabIndex = 2;
+            // 
+            // SumTextBox
+            // 
+            this.SumTextBox.AnimateReadOnly = true;
+            this.SumTextBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.SumTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
+            this.SumTextBox.Depth = 0;
+            this.SumTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SumTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.SumTextBox.HideSelection = true;
+            this.SumTextBox.LeadingIcon = null;
+            this.SumTextBox.Location = new System.Drawing.Point(0, 0);
+            this.SumTextBox.MaxLength = 32767;
+            this.SumTextBox.MouseState = MaterialSkin.MouseState.OUT;
+            this.SumTextBox.Name = "SumTextBox";
+            this.SumTextBox.PasswordChar = '\0';
+            this.SumTextBox.PrefixSuffixText = null;
+            this.SumTextBox.ReadOnly = true;
+            this.SumTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.SumTextBox.SelectedText = "";
+            this.SumTextBox.SelectionLength = 0;
+            this.SumTextBox.SelectionStart = 0;
+            this.SumTextBox.ShortcutsEnabled = true;
+            this.SumTextBox.Size = new System.Drawing.Size(241, 48);
+            this.SumTextBox.TabIndex = 1;
+            this.SumTextBox.TabStop = false;
+            this.SumTextBox.Text = "Sum";
+            this.SumTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.SumTextBox.TrailingIcon = null;
+            this.SumTextBox.UseAccent = false;
+            this.SumTextBox.UseSystemPasswordChar = false;
+            // 
+            // DeleteButton
+            // 
+            this.DeleteButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.DeleteButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.DeleteButton.Depth = 0;
+            this.DeleteButton.Dock = System.Windows.Forms.DockStyle.Right;
+            this.DeleteButton.HighEmphasis = true;
+            this.DeleteButton.Icon = null;
+            this.DeleteButton.Location = new System.Drawing.Point(241, 0);
+            this.DeleteButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.DeleteButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.DeleteButton.Name = "DeleteButton";
+            this.DeleteButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.DeleteButton.Size = new System.Drawing.Size(64, 44);
+            this.DeleteButton.TabIndex = 3;
+            this.DeleteButton.Text = "X";
+            this.DeleteButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.DeleteButton.UseAccentColor = false;
+            this.DeleteButton.UseVisualStyleBackColor = true;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // tableLayoutPanel3
             // 
@@ -213,27 +283,6 @@
             this.panel1.Size = new System.Drawing.Size(794, 45);
             this.panel1.TabIndex = 1;
             // 
-            // BackButton
-            // 
-            this.BackButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.BackButton.Depth = 0;
-            this.BackButton.Dock = System.Windows.Forms.DockStyle.Left;
-            this.BackButton.HighEmphasis = true;
-            this.BackButton.Icon = null;
-            this.BackButton.Location = new System.Drawing.Point(0, 0);
-            this.BackButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.BackButton.MouseState = MaterialSkin.MouseState.HOVER;
-            this.BackButton.Name = "BackButton";
-            this.BackButton.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.BackButton.Size = new System.Drawing.Size(64, 45);
-            this.BackButton.TabIndex = 4;
-            this.BackButton.Text = "<-";
-            this.BackButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.BackButton.UseAccentColor = false;
-            this.BackButton.UseVisualStyleBackColor = true;
-            this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
-            // 
             // CreateGuestButton
             // 
             this.CreateGuestButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -255,75 +304,26 @@
             this.CreateGuestButton.UseVisualStyleBackColor = true;
             this.CreateGuestButton.Click += new System.EventHandler(this.CreateGuestButton_Click);
             // 
-            // panel4
+            // BackButton
             // 
-            this.panel4.Controls.Add(this.SumTextBox);
-            this.panel4.Controls.Add(this.DeleteButton);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(3, 304);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(305, 44);
-            this.panel4.TabIndex = 2;
-            // 
-            // SumTextBox
-            // 
-            this.SumTextBox.AnimateReadOnly = true;
-            this.SumTextBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.SumTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
-            this.SumTextBox.Depth = 0;
-            this.SumTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SumTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.SumTextBox.HideSelection = true;
-            this.SumTextBox.LeadingIcon = null;
-            this.SumTextBox.Location = new System.Drawing.Point(0, 0);
-            this.SumTextBox.MaxLength = 32767;
-            this.SumTextBox.MouseState = MaterialSkin.MouseState.OUT;
-            this.SumTextBox.Name = "SumTextBox";
-            this.SumTextBox.PasswordChar = '\0';
-            this.SumTextBox.PrefixSuffixText = null;
-            this.SumTextBox.ReadOnly = true;
-            this.SumTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.SumTextBox.SelectedText = "";
-            this.SumTextBox.SelectionLength = 0;
-            this.SumTextBox.SelectionStart = 0;
-            this.SumTextBox.ShortcutsEnabled = true;
-            this.SumTextBox.Size = new System.Drawing.Size(241, 48);
-            this.SumTextBox.TabIndex = 1;
-            this.SumTextBox.TabStop = false;
-            this.SumTextBox.Text = "Sum";
-            this.SumTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.SumTextBox.TrailingIcon = null;
-            this.SumTextBox.UseAccent = false;
-            this.SumTextBox.UseSystemPasswordChar = false;
-            // 
-            // DeleteButton
-            // 
-            this.DeleteButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.DeleteButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.DeleteButton.Depth = 0;
-            this.DeleteButton.Dock = System.Windows.Forms.DockStyle.Right;
-            this.DeleteButton.HighEmphasis = true;
-            this.DeleteButton.Icon = null;
-            this.DeleteButton.Location = new System.Drawing.Point(241, 0);
-            this.DeleteButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.DeleteButton.MouseState = MaterialSkin.MouseState.HOVER;
-            this.DeleteButton.Name = "DeleteButton";
-            this.DeleteButton.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.DeleteButton.Size = new System.Drawing.Size(64, 44);
-            this.DeleteButton.TabIndex = 3;
-            this.DeleteButton.Text = "X";
-            this.DeleteButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.DeleteButton.UseAccentColor = false;
-            this.DeleteButton.UseVisualStyleBackColor = true;
-            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
-            // 
-            // OrderInfoListView
-            // 
-            this.OrderInfoListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.OrderInfoListView.Location = new System.Drawing.Point(3, 3);
-            this.OrderInfoListView.Name = "OrderInfoListView";
-            this.OrderInfoListView.Size = new System.Drawing.Size(305, 295);
-            this.OrderInfoListView.TabIndex = 1;
+            this.BackButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BackButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.BackButton.Depth = 0;
+            this.BackButton.Dock = System.Windows.Forms.DockStyle.Left;
+            this.BackButton.HighEmphasis = true;
+            this.BackButton.Icon = null;
+            this.BackButton.Location = new System.Drawing.Point(0, 0);
+            this.BackButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.BackButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.BackButton.Name = "BackButton";
+            this.BackButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.BackButton.Size = new System.Drawing.Size(64, 45);
+            this.BackButton.TabIndex = 4;
+            this.BackButton.Text = "<-";
+            this.BackButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.BackButton.UseAccentColor = false;
+            this.BackButton.UseVisualStyleBackColor = true;
+            this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
             // 
             // OrderForm
             // 
@@ -347,13 +347,13 @@
             this.panel2.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
             this.ResumeLayout(false);
 
         }

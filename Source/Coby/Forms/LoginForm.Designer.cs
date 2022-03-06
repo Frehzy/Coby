@@ -78,7 +78,7 @@
             this.LoginButton.Depth = 0;
             this.LoginButton.HighEmphasis = true;
             this.LoginButton.Icon = null;
-            this.LoginButton.Location = new System.Drawing.Point(126, 112);
+            this.LoginButton.Location = new System.Drawing.Point(224, 108);
             this.LoginButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.LoginButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.LoginButton.Name = "LoginButton";
@@ -96,9 +96,9 @@
             this.MainImagePictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainImagePictureBox.Image = ((System.Drawing.Image)(resources.GetObject("MainImagePictureBox.Image")));
             this.MainImagePictureBox.InitialImage = null;
-            this.MainImagePictureBox.Location = new System.Drawing.Point(95, 21);
+            this.MainImagePictureBox.Location = new System.Drawing.Point(3, 3);
             this.MainImagePictureBox.Name = "MainImagePictureBox";
-            this.MainImagePictureBox.Size = new System.Drawing.Size(194, 44);
+            this.MainImagePictureBox.Size = new System.Drawing.Size(507, 45);
             this.MainImagePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.MainImagePictureBox.TabIndex = 8;
             this.MainImagePictureBox.TabStop = false;
@@ -130,7 +130,7 @@
             this.PasswordTextBox.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.PasswordTextBox.Hint = "Password";
             this.PasswordTextBox.LeadingIcon = null;
-            this.PasswordTextBox.Location = new System.Drawing.Point(3, 59);
+            this.PasswordTextBox.Location = new System.Drawing.Point(3, 54);
             this.PasswordTextBox.MaxLength = 50;
             this.PasswordTextBox.MouseState = MaterialSkin.MouseState.OUT;
             this.PasswordTextBox.Multiline = false;

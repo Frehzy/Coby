@@ -15,9 +15,9 @@ public class OrderInfo : INotifyPropertyChanged
     private decimal? _productPrice;
 
     [Browsable(false)]
-    public Guid GuestId 
-    { 
-        get => _guestId; 
+    public Guid GuestId
+    {
+        get => _guestId;
         private set => _guestId = value;
     }
 
@@ -33,9 +33,9 @@ public class OrderInfo : INotifyPropertyChanged
     }
 
     [Browsable(false)]
-    public int Rank 
-    { 
-        get => _rank; 
+    public int Rank
+    {
+        get => _rank;
         private set => _rank = value;
     }
 
@@ -69,7 +69,7 @@ public class OrderInfo : INotifyPropertyChanged
     }
 
     public OrderInfo(Guest guest)
-    { 
+    {
         GuestId = guest.Id;
         GuestName = guest.Name;
         ProductPrice = default;
