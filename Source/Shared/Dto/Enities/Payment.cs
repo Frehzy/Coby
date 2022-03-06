@@ -10,5 +10,6 @@ public class Payment : PaymentType
 
     public Payment(Guid paymentId, string name, decimal sum) : base(paymentId, name)
     {
+        Sum = sum;
     }
 }

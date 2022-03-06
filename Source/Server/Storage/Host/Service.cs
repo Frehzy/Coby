@@ -186,16 +186,16 @@ public class Service : IService
             {
                 var orderDB = new OrderDB(order.Id, order.Table.Id, order.Waiter.Id, (decimal)order.Sum, order.StartTime, DateTime.Now);
                 db.ExecuteNonQuery(SQLString.GetInsertSqlString(orderDB, "orders"));
-                foreach (var payment in order.Payment.Values)
+                foreach (var payment in order.GetPayments())
                 {
                     var paymentDB = new PaymentDB(order.Id, payment.Id, payment.Sum);
                     db.ExecuteNonQuery(SQLString.GetInsertSqlString(paymentDB, "orderspayments"));
                 }
-                foreach (var guest in order.Guests.Values)
+                foreach (var guest in order.GetGuests())
                 {
                     var guestDB = new GuestDB(order.Id, guest.Id, guest.Name);
                     db.ExecuteNonQuery(SQLString.GetInsertSqlString(guestDB, "ordersguests"));
-                    foreach (var product in guest.Products.Values)
+                    foreach (var product in guest.GetProducts())
                     {
                         var productDB = new ProductDB(order.Id, product.Id);
                         db.ExecuteNonQuery(SQLString.GetInsertSqlString(productDB, "ordersproducts"));

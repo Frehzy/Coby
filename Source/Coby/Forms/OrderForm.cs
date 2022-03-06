@@ -3,6 +3,7 @@ using Coby.Entities;
 using MaterialSkin.Controls;
 using Office.Helper;
 using Shared.Dto.Enities;
+using Shared.Dto.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -42,7 +43,7 @@ public partial class OrderForm : MaterialForm, INotifyPropertyChanged
 
     public Waiter Waiter { get; private set; }
 
-    public Order Order { get; }
+    public Order Order { get; private set; }
 
     public List<Product> Products { get; private set; }
 
@@ -67,7 +68,7 @@ public partial class OrderForm : MaterialForm, INotifyPropertyChanged
         foreach (var guest in Order.GetGuests())
         {
             OrderInfoBinding.Add(new OrderInfo(guest));
-            foreach (var product in guest.GetProducts())
+            foreach (var product in guest.Products)
                 OrderInfoBinding.Add(new OrderInfo(guest, product.Key, product.Value));
         }
         UpdateSumTextBox();
@@ -91,17 +92,17 @@ public partial class OrderForm : MaterialForm, INotifyPropertyChanged
         }
 
         ProductLayoutPanel.Controls.AddRange(buttons.OrderBy(x => x.Text).ToArray());
-    }
 
-    private void AddProductOnOrder(object sender, EventArgs e, Guid productId)
-    {
-        if (OrderInfoListView.Selected is null)
+        void AddProductOnOrder(object sender, EventArgs e, Guid productId)
         {
-            MaterialMessageBox.Show("Не выбран гость.", false, FlexibleMaterialForm.ButtonsPosition.Center);
-            return;
+            if (OrderInfoListView.Selected is null)
+            {
+                MaterialMessageBox.Show("Не выбран гость.", false, FlexibleMaterialForm.ButtonsPosition.Center);
+                return;
+            }
+            Client.OrderOperation.GetProductOperation(Order).AddProductOnOrder(OrderInfoListView.Selected.GuestId, productId);
+            LoadOrderInfo();
         }
-        Client.OrderOperation.GetProductOperation(Order).AddProductOnOrder(OrderInfoListView.Selected.GuestId, productId);
-        LoadOrderInfo();
     }
 
     private void UpdateSumTextBox() => SumTextBox.Text = $"Total price: {Order.Sum}";
@@ -155,4 +156,28 @@ public partial class OrderForm : MaterialForm, INotifyPropertyChanged
     public event PropertyChangedEventHandler PropertyChanged;
     protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
        => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+    private void PayButton_Click(object sender, EventArgs e)
+    {
+        if (Order.Sum <= 0)
+        {
+            MaterialMessageBox.Show($"Невозможно перейти на экран оплаты, пока сумма заказа равна 0.",
+                                    false,
+                                    FlexibleMaterialForm.ButtonsPosition.Center);
+            return;
+        }
+
+        Enabled = false;
+        Client.OrderOperation.SaveOrder(Order);
+        var payOrder = new PayOrder(Client, Order.Id);
+        payOrder.Show();
+
+        payOrder.FormClosing += (sender, e) =>
+        {
+            Enabled = true;
+            Order = Client.GetByCacheOperation.GetOrder().GetOrderById(Order.Id);
+            if (Order.OrderStatus is OrderStatus.Closed)
+                Close();
+        };
+    }
 }

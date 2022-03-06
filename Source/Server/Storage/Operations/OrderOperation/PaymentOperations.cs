@@ -23,9 +23,16 @@ public class PaymentOperations
         if (Order.Payment.TryGetValue(paymentTypeId, out _) is true)
             throw new EntityAlreadyExistsException(paymentTypeId);
 
-        var paymentType = PaymentTypes.FirstOrDefault(x => x.Equals(paymentTypeId));
+        var paymentType = PaymentTypes.FirstOrDefault(x => x.Id.Equals(paymentTypeId));
         if (paymentType is null)
             throw new EntityNotFound(paymentTypeId);
+
+        var paymentSum = Order.GetPayments().Sum(x => x.Sum);
+        if (paymentSum + sum > Order.Sum)
+            sum = (decimal)Order.Sum - paymentSum;
+
+        if (sum <= 0)
+            throw new ArgumentException("Сумма не может быть меньше или равна 0.");
 
         var payment = new Payment(paymentType.Id, paymentType.Name, sum);
         Order.Payment.Add(payment.Id, payment);
@@ -34,7 +41,7 @@ public class PaymentOperations
 
     public void RemovePaymentOnOrder(Guid paymentId)
     {
-        if (Order.Payment.TryGetValue(paymentId, out var payment) is true)
+        if (Order.Payment.TryGetValue(paymentId, out var payment) is false)
             throw new EntityNotFound(paymentId);
 
         Order.Payment.Remove(payment.Id);

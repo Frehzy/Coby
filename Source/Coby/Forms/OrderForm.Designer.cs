@@ -81,6 +81,7 @@
             this.PayButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.PayButton.UseAccentColor = false;
             this.PayButton.UseVisualStyleBackColor = true;
+            this.PayButton.Click += new System.EventHandler(this.PayButton_Click);
             // 
             // tableLayoutPanel1
             // 

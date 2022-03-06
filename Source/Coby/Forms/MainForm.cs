@@ -42,7 +42,7 @@ public partial class MainForm : MaterialForm
         Client = client;
         Credentials = credentials;
         Waiter = Client.GetByCacheOperation.GetWaiter().GetWaiterById(Credentials.WaiterId);
-        Orders = Client.GetByCacheOperation.GetOrder().GetOrders();
+        Orders = Client.GetByCacheOperation.GetOrder().GetOrders().Where(x => x.OrderStatus is OrderStatus.New).ToList();
         _ = FormHelper.CreateMaterialSkinManager(this);
         AfterUpdateStatus();
         Animator.Start();
@@ -65,9 +65,10 @@ public partial class MainForm : MaterialForm
 
     private void CafeSessionClose_Click(object sender, EventArgs e)
     {
-        if (Client.OrderOperation.GetOrders().Where(x => x.OrderStatus is OrderStatus.New).Count() > 0)
+        var orders = Client.OrderOperation.GetOrders();
+        if (orders.Count() == 0 && orders.Where(x => x.OrderStatus is OrderStatus.New).Count() > 0)
         {
-            MaterialMessageBox.Show($"Невозможно закрыть кассовую смену, в которой есть открытые заказы.",
+            MaterialMessageBox.Show($"Невозможно закрыть кассовую смену, в которой есть открытые заказы или нет ни одного заказа.",
                                     false,
                                     FlexibleMaterialForm.ButtonsPosition.Center);
             return;
@@ -126,7 +127,7 @@ public partial class MainForm : MaterialForm
         OpenOrderLayoutPanel.Controls.Clear();
 
         int cellCount = OpenOrderLayoutPanel.ColumnCount * OpenOrderLayoutPanel.RowCount;
-        Orders = Client.GetByCacheOperation.GetOrder().GetOrders();
+        Orders = Client.GetByCacheOperation.GetOrder().GetOrders().Where(x => x.OrderStatus is OrderStatus.New).ToList();
         var orders = Orders.Skip(cellCount * page).Take(cellCount);
 
         List<CustomCardView> cardViews = new();
@@ -161,7 +162,7 @@ public partial class MainForm : MaterialForm
         Enabled = false;
         newForm.Show();
 
-        newForm.FormClosing += (sender, e) =>
+        newForm.FormClosed += (sender, e) =>
         {
             Enabled = true;
             Page = 0;

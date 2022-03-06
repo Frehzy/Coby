@@ -1,4 +1,5 @@
 ﻿using Shared.Dto.Enities;
+using Shared.Dto.Enums;
 using Shared.Dto.Exceptions;
 using Storage.Cache;
 using Storage.Operations.PaymentOperation;
@@ -42,4 +43,14 @@ public class OrderOperation : IOrderOperation
 
     public Order SaveOrder(Order order) =>
         Cache.OrdersCache.AddOrUpdateOrder(order);
+
+    public void CloseOrder(Guid orderId)
+    {
+        if (Helper.OrderById(Cache, orderId, out Order orderOnCache) is null)
+            throw new EntityNotFound(orderId);
+
+        orderOnCache.OrderStatus = OrderStatus.Closed;
+        orderOnCache.EndTime = DateTime.Now;
+        Cache.OrdersCache.AddOrUpdateOrder(orderOnCache);
+    }
 }

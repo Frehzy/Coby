@@ -8,7 +8,7 @@ internal class GuestDB
 
     public Guid GuestId { get; set; }
 
-    public string GuestName { get; set; }
+    public string Name { get; set; }
 
     public GuestDB() { }
 
@@ -16,6 +16,6 @@ internal class GuestDB
     {
         OrderId = orderId;
         GuestId = guestId;
-        GuestName = guestName;
+        Name = guestName;
     }
 }

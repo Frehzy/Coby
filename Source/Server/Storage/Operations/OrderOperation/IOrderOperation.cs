@@ -13,4 +13,6 @@ public interface IOrderOperation
     List<Order> GetOrders();
 
     Order SaveOrder(Order order);
+
+    void CloseOrder(Guid orderId);
 }
