@@ -1,8 +1,8 @@
 ﻿using Coby.ClientOperation;
-using Coby.Entities;
 using Coby.Forms.MessageForms;
 using MaterialSkin.Controls;
 using Office.Helper;
+using Shared.Dto.DGVEntities;
 using Shared.Dto.Enities;
 using System;
 using System.Collections.Generic;

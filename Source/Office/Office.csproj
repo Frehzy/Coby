@@ -94,7 +94,7 @@
     <Compile Include="Forms\MessageForm\AddWaiterForm.Designer.cs">
       <DependentUpon>AddWaiterForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DataGridHelper.cs" />
+    <Compile Include="Helper\DataGridHelper.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,7 +113,7 @@
     <Compile Include="Forms\NomenclatureForm.Designer.cs">
       <DependentUpon>NomenclatureForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\RowHelper.cs" />
+    <Compile Include="Helper\RowHelper.cs" />
     <Compile Include="Helper\FormHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

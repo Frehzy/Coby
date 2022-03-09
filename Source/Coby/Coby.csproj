@@ -58,7 +58,6 @@
   <ItemGroup>
     <Compile Include="ClientOperation\Client.cs" />
     <Compile Include="ClientOperation\IClient.cs" />
-    <Compile Include="Entities\OrderInfo.cs" />
     <Compile Include="Forms\CloseOrdersForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.ButtonsPanel = new System.Windows.Forms.Panel();
+            this.MoreInfoButton = new MaterialSkin.Controls.MaterialButton();
             this.OrdersUpdateButton = new MaterialSkin.Controls.MaterialButton();
             this.CloseOrdersDgv = new System.Windows.Forms.DataGridView();
-            this.MoreInfoButton = new MaterialSkin.Controls.MaterialButton();
             this.ButtonsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CloseOrdersDgv)).BeginInit();
             this.SuspendLayout();
@@ -45,6 +45,27 @@
             this.ButtonsPanel.Name = "ButtonsPanel";
             this.ButtonsPanel.Size = new System.Drawing.Size(916, 54);
             this.ButtonsPanel.TabIndex = 1;
+            // 
+            // MoreInfoButton
+            // 
+            this.MoreInfoButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.MoreInfoButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.MoreInfoButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.MoreInfoButton.Depth = 0;
+            this.MoreInfoButton.HighEmphasis = true;
+            this.MoreInfoButton.Icon = null;
+            this.MoreInfoButton.Location = new System.Drawing.Point(848, 6);
+            this.MoreInfoButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.MoreInfoButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.MoreInfoButton.Name = "MoreInfoButton";
+            this.MoreInfoButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.MoreInfoButton.Size = new System.Drawing.Size(64, 36);
+            this.MoreInfoButton.TabIndex = 17;
+            this.MoreInfoButton.Text = "More";
+            this.MoreInfoButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.MoreInfoButton.UseAccentColor = false;
+            this.MoreInfoButton.UseVisualStyleBackColor = true;
+            this.MoreInfoButton.Click += new System.EventHandler(this.MoreInfoButton_Click);
             // 
             // OrdersUpdateButton
             // 
@@ -82,27 +103,6 @@
             this.CloseOrdersDgv.Size = new System.Drawing.Size(916, 466);
             this.CloseOrdersDgv.TabIndex = 16;
             // 
-            // MoreInfoButton
-            // 
-            this.MoreInfoButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.MoreInfoButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.MoreInfoButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.MoreInfoButton.Depth = 0;
-            this.MoreInfoButton.HighEmphasis = true;
-            this.MoreInfoButton.Icon = null;
-            this.MoreInfoButton.Location = new System.Drawing.Point(848, 6);
-            this.MoreInfoButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.MoreInfoButton.MouseState = MaterialSkin.MouseState.HOVER;
-            this.MoreInfoButton.Name = "MoreInfoButton";
-            this.MoreInfoButton.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.MoreInfoButton.Size = new System.Drawing.Size(64, 36);
-            this.MoreInfoButton.TabIndex = 17;
-            this.MoreInfoButton.Text = "More";
-            this.MoreInfoButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.MoreInfoButton.UseAccentColor = false;
-            this.MoreInfoButton.UseVisualStyleBackColor = true;
-            this.MoreInfoButton.Click += new System.EventHandler(this.MoreInfoButton_Click);
-            // 
             // CloseOrdersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -112,7 +112,7 @@
             this.Controls.Add(this.ButtonsPanel);
             this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "CloseOrdersForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Close orders";
             this.ButtonsPanel.ResumeLayout(false);
             this.ButtonsPanel.PerformLayout();

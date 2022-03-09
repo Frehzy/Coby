@@ -57,7 +57,7 @@ internal class CustomCardView : Control
         _fontHeader = new Font(font.Name, ChangeFontSize(30));
         _fontDescrition = new Font(font.Name, ChangeFontSize(15));
 
-        float ChangeFontSize(int percent) => font.Size + (font.Size * percent / 100);
+        float ChangeFontSize(int percent) => font.Size + font.Size * percent / 100;
 
         Color GetColor(double coefficient)
         {

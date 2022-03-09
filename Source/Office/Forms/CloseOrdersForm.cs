@@ -40,7 +40,7 @@ public partial class CloseOrdersForm : MaterialForm
     private void MoreInfoButton_Click(object sender, EventArgs e)
     {
         var orderId = new RowHelper<Guid>(CloseOrdersDgv).GetIdBySelectedRow("OrderId");
-        var order = CloseOrders.First(x => x.Equals(orderId));
+        var order = CloseOrders.First(x => x.Id.Equals(orderId));
         var orderForm = new OrderForm(Client, order);
         orderForm.Show();
     }

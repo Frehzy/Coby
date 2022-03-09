@@ -17,11 +17,11 @@ public partial class AddWaiterForm : MaterialForm
     }
 
     public Waiter GetNewWaiter(Creater creater) =>
-        ShowDialog() is DialogResult.OK 
+        ShowDialog() is DialogResult.OK
         ? creater.CreateWaiter(
             UsernameTextBox.Text,
             PasswordTextBox.Text,
-            AdminCheckBox.Checked ? PermissionStatus.Admin : PermissionStatus.Waiter) 
+            AdminCheckBox.Checked ? PermissionStatus.Admin : PermissionStatus.Waiter)
         : default;
 
     private void SaveButton_Click(object sender, EventArgs e)

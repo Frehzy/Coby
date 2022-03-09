@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace Office.Forms;
+namespace Office.Helper;
 
 internal class RowHelper<T>
 {

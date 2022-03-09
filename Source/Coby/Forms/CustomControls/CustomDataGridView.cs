@@ -1,6 +1,6 @@
 ﻿#nullable enable
 
-using Coby.Entities;
+using Shared.Dto.DGVEntities;
 using System.Drawing;
 using System.Windows.Forms;
 

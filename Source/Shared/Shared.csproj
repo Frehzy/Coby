@@ -32,8 +32,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,17 +45,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dto\DGVEntities\OrderInfo.cs" />
     <Compile Include="Dto\Enities\Credentials.cs" />
     <Compile Include="Dto\Enities\Guest.cs" />
     <Compile Include="Dto\Enities\License.cs" />
     <Compile Include="Dto\Enities\Nomenclature.cs" />
     <Compile Include="Dto\Enities\Order.cs" />
+    <Compile Include="Dto\Enities\History.cs" />
     <Compile Include="Dto\Enities\Payment.cs" />
     <Compile Include="Dto\Enities\PaymentType.cs" />
     <Compile Include="Dto\Enities\Product.cs" />
     <Compile Include="Dto\Enities\Request.cs" />
     <Compile Include="Dto\Enities\Table.cs" />
     <Compile Include="Dto\Enities\Waiter.cs" />
+    <Compile Include="Dto\Enums\ActionsEnum.cs" />
     <Compile Include="Dto\Enums\CafeSessionStatus.cs" />
     <Compile Include="Dto\Enums\DBConnectionStatus.cs" />
     <Compile Include="Dto\Enums\DBResponseStatus.cs" />
@@ -68,5 +74,6 @@
     <Compile Include="IsExternalInit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -3,7 +3,7 @@ using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace Coby.Entities;
+namespace Shared.Dto.DGVEntities;
 
 public class OrderInfo : INotifyPropertyChanged
 {

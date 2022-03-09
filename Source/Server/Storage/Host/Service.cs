@@ -2,7 +2,6 @@
 
 using Shared.Dto.Enities;
 using Shared.Dto.Enums;
-using Shared.Dto.Exceptions;
 using Storage.Cache;
 using Storage.DataBase;
 using Storage.DataBase.Converter;

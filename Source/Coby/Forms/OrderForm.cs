@@ -1,7 +1,7 @@
 ﻿using Coby.ClientOperation;
-using Coby.Entities;
 using MaterialSkin.Controls;
 using Office.Helper;
+using Shared.Dto.DGVEntities;
 using Shared.Dto.Enities;
 using Shared.Dto.Enums;
 using System;
