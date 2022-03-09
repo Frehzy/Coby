@@ -215,7 +215,7 @@ public class Service : IService
                     paymentOperation.AddPaymentOnOrder(payment.PaymentId, payment.Sum);
 
                 order.OrderHistories.Clear();
-                foreach(var history in histories.Where(x => x.EntityId.Equals(order.Id)))
+                foreach (var history in histories.Where(x => x.OrderId.Equals(order.Id)))
                     order.OrderHistories.TryAdd(history.HistoryId, history);
 
                 _closeOrders.TryAdd(order.Id, order);
@@ -265,7 +265,7 @@ public class Service : IService
                     }
                 }
 
-                foreach(var history in order.GetHistories())
+                foreach (var history in order.GetHistories())
                     db.ExecuteNonQuery(SQLString.GetInsertSqlString(history, "history"));
 
                 _closeOrders.TryAdd(order.Id, order);

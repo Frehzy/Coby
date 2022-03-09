@@ -148,7 +148,7 @@ public partial class MainForm : MaterialForm
         Enabled = false;
         newForm.Show();
 
-        newForm.FormClosed += (sender, e) =>
+        newForm.FormClosing += (sender, e) =>
         {
             Enabled = true;
             Page = 0;

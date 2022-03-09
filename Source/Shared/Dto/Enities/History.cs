@@ -7,7 +7,7 @@ public class History
 {
     public Guid HistoryId { get; set; }
 
-    public Guid EntityId { get; set; }
+    public Guid OrderId { get; set; }
 
     public Guid TargetId { get; set; }
 
@@ -17,10 +17,10 @@ public class History
 
     public History() { }
 
-    public History(Guid historyId, Guid entityId, Guid targetId, Entities targetEntity, ActionsEnum actions)
+    public History(Guid historyId, Guid orderId, Guid targetId, Entities targetEntity, ActionsEnum actions)
     {
         HistoryId = historyId;
-        EntityId = entityId;
+        OrderId = orderId;
         TargetId = targetId;
         Message = $"{targetEntity} has been {actions}";
         Created = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");

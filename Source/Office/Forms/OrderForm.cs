@@ -11,6 +11,8 @@ public partial class OrderForm : MaterialForm
 {
     public BindingList<OrderInfo> OrderInfoBinding { get; set; } = new();
 
+    public BindingList<History> HistoryBinding { get; set; } = new();
+
     public IClient Client { get; }
 
     public Order Order { get; }
@@ -30,8 +32,12 @@ public partial class OrderForm : MaterialForm
 
     private void LoadHistory()
     {
-        DataGridHelper.FillTable(HistoryDgv, Order.GetHistories());
+        HistoryDgv.DataBindings.Add("DataSource", this, nameof(HistoryBinding));
         DataGridHelper.SetDGVColor(HistoryDgv, BackColor);
+        HistoryBinding = new();
+        foreach (var history in Order.GetHistories())
+            HistoryBinding.Add(history);
+        DataGridHelper.SetDGVColor(AfterClickInfoDgv, BackColor);
     }
 
     private void LoadPaymentsInfo()
@@ -67,4 +73,23 @@ public partial class OrderForm : MaterialForm
     }
 
     private void UpdateSumTextBox() => SumTextBox.Text = $"Total price: {Order.Sum}";
+
+    private void HistoryDgv_CellContentClick(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+    {
+        var selected = (History)HistoryDgv.CurrentRow?.DataBoundItem;
+        if (selected is not null)
+            LoadInfo();
+
+        void LoadInfo()
+        {
+            var product = Client.GetByCacheOperation.GetProduct().TryGetProductById(selected.TargetId);
+            var paymentType = Client.GetByCacheOperation.GetPaymentType().TryGetPaymentTypeById(selected.TargetId);
+            if (product is not null)
+                DataGridHelper.FillTable(AfterClickInfoDgv, product);
+            else if (paymentType is not null)
+                DataGridHelper.FillTable(AfterClickInfoDgv, paymentType);
+            else
+                DataGridHelper.DgvClear(AfterClickInfoDgv);
+        }
+    }
 }

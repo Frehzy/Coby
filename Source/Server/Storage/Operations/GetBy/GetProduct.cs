@@ -1,5 +1,4 @@
 ﻿using Shared.Dto.Enities;
-using Shared.Dto.Exceptions;
 using Storage.Cache;
 using System;
 using System.Collections.Generic;
@@ -13,9 +12,9 @@ public class GetProduct
     public GetProduct(AllCache cache) =>
         Cache = cache;
 
-    public Product GetProductById(Guid productId) =>
+    public Product TryGetProductById(Guid productId) =>
         Helper.ProductById(Cache, productId, out Product productOnCache) is null
-            ? throw new EntityNotFound(productId)
+            ? default
             : productOnCache;
 
     public List<Product> GetProducts() =>

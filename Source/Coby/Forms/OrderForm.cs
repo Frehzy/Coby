@@ -154,10 +154,6 @@ public partial class OrderForm : MaterialForm, INotifyPropertyChanged
         LoadOrderInfo();
     }
 
-    public event PropertyChangedEventHandler PropertyChanged;
-    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-       => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
     private void PayButton_Click(object sender, EventArgs e)
     {
         if (Order.OrderStatus is OrderStatus.Closed)
@@ -184,4 +180,8 @@ public partial class OrderForm : MaterialForm, INotifyPropertyChanged
                 Close();
         };
     }
+
+    public event PropertyChangedEventHandler PropertyChanged;
+    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+       => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 }

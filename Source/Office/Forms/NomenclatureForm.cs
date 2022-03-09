@@ -57,6 +57,6 @@ public partial class NomenclatureForm : MaterialForm
     {
         var childId = new RowHelper<Guid>(NomenclatureDgv).GetValueByColumnName("ChildId", false);
         if (childId is not null)
-            LoadInfo(Client.GetByCacheOperation.GetProduct().GetProductById(childId.Value), ChildInfoTextBox);
+            LoadInfo(Client.GetByCacheOperation.GetProduct().TryGetProductById(childId.Value), ChildInfoTextBox);
     }
 }

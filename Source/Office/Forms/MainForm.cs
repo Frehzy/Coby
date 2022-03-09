@@ -68,7 +68,7 @@ public partial class MainForm : MaterialForm
         var result = new RowHelper<Guid>(ProductsDgv).GetValueByColumnName();
         if (result is not null)
         {
-            var product = Client.GetByCacheOperation.GetProduct().GetProductById(result.Value);
+            var product = Client.GetByCacheOperation.GetProduct().TryGetProductById(result.Value);
             Client.Remover.RemoveProductById(result.Value);
             if (product.IsItForSale is true)
                 Client.GetByCacheOperation.GetNomenclatureOperation().GetNomenclatures()
@@ -85,7 +85,7 @@ public partial class MainForm : MaterialForm
     {
         var parentId = new RowHelper<Guid>(ProductsDgv).GetIdBySelectedRow("Id");
 
-        var parentProduct = Client.GetByCacheOperation.GetProduct().GetProductById(parentId);
+        var parentProduct = Client.GetByCacheOperation.GetProduct().TryGetProductById(parentId);
         if (parentProduct.IsItForSale is true)
             new NomenclatureForm(Client, parentProduct).Show();
         else

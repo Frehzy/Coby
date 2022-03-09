@@ -1,5 +1,4 @@
 ﻿using Shared.Dto.Enities;
-using Shared.Dto.Exceptions;
 using Storage.Cache;
 using System;
 using System.Collections.Generic;
@@ -13,13 +12,10 @@ public class GetPaymentType
     public GetPaymentType(AllCache cache) =>
         Cache = cache;
 
-    public PaymentType GetPaymentTypeById(Guid paymentTypeId)
-    {
-        if (Helper.PaymentTypeById(Cache, paymentTypeId, out PaymentType paymentTypeOnCache) is null)
-            throw new EntityNotFound(paymentTypeId);
-
-        return paymentTypeOnCache;
-    }
+    public PaymentType TryGetPaymentTypeById(Guid paymentTypeId) =>
+        Helper.PaymentTypeById(Cache, paymentTypeId, out PaymentType paymentTypeOnCache) is null
+            ? default
+            : paymentTypeOnCache;
 
     public List<PaymentType> GetPaymentTypes() =>
         Cache.PaymentTypesCache.GetPaymentTypesCache();

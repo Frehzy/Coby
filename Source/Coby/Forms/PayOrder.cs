@@ -115,7 +115,7 @@ public partial class PayOrder : MaterialForm
             Client.OrderOperation.GetPaymentOperations(Order).RemovePaymentOnOrder(paymentId);
             UpdatePaymentLayoutPanel();
             UpdateRemainderTextBox();
-            var paymenttype = Client.GetByCacheOperation.GetPaymentType().GetPaymentTypeById(paymentId);
+            var paymenttype = Client.GetByCacheOperation.GetPaymentType().TryGetPaymentTypeById(paymentId);
             PaymentTypes.Add(paymenttype);
             LoadPaymentTypesInfo(Page);
         }

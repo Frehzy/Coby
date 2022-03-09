@@ -74,7 +74,7 @@ internal static class DataGridHelper
         return default;
     }
 
-    private static void DgvClear(DataGridView dgv)
+    public static void DgvClear(DataGridView dgv)
     {
         dgv.Columns.Clear();
         dgv.Rows.Clear();

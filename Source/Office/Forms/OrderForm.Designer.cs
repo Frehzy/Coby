@@ -30,21 +30,25 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.WaiterInfoDgv = new System.Windows.Forms.DataGridView();
-            this.TableInfoDgv = new System.Windows.Forms.DataGridView();
             this.PaymentInfoDgv = new System.Windows.Forms.DataGridView();
+            this.TableInfoDgv = new System.Windows.Forms.DataGridView();
             this.OrderInfoDgv = new System.Windows.Forms.DataGridView();
+            this.WaiterInfoDgv = new System.Windows.Forms.DataGridView();
             this.panel4 = new System.Windows.Forms.Panel();
             this.SumTextBox = new MaterialSkin.Controls.MaterialTextBox2();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.HistoryDgv = new System.Windows.Forms.DataGridView();
+            this.AfterClickInfoDgv = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.WaiterInfoDgv)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TableInfoDgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PaymentInfoDgv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TableInfoDgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.OrderInfoDgv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.WaiterInfoDgv)).BeginInit();
             this.panel4.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.HistoryDgv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AfterClickInfoDgv)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -52,8 +56,8 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.tableLayoutPanel1.Controls.Add(this.HistoryDgv, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 64);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -84,31 +88,31 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(360, 514);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
-            // WaiterInfoDgv
+            // PaymentInfoDgv
             // 
-            this.WaiterInfoDgv.AllowUserToAddRows = false;
-            this.WaiterInfoDgv.AllowUserToDeleteRows = false;
-            this.WaiterInfoDgv.AllowUserToResizeColumns = false;
-            this.WaiterInfoDgv.AllowUserToResizeRows = false;
-            this.WaiterInfoDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.WaiterInfoDgv.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.WaiterInfoDgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.WaiterInfoDgv.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.WaiterInfoDgv.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.WaiterInfoDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.WaiterInfoDgv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.WaiterInfoDgv.EnableHeadersVisualStyles = false;
-            this.WaiterInfoDgv.Location = new System.Drawing.Point(3, 258);
-            this.WaiterInfoDgv.MultiSelect = false;
-            this.WaiterInfoDgv.Name = "WaiterInfoDgv";
-            this.WaiterInfoDgv.ReadOnly = true;
-            this.WaiterInfoDgv.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.WaiterInfoDgv.RowHeadersVisible = false;
-            this.WaiterInfoDgv.RowHeadersWidth = 51;
-            this.WaiterInfoDgv.RowTemplate.Height = 24;
-            this.WaiterInfoDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.WaiterInfoDgv.Size = new System.Drawing.Size(354, 63);
-            this.WaiterInfoDgv.TabIndex = 4;
+            this.PaymentInfoDgv.AllowUserToAddRows = false;
+            this.PaymentInfoDgv.AllowUserToDeleteRows = false;
+            this.PaymentInfoDgv.AllowUserToResizeColumns = false;
+            this.PaymentInfoDgv.AllowUserToResizeRows = false;
+            this.PaymentInfoDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.PaymentInfoDgv.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.PaymentInfoDgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.PaymentInfoDgv.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.PaymentInfoDgv.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.PaymentInfoDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.PaymentInfoDgv.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PaymentInfoDgv.EnableHeadersVisualStyles = false;
+            this.PaymentInfoDgv.Location = new System.Drawing.Point(3, 396);
+            this.PaymentInfoDgv.MultiSelect = false;
+            this.PaymentInfoDgv.Name = "PaymentInfoDgv";
+            this.PaymentInfoDgv.ReadOnly = true;
+            this.PaymentInfoDgv.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.PaymentInfoDgv.RowHeadersVisible = false;
+            this.PaymentInfoDgv.RowHeadersWidth = 51;
+            this.PaymentInfoDgv.RowTemplate.Height = 24;
+            this.PaymentInfoDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.PaymentInfoDgv.Size = new System.Drawing.Size(354, 63);
+            this.PaymentInfoDgv.TabIndex = 6;
             // 
             // TableInfoDgv
             // 
@@ -136,32 +140,6 @@
             this.TableInfoDgv.Size = new System.Drawing.Size(354, 63);
             this.TableInfoDgv.TabIndex = 5;
             // 
-            // PaymentInfoDgv
-            // 
-            this.PaymentInfoDgv.AllowUserToAddRows = false;
-            this.PaymentInfoDgv.AllowUserToDeleteRows = false;
-            this.PaymentInfoDgv.AllowUserToResizeColumns = false;
-            this.PaymentInfoDgv.AllowUserToResizeRows = false;
-            this.PaymentInfoDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.PaymentInfoDgv.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.PaymentInfoDgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.PaymentInfoDgv.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.PaymentInfoDgv.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.PaymentInfoDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.PaymentInfoDgv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PaymentInfoDgv.EnableHeadersVisualStyles = false;
-            this.PaymentInfoDgv.Location = new System.Drawing.Point(3, 396);
-            this.PaymentInfoDgv.MultiSelect = false;
-            this.PaymentInfoDgv.Name = "PaymentInfoDgv";
-            this.PaymentInfoDgv.ReadOnly = true;
-            this.PaymentInfoDgv.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.PaymentInfoDgv.RowHeadersVisible = false;
-            this.PaymentInfoDgv.RowHeadersWidth = 51;
-            this.PaymentInfoDgv.RowTemplate.Height = 24;
-            this.PaymentInfoDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.PaymentInfoDgv.Size = new System.Drawing.Size(354, 63);
-            this.PaymentInfoDgv.TabIndex = 6;
-            // 
             // OrderInfoDgv
             // 
             this.OrderInfoDgv.AllowUserToAddRows = false;
@@ -187,6 +165,32 @@
             this.OrderInfoDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.OrderInfoDgv.Size = new System.Drawing.Size(354, 249);
             this.OrderInfoDgv.TabIndex = 4;
+            // 
+            // WaiterInfoDgv
+            // 
+            this.WaiterInfoDgv.AllowUserToAddRows = false;
+            this.WaiterInfoDgv.AllowUserToDeleteRows = false;
+            this.WaiterInfoDgv.AllowUserToResizeColumns = false;
+            this.WaiterInfoDgv.AllowUserToResizeRows = false;
+            this.WaiterInfoDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.WaiterInfoDgv.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.WaiterInfoDgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.WaiterInfoDgv.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.WaiterInfoDgv.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.WaiterInfoDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.WaiterInfoDgv.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.WaiterInfoDgv.EnableHeadersVisualStyles = false;
+            this.WaiterInfoDgv.Location = new System.Drawing.Point(3, 258);
+            this.WaiterInfoDgv.MultiSelect = false;
+            this.WaiterInfoDgv.Name = "WaiterInfoDgv";
+            this.WaiterInfoDgv.ReadOnly = true;
+            this.WaiterInfoDgv.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.WaiterInfoDgv.RowHeadersVisible = false;
+            this.WaiterInfoDgv.RowHeadersWidth = 51;
+            this.WaiterInfoDgv.RowTemplate.Height = 24;
+            this.WaiterInfoDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.WaiterInfoDgv.Size = new System.Drawing.Size(354, 63);
+            this.WaiterInfoDgv.TabIndex = 4;
             // 
             // panel4
             // 
@@ -228,6 +232,21 @@
             this.SumTextBox.UseAccent = false;
             this.SumTextBox.UseSystemPasswordChar = false;
             // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 1;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Controls.Add(this.AfterClickInfoDgv, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.HistoryDgv, 0, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(369, 3);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 2;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(544, 514);
+            this.tableLayoutPanel3.TabIndex = 3;
+            // 
             // HistoryDgv
             // 
             this.HistoryDgv.AllowUserToAddRows = false;
@@ -242,7 +261,7 @@
             this.HistoryDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.HistoryDgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.HistoryDgv.EnableHeadersVisualStyles = false;
-            this.HistoryDgv.Location = new System.Drawing.Point(369, 3);
+            this.HistoryDgv.Location = new System.Drawing.Point(3, 3);
             this.HistoryDgv.MultiSelect = false;
             this.HistoryDgv.Name = "HistoryDgv";
             this.HistoryDgv.ReadOnly = true;
@@ -251,8 +270,35 @@
             this.HistoryDgv.RowHeadersWidth = 51;
             this.HistoryDgv.RowTemplate.Height = 24;
             this.HistoryDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.HistoryDgv.Size = new System.Drawing.Size(544, 514);
-            this.HistoryDgv.TabIndex = 5;
+            this.HistoryDgv.Size = new System.Drawing.Size(538, 353);
+            this.HistoryDgv.TabIndex = 6;
+            this.HistoryDgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.HistoryDgv_CellContentClick);
+            // 
+            // AfterClickInfoDgv
+            // 
+            this.AfterClickInfoDgv.AllowUserToAddRows = false;
+            this.AfterClickInfoDgv.AllowUserToDeleteRows = false;
+            this.AfterClickInfoDgv.AllowUserToResizeColumns = false;
+            this.AfterClickInfoDgv.AllowUserToResizeRows = false;
+            this.AfterClickInfoDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.AfterClickInfoDgv.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.AfterClickInfoDgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.AfterClickInfoDgv.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.AfterClickInfoDgv.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.AfterClickInfoDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.AfterClickInfoDgv.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AfterClickInfoDgv.EnableHeadersVisualStyles = false;
+            this.AfterClickInfoDgv.Location = new System.Drawing.Point(3, 362);
+            this.AfterClickInfoDgv.MultiSelect = false;
+            this.AfterClickInfoDgv.Name = "AfterClickInfoDgv";
+            this.AfterClickInfoDgv.ReadOnly = true;
+            this.AfterClickInfoDgv.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.AfterClickInfoDgv.RowHeadersVisible = false;
+            this.AfterClickInfoDgv.RowHeadersWidth = 51;
+            this.AfterClickInfoDgv.RowTemplate.Height = 24;
+            this.AfterClickInfoDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.AfterClickInfoDgv.Size = new System.Drawing.Size(538, 149);
+            this.AfterClickInfoDgv.TabIndex = 7;
             // 
             // OrderForm
             // 
@@ -267,12 +313,14 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.WaiterInfoDgv)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TableInfoDgv)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PaymentInfoDgv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TableInfoDgv)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.OrderInfoDgv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.WaiterInfoDgv)).EndInit();
             this.panel4.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.HistoryDgv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AfterClickInfoDgv)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -287,6 +335,8 @@
         private System.Windows.Forms.DataGridView OrderInfoDgv;
         private System.Windows.Forms.Panel panel4;
         private MaterialSkin.Controls.MaterialTextBox2 SumTextBox;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.DataGridView AfterClickInfoDgv;
         private System.Windows.Forms.DataGridView HistoryDgv;
     }
 }
