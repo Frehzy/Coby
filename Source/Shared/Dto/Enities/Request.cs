@@ -1,12 +1,11 @@
 ﻿using Shared.Dto.Enums;
 using System;
-using System.Collections.Generic;
 
 namespace Shared.Dto.Enities;
 
 public class Request
 {
-    public List<Guid> Id { get; set; }
+    public Guid Id { get; set; }
 
     public RequestStatus Status { get; set; }
 
@@ -18,14 +17,7 @@ public class Request
 
     public Request(Guid id, RequestStatus status, string message)
     {
-        Id.Add(id);
-        Status = status;
-        Message = message;
-    }
-
-    public Request(List<Guid> idList, RequestStatus status, string message)
-    {
-        Id.AddRange(idList);
+        Id = id;
         Status = status;
         Message = message;
     }

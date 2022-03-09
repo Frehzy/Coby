@@ -8,6 +8,7 @@ using Shared.Dto.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Coby.Forms;
@@ -64,7 +65,7 @@ public partial class MainForm : MaterialForm
 
     private void CafeSessionClose_Click(object sender, EventArgs e)
     {
-        var request = Client.CloseCafeShift(Credentials);
+        var request = Task.Run(() => Client.CloseCafeShift(Credentials)).Result;
         if (request.Status is not RequestStatus.OK)
             MaterialMessageBox.Show($"Id: {request.Id}\nStatus: {request.Status}\nMessage: {request.Message}\nException:{request.Exception}");
         AfterUpdateStatus();

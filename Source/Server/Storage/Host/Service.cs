@@ -40,6 +40,7 @@ public class Service : IService
         if (_ordersCache.TryGetValue(source.Id, out var orderOnCache))
             return SubmitChanges(orderOnCache, source);
         _ordersCache.TryAdd(source.Id, source);
+        HistoryHelper.OrderHistory(source, source.Id, Entities.Order, ActionsEnum.Save);
         return source;
 
         static T SubmitChanges<T>(T orderTarger, T source)
@@ -185,6 +186,7 @@ public class Service : IService
             List<GuestDB> guests = db.SqlQuery<GuestDB>("SELECT * FROM ordersguests");
             List<PaymentDB> payments = db.SqlQuery<PaymentDB>("SELECT * FROM orderspayments");
             List<ProductDB> products = db.SqlQuery<ProductDB>("SELECT * FROM ordersproducts");
+            List<History> histories = db.SqlQuery<History>("SELECT * FROM history");
             var cache = new AllCache(this);
             var getBy = new GetByCache(cache);
             var orderOperation = GetOrderOperation(cache);
@@ -212,7 +214,11 @@ public class Service : IService
                 foreach (var payment in orderPayments)
                     paymentOperation.AddPaymentOnOrder(payment.PaymentId, payment.Sum);
 
-                _closeOrders.TryAdd(closeOrder.Id, order);
+                order.OrderHistories.Clear();
+                foreach(var history in histories.Where(x => x.EntityId.Equals(order.Id)))
+                    order.OrderHistories.TryAdd(history.HistoryId, history);
+
+                _closeOrders.TryAdd(order.Id, order);
             }
         }
     }
@@ -223,15 +229,18 @@ public class Service : IService
         if (waiter.PermissionStatus is PermissionStatus.Waiter)
             return new(waiter.Id, RequestStatus.DeniedPermission, "Недостаточно прав.");
 
-        if (GetOrdersCache().Where(x => x.OrderStatus is OrderStatus.New).Count() <= 0)
-            return new(default(Guid), RequestStatus.EntityNotFound, "Должен существовать хотя-бы один закрытый заказ.");
+        if (GetOrdersCache().Where(x => x.OrderStatus is OrderStatus.Closed).Count() <= 0)
+            return new(default, RequestStatus.EntityNotFound, "Должен быть закрыт хотя-бы один заказ.");
+
+        if (GetOrdersCache().Where(x => x.OrderStatus is OrderStatus.New).Count() > 0)
+            return new(default, RequestStatus.EntityNotFound, "Все заказы должны быть закрыты.");
 
         LoadClosedOrderOnDB();
         CloseAllWaiterShift();
         _ordersCache.Clear();
         _licensesCache.Clear();
 
-        return new(default(Guid), RequestStatus.OK, default);
+        return new(default, RequestStatus.OK, default);
 
         void LoadClosedOrderOnDB()
         {

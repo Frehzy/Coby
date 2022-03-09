@@ -37,11 +37,11 @@
             this.CreateOrderButton = new MaterialSkin.Controls.MaterialButton();
             this.OptionsPage = new System.Windows.Forms.TabPage();
             this.OptionsLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.CafeSessionClose = new MaterialSkin.Controls.MaterialButton();
             this.PersonalShiftController = new MaterialSkin.Controls.MaterialButton();
+            this.CafeSessionClose = new MaterialSkin.Controls.MaterialButton();
+            this.CloseOrdersButton = new MaterialSkin.Controls.MaterialButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.LockButton = new MaterialSkin.Controls.MaterialButton();
-            this.CloseOrdersButton = new MaterialSkin.Controls.MaterialButton();
             this.MainFormTabController.SuspendLayout();
             this.OrdersPage.SuspendLayout();
             this.CreateOrderPanel.SuspendLayout();
@@ -92,6 +92,18 @@
             this.OpenOrderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.OpenOrderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.OpenOrderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.OpenOrderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.OpenOrderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.OpenOrderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.OpenOrderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.OpenOrderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.OpenOrderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.OpenOrderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.OpenOrderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.OpenOrderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.OpenOrderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.OpenOrderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.OpenOrderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.OpenOrderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.OpenOrderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.OpenOrderLayoutPanel.Size = new System.Drawing.Size(780, 258);
@@ -204,6 +216,27 @@
             this.OptionsLayoutPanel.Size = new System.Drawing.Size(780, 303);
             this.OptionsLayoutPanel.TabIndex = 1;
             // 
+            // PersonalShiftController
+            // 
+            this.PersonalShiftController.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.PersonalShiftController.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.PersonalShiftController.Depth = 0;
+            this.PersonalShiftController.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PersonalShiftController.HighEmphasis = true;
+            this.PersonalShiftController.Icon = null;
+            this.PersonalShiftController.Location = new System.Drawing.Point(4, 6);
+            this.PersonalShiftController.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.PersonalShiftController.MouseState = MaterialSkin.MouseState.HOVER;
+            this.PersonalShiftController.Name = "PersonalShiftController";
+            this.PersonalShiftController.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.PersonalShiftController.Size = new System.Drawing.Size(252, 48);
+            this.PersonalShiftController.TabIndex = 0;
+            this.PersonalShiftController.Text = "ShiftStatus";
+            this.PersonalShiftController.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.PersonalShiftController.UseAccentColor = false;
+            this.PersonalShiftController.UseVisualStyleBackColor = true;
+            this.PersonalShiftController.Click += new System.EventHandler(this.ChangePersonalShiftStatus_Click);
+            // 
             // CafeSessionClose
             // 
             this.CafeSessionClose.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -225,26 +258,26 @@
             this.CafeSessionClose.UseVisualStyleBackColor = true;
             this.CafeSessionClose.Click += new System.EventHandler(this.CafeSessionClose_Click);
             // 
-            // PersonalShiftController
+            // CloseOrdersButton
             // 
-            this.PersonalShiftController.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.PersonalShiftController.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.PersonalShiftController.Depth = 0;
-            this.PersonalShiftController.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PersonalShiftController.HighEmphasis = true;
-            this.PersonalShiftController.Icon = null;
-            this.PersonalShiftController.Location = new System.Drawing.Point(4, 6);
-            this.PersonalShiftController.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.PersonalShiftController.MouseState = MaterialSkin.MouseState.HOVER;
-            this.PersonalShiftController.Name = "PersonalShiftController";
-            this.PersonalShiftController.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.PersonalShiftController.Size = new System.Drawing.Size(252, 48);
-            this.PersonalShiftController.TabIndex = 0;
-            this.PersonalShiftController.Text = "ShiftStatus";
-            this.PersonalShiftController.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.PersonalShiftController.UseAccentColor = false;
-            this.PersonalShiftController.UseVisualStyleBackColor = true;
-            this.PersonalShiftController.Click += new System.EventHandler(this.ChangePersonalShiftStatus_Click);
+            this.CloseOrdersButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.CloseOrdersButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.CloseOrdersButton.Depth = 0;
+            this.CloseOrdersButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CloseOrdersButton.HighEmphasis = true;
+            this.CloseOrdersButton.Icon = null;
+            this.CloseOrdersButton.Location = new System.Drawing.Point(523, 6);
+            this.CloseOrdersButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.CloseOrdersButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.CloseOrdersButton.Name = "CloseOrdersButton";
+            this.CloseOrdersButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.CloseOrdersButton.Size = new System.Drawing.Size(253, 48);
+            this.CloseOrdersButton.TabIndex = 2;
+            this.CloseOrdersButton.Text = "Close orders";
+            this.CloseOrdersButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.CloseOrdersButton.UseAccentColor = false;
+            this.CloseOrdersButton.UseVisualStyleBackColor = true;
+            this.CloseOrdersButton.Click += new System.EventHandler(this.CloseOrdersButton_Click);
             // 
             // panel1
             // 
@@ -275,27 +308,6 @@
             this.LockButton.UseAccentColor = false;
             this.LockButton.UseVisualStyleBackColor = true;
             this.LockButton.Click += new System.EventHandler(this.LockButton_Click);
-            // 
-            // CloseOrdersButton
-            // 
-            this.CloseOrdersButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.CloseOrdersButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.CloseOrdersButton.Depth = 0;
-            this.CloseOrdersButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CloseOrdersButton.HighEmphasis = true;
-            this.CloseOrdersButton.Icon = null;
-            this.CloseOrdersButton.Location = new System.Drawing.Point(523, 6);
-            this.CloseOrdersButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.CloseOrdersButton.MouseState = MaterialSkin.MouseState.HOVER;
-            this.CloseOrdersButton.Name = "CloseOrdersButton";
-            this.CloseOrdersButton.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.CloseOrdersButton.Size = new System.Drawing.Size(253, 48);
-            this.CloseOrdersButton.TabIndex = 2;
-            this.CloseOrdersButton.Text = "Close orders";
-            this.CloseOrdersButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.CloseOrdersButton.UseAccentColor = false;
-            this.CloseOrdersButton.UseVisualStyleBackColor = true;
-            this.CloseOrdersButton.Click += new System.EventHandler(this.CloseOrdersButton_Click);
             // 
             // MainForm
             // 
