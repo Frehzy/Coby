@@ -57,6 +57,13 @@
   <ItemGroup>
     <Compile Include="ClientOperation\Client.cs" />
     <Compile Include="ClientOperation\IClient.cs" />
+    <Compile Include="Entities\CloseOrder.cs" />
+    <Compile Include="Forms\OrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OrderForm.Designer.cs">
+      <DependentUpon>OrderForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MessageForm\AddNomenclatureForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +101,12 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CloseOrdersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CloseOrdersForm.Designer.cs">
+      <DependentUpon>CloseOrdersForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\NomenclatureForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +117,9 @@
     <Compile Include="Helper\FormHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\OrderForm.resx">
+      <DependentUpon>OrderForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -121,6 +137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MessageForm\AddWaiterForm.resx">
       <DependentUpon>AddWaiterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CloseOrdersForm.resx">
+      <DependentUpon>CloseOrdersForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\NomenclatureForm.resx">
       <DependentUpon>NomenclatureForm.cs</DependentUpon>

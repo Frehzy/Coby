@@ -17,9 +17,9 @@ public class Order
 
     public decimal? Sum => Guests?.Values.Select(x => x.Products.Values.Sum(x => x.Price)).Sum();
 
-    public Dictionary<Guid, Payment>? Payment { get; set; }
+    public Dictionary<Guid, Payment> Payment { get; set; }
 
-    public Dictionary<Guid, Guest>? Guests { get; set; }
+    public Dictionary<Guid, Guest> Guests { get; set; }
 
     public OrderStatus OrderStatus { get; set; }
 
@@ -36,6 +36,18 @@ public class Order
         Waiter = waiter;
         OrderStatus = OrderStatus.New;
         StartTime = DateTime.Now;
+        Payment = new();
+        Guests = new();
+    }
+
+    public Order(Guid orderId, Table table, Waiter waiter, OrderStatus status, DateTime startTime, DateTime endTime)
+    {
+        Id = orderId;
+        Table = table;
+        Waiter = waiter;
+        OrderStatus = status;
+        StartTime = startTime;
+        EndTime = endTime;
         Payment = new();
         Guests = new();
     }

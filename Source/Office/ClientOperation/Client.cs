@@ -1,10 +1,12 @@
-﻿using Storage.Cache;
+﻿using Shared.Dto.Enities;
+using Storage.Cache;
 using Storage.Host;
 using Storage.Operations;
 using Storage.Operations.CreateRemove;
 using Storage.Operations.GetBy;
 using Storage.Operations.OrderOperation;
 using System;
+using System.Collections.Generic;
 using System.ServiceModel;
 
 namespace Office.ClientOperation;
@@ -12,6 +14,7 @@ namespace Office.ClientOperation;
 public class Client : IClient
 {
     private readonly IService _service;
+    public delegate List<Order> GetCloseOrdersDelegate();
 
     public LicenseOperation LicenseOperation { get; }
 
@@ -28,6 +31,8 @@ public class Client : IClient
     public Remover Remover { get; }
 
     public AllCache AllCache { get; }
+
+    public GetCloseOrdersDelegate GetCloseOrders { get; }
 
     public Client()
     {
@@ -46,6 +51,7 @@ public class Client : IClient
         Creater.Cache = AllCache;
         Remover = _service.GetRemover(AllCache);
         Remover.Cache = AllCache;
+        GetCloseOrders = _service.GetCloseOrders;
     }
 
     public IService CreateClient()

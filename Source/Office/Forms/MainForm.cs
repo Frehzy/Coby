@@ -109,4 +109,7 @@ public partial class MainForm : MaterialForm
 
         PaymentTypeUpdateButton.PerformClick();
     }
+
+    private void CloseOrdersButton_Click(object sender, EventArgs e) =>
+        new CloseOrdersForm(Client).Show();
 }

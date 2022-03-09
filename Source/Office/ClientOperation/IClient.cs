@@ -4,6 +4,7 @@ using Storage.Operations;
 using Storage.Operations.CreateRemove;
 using Storage.Operations.GetBy;
 using Storage.Operations.OrderOperation;
+using static Office.ClientOperation.Client;
 
 namespace Office.ClientOperation;
 
@@ -24,6 +25,8 @@ public interface IClient
     OrderOperation OrderOperation { get; }
 
     GetByCache GetByCacheOperation { get; }
+
+    GetCloseOrdersDelegate GetCloseOrders { get; }
 
     IService CreateClient();
 }

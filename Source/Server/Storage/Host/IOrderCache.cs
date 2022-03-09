@@ -16,4 +16,7 @@ public interface IOrderCache
 
     [OperationContract]
     bool RemoveOrder(Guid orderId);
+
+    [OperationContract]
+    List<Order> GetCloseOrders();
 }

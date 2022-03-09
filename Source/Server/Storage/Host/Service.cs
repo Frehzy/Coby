@@ -9,12 +9,14 @@ using Storage.DataBase.Converter;
 using Storage.Extention;
 using Storage.Operations;
 using Storage.Operations.CreateRemove;
+using Storage.Operations.GetBy;
 using Storage.Operations.OrderOperation;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
+using System.Threading.Tasks;
 
 namespace Storage.Host;
 
@@ -27,6 +29,7 @@ public class Service : IService
     private readonly ConcurrentDictionary<Guid, Product> _productsCache = new();
     private readonly ConcurrentDictionary<Guid, Table> _tablesCache = new();
     private readonly ConcurrentDictionary<Guid, Waiter> _waitersCache = new();
+    private readonly ConcurrentDictionary<Guid, Order> _closeOrders = new();
     private readonly List<Nomenclature> _nomenclatureCache = new();
     private bool _canWork = true;
 
@@ -87,6 +90,9 @@ public class Service : IService
     public List<Nomenclature> GetNomenclaturesCache() =>
         _nomenclatureCache.ToList();
 
+    public List<Order> GetCloseOrders() =>
+        _closeOrders.Values.ToList();
+
     public bool RemoveLicense(Guid licenseId) => _licensesCache.TryRemove(licenseId, out _);
 
     public bool RemoveOrder(Guid orderId) => _ordersCache.TryRemove(orderId, out _);
@@ -142,7 +148,7 @@ public class Service : IService
         return waiter;
     }
 
-    public void SetCache()
+    public async void SetCache()
     {
         DBInteraction DB = default;
 
@@ -154,6 +160,7 @@ public class Service : IService
             GetWaiters().ForEach(x => _waitersCache.TryAdd(x.Id, WaiterConverter.Converter(x)));
             GetProducts().ForEach(x => _productsCache.TryAdd(x.Id, x));
             GetNomenclature().ForEach(x => _nomenclatureCache.Add(x));
+            await Task.Run(() => CloseOrders());
 
             _canWork = false;
         }
@@ -172,6 +179,43 @@ public class Service : IService
 
         List<Nomenclature> GetNomenclature() =>
             DB.SqlQuery<Nomenclature>("SELECT * FROM nomenclature");
+
+        void CloseOrders()
+        {
+            List<OrderDB> closeOrders = DB.SqlQuery<OrderDB>("SELECT * FROM orders");
+            List<GuestDB> guests = DB.SqlQuery<GuestDB>("SELECT * FROM ordersguests");
+            List<PaymentDB> payments = DB.SqlQuery<PaymentDB>("SELECT * FROM orderspayments");
+            List<ProductDB> products = DB.SqlQuery<ProductDB>("SELECT * FROM ordersproducts");
+            var cache = new AllCache(this);
+            var getBy = new GetByCache(cache);
+            var orderOperation = GetOrderOperation(cache);
+
+            foreach (var closeOrder in closeOrders)
+            {
+                var table = getBy.GetTable().GetTableById(closeOrder.TableId);
+                var waiter = getBy.GetWaiter().GetWaiterById(closeOrder.WaiterId);
+                var orderGuests = guests.Where(x => x.OrderId.Equals(closeOrder.Id));
+                var orderProduts = products.Where(x => x.OrderId.Equals(closeOrder.Id));
+                var orderPayments = payments.Where(x => x.OrderId.Equals(closeOrder.Id));
+
+                var order = new Order(closeOrder.Id, table, waiter, OrderStatus.Closed, closeOrder.GetTime(closeOrder.StartTime), closeOrder.GetTime(closeOrder.EndTime));
+                var guestOperations = orderOperation.GetGuestOperations(order);
+                var paymentOperation = orderOperation.GetPaymentOperations(order);
+                var productOperation = orderOperation.GetProductOperation(order);
+
+                foreach (var guest in orderGuests)
+                {
+                    guestOperations.AddGuestOnOrder(guest.GuestId, guest.Name);
+                    foreach (var product in orderProduts)
+                        productOperation.AddProductOnOrder(guest.GuestId, product.ProductId);
+                }
+
+                foreach (var payment in orderPayments)
+                    paymentOperation.AddPaymentOnOrder(payment.PaymentId, payment.Sum);
+
+                _closeOrders.TryAdd(closeOrder.Id, order);
+            }
+        }
     }
 
     public Request CloseCafeShift(Credentials credentials)
@@ -212,6 +256,8 @@ public class Service : IService
                         db.ExecuteNonQuery(SQLString.GetInsertSqlString(productDB, "ordersproducts"));
                     }
                 }
+
+                _closeOrders.TryAdd(order.Id, order);
             }
         }
 

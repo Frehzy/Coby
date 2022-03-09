@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace Storage.DataBase;
 
@@ -27,4 +28,6 @@ internal class OrderDB
         StartTime = startTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
         EndTime = endTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
     }
+
+    public DateTime GetTime(string time) => DateTime.Parse(time);
 }
