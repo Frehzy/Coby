@@ -32,5 +32,5 @@ public interface IService : ILicenseCache, IOrderCache, IPaymentTypeCache, IProd
     void SetCache();
 
     [OperationContract]
-    void CloseCafeShift(Credentials credentials);
+    Request CloseCafeShift(Credentials credentials);
 }

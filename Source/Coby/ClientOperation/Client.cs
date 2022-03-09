@@ -13,7 +13,7 @@ namespace Coby.ClientOperation;
 public class Client : IClient
 {
     private readonly IService _service;
-    public delegate void CloseCafeShiftDelegate(Credentials credentials);
+    public delegate Request CloseCafeShiftDelegate(Credentials credentials);
 
     public LicenseOperation LicenseOperation { get; }
 

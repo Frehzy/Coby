@@ -174,19 +174,21 @@ public class Service : IService
             DB.SqlQuery<Nomenclature>("SELECT * FROM nomenclature");
     }
 
-    public void CloseCafeShift(Credentials credentials)
+    public Request CloseCafeShift(Credentials credentials)
     {
         var waiter = GetWaitersCache().First(x => x.Id.Equals(credentials.WaiterId));
         if (waiter.PermissionStatus is PermissionStatus.Waiter)
-            throw new PermissionException(waiter.Id);
+            return new(waiter.Id, RequestStatus.DeniedPermission, "Недостаточно прав.");
 
         if (GetOrdersCache().Where(x => x.OrderStatus is OrderStatus.New).Count() <= 0)
-            throw new EntityNotFound(default);
+            return new(default(Guid), RequestStatus.EntityNotFound, "Должен существовать хотя-бы один закрытый заказ.");
 
         LoadClosedOrderOnDB();
         CloseAllWaiterShift();
         _ordersCache.Clear();
         _licensesCache.Clear();
+
+        return new(default(Guid), RequestStatus.OK, default);
 
         void LoadClosedOrderOnDB()
         {

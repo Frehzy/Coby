@@ -65,15 +65,9 @@ public partial class MainForm : MaterialForm
 
     private void CafeSessionClose_Click(object sender, EventArgs e)
     {
-        try
-        { Client.CloseCafeShift(Credentials); }
-        catch (Exception ex)
-        {
-            Log.Error(ex.ToString());
-            MaterialMessageBox.Show($"Ошибка: {ex}.",
-                                    false,
-                                    FlexibleMaterialForm.ButtonsPosition.Center);
-        }
+        var request = Client.CloseCafeShift(Credentials);
+        if (request.Status is not RequestStatus.OK)
+            MaterialMessageBox.Show($"Id: {request.Id}\nStatus: {request.Status}\nMessage: {request.Message}\nException:{request.Exception}");
     }
 
     private void CreateOrderButton_Click(object sender, EventArgs e) =>
