@@ -27,7 +27,7 @@ public class Order
 
     public DateTime? EndTime { get; set; }
 
-    public List<History> OrderHistories { get; set; } = new();
+    public Dictionary<Guid, History> OrderHistories { get; set; } = new();
 
     public Order() { }
 
@@ -53,4 +53,6 @@ public class Order
     public List<Payment>? GetPayments() => (Payment?.Values ?? Enumerable.Empty<Payment>()).ToList();
 
     public List<Guest>? GetGuests() => (Guests?.Values ?? Enumerable.Empty<Guest>()).ToList();
+
+    public List<History>? GetHistories() => (OrderHistories?.Values ?? Enumerable.Empty<History>()).ToList();
 }

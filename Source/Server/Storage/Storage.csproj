@@ -123,6 +123,7 @@
     <Compile Include="Operations\GetBy\GetProduct.cs" />
     <Compile Include="Operations\GetBy\GetTable.cs" />
     <Compile Include="Operations\GetBy\GetWaiter.cs" />
+    <Compile Include="Operations\HistoryHelper.cs" />
     <Compile Include="Operations\OrderOperation\GuestOperations.cs" />
     <Compile Include="Operations\Helper.cs" />
     <Compile Include="Operations\LicenseOperation.cs" />
@@ -130,7 +131,7 @@
     <Compile Include="Operations\OrderOperation\OrderOperation.cs" />
     <Compile Include="Operations\OrderOperation\IOrderOperation.cs" />
     <Compile Include="Operations\OrderOperation\PaymentOperations.cs" />
-    <Compile Include="Operations\ProductOperation.cs" />
+    <Compile Include="Operations\OrderOperation\ProductOperation.cs" />
     <Compile Include="Operations\TableOperation.cs" />
     <Compile Include="Operations\WaiterOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

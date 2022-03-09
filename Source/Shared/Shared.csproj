@@ -62,6 +62,7 @@
     <Compile Include="Dto\Enums\CafeSessionStatus.cs" />
     <Compile Include="Dto\Enums\DBConnectionStatus.cs" />
     <Compile Include="Dto\Enums\DBResponseStatus.cs" />
+    <Compile Include="Dto\Enums\Entities.cs" />
     <Compile Include="Dto\Enums\RequestStatus.cs" />
     <Compile Include="Dto\Enums\OrderStatus.cs" />
     <Compile Include="Dto\Enums\PermissionStatus.cs" />

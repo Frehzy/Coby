@@ -149,11 +149,11 @@ public class Service : IService
 
     public async void SetCache()
     {
-        DBInteraction DB = default;
+        DBInteraction db = default;
 
         if (_canWork)
         {
-            DB = GetDBInteraction();
+            db = GetDBInteraction();
             GetTables().ForEach(x => _tablesCache.TryAdd(x.Id, x));
             GetPaymentTypes().ForEach(x => _paymentTypes.TryAdd(x.Id, x));
             GetWaiters().ForEach(x => _waitersCache.TryAdd(x.Id, WaiterConverter.Converter(x)));
@@ -165,26 +165,26 @@ public class Service : IService
         }
 
         List<Table> GetTables() =>
-            DB.SqlQuery<Table>("SELECT * FROM tables");
+            db.SqlQuery<Table>("SELECT * FROM tables");
 
         List<PaymentType> GetPaymentTypes() =>
-            DB.SqlQuery<PaymentType>("SELECT * FROM paymentTypes");
+            db.SqlQuery<PaymentType>("SELECT * FROM paymentTypes");
 
         List<WaiterDB> GetWaiters() =>
-            DB.SqlQuery<WaiterDB>("SELECT * FROM waiters");
+            db.SqlQuery<WaiterDB>("SELECT * FROM waiters");
 
         List<Product> GetProducts() =>
-            DB.SqlQuery<Product>("SELECT * FROM products");
+            db.SqlQuery<Product>("SELECT * FROM products");
 
         List<Nomenclature> GetNomenclature() =>
-            DB.SqlQuery<Nomenclature>("SELECT * FROM nomenclature");
+            db.SqlQuery<Nomenclature>("SELECT * FROM nomenclature");
 
         void CloseOrders()
         {
-            List<OrderDB> closeOrders = DB.SqlQuery<OrderDB>("SELECT * FROM orders");
-            List<GuestDB> guests = DB.SqlQuery<GuestDB>("SELECT * FROM ordersguests");
-            List<PaymentDB> payments = DB.SqlQuery<PaymentDB>("SELECT * FROM orderspayments");
-            List<ProductDB> products = DB.SqlQuery<ProductDB>("SELECT * FROM ordersproducts");
+            List<OrderDB> closeOrders = db.SqlQuery<OrderDB>("SELECT * FROM orders");
+            List<GuestDB> guests = db.SqlQuery<GuestDB>("SELECT * FROM ordersguests");
+            List<PaymentDB> payments = db.SqlQuery<PaymentDB>("SELECT * FROM orderspayments");
+            List<ProductDB> products = db.SqlQuery<ProductDB>("SELECT * FROM ordersproducts");
             var cache = new AllCache(this);
             var getBy = new GetByCache(cache);
             var orderOperation = GetOrderOperation(cache);
@@ -199,8 +199,8 @@ public class Service : IService
 
                 var order = new Order(closeOrder.Id, table, waiter, OrderStatus.Closed, closeOrder.GetTime(closeOrder.StartTime), closeOrder.GetTime(closeOrder.EndTime));
                 var guestOperations = orderOperation.GetGuestOperations(order);
-                var paymentOperation = orderOperation.GetPaymentOperations(order);
                 var productOperation = orderOperation.GetProductOperation(order);
+                var paymentOperation = orderOperation.GetPaymentOperations(order);
 
                 foreach (var guest in orderGuests)
                 {
@@ -255,6 +255,9 @@ public class Service : IService
                         db.ExecuteNonQuery(SQLString.GetInsertSqlString(productDB, "ordersproducts"));
                     }
                 }
+
+                foreach(var history in order.GetHistories())
+                    db.ExecuteNonQuery(SQLString.GetInsertSqlString(history, "history"));
 
                 _closeOrders.TryAdd(order.Id, order);
             }

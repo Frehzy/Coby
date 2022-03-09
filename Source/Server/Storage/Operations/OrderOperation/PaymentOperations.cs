@@ -1,4 +1,5 @@
 ﻿using Shared.Dto.Enities;
+using Shared.Dto.Enums;
 using Shared.Dto.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -36,6 +37,7 @@ public class PaymentOperations
 
         var payment = new Payment(paymentType.Id, paymentType.Name, sum);
         Order.Payment.Add(payment.Id, payment);
+        HistoryHelper.OrderHistory(Order, payment.Id, Entities.Payment, ActionsEnum.Added);
         return payment;
     }
 
@@ -45,5 +47,6 @@ public class PaymentOperations
             throw new EntityNotFound(paymentId);
 
         Order.Payment.Remove(payment.Id);
+        HistoryHelper.OrderHistory(Order, paymentId, Entities.Payment, ActionsEnum.Remove);
     }
 }

@@ -26,6 +26,13 @@ public partial class OrderForm : MaterialForm
         LoadWaiterInfo();
         LoadTableInfo();
         LoadPaymentsInfo();
+        LoadHistory();
+    }
+
+    private void LoadHistory()
+    {
+        DataGridHelper.FillTable(HistoryDgv, Order.GetHistories());
+        DataGridHelper.SetDGVColor(HistoryDgv, BackColor);
     }
 
     private void LoadPaymentsInfo()

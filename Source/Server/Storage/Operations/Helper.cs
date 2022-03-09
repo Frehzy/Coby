@@ -1,7 +1,6 @@
 ﻿#nullable enable
 
 using Shared.Dto.Enities;
-using Shared.Dto.Exceptions;
 using Storage.Cache;
 using System;
 using System.Collections.Generic;
@@ -74,15 +73,6 @@ internal static class Helper
         return paymentType = cache.PaymentTypesCache.GetPaymentTypesCache().FirstOrDefault(x => x.Id.Equals(paymentTypeId));
     }
 
-    public static Guest? GuestOnOrderById(AllCache cache, Guid orderId, Guid guestId, out Order order, out Guest? guest)
-    {
-        if (OrderById(cache, orderId, out Order orderOnCache) is null)
-            throw new EntityNotFound(orderOnCache.Id);
-
-        order = orderOnCache;
-        return guest = orderOnCache.Guests?.Values.FirstOrDefault(x => x.Id.Equals(guestId));
-    }
-
     public static Product? ProductById(AllCache cache, Guid productId, out Product product)
     {
         CheckCacheOnNull(cache);
@@ -95,29 +85,10 @@ internal static class Helper
         return product = cache.ProductsCache.GetProductsCache().FirstOrDefault(x => x.ProductName.Equals(name));
     }
 
-    public static Product? ProductOnOrderById(AllCache cache, Guid orderId, Guid productId, int rank, out Order order, out Product? product)
-    {
-        if (OrderById(cache, orderId, out Order orderOnCache) is null)
-            throw new EntityNotFound(orderOnCache.Id);
-
-        order = orderOnCache;
-        return product = orderOnCache.Guests?.Values.Select(x => x.Products)
-                                                    .FirstOrDefault(x => x.Any(x => x.Key.Equals(rank) && x.Value.Id.Equals(productId))).Values?.First();
-    }
-
     public static PaymentType PaymentTypeByName(AllCache cache, string name, out PaymentType paymentType)
     {
         CheckCacheOnNull(cache);
         return paymentType = cache.PaymentTypesCache.GetPaymentTypesCache().FirstOrDefault(x => x.Name.Equals(name));
-    }
-
-    public static Payment? PaymentById(AllCache cache, Guid orderId, Guid paymentTypeId, out Order order, out Payment? payment)
-    {
-        if (OrderById(cache, orderId, out Order orderOnCache) is null)
-            throw new EntityNotFound(orderOnCache.Id);
-
-        order = orderOnCache;
-        return payment = orderOnCache.Payment?.Values.FirstOrDefault(x => x.Id.Equals(paymentTypeId));
     }
 
     private static bool CheckCacheOnNull(AllCache cache) =>

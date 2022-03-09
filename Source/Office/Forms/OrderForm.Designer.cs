@@ -36,6 +36,7 @@
             this.OrderInfoDgv = new System.Windows.Forms.DataGridView();
             this.panel4 = new System.Windows.Forms.Panel();
             this.SumTextBox = new MaterialSkin.Controls.MaterialTextBox2();
+            this.HistoryDgv = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.WaiterInfoDgv)).BeginInit();
@@ -43,6 +44,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.PaymentInfoDgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.OrderInfoDgv)).BeginInit();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.HistoryDgv)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -50,6 +52,7 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.tableLayoutPanel1.Controls.Add(this.HistoryDgv, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 64);
@@ -225,6 +228,32 @@
             this.SumTextBox.UseAccent = false;
             this.SumTextBox.UseSystemPasswordChar = false;
             // 
+            // HistoryDgv
+            // 
+            this.HistoryDgv.AllowUserToAddRows = false;
+            this.HistoryDgv.AllowUserToDeleteRows = false;
+            this.HistoryDgv.AllowUserToResizeColumns = false;
+            this.HistoryDgv.AllowUserToResizeRows = false;
+            this.HistoryDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.HistoryDgv.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.HistoryDgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.HistoryDgv.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.HistoryDgv.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.HistoryDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.HistoryDgv.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.HistoryDgv.EnableHeadersVisualStyles = false;
+            this.HistoryDgv.Location = new System.Drawing.Point(369, 3);
+            this.HistoryDgv.MultiSelect = false;
+            this.HistoryDgv.Name = "HistoryDgv";
+            this.HistoryDgv.ReadOnly = true;
+            this.HistoryDgv.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.HistoryDgv.RowHeadersVisible = false;
+            this.HistoryDgv.RowHeadersWidth = 51;
+            this.HistoryDgv.RowTemplate.Height = 24;
+            this.HistoryDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.HistoryDgv.Size = new System.Drawing.Size(544, 514);
+            this.HistoryDgv.TabIndex = 5;
+            // 
             // OrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -243,6 +272,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.PaymentInfoDgv)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.OrderInfoDgv)).EndInit();
             this.panel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.HistoryDgv)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -257,5 +287,6 @@
         private System.Windows.Forms.DataGridView OrderInfoDgv;
         private System.Windows.Forms.Panel panel4;
         private MaterialSkin.Controls.MaterialTextBox2 SumTextBox;
+        private System.Windows.Forms.DataGridView HistoryDgv;
     }
 }

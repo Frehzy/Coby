@@ -1,10 +1,11 @@
 ﻿using Shared.Dto.Enities;
+using Shared.Dto.Enums;
 using Shared.Dto.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Storage.Operations;
+namespace Storage.Operations.OrderOperation;
 
 public class ProductOperation
 {
@@ -30,7 +31,7 @@ public class ProductOperation
 
         int maxRank = guests.Products.DefaultIfEmpty().Max(x => x.Key);
         guests.Products.Add(maxRank + 1, product);
-
+        HistoryHelper.OrderHistory(Order, product.Id, Entities.Product, ActionsEnum.Added);
         return product;
     }
 
@@ -39,9 +40,7 @@ public class ProductOperation
         if (Order.Guests.TryGetValue(guestId, out var guests) is false)
             throw new EntityNotFound(guestId);
 
-        var removeProductList = guests.Products.Where(x => x.Key.Equals(rank) && x.Value.Id.Equals(productId))
-                                               .ToDictionary(x => x.Key, x => x.Value);
-        foreach (var product in removeProductList)
-            guests.Products.Remove(product.Key);
+        guests.Products.Remove(rank);
+        HistoryHelper.OrderHistory(Order, productId, Entities.Product, ActionsEnum.Remove);
     }
 }

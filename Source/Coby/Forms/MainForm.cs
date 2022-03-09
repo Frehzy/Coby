@@ -67,6 +67,7 @@ public partial class MainForm : MaterialForm
         var request = Client.CloseCafeShift(Credentials);
         if (request.Status is not RequestStatus.OK)
             MaterialMessageBox.Show($"Id: {request.Id}\nStatus: {request.Status}\nMessage: {request.Message}\nException:{request.Exception}");
+        AfterUpdateStatus();
     }
 
     private void CreateOrderButton_Click(object sender, EventArgs e) =>

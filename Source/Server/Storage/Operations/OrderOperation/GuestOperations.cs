@@ -1,4 +1,5 @@
 ﻿using Shared.Dto.Enities;
+using Shared.Dto.Enums;
 using Shared.Dto.Exceptions;
 using System;
 using System.Linq;
@@ -17,6 +18,7 @@ public class GuestOperations
         var guestCount = Order.GetGuests().Count;
         var guest = new Guest(Guid.NewGuid(), $"Гость {guestCount++}");
         Order.Guests.Add(guest.Id, guest);
+        HistoryHelper.OrderHistory(Order, guest.Id, Entities.Guest, ActionsEnum.Added);
         return guest;
     }
 
@@ -32,7 +34,7 @@ public class GuestOperations
 
     public void RemoveGuestOnOrderById(Guid guestId)
     {
-        if (Order.Guests.Remove(guestId) is false)
-            throw new EntityNotFound(guestId);
+        Order.Guests.Remove(guestId);
+        HistoryHelper.OrderHistory(Order, guestId, Entities.Guest, ActionsEnum.Remove);
     }
 }
