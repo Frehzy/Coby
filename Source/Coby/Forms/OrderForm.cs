@@ -127,7 +127,8 @@ public partial class OrderForm : MaterialForm, INotifyPropertyChanged
 
     private void BackButton_Click(object sender, EventArgs e)
     {
-        Client.OrderOperation.SaveOrder(Order);
+        if (Order.OrderStatus is OrderStatus.New)
+            Client.OrderOperation.SaveOrder(Order);
         Close();
     }
 
@@ -159,6 +160,9 @@ public partial class OrderForm : MaterialForm, INotifyPropertyChanged
 
     private void PayButton_Click(object sender, EventArgs e)
     {
+        if (Order.OrderStatus is OrderStatus.Closed)
+            return;
+
         if (Order.Sum <= 0)
         {
             MaterialMessageBox.Show($"Невозможно перейти на экран оплаты, пока сумма заказа равна 0.",

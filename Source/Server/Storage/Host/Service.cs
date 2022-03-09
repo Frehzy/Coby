@@ -2,8 +2,10 @@
 
 using Shared.Dto.Enities;
 using Shared.Dto.Enums;
+using Shared.Dto.Exceptions;
 using Storage.Cache;
 using Storage.DataBase;
+using Storage.DataBase.Converter;
 using Storage.Extention;
 using Storage.Operations;
 using Storage.Operations.CreateRemove;
@@ -149,7 +151,7 @@ public class Service : IService
             DB = GetDBInteraction();
             GetTables().ForEach(x => _tablesCache.TryAdd(x.Id, x));
             GetPaymentTypes().ForEach(x => _paymentTypes.TryAdd(x.Id, x));
-            GetWaiters().ForEach(x => _waitersCache.TryAdd(x.Id, x));
+            GetWaiters().ForEach(x => _waitersCache.TryAdd(x.Id, WaiterConverter.Converter(x)));
             GetProducts().ForEach(x => _productsCache.TryAdd(x.Id, x));
             GetNomenclature().ForEach(x => _nomenclatureCache.Add(x));
 
@@ -162,8 +164,8 @@ public class Service : IService
         List<PaymentType> GetPaymentTypes() =>
             DB.SqlQuery<PaymentType>("SELECT * FROM paymentTypes");
 
-        List<Waiter> GetWaiters() =>
-            DB.SqlQuery<Waiter>("SELECT * FROM waiters");
+        List<WaiterDB> GetWaiters() =>
+            DB.SqlQuery<WaiterDB>("SELECT * FROM waiters");
 
         List<Product> GetProducts() =>
             DB.SqlQuery<Product>("SELECT * FROM products");
@@ -172,8 +174,15 @@ public class Service : IService
             DB.SqlQuery<Nomenclature>("SELECT * FROM nomenclature");
     }
 
-    public void CloseCafeShift()
+    public void CloseCafeShift(Credentials credentials)
     {
+        var waiter = GetWaitersCache().First(x => x.Id.Equals(credentials.WaiterId));
+        if (waiter.PermissionStatus is PermissionStatus.Waiter)
+            throw new PermissionException(waiter.Id);
+
+        if (GetOrdersCache().Where(x => x.OrderStatus is OrderStatus.New).Count() <= 0)
+            throw new EntityNotFound(default);
+
         LoadClosedOrderOnDB();
         CloseAllWaiterShift();
         _ordersCache.Clear();

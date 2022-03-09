@@ -1,4 +1,5 @@
-﻿using Storage.Cache;
+﻿using Shared.Dto.Enities;
+using Storage.Cache;
 using Storage.Operations;
 using Storage.Operations.CreateRemove;
 using Storage.Operations.OrderOperation;
@@ -31,5 +32,5 @@ public interface IService : ILicenseCache, IOrderCache, IPaymentTypeCache, IProd
     void SetCache();
 
     [OperationContract]
-    void CloseCafeShift();
+    void CloseCafeShift(Credentials credentials);
 }

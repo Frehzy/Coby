@@ -31,6 +31,7 @@
             this.UsernameTextBox = new MaterialSkin.Controls.MaterialTextBox();
             this.PasswordTextBox = new MaterialSkin.Controls.MaterialTextBox();
             this.SaveButton = new MaterialSkin.Controls.MaterialButton();
+            this.AdminCheckBox = new MaterialSkin.Controls.MaterialCheckbox();
             this.SuspendLayout();
             // 
             // UsernameTextBox
@@ -77,7 +78,7 @@
             this.SaveButton.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.SaveButton.HighEmphasis = true;
             this.SaveButton.Icon = null;
-            this.SaveButton.Location = new System.Drawing.Point(3, 186);
+            this.SaveButton.Location = new System.Drawing.Point(3, 219);
             this.SaveButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.SaveButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.SaveButton.Name = "SaveButton";
@@ -90,11 +91,28 @@
             this.SaveButton.UseVisualStyleBackColor = true;
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
+            // AdminCheckBox
+            // 
+            this.AdminCheckBox.AutoSize = true;
+            this.AdminCheckBox.Depth = 0;
+            this.AdminCheckBox.Location = new System.Drawing.Point(6, 176);
+            this.AdminCheckBox.Margin = new System.Windows.Forms.Padding(0);
+            this.AdminCheckBox.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.AdminCheckBox.MouseState = MaterialSkin.MouseState.HOVER;
+            this.AdminCheckBox.Name = "AdminCheckBox";
+            this.AdminCheckBox.ReadOnly = false;
+            this.AdminCheckBox.Ripple = true;
+            this.AdminCheckBox.Size = new System.Drawing.Size(81, 37);
+            this.AdminCheckBox.TabIndex = 6;
+            this.AdminCheckBox.Text = "Admin";
+            this.AdminCheckBox.UseVisualStyleBackColor = true;
+            // 
             // AddWaiterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(243, 225);
+            this.ClientSize = new System.Drawing.Size(243, 258);
+            this.Controls.Add(this.AdminCheckBox);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.PasswordTextBox);
             this.Controls.Add(this.UsernameTextBox);
@@ -114,5 +132,6 @@
         private MaterialSkin.Controls.MaterialTextBox UsernameTextBox;
         private MaterialSkin.Controls.MaterialTextBox PasswordTextBox;
         private MaterialSkin.Controls.MaterialButton SaveButton;
+        private MaterialSkin.Controls.MaterialCheckbox AdminCheckBox;
     }
 }

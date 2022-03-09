@@ -31,28 +31,28 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.PayButton = new MaterialSkin.Controls.MaterialButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.RemainderTextBox = new MaterialSkin.Controls.MaterialTextBox2();
+            this.PaymentLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.SumTextBox = new MaterialSkin.Controls.MaterialTextBox2();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.BackButton = new MaterialSkin.Controls.MaterialButton();
+            this.OrderInfoListView = new Coby.Forms.CustomControls.CustomDataGridView();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.DownButton = new MaterialSkin.Controls.MaterialButton();
             this.UpButton = new MaterialSkin.Controls.MaterialButton();
             this.PaymentTypeLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.PaymentLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.RemainderTextBox = new MaterialSkin.Controls.MaterialTextBox2();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.OrderInfoListView = new Coby.Forms.CustomControls.CustomDataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.BackButton = new MaterialSkin.Controls.MaterialButton();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -102,6 +102,84 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(794, 357);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 1;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Controls.Add(this.panel4, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.PaymentLayoutPanel, 0, 0);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(320, 3);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 2;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(232, 351);
+            this.tableLayoutPanel4.TabIndex = 3;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.RemainderTextBox);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(3, 304);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(226, 44);
+            this.panel4.TabIndex = 0;
+            // 
+            // RemainderTextBox
+            // 
+            this.RemainderTextBox.AnimateReadOnly = true;
+            this.RemainderTextBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RemainderTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
+            this.RemainderTextBox.Depth = 0;
+            this.RemainderTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RemainderTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.RemainderTextBox.HideSelection = true;
+            this.RemainderTextBox.LeadingIcon = null;
+            this.RemainderTextBox.Location = new System.Drawing.Point(0, 0);
+            this.RemainderTextBox.MaxLength = 32767;
+            this.RemainderTextBox.MouseState = MaterialSkin.MouseState.OUT;
+            this.RemainderTextBox.Name = "RemainderTextBox";
+            this.RemainderTextBox.PasswordChar = '\0';
+            this.RemainderTextBox.PrefixSuffixText = null;
+            this.RemainderTextBox.ReadOnly = true;
+            this.RemainderTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.RemainderTextBox.SelectedText = "";
+            this.RemainderTextBox.SelectionLength = 0;
+            this.RemainderTextBox.SelectionStart = 0;
+            this.RemainderTextBox.ShortcutsEnabled = true;
+            this.RemainderTextBox.Size = new System.Drawing.Size(226, 48);
+            this.RemainderTextBox.TabIndex = 3;
+            this.RemainderTextBox.TabStop = false;
+            this.RemainderTextBox.Text = "Remainder";
+            this.RemainderTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.RemainderTextBox.TrailingIcon = null;
+            this.RemainderTextBox.UseAccent = false;
+            this.RemainderTextBox.UseSystemPasswordChar = false;
+            // 
+            // PaymentLayoutPanel
+            // 
+            this.PaymentLayoutPanel.ColumnCount = 1;
+            this.PaymentLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.PaymentLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.PaymentLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.PaymentLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PaymentLayoutPanel.Location = new System.Drawing.Point(3, 3);
+            this.PaymentLayoutPanel.Name = "PaymentLayoutPanel";
+            this.PaymentLayoutPanel.RowCount = 5;
+            this.PaymentLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.PaymentLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.PaymentLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.PaymentLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.PaymentLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.PaymentLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.PaymentLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.PaymentLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.PaymentLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.PaymentLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.PaymentLayoutPanel.Size = new System.Drawing.Size(226, 295);
+            this.PaymentLayoutPanel.TabIndex = 1;
+            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
@@ -149,35 +227,13 @@
             this.SumTextBox.UseAccent = false;
             this.SumTextBox.UseSystemPasswordChar = false;
             // 
-            // panel1
+            // OrderInfoListView
             // 
-            this.panel1.Controls.Add(this.BackButton);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(3, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(794, 45);
-            this.panel1.TabIndex = 1;
-            // 
-            // BackButton
-            // 
-            this.BackButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.BackButton.Depth = 0;
-            this.BackButton.Dock = System.Windows.Forms.DockStyle.Left;
-            this.BackButton.HighEmphasis = true;
-            this.BackButton.Icon = null;
-            this.BackButton.Location = new System.Drawing.Point(0, 0);
-            this.BackButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.BackButton.MouseState = MaterialSkin.MouseState.HOVER;
-            this.BackButton.Name = "BackButton";
-            this.BackButton.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.BackButton.Size = new System.Drawing.Size(64, 45);
-            this.BackButton.TabIndex = 4;
-            this.BackButton.Text = "<-";
-            this.BackButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.BackButton.UseAccentColor = false;
-            this.BackButton.UseVisualStyleBackColor = true;
-            this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
+            this.OrderInfoListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.OrderInfoListView.Location = new System.Drawing.Point(3, 3);
+            this.OrderInfoListView.Name = "OrderInfoListView";
+            this.OrderInfoListView.Size = new System.Drawing.Size(305, 295);
+            this.OrderInfoListView.TabIndex = 1;
             // 
             // tableLayoutPanel3
             // 
@@ -270,91 +326,35 @@
             this.PaymentTypeLayoutPanel.Size = new System.Drawing.Size(227, 292);
             this.PaymentTypeLayoutPanel.TabIndex = 1;
             // 
-            // PaymentLayoutPanel
+            // panel1
             // 
-            this.PaymentLayoutPanel.ColumnCount = 1;
-            this.PaymentLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.PaymentLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.PaymentLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.PaymentLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PaymentLayoutPanel.Location = new System.Drawing.Point(3, 3);
-            this.PaymentLayoutPanel.Name = "PaymentLayoutPanel";
-            this.PaymentLayoutPanel.RowCount = 5;
-            this.PaymentLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.PaymentLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.PaymentLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.PaymentLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.PaymentLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.PaymentLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.PaymentLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.PaymentLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.PaymentLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.PaymentLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.PaymentLayoutPanel.Size = new System.Drawing.Size(226, 295);
-            this.PaymentLayoutPanel.TabIndex = 1;
+            this.panel1.Controls.Add(this.BackButton);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(3, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(794, 45);
+            this.panel1.TabIndex = 1;
             // 
-            // panel4
+            // BackButton
             // 
-            this.panel4.Controls.Add(this.RemainderTextBox);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(3, 304);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(226, 44);
-            this.panel4.TabIndex = 0;
-            // 
-            // RemainderTextBox
-            // 
-            this.RemainderTextBox.AnimateReadOnly = true;
-            this.RemainderTextBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.RemainderTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
-            this.RemainderTextBox.Depth = 0;
-            this.RemainderTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RemainderTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.RemainderTextBox.HideSelection = true;
-            this.RemainderTextBox.LeadingIcon = null;
-            this.RemainderTextBox.Location = new System.Drawing.Point(0, 0);
-            this.RemainderTextBox.MaxLength = 32767;
-            this.RemainderTextBox.MouseState = MaterialSkin.MouseState.OUT;
-            this.RemainderTextBox.Name = "RemainderTextBox";
-            this.RemainderTextBox.PasswordChar = '\0';
-            this.RemainderTextBox.PrefixSuffixText = null;
-            this.RemainderTextBox.ReadOnly = true;
-            this.RemainderTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.RemainderTextBox.SelectedText = "";
-            this.RemainderTextBox.SelectionLength = 0;
-            this.RemainderTextBox.SelectionStart = 0;
-            this.RemainderTextBox.ShortcutsEnabled = true;
-            this.RemainderTextBox.Size = new System.Drawing.Size(226, 48);
-            this.RemainderTextBox.TabIndex = 3;
-            this.RemainderTextBox.TabStop = false;
-            this.RemainderTextBox.Text = "Remainder";
-            this.RemainderTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.RemainderTextBox.TrailingIcon = null;
-            this.RemainderTextBox.UseAccent = false;
-            this.RemainderTextBox.UseSystemPasswordChar = false;
-            // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.ColumnCount = 1;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Controls.Add(this.panel4, 0, 1);
-            this.tableLayoutPanel4.Controls.Add(this.PaymentLayoutPanel, 0, 0);
-            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(320, 3);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 2;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(232, 351);
-            this.tableLayoutPanel4.TabIndex = 3;
-            // 
-            // OrderInfoListView
-            // 
-            this.OrderInfoListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.OrderInfoListView.Location = new System.Drawing.Point(3, 3);
-            this.OrderInfoListView.Name = "OrderInfoListView";
-            this.OrderInfoListView.Size = new System.Drawing.Size(305, 295);
-            this.OrderInfoListView.TabIndex = 1;
+            this.BackButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BackButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.BackButton.Depth = 0;
+            this.BackButton.Dock = System.Windows.Forms.DockStyle.Left;
+            this.BackButton.HighEmphasis = true;
+            this.BackButton.Icon = null;
+            this.BackButton.Location = new System.Drawing.Point(0, 0);
+            this.BackButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.BackButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.BackButton.Name = "BackButton";
+            this.BackButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.BackButton.Size = new System.Drawing.Size(64, 45);
+            this.BackButton.TabIndex = 4;
+            this.BackButton.Text = "<-";
+            this.BackButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.BackButton.UseAccentColor = false;
+            this.BackButton.UseVisualStyleBackColor = true;
+            this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
             // 
             // PayOrder
             // 
@@ -377,14 +377,14 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.tableLayoutPanel4.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }

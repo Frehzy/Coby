@@ -19,6 +19,7 @@ internal class Program
             var serverBinding = new NetTcpBinding();
             serverBinding.Security.Mode = SecurityMode.None;
             host.AddServiceEndpoint(typeof(IService), serverBinding, "");
+            host.Description.Behaviors.Find<ServiceBehaviorAttribute>().IncludeExceptionDetailInFaults = true;
             host.Open();
 
             var client = SetCache(serviceAddress, serviceName);

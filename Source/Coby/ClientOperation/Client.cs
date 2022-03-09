@@ -1,4 +1,5 @@
-﻿using Storage.Cache;
+﻿using Shared.Dto.Enities;
+using Storage.Cache;
 using Storage.Host;
 using Storage.Operations;
 using Storage.Operations.CreateRemove;
@@ -12,7 +13,7 @@ namespace Coby.ClientOperation;
 public class Client : IClient
 {
     private readonly IService _service;
-    public delegate void CloseCafeShiftDelegate();
+    public delegate void CloseCafeShiftDelegate(Credentials credentials);
 
     public LicenseOperation LicenseOperation { get; }
 

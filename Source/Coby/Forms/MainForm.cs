@@ -65,17 +65,8 @@ public partial class MainForm : MaterialForm
 
     private void CafeSessionClose_Click(object sender, EventArgs e)
     {
-        var orders = Client.OrderOperation.GetOrders();
-        if (orders.Count() == 0 && orders.Where(x => x.OrderStatus is OrderStatus.New).Count() > 0)
-        {
-            MaterialMessageBox.Show($"Невозможно закрыть кассовую смену, в которой есть открытые заказы или нет ни одного заказа.",
-                                    false,
-                                    FlexibleMaterialForm.ButtonsPosition.Center);
-            return;
-        }
-
         try
-        { Client.CloseCafeShift(); }
+        { Client.CloseCafeShift(Credentials); }
         catch (Exception ex)
         {
             Log.Error(ex.ToString());
@@ -181,4 +172,7 @@ public partial class MainForm : MaterialForm
         Page++;
         UpdateOrdersLayoutPanel(Page);
     }
+
+    private void CloseOrdersButton_Click(object sender, EventArgs e) =>
+        OpenForm(new CloseOrdersForm(Client, Client.GetByCacheOperation.GetOrder().GetOrders().Where(x => x.OrderStatus is OrderStatus.Closed)));
 }

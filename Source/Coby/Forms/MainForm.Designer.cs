@@ -32,6 +32,8 @@
             this.OrdersPage = new System.Windows.Forms.TabPage();
             this.OpenOrderLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.CreateOrderPanel = new System.Windows.Forms.Panel();
+            this.DownButton = new MaterialSkin.Controls.MaterialButton();
+            this.UpButton = new MaterialSkin.Controls.MaterialButton();
             this.CreateOrderButton = new MaterialSkin.Controls.MaterialButton();
             this.OptionsPage = new System.Windows.Forms.TabPage();
             this.OptionsLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -39,8 +41,7 @@
             this.PersonalShiftController = new MaterialSkin.Controls.MaterialButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.LockButton = new MaterialSkin.Controls.MaterialButton();
-            this.DownButton = new MaterialSkin.Controls.MaterialButton();
-            this.UpButton = new MaterialSkin.Controls.MaterialButton();
+            this.CloseOrdersButton = new MaterialSkin.Controls.MaterialButton();
             this.MainFormTabController.SuspendLayout();
             this.OrdersPage.SuspendLayout();
             this.CreateOrderPanel.SuspendLayout();
@@ -107,6 +108,48 @@
             this.CreateOrderPanel.Size = new System.Drawing.Size(780, 45);
             this.CreateOrderPanel.TabIndex = 4;
             // 
+            // DownButton
+            // 
+            this.DownButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.DownButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.DownButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.DownButton.Depth = 0;
+            this.DownButton.HighEmphasis = true;
+            this.DownButton.Icon = null;
+            this.DownButton.Location = new System.Drawing.Point(322, 4);
+            this.DownButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.DownButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.DownButton.Name = "DownButton";
+            this.DownButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.DownButton.Size = new System.Drawing.Size(64, 36);
+            this.DownButton.TabIndex = 7;
+            this.DownButton.Text = "↓";
+            this.DownButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.DownButton.UseAccentColor = false;
+            this.DownButton.UseVisualStyleBackColor = true;
+            this.DownButton.Click += new System.EventHandler(this.DownButton_Click);
+            // 
+            // UpButton
+            // 
+            this.UpButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.UpButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.UpButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.UpButton.Depth = 0;
+            this.UpButton.HighEmphasis = true;
+            this.UpButton.Icon = null;
+            this.UpButton.Location = new System.Drawing.Point(394, 4);
+            this.UpButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.UpButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.UpButton.Name = "UpButton";
+            this.UpButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.UpButton.Size = new System.Drawing.Size(64, 36);
+            this.UpButton.TabIndex = 6;
+            this.UpButton.Text = "↑";
+            this.UpButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.UpButton.UseAccentColor = false;
+            this.UpButton.UseVisualStyleBackColor = true;
+            this.UpButton.Click += new System.EventHandler(this.UpButton_Click);
+            // 
             // CreateOrderButton
             // 
             this.CreateOrderButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -145,8 +188,9 @@
             this.OptionsLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
             this.OptionsLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.OptionsLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.OptionsLayoutPanel.Controls.Add(this.CafeSessionClose, 1, 0);
             this.OptionsLayoutPanel.Controls.Add(this.PersonalShiftController, 0, 0);
+            this.OptionsLayoutPanel.Controls.Add(this.CafeSessionClose, 0, 1);
+            this.OptionsLayoutPanel.Controls.Add(this.CloseOrdersButton, 2, 0);
             this.OptionsLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.OptionsLayoutPanel.Location = new System.Drawing.Point(3, 3);
             this.OptionsLayoutPanel.Name = "OptionsLayoutPanel";
@@ -168,12 +212,12 @@
             this.CafeSessionClose.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CafeSessionClose.HighEmphasis = true;
             this.CafeSessionClose.Icon = null;
-            this.CafeSessionClose.Location = new System.Drawing.Point(264, 6);
+            this.CafeSessionClose.Location = new System.Drawing.Point(4, 66);
             this.CafeSessionClose.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.CafeSessionClose.MouseState = MaterialSkin.MouseState.HOVER;
             this.CafeSessionClose.Name = "CafeSessionClose";
             this.CafeSessionClose.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.CafeSessionClose.Size = new System.Drawing.Size(251, 48);
+            this.CafeSessionClose.Size = new System.Drawing.Size(252, 48);
             this.CafeSessionClose.TabIndex = 1;
             this.CafeSessionClose.Text = "Закрыть кассовую смену";
             this.CafeSessionClose.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -232,47 +276,26 @@
             this.LockButton.UseVisualStyleBackColor = true;
             this.LockButton.Click += new System.EventHandler(this.LockButton_Click);
             // 
-            // DownButton
+            // CloseOrdersButton
             // 
-            this.DownButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.DownButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.DownButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.DownButton.Depth = 0;
-            this.DownButton.HighEmphasis = true;
-            this.DownButton.Icon = null;
-            this.DownButton.Location = new System.Drawing.Point(322, 4);
-            this.DownButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.DownButton.MouseState = MaterialSkin.MouseState.HOVER;
-            this.DownButton.Name = "DownButton";
-            this.DownButton.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.DownButton.Size = new System.Drawing.Size(64, 36);
-            this.DownButton.TabIndex = 7;
-            this.DownButton.Text = "↓";
-            this.DownButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.DownButton.UseAccentColor = false;
-            this.DownButton.UseVisualStyleBackColor = true;
-            this.DownButton.Click += new System.EventHandler(this.DownButton_Click);
-            // 
-            // UpButton
-            // 
-            this.UpButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.UpButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.UpButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.UpButton.Depth = 0;
-            this.UpButton.HighEmphasis = true;
-            this.UpButton.Icon = null;
-            this.UpButton.Location = new System.Drawing.Point(394, 4);
-            this.UpButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.UpButton.MouseState = MaterialSkin.MouseState.HOVER;
-            this.UpButton.Name = "UpButton";
-            this.UpButton.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.UpButton.Size = new System.Drawing.Size(64, 36);
-            this.UpButton.TabIndex = 6;
-            this.UpButton.Text = "↑";
-            this.UpButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.UpButton.UseAccentColor = false;
-            this.UpButton.UseVisualStyleBackColor = true;
-            this.UpButton.Click += new System.EventHandler(this.UpButton_Click);
+            this.CloseOrdersButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.CloseOrdersButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.CloseOrdersButton.Depth = 0;
+            this.CloseOrdersButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CloseOrdersButton.HighEmphasis = true;
+            this.CloseOrdersButton.Icon = null;
+            this.CloseOrdersButton.Location = new System.Drawing.Point(523, 6);
+            this.CloseOrdersButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.CloseOrdersButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.CloseOrdersButton.Name = "CloseOrdersButton";
+            this.CloseOrdersButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.CloseOrdersButton.Size = new System.Drawing.Size(253, 48);
+            this.CloseOrdersButton.TabIndex = 2;
+            this.CloseOrdersButton.Text = "Close orders";
+            this.CloseOrdersButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.CloseOrdersButton.UseAccentColor = false;
+            this.CloseOrdersButton.UseVisualStyleBackColor = true;
+            this.CloseOrdersButton.Click += new System.EventHandler(this.CloseOrdersButton_Click);
             // 
             // MainForm
             // 
@@ -318,5 +341,6 @@
         private MaterialSkin.Controls.MaterialButton CreateOrderButton;
         private MaterialSkin.Controls.MaterialButton DownButton;
         private MaterialSkin.Controls.MaterialButton UpButton;
+        private MaterialSkin.Controls.MaterialButton CloseOrdersButton;
     }
 }

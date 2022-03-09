@@ -59,6 +59,12 @@
     <Compile Include="ClientOperation\Client.cs" />
     <Compile Include="ClientOperation\IClient.cs" />
     <Compile Include="Entities\OrderInfo.cs" />
+    <Compile Include="Forms\CloseOrdersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CloseOrdersForm.Designer.cs">
+      <DependentUpon>CloseOrdersForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CreateOrderForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +116,9 @@
     <Compile Include="Helper\FormHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\CloseOrdersForm.resx">
+      <DependentUpon>CloseOrdersForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CreateOrderForm.resx">
       <DependentUpon>CreateOrderForm.cs</DependentUpon>
     </EmbeddedResource>

@@ -39,8 +39,8 @@ public class Creater
             ? throw new EntityAlreadyExistsException(tableOnCache.Id)
             : Cache.TablesCache.AddTable(new Table(Guid.NewGuid(), tableNumber));
 
-    public Waiter CreateWaiter(string name, string password) =>
+    public Waiter CreateWaiter(string name, string password, PermissionStatus permissionStatus) =>
         Helper.WaiterByPassword(Cache, password, out Waiter waiterOnCache) is not null
             ? throw new EntityAlreadyExistsException(waiterOnCache.Id)
-            : Cache.WaitersCache.AddWaiter(new Waiter(Guid.NewGuid(), name, password, WaiterSessionStatus.Closed));
+            : Cache.WaitersCache.AddWaiter(new Waiter(Guid.NewGuid(), name, password, permissionStatus, WaiterSessionStatus.Closed));
 }
