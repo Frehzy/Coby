@@ -87,7 +87,11 @@ public partial class PayOrder : MaterialForm
             var paymentType = PaymentTypes.First(x => x.Id.Equals(paymentTypeId));
             var payment = new AddPaymentForm(paymentType.Name).AddPayment(Client.OrderOperation.GetPaymentOperations(Order), paymentTypeId);
             if (payment is not null)
+            {
+                PaymentTypes.RemoveAll(x => x.Id.Equals(paymentTypeId));
+                LoadPaymentTypesInfo(Page);
                 CreatePaymentInfo(payment);
+            }
         }
     }
 
@@ -111,6 +115,9 @@ public partial class PayOrder : MaterialForm
             Client.OrderOperation.GetPaymentOperations(Order).RemovePaymentOnOrder(paymentId);
             UpdatePaymentLayoutPanel();
             UpdateRemainderTextBox();
+            var paymenttype = Client.GetByCacheOperation.GetPaymentType().GetPaymentTypeById(paymentId);
+            PaymentTypes.Add(paymenttype);
+            LoadPaymentTypesInfo(Page);
         }
     }
 
