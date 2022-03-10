@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.MainFormTabController = new MaterialSkin.Controls.MaterialTabControl();
             this.OrdersPage = new System.Windows.Forms.TabPage();
             this.OpenOrderLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -42,6 +44,7 @@
             this.CloseOrdersButton = new MaterialSkin.Controls.MaterialButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.LockButton = new MaterialSkin.Controls.MaterialButton();
+            this.TabControlImageList = new System.Windows.Forms.ImageList(this.components);
             this.MainFormTabController.SuspendLayout();
             this.OrdersPage.SuspendLayout();
             this.CreateOrderPanel.SuspendLayout();
@@ -56,12 +59,13 @@
             this.MainFormTabController.Controls.Add(this.OptionsPage);
             this.MainFormTabController.Depth = 0;
             this.MainFormTabController.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainFormTabController.Location = new System.Drawing.Point(3, 109);
+            this.MainFormTabController.ImageList = this.TabControlImageList;
+            this.MainFormTabController.Location = new System.Drawing.Point(0, 45);
             this.MainFormTabController.MouseState = MaterialSkin.MouseState.HOVER;
             this.MainFormTabController.Multiline = true;
             this.MainFormTabController.Name = "MainFormTabController";
             this.MainFormTabController.SelectedIndex = 0;
-            this.MainFormTabController.Size = new System.Drawing.Size(794, 338);
+            this.MainFormTabController.Size = new System.Drawing.Size(797, 402);
             this.MainFormTabController.TabIndex = 0;
             this.MainFormTabController.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.MainFormTabController_Selecting);
             // 
@@ -69,10 +73,11 @@
             // 
             this.OrdersPage.Controls.Add(this.OpenOrderLayoutPanel);
             this.OrdersPage.Controls.Add(this.CreateOrderPanel);
-            this.OrdersPage.Location = new System.Drawing.Point(4, 25);
+            this.OrdersPage.ImageKey = "order.png";
+            this.OrdersPage.Location = new System.Drawing.Point(4, 39);
             this.OrdersPage.Name = "OrdersPage";
             this.OrdersPage.Padding = new System.Windows.Forms.Padding(3);
-            this.OrdersPage.Size = new System.Drawing.Size(786, 309);
+            this.OrdersPage.Size = new System.Drawing.Size(789, 359);
             this.OrdersPage.TabIndex = 0;
             this.OrdersPage.Text = "Orders";
             this.OrdersPage.UseVisualStyleBackColor = true;
@@ -106,7 +111,7 @@
             this.OpenOrderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.OpenOrderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.OpenOrderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.OpenOrderLayoutPanel.Size = new System.Drawing.Size(780, 258);
+            this.OpenOrderLayoutPanel.Size = new System.Drawing.Size(783, 308);
             this.OpenOrderLayoutPanel.TabIndex = 3;
             // 
             // CreateOrderPanel
@@ -115,9 +120,9 @@
             this.CreateOrderPanel.Controls.Add(this.UpButton);
             this.CreateOrderPanel.Controls.Add(this.CreateOrderButton);
             this.CreateOrderPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.CreateOrderPanel.Location = new System.Drawing.Point(3, 261);
+            this.CreateOrderPanel.Location = new System.Drawing.Point(3, 311);
             this.CreateOrderPanel.Name = "CreateOrderPanel";
-            this.CreateOrderPanel.Size = new System.Drawing.Size(780, 45);
+            this.CreateOrderPanel.Size = new System.Drawing.Size(783, 45);
             this.CreateOrderPanel.TabIndex = 4;
             // 
             // DownButton
@@ -170,7 +175,7 @@
             this.CreateOrderButton.Dock = System.Windows.Forms.DockStyle.Right;
             this.CreateOrderButton.HighEmphasis = true;
             this.CreateOrderButton.Icon = null;
-            this.CreateOrderButton.Location = new System.Drawing.Point(654, 0);
+            this.CreateOrderButton.Location = new System.Drawing.Point(657, 0);
             this.CreateOrderButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.CreateOrderButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.CreateOrderButton.Name = "CreateOrderButton";
@@ -186,10 +191,11 @@
             // OptionsPage
             // 
             this.OptionsPage.Controls.Add(this.OptionsLayoutPanel);
-            this.OptionsPage.Location = new System.Drawing.Point(4, 25);
+            this.OptionsPage.ImageKey = "settings.png";
+            this.OptionsPage.Location = new System.Drawing.Point(4, 39);
             this.OptionsPage.Name = "OptionsPage";
             this.OptionsPage.Padding = new System.Windows.Forms.Padding(3);
-            this.OptionsPage.Size = new System.Drawing.Size(786, 309);
+            this.OptionsPage.Size = new System.Drawing.Size(789, 359);
             this.OptionsPage.TabIndex = 1;
             this.OptionsPage.Text = "Options";
             this.OptionsPage.UseVisualStyleBackColor = true;
@@ -213,7 +219,7 @@
             this.OptionsLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.OptionsLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.OptionsLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.OptionsLayoutPanel.Size = new System.Drawing.Size(780, 303);
+            this.OptionsLayoutPanel.Size = new System.Drawing.Size(783, 353);
             this.OptionsLayoutPanel.TabIndex = 1;
             // 
             // PersonalShiftController
@@ -229,7 +235,7 @@
             this.PersonalShiftController.MouseState = MaterialSkin.MouseState.HOVER;
             this.PersonalShiftController.Name = "PersonalShiftController";
             this.PersonalShiftController.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.PersonalShiftController.Size = new System.Drawing.Size(252, 48);
+            this.PersonalShiftController.Size = new System.Drawing.Size(253, 58);
             this.PersonalShiftController.TabIndex = 0;
             this.PersonalShiftController.Text = "ShiftStatus";
             this.PersonalShiftController.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -245,12 +251,12 @@
             this.CafeSessionClose.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CafeSessionClose.HighEmphasis = true;
             this.CafeSessionClose.Icon = null;
-            this.CafeSessionClose.Location = new System.Drawing.Point(4, 66);
+            this.CafeSessionClose.Location = new System.Drawing.Point(4, 76);
             this.CafeSessionClose.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.CafeSessionClose.MouseState = MaterialSkin.MouseState.HOVER;
             this.CafeSessionClose.Name = "CafeSessionClose";
             this.CafeSessionClose.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.CafeSessionClose.Size = new System.Drawing.Size(252, 48);
+            this.CafeSessionClose.Size = new System.Drawing.Size(253, 58);
             this.CafeSessionClose.TabIndex = 1;
             this.CafeSessionClose.Text = "Закрыть кассовую смену";
             this.CafeSessionClose.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -266,12 +272,12 @@
             this.CloseOrdersButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CloseOrdersButton.HighEmphasis = true;
             this.CloseOrdersButton.Icon = null;
-            this.CloseOrdersButton.Location = new System.Drawing.Point(523, 6);
+            this.CloseOrdersButton.Location = new System.Drawing.Point(525, 6);
             this.CloseOrdersButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.CloseOrdersButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.CloseOrdersButton.Name = "CloseOrdersButton";
             this.CloseOrdersButton.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.CloseOrdersButton.Size = new System.Drawing.Size(253, 48);
+            this.CloseOrdersButton.Size = new System.Drawing.Size(254, 58);
             this.CloseOrdersButton.TabIndex = 2;
             this.CloseOrdersButton.Text = "Close orders";
             this.CloseOrdersButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -283,9 +289,9 @@
             // 
             this.panel1.Controls.Add(this.LockButton);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(3, 64);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(794, 45);
+            this.panel1.Size = new System.Drawing.Size(797, 45);
             this.panel1.TabIndex = 1;
             // 
             // LockButton
@@ -296,7 +302,7 @@
             this.LockButton.Dock = System.Windows.Forms.DockStyle.Right;
             this.LockButton.HighEmphasis = true;
             this.LockButton.Icon = null;
-            this.LockButton.Location = new System.Drawing.Point(730, 0);
+            this.LockButton.Location = new System.Drawing.Point(733, 0);
             this.LockButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.LockButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.LockButton.Name = "LockButton";
@@ -309,17 +315,33 @@
             this.LockButton.UseVisualStyleBackColor = true;
             this.LockButton.Click += new System.EventHandler(this.LockButton_Click);
             // 
+            // TabControlImageList
+            // 
+            this.TabControlImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("TabControlImageList.ImageStream")));
+            this.TabControlImageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.TabControlImageList.Images.SetKeyName(0, "order.png");
+            this.TabControlImageList.Images.SetKeyName(1, "settings.png");
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ControlBox = false;
             this.Controls.Add(this.MainFormTabController);
             this.Controls.Add(this.panel1);
+            this.DrawerAutoShow = true;
+            this.DrawerBackgroundWithAccent = true;
+            this.DrawerIndicatorWidth = 5;
+            this.DrawerShowIconsWhenHidden = true;
             this.DrawerTabControl = this.MainFormTabController;
+            this.DrawerUseColors = true;
+            this.DrawerWidth = 300;
+            this.FormStyle = MaterialSkin.Controls.MaterialForm.FormStyles.StatusAndActionBar_None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
+            this.Padding = new System.Windows.Forms.Padding(0, 0, 3, 3);
             this.Sizable = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -354,5 +376,6 @@
         private MaterialSkin.Controls.MaterialButton DownButton;
         private MaterialSkin.Controls.MaterialButton UpButton;
         private MaterialSkin.Controls.MaterialButton CloseOrdersButton;
+        private System.Windows.Forms.ImageList TabControlImageList;
     }
 }
