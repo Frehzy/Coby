@@ -21,7 +21,7 @@ public class Order
 
     public Dictionary<Guid, Guest> Guests { get; set; } = new();
 
-    public OrderStatus OrderStatus { get; set; }
+    public OrderStatus Status { get; set; }
 
     public DateTime StartTime { get; set; }
 
@@ -36,7 +36,7 @@ public class Order
         Id = orderId;
         Table = table;
         Waiter = waiter;
-        OrderStatus = OrderStatus.New;
+        Status = OrderStatus.New;
         StartTime = DateTime.Now;
     }
 
@@ -45,7 +45,7 @@ public class Order
         Id = orderId;
         Table = table;
         Waiter = waiter;
-        OrderStatus = status;
+        Status = status;
         StartTime = startTime;
         EndTime = endTime;
     }

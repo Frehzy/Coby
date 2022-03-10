@@ -229,10 +229,10 @@ public class Service : IService
         if (waiter.PermissionStatus is PermissionStatus.Waiter)
             return new(waiter.Id, RequestStatus.DeniedPermission, "Недостаточно прав.");
 
-        if (GetOrdersCache().Where(x => x.OrderStatus is OrderStatus.Closed).Count() <= 0)
+        if (GetOrdersCache().Where(x => x.Status is OrderStatus.Closed).Count() <= 0)
             return new(default, RequestStatus.EntityNotFound, "Должен быть закрыт хотя-бы один заказ.");
 
-        if (GetOrdersCache().Where(x => x.OrderStatus is OrderStatus.New).Count() > 0)
+        if (GetOrdersCache().Where(x => x.Status is OrderStatus.New).Count() > 0)
             return new(default, RequestStatus.EntityNotFound, "Все заказы должны быть закрыты.");
 
         LoadClosedOrderOnDB();
@@ -245,7 +245,7 @@ public class Service : IService
         void LoadClosedOrderOnDB()
         {
             var db = GetDBInteraction();
-            foreach (var order in _ordersCache.Values.Where(x => x.OrderStatus is OrderStatus.Closed))
+            foreach (var order in _ordersCache.Values.Where(x => x.Status is OrderStatus.Closed))
             {
                 var orderDB = new OrderDB(order.Id, order.Table.Id, order.Waiter.Id, (decimal)order.Sum, order.StartTime, DateTime.Now);
                 db.ExecuteNonQuery(SQLString.GetInsertSqlString(orderDB, "orders"));

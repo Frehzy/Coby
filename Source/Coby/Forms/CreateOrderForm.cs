@@ -22,6 +22,7 @@ public partial class CreateOrderForm : MaterialForm
         Client = client;
         Credentials = credentials;
         _ = FormHelper.CreateMaterialSkinManager(this);
+        FormHelper.SetFullScreen(this);
         UpdateTableLayoutPanel(Client.TableOperation.GetTables());
     }
 
@@ -45,7 +46,6 @@ public partial class CreateOrderForm : MaterialForm
         {
             var table = Client.GetByCacheOperation.GetTable().GetTableById(tableId);
             var order = Client.OrderOperation.CreateOrder(Credentials, table);
-            new OrderForm(Client, order.Id).Show();
             Close();
         }
     }

@@ -7,14 +7,17 @@ using Shared.Dto.Enities;
 using Shared.Dto.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 
 namespace Coby.Forms;
 
-public partial class MainForm : MaterialForm
+public partial class MainForm : MaterialForm, INotifyPropertyChanged
 {
     private int _page;
+    private List<Order> _orders;
+    private readonly int _openOrderLayoutPanelCellCount;
 
     public IClient Client { get; }
 
@@ -22,15 +25,23 @@ public partial class MainForm : MaterialForm
 
     public Credentials Credentials { get; }
 
-    public List<Order> Orders { get; private set; }
+    public List<Order> Orders 
+    { 
+        get => _orders;
+        set
+        {
+            _orders = value;
+            OnPropertyChanged(nameof(Orders));
+            UpdateOrdersLayoutPanel(Page);
+        }
+    }
 
     public int Page
     {
         get => _page;
         set
         {
-            int cellCount = OpenOrderLayoutPanel.ColumnCount * OpenOrderLayoutPanel.RowCount;
-            if (value >= 0 && value <= Math.Ceiling((decimal)(Orders.Count() / cellCount)))
+            if (value >= 0 && value <= Math.Ceiling((decimal)(Orders.Count() / _openOrderLayoutPanelCellCount)))
                 _page = value;
         }
     }
@@ -41,9 +52,11 @@ public partial class MainForm : MaterialForm
         Client = client;
         Credentials = credentials;
         Waiter = Client.GetByCacheOperation.GetWaiter().GetWaiterById(Credentials.WaiterId);
-        Orders = Client.GetByCacheOperation.GetOrder().GetOrders().Where(x => x.OrderStatus is OrderStatus.New).ToList();
+        _openOrderLayoutPanelCellCount = OpenOrderLayoutPanel.ColumnCount * OpenOrderLayoutPanel.RowCount;
         _ = FormHelper.CreateMaterialSkinManager(this);
+        FormHelper.SetFullScreen(this);
         AfterUpdateStatus();
+        UpdateOrders();
         Animator.Start();
     }
 
@@ -87,7 +100,7 @@ public partial class MainForm : MaterialForm
         if (currentPage.Name.Equals(nameof(OrdersPage)))
         {
             Page = 0;
-            UpdateOrdersLayoutPanel(Page);
+            UpdateOrders();
         }
     }
 
@@ -95,8 +108,6 @@ public partial class MainForm : MaterialForm
     {
         if (Waiter.Status is WaiterSessionStatus.Open)
         {
-            Page = 0;
-            UpdateOrdersLayoutPanel(Page);
             MainFormTabController.SelectTab(OrdersPage);
             ChangeControlEnable(OrdersPage.Controls, true);
             PersonalShiftController.Text = "Закрыть личную смену";
@@ -118,10 +129,7 @@ public partial class MainForm : MaterialForm
     private void UpdateOrdersLayoutPanel(int page)
     {
         OpenOrderLayoutPanel.Controls.Clear();
-
-        int cellCount = OpenOrderLayoutPanel.ColumnCount * OpenOrderLayoutPanel.RowCount;
-        Orders = Client.GetByCacheOperation.GetOrder().GetOrders().Where(x => x.OrderStatus is OrderStatus.New).ToList();
-        var orders = Orders.Skip(cellCount * page).Take(cellCount);
+        var orders = Orders.Skip(_openOrderLayoutPanelCellCount * page).Take(_openOrderLayoutPanelCellCount);
 
         List<CustomCardView> cardViews = new();
         foreach (var order in orders)
@@ -130,18 +138,19 @@ public partial class MainForm : MaterialForm
             view.SetColorAndFont(BackColor, Font);
             view.TextHeader = $"Table {order.Table.TableNumber}";
             view.Text = "More information";
-            string products = string.Join(string.Format("{0}-", Environment.NewLine), order.GetGuests().SelectMany(x => x.GetProducts()).Take(6).Select(x => x.ProductName));
+            string products = string.Join($"{Environment.NewLine}-", order.GetGuests().SelectMany(x => x.GetProducts()).Take(6).Select(x => x.ProductName));
             view.TextDescrition = $"GuestCount: {order.GetGuests().Count()}\n" +
                                   $"Sum: {order.Sum}\n" +
                                   $"StartTime: {order.StartTime}\n" +
                                   $"Products: \n-{products}";
+            view.Tag = order.StartTime;
             view.MouseClick += (sender, e) => OpenOrder(sender, e, order.Id, view.CurtainHeight);
             view.Dock = DockStyle.Fill;
 
             cardViews.Add(view);
         }
 
-        OpenOrderLayoutPanel.Controls.AddRange(cardViews.OrderBy(x => x.Name).ToArray());
+        OpenOrderLayoutPanel.Controls.AddRange(cardViews.OrderBy(x => x.Tag).ToArray());
 
         void OpenOrder(object sender, MouseEventArgs e, Guid orderId, int y)
         {
@@ -158,8 +167,8 @@ public partial class MainForm : MaterialForm
         newForm.FormClosed += (sender, e) =>
         {
             Enabled = true;
-            Page = 0;
-            UpdateOrdersLayoutPanel(Page);
+            Page = 0; 
+            UpdateOrders();
         };
     }
 
@@ -176,5 +185,15 @@ public partial class MainForm : MaterialForm
     }
 
     private void CloseOrdersButton_Click(object sender, EventArgs e) =>
-        OpenForm(new CloseOrdersForm(Client, Client.GetByCacheOperation.GetOrder().GetOrders().Where(x => x.OrderStatus is OrderStatus.Closed)));
+        OpenForm(new CloseOrdersForm(Client, Client.GetByCacheOperation.GetOrder().GetOrders().Where(x => x.Status is OrderStatus.Closed)));
+
+    private void UpdateOrders() =>
+        Orders = Client.GetByCacheOperation.GetOrder().GetOrders().Where(x => x.Status is OrderStatus.New).ToList();
+
+    public event PropertyChangedEventHandler PropertyChanged;
+    protected void OnPropertyChanged(PropertyChangedEventArgs e) =>
+        PropertyChanged?.Invoke(this, e);
+
+    protected void OnPropertyChanged(string propertyName) =>
+        OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
 }

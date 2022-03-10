@@ -37,6 +37,7 @@ public partial class CloseOrdersForm : MaterialForm
         Client = client;
         CloseOrders = closeOrders.ToList();
         _ = FormHelper.CreateMaterialSkinManager(this);
+        FormHelper.SetFullScreen(this);
         UpdateOrdersLayoutPanel(Page);
         Animator.Start();
     }

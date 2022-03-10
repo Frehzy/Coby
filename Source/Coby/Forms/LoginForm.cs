@@ -14,6 +14,7 @@ public partial class LoginForm : MaterialForm
         InitializeComponent();
         Client = client;
         _ = FormHelper.CreateMaterialSkinManager(this);
+        FormHelper.SetFullScreen(this);
     }
 
     private void LoginButton_Click(object sender, EventArgs e)

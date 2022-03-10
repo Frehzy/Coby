@@ -55,6 +55,7 @@ public partial class OrderForm : MaterialForm, INotifyPropertyChanged
         Products = Client.GetByCacheOperation.GetProduct().GetProducts();
         Page = 0;
         _ = FormHelper.CreateMaterialSkinManager(this);
+        FormHelper.SetFullScreen(this);
         OrderInfoListView.SetDataBinding("DataSource", this, nameof(OrderInfoBinding));
         OrderInfoListView.SetDGVColor(BackColor);
         OrderInfoBinding = new();
@@ -127,7 +128,7 @@ public partial class OrderForm : MaterialForm, INotifyPropertyChanged
 
     private void BackButton_Click(object sender, EventArgs e)
     {
-        if (Order.OrderStatus is OrderStatus.New)
+        if (Order.Status is OrderStatus.New)
             Client.OrderOperation.SaveOrder(Order);
         Close();
     }
@@ -156,7 +157,7 @@ public partial class OrderForm : MaterialForm, INotifyPropertyChanged
 
     private void PayButton_Click(object sender, EventArgs e)
     {
-        if (Order.OrderStatus is OrderStatus.Closed)
+        if (Order.Status is OrderStatus.Closed)
             return;
 
         if (Order.Sum <= 0)
@@ -176,7 +177,7 @@ public partial class OrderForm : MaterialForm, INotifyPropertyChanged
         {
             Enabled = true;
             Order = Client.GetByCacheOperation.GetOrder().GetOrderById(Order.Id);
-            if (Order.OrderStatus is OrderStatus.Closed)
+            if (Order.Status is OrderStatus.Closed)
                 Close();
         };
     }

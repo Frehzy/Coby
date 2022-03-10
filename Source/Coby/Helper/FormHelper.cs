@@ -22,7 +22,6 @@ internal static class FormHelper
         manager.AddFormToManage(form);
         manager.ColorScheme = new ColorScheme(Primary.Grey900, Primary.Grey900, Primary.Grey50, Accent.Red200, TextShade.WHITE);
         manager.Theme = Themes.DARK;
-        SetFullScreen(form);
 
         return manager;
     }

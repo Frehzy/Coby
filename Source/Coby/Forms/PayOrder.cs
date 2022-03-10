@@ -43,6 +43,7 @@ public partial class PayOrder : MaterialForm
         Order = Client.GetByCacheOperation.GetOrder().GetOrderById(orderId);
         PaymentTypes = Client.GetByCacheOperation.GetPaymentType().GetPaymentTypes();
         _ = FormHelper.CreateMaterialSkinManager(this);
+        FormHelper.SetFullScreen(this);
         OrderInfoListView.SetDataBinding("DataSource", this, nameof(OrderInfoBinding));
         OrderInfoListView.SetDGVColor(BackColor);
         OrderInfoBinding = new();

@@ -49,7 +49,7 @@ public class OrderOperation : IOrderOperation
         if (Helper.OrderById(Cache, orderId, out Order orderOnCache) is null)
             throw new EntityNotFound(orderId);
 
-        orderOnCache.OrderStatus = OrderStatus.Closed;
+        orderOnCache.Status = OrderStatus.Closed;
         orderOnCache.EndTime = DateTime.Now;
         Cache.OrdersCache.AddOrUpdateOrder(orderOnCache);
     }
