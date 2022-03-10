@@ -72,6 +72,7 @@ public partial class MainForm : MaterialForm
         var request = await Client.CloseCafeShift(Credentials);
         if (request.Status is not RequestStatus.OK)
             MaterialMessageBox.Show($"Id: {request.Id}\nStatus: {request.Status}\nMessage: {request.Message}\nException:{request.Exception}");
+        Waiter = Client.GetByCacheOperation.GetWaiter().GetWaiterById(Waiter.Id);
         AfterUpdateStatus();
 
         splashScreen.Close();
@@ -154,7 +155,7 @@ public partial class MainForm : MaterialForm
         Enabled = false;
         newForm.Show();
 
-        newForm.FormClosing += (sender, e) =>
+        newForm.FormClosed += (sender, e) =>
         {
             Enabled = true;
             Page = 0;
