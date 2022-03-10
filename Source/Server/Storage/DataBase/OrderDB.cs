@@ -28,5 +28,7 @@ internal class OrderDB
         EndTime = endTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
     }
 
-    public DateTime GetTime(string time) => DateTime.Parse(time);
+    public DateTime GetStartTime() => DateTime.Parse(StartTime);
+
+    public DateTime GetEndTime() => DateTime.Parse(EndTime);
 }

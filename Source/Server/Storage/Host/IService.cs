@@ -4,6 +4,7 @@ using Storage.Operations;
 using Storage.Operations.CreateRemove;
 using Storage.Operations.OrderOperation;
 using System.ServiceModel;
+using System.Threading.Tasks;
 
 namespace Storage.Host;
 
@@ -32,5 +33,5 @@ public interface IService : ILicenseCache, IOrderCache, IPaymentTypeCache, IProd
     void SetCache();
 
     [OperationContract]
-    Request CloseCafeShift(Credentials credentials);
+    Task<Request> CloseCafeShift(Credentials credentials);
 }

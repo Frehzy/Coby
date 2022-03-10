@@ -7,13 +7,14 @@ using Storage.Operations.GetBy;
 using Storage.Operations.OrderOperation;
 using System;
 using System.ServiceModel;
+using System.Threading.Tasks;
 
 namespace Coby.ClientOperation;
 
 public class Client : IClient
 {
     private readonly IService _service;
-    public delegate Request CloseCafeShiftDelegate(Credentials credentials);
+    public delegate Task<Request> CloseCafeShiftDelegate(Credentials credentials);
 
     public LicenseOperation LicenseOperation { get; }
 

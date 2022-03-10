@@ -8,7 +8,6 @@ using Shared.Dto.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Coby.Forms;
@@ -63,12 +62,19 @@ public partial class MainForm : MaterialForm
         Hide();
     }
 
-    private void CafeSessionClose_Click(object sender, EventArgs e)
+    private async void CafeSessionClose_Click(object sender, EventArgs e)
     {
-        var request = Task.Run(() => Client.CloseCafeShift(Credentials)).Result;
+        var splashScreen = new SplashScreen();
+        splashScreen.Show();
+        Enabled = false;
+        splashScreen.FormClosing += (sender, e) => { Enabled = true; };
+
+        var request = await Client.CloseCafeShift(Credentials);
         if (request.Status is not RequestStatus.OK)
             MaterialMessageBox.Show($"Id: {request.Id}\nStatus: {request.Status}\nMessage: {request.Message}\nException:{request.Exception}");
         AfterUpdateStatus();
+
+        splashScreen.Close();
     }
 
     private void CreateOrderButton_Click(object sender, EventArgs e) =>

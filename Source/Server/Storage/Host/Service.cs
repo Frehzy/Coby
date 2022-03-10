@@ -15,6 +15,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Storage.Host;
@@ -160,7 +161,7 @@ public class Service : IService
             GetWaiters().ForEach(x => _waitersCache.TryAdd(x.Id, WaiterConverter.Converter(x)));
             GetProducts().ForEach(x => _productsCache.TryAdd(x.Id, x));
             GetNomenclature().ForEach(x => _nomenclatureCache.Add(x));
-            await Task.Run(() => CloseOrders());
+            Task.Run(() => LoadCloseOrdersAsync().ConfigureAwait(false));
 
             _canWork = false;
         }
@@ -180,7 +181,7 @@ public class Service : IService
         List<Nomenclature> GetNomenclature() =>
             db.SqlQuery<Nomenclature>("SELECT * FROM nomenclature");
 
-        void CloseOrders()
+        async Task LoadCloseOrdersAsync()
         {
             List<OrderDB> closeOrders = db.SqlQuery<OrderDB>("SELECT * FROM orders");
             List<GuestDB> guests = db.SqlQuery<GuestDB>("SELECT * FROM ordersguests");
@@ -199,7 +200,7 @@ public class Service : IService
                 var orderProduts = products.Where(x => x.OrderId.Equals(closeOrder.Id));
                 var orderPayments = payments.Where(x => x.OrderId.Equals(closeOrder.Id));
 
-                var order = new Order(closeOrder.Id, table, waiter, OrderStatus.Closed, closeOrder.GetTime(closeOrder.StartTime), closeOrder.GetTime(closeOrder.EndTime));
+                var order = new Order(closeOrder.Id, table, waiter, OrderStatus.Closed, closeOrder.GetStartTime(), closeOrder.GetEndTime());
                 var guestOperations = orderOperation.GetGuestOperations(order);
                 var productOperation = orderOperation.GetProductOperation(order);
                 var paymentOperation = orderOperation.GetPaymentOperations(order);
@@ -223,7 +224,7 @@ public class Service : IService
         }
     }
 
-    public Request CloseCafeShift(Credentials credentials)
+    public async Task<Request> CloseCafeShift(Credentials credentials)
     {
         var waiter = GetWaitersCache().First(x => x.Id.Equals(credentials.WaiterId));
         if (waiter.PermissionStatus is PermissionStatus.Waiter)
