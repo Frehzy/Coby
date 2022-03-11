@@ -37,8 +37,8 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.SumTextBox = new MaterialSkin.Controls.MaterialTextBox2();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.HistoryDgv = new System.Windows.Forms.DataGridView();
             this.AfterClickInfoDgv = new System.Windows.Forms.DataGridView();
+            this.HistoryDgv = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PaymentInfoDgv)).BeginInit();
@@ -47,8 +47,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.WaiterInfoDgv)).BeginInit();
             this.panel4.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.HistoryDgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AfterClickInfoDgv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.HistoryDgv)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -247,6 +247,32 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(544, 514);
             this.tableLayoutPanel3.TabIndex = 3;
             // 
+            // AfterClickInfoDgv
+            // 
+            this.AfterClickInfoDgv.AllowUserToAddRows = false;
+            this.AfterClickInfoDgv.AllowUserToDeleteRows = false;
+            this.AfterClickInfoDgv.AllowUserToResizeColumns = false;
+            this.AfterClickInfoDgv.AllowUserToResizeRows = false;
+            this.AfterClickInfoDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.AfterClickInfoDgv.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.AfterClickInfoDgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.AfterClickInfoDgv.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.AfterClickInfoDgv.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.AfterClickInfoDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.AfterClickInfoDgv.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AfterClickInfoDgv.EnableHeadersVisualStyles = false;
+            this.AfterClickInfoDgv.Location = new System.Drawing.Point(3, 362);
+            this.AfterClickInfoDgv.MultiSelect = false;
+            this.AfterClickInfoDgv.Name = "AfterClickInfoDgv";
+            this.AfterClickInfoDgv.ReadOnly = true;
+            this.AfterClickInfoDgv.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.AfterClickInfoDgv.RowHeadersVisible = false;
+            this.AfterClickInfoDgv.RowHeadersWidth = 51;
+            this.AfterClickInfoDgv.RowTemplate.Height = 24;
+            this.AfterClickInfoDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.AfterClickInfoDgv.Size = new System.Drawing.Size(538, 149);
+            this.AfterClickInfoDgv.TabIndex = 7;
+            // 
             // HistoryDgv
             // 
             this.HistoryDgv.AllowUserToAddRows = false;
@@ -274,32 +300,6 @@
             this.HistoryDgv.TabIndex = 6;
             this.HistoryDgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.HistoryDgv_CellContentClick);
             // 
-            // AfterClickInfoDgv
-            // 
-            this.AfterClickInfoDgv.AllowUserToAddRows = false;
-            this.AfterClickInfoDgv.AllowUserToDeleteRows = false;
-            this.AfterClickInfoDgv.AllowUserToResizeColumns = false;
-            this.AfterClickInfoDgv.AllowUserToResizeRows = false;
-            this.AfterClickInfoDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.AfterClickInfoDgv.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.AfterClickInfoDgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.AfterClickInfoDgv.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.AfterClickInfoDgv.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.AfterClickInfoDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.AfterClickInfoDgv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AfterClickInfoDgv.EnableHeadersVisualStyles = false;
-            this.AfterClickInfoDgv.Location = new System.Drawing.Point(3, 362);
-            this.AfterClickInfoDgv.MultiSelect = false;
-            this.AfterClickInfoDgv.Name = "AfterClickInfoDgv";
-            this.AfterClickInfoDgv.ReadOnly = true;
-            this.AfterClickInfoDgv.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.AfterClickInfoDgv.RowHeadersVisible = false;
-            this.AfterClickInfoDgv.RowHeadersWidth = 51;
-            this.AfterClickInfoDgv.RowTemplate.Height = 24;
-            this.AfterClickInfoDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.AfterClickInfoDgv.Size = new System.Drawing.Size(538, 149);
-            this.AfterClickInfoDgv.TabIndex = 7;
-            // 
             // OrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -319,8 +319,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.WaiterInfoDgv)).EndInit();
             this.panel4.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.HistoryDgv)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AfterClickInfoDgv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.HistoryDgv)).EndInit();
             this.ResumeLayout(false);
 
         }

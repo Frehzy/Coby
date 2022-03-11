@@ -33,6 +33,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.RemainderTextBox = new MaterialSkin.Controls.MaterialTextBox2();
             this.PaymentLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.SumTextBox = new MaterialSkin.Controls.MaterialTextBox2();
@@ -44,7 +45,6 @@
             this.PaymentTypeLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.BackButton = new MaterialSkin.Controls.MaterialButton();
-            this.RemainderTextBox = new MaterialSkin.Controls.MaterialTextBox2();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -125,6 +125,37 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(226, 44);
             this.panel4.TabIndex = 0;
+            // 
+            // RemainderTextBox
+            // 
+            this.RemainderTextBox.AnimateReadOnly = true;
+            this.RemainderTextBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RemainderTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
+            this.RemainderTextBox.Depth = 0;
+            this.RemainderTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RemainderTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.RemainderTextBox.HideSelection = true;
+            this.RemainderTextBox.LeadingIcon = null;
+            this.RemainderTextBox.Location = new System.Drawing.Point(0, 0);
+            this.RemainderTextBox.MaxLength = 32767;
+            this.RemainderTextBox.MouseState = MaterialSkin.MouseState.OUT;
+            this.RemainderTextBox.Name = "RemainderTextBox";
+            this.RemainderTextBox.PasswordChar = '\0';
+            this.RemainderTextBox.PrefixSuffixText = null;
+            this.RemainderTextBox.ReadOnly = true;
+            this.RemainderTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.RemainderTextBox.SelectedText = "";
+            this.RemainderTextBox.SelectionLength = 0;
+            this.RemainderTextBox.SelectionStart = 0;
+            this.RemainderTextBox.ShortcutsEnabled = true;
+            this.RemainderTextBox.Size = new System.Drawing.Size(226, 48);
+            this.RemainderTextBox.TabIndex = 3;
+            this.RemainderTextBox.TabStop = false;
+            this.RemainderTextBox.Text = "Remainder";
+            this.RemainderTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.RemainderTextBox.TrailingIcon = null;
+            this.RemainderTextBox.UseAccent = false;
+            this.RemainderTextBox.UseSystemPasswordChar = false;
             // 
             // PaymentLayoutPanel
             // 
@@ -324,37 +355,6 @@
             this.BackButton.UseAccentColor = false;
             this.BackButton.UseVisualStyleBackColor = true;
             this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
-            // 
-            // RemainderTextBox
-            // 
-            this.RemainderTextBox.AnimateReadOnly = true;
-            this.RemainderTextBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.RemainderTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
-            this.RemainderTextBox.Depth = 0;
-            this.RemainderTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RemainderTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.RemainderTextBox.HideSelection = true;
-            this.RemainderTextBox.LeadingIcon = null;
-            this.RemainderTextBox.Location = new System.Drawing.Point(0, 0);
-            this.RemainderTextBox.MaxLength = 32767;
-            this.RemainderTextBox.MouseState = MaterialSkin.MouseState.OUT;
-            this.RemainderTextBox.Name = "RemainderTextBox";
-            this.RemainderTextBox.PasswordChar = '\0';
-            this.RemainderTextBox.PrefixSuffixText = null;
-            this.RemainderTextBox.ReadOnly = true;
-            this.RemainderTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.RemainderTextBox.SelectedText = "";
-            this.RemainderTextBox.SelectionLength = 0;
-            this.RemainderTextBox.SelectionStart = 0;
-            this.RemainderTextBox.ShortcutsEnabled = true;
-            this.RemainderTextBox.Size = new System.Drawing.Size(226, 48);
-            this.RemainderTextBox.TabIndex = 3;
-            this.RemainderTextBox.TabStop = false;
-            this.RemainderTextBox.Text = "Remainder";
-            this.RemainderTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.RemainderTextBox.TrailingIcon = null;
-            this.RemainderTextBox.UseAccent = false;
-            this.RemainderTextBox.UseSystemPasswordChar = false;
             // 
             // PayOrder
             // 

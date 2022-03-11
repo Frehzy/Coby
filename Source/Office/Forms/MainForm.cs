@@ -1,8 +1,11 @@
 ﻿using MaterialSkin.Controls;
 using Office.ClientOperation;
 using Office.Forms.MessageForm;
+using Office.Forms.StatisticsPage;
 using Office.Helper;
+using Shared.Dto.Enities;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Office.Forms;
@@ -110,6 +113,15 @@ public partial class MainForm : MaterialForm
         PaymentTypeUpdateButton.PerformClick();
     }
 
-    private void CloseOrdersButton_Click(object sender, EventArgs e) =>
-        new CloseOrdersForm(Client).Show();
+    private void CloseOrdersButton_Click(object sender, EventArgs e)
+    {
+        Func<List<Order>> func = Client.GetCloseOrders.Invoke;
+        new OrdersForm(Client, func).Show();
+    }
+
+    private void CurrentSessionButton_Click(object sender, EventArgs e)
+    {
+        Func<List<Order>> func = Client.GetByCacheOperation.GetOrder().GetOrders;
+        new OrdersForm(Client, func).Show();
+    }
 }

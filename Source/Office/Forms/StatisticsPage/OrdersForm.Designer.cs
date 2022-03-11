@@ -1,6 +1,6 @@
-﻿namespace Office.Forms
+﻿namespace Office.Forms.StatisticsPage
 {
-    partial class CloseOrdersForm
+    partial class OrdersForm
     {
         /// <summary>
         /// Required designer variable.

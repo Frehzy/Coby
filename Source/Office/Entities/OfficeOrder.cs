@@ -2,7 +2,7 @@
 
 namespace Office.Entities;
 
-internal class CloseOrder
+internal class OfficeOrder
 {
     public Guid OrderId { get; }
 
@@ -16,9 +16,9 @@ internal class CloseOrder
 
     public DateTime StartTime { get; }
 
-    public DateTime EndTime { get; }
+    public DateTime? EndTime { get; }
 
-    public CloseOrder(Guid orderId, string waiter, int tableNumber, decimal sum, int guestsCount, DateTime startTime, DateTime endTime)
+    public OfficeOrder(Guid orderId, string waiter, int tableNumber, decimal sum, int guestsCount, DateTime startTime, DateTime? endTime)
     {
         OrderId = orderId;
         Waiter = waiter;

@@ -52,7 +52,9 @@
             this.PaymentTypeUpdateButton = new MaterialSkin.Controls.MaterialButton();
             this.StatPage = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.ChartsButton = new MaterialSkin.Controls.MaterialButton();
             this.CloseOrdersButton = new MaterialSkin.Controls.MaterialButton();
+            this.OpenOrdersButton = new MaterialSkin.Controls.MaterialButton();
             this.TabControl.SuspendLayout();
             this.WaitersPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.WaitersDgv)).BeginInit();
@@ -496,7 +498,9 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Controls.Add(this.CloseOrdersButton, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.ChartsButton, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.CloseOrdersButton, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.OpenOrdersButton, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -508,6 +512,25 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(786, 404);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
+            // ChartsButton
+            // 
+            this.ChartsButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ChartsButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.ChartsButton.Depth = 0;
+            this.ChartsButton.HighEmphasis = true;
+            this.ChartsButton.Icon = null;
+            this.ChartsButton.Location = new System.Drawing.Point(200, 6);
+            this.ChartsButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.ChartsButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.ChartsButton.Name = "ChartsButton";
+            this.ChartsButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.ChartsButton.Size = new System.Drawing.Size(78, 36);
+            this.ChartsButton.TabIndex = 10;
+            this.ChartsButton.Text = "Charts";
+            this.ChartsButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.ChartsButton.UseAccentColor = false;
+            this.ChartsButton.UseVisualStyleBackColor = true;
+            // 
             // CloseOrdersButton
             // 
             this.CloseOrdersButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -516,7 +539,7 @@
             this.CloseOrdersButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CloseOrdersButton.HighEmphasis = true;
             this.CloseOrdersButton.Icon = null;
-            this.CloseOrdersButton.Location = new System.Drawing.Point(4, 6);
+            this.CloseOrdersButton.Location = new System.Drawing.Point(4, 107);
             this.CloseOrdersButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.CloseOrdersButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.CloseOrdersButton.Name = "CloseOrdersButton";
@@ -528,6 +551,27 @@
             this.CloseOrdersButton.UseAccentColor = false;
             this.CloseOrdersButton.UseVisualStyleBackColor = true;
             this.CloseOrdersButton.Click += new System.EventHandler(this.CloseOrdersButton_Click);
+            // 
+            // OpenOrdersButton
+            // 
+            this.OpenOrdersButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.OpenOrdersButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.OpenOrdersButton.Depth = 0;
+            this.OpenOrdersButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.OpenOrdersButton.HighEmphasis = true;
+            this.OpenOrdersButton.Icon = null;
+            this.OpenOrdersButton.Location = new System.Drawing.Point(4, 6);
+            this.OpenOrdersButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.OpenOrdersButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.OpenOrdersButton.Name = "OpenOrdersButton";
+            this.OpenOrdersButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.OpenOrdersButton.Size = new System.Drawing.Size(188, 89);
+            this.OpenOrdersButton.TabIndex = 11;
+            this.OpenOrdersButton.Text = "Open orders";
+            this.OpenOrdersButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.OpenOrdersButton.UseAccentColor = false;
+            this.OpenOrdersButton.UseVisualStyleBackColor = true;
+            this.OpenOrdersButton.Click += new System.EventHandler(this.CurrentSessionButton_Click);
             // 
             // MainForm
             // 
@@ -587,6 +631,8 @@
         private System.Windows.Forms.TabPage StatPage;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private MaterialSkin.Controls.MaterialButton CloseOrdersButton;
+        private MaterialSkin.Controls.MaterialButton ChartsButton;
+        private MaterialSkin.Controls.MaterialButton OpenOrdersButton;
     }
 }
 

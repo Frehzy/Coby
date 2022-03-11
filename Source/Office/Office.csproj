@@ -37,6 +37,9 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialSkin, Version=2.3.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\MaterialSkin.2.2.3.1\lib\net48\MaterialSkin.dll</HintPath>
     </Reference>
@@ -57,7 +60,7 @@
   <ItemGroup>
     <Compile Include="ClientOperation\Client.cs" />
     <Compile Include="ClientOperation\IClient.cs" />
-    <Compile Include="Entities\CloseOrder.cs" />
+    <Compile Include="Entities\OfficeOrder.cs" />
     <Compile Include="Forms\OrderForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,11 +104,11 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\CloseOrdersForm.cs">
+    <Compile Include="Forms\StatisticsPage\OrdersForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\CloseOrdersForm.Designer.cs">
-      <DependentUpon>CloseOrdersForm.cs</DependentUpon>
+    <Compile Include="Forms\StatisticsPage\OrdersForm.Designer.cs">
+      <DependentUpon>OrdersForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\NomenclatureForm.cs">
       <SubType>Form</SubType>
@@ -138,8 +141,8 @@
     <EmbeddedResource Include="Forms\MessageForm\AddWaiterForm.resx">
       <DependentUpon>AddWaiterForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\CloseOrdersForm.resx">
-      <DependentUpon>CloseOrdersForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\StatisticsPage\OrdersForm.resx">
+      <DependentUpon>OrdersForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\NomenclatureForm.resx">
       <DependentUpon>NomenclatureForm.cs</DependentUpon>
