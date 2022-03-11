@@ -1,4 +1,5 @@
-﻿using Shared.Dto.Enities;
+﻿using Office.Enums;
+using Shared.Dto.Enities;
 using System.Collections.Generic;
 
 namespace Office.Entities;

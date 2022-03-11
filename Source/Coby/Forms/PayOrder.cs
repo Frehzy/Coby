@@ -40,8 +40,8 @@ public partial class PayOrder : MaterialForm
     {
         InitializeComponent();
         Client = client;
-        Order = Client.GetByCacheOperation.GetOrder().GetOrderById(orderId);
-        PaymentTypes = Client.GetByCacheOperation.GetPaymentType().GetPaymentTypes();
+        Order = Client.GetByCacheOperation.Order.GetOrderById(orderId);
+        PaymentTypes = Client.GetByCacheOperation.PaymentType.GetPaymentTypes();
         _ = FormHelper.CreateMaterialSkinManager(this);
         FormHelper.SetFullScreen(this);
         OrderInfoListView.SetDataBinding("DataSource", this, nameof(OrderInfoBinding));
@@ -116,7 +116,7 @@ public partial class PayOrder : MaterialForm
             Client.OrderOperation.GetPaymentOperations(Order).RemovePaymentOnOrder(paymentId);
             UpdatePaymentLayoutPanel();
             UpdateRemainderTextBox();
-            var paymenttype = Client.GetByCacheOperation.GetPaymentType().TryGetPaymentTypeById(paymentId);
+            var paymenttype = Client.GetByCacheOperation.PaymentType.GetPaymentTypeById(paymentId);
             PaymentTypes.Add(paymenttype);
             LoadPaymentTypesInfo(Page);
         }

@@ -33,9 +33,24 @@ internal static class DataGridHelper
 
     public static void FillTable<T>(DataGridView dgv, T content)
     {
-        List<T> contentList = new();
-        contentList.Add(content);
-        FillTable(dgv, contentList);
+        DgvClear(dgv);
+        if (content is null)
+            return;
+
+        var properties = content.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
+        foreach (var property in properties)
+            dgv.Columns.Add(property.Name, property.Name);
+
+        var row = content.GetType()
+            .GetProperties(BindingFlags.Public | BindingFlags.Instance)
+            .Select(x => x.GetValue(content, null))
+            .ToArray();
+
+        dgv.Rows.Add(row);
+
+        dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        dgv.AutoResizeColumns();
+        dgv.RowHeadersVisible = false;
     }
 
     public static void FillTable<T>(DataGridView dgv, List<T> content)

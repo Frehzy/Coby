@@ -82,8 +82,8 @@ public partial class OrderForm : MaterialForm
 
         void LoadInfo()
         {
-            var product = Client.GetByCacheOperation.GetProduct().TryGetProductById(selected.TargetId);
-            var paymentType = Client.GetByCacheOperation.GetPaymentType().TryGetPaymentTypeById(selected.TargetId);
+            var product = Client.GetByCacheOperation.Product.GetProductById(selected.TargetId);
+            var paymentType = Client.GetByCacheOperation.PaymentType.GetPaymentTypeById(selected.TargetId);
             if (product is not null)
                 DataGridHelper.FillTable(AfterClickInfoDgv, product);
             else if (paymentType is not null)

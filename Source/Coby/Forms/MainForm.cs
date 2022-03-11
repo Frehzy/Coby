@@ -51,7 +51,7 @@ public partial class MainForm : MaterialForm, INotifyPropertyChanged
         InitializeComponent();
         Client = client;
         Credentials = credentials;
-        Waiter = Client.GetByCacheOperation.GetWaiter().GetWaiterById(Credentials.WaiterId);
+        Waiter = Client.GetByCacheOperation.Waiter.GetWaiterById(Credentials.WaiterId);
         _openOrderLayoutPanelCellCount = OpenOrderLayoutPanel.ColumnCount * OpenOrderLayoutPanel.RowCount;
         _ = FormHelper.CreateMaterialSkinManager(this);
         FormHelper.SetFullScreen(this);
@@ -85,7 +85,7 @@ public partial class MainForm : MaterialForm, INotifyPropertyChanged
         var request = await Client.CloseCafeShift(Credentials);
         if (request.Status is not RequestStatus.OK)
             MaterialMessageBox.Show($"Id: {request.Id}\nStatus: {request.Status}\nMessage: {request.Message}\nException:{request.Exception}");
-        Waiter = Client.GetByCacheOperation.GetWaiter().GetWaiterById(Waiter.Id);
+        Waiter = Client.GetByCacheOperation.Waiter.GetWaiterById(Waiter.Id);
         AfterUpdateStatus();
 
         splashScreen.Close();
@@ -185,10 +185,10 @@ public partial class MainForm : MaterialForm, INotifyPropertyChanged
     }
 
     private void CloseOrdersButton_Click(object sender, EventArgs e) =>
-        OpenForm(new CloseOrdersForm(Client, Client.GetByCacheOperation.GetOrder().GetOrders().Where(x => x.Status is OrderStatus.Closed)));
+        OpenForm(new CloseOrdersForm(Client, Client.GetByCacheOperation.Order.GetOrders().Where(x => x.Status is OrderStatus.Closed)));
 
     private void UpdateOrders() =>
-        Orders = Client.GetByCacheOperation.GetOrder().GetOrders().Where(x => x.Status is OrderStatus.New).ToList();
+        Orders = Client.GetByCacheOperation.Order.GetOrders().Where(x => x.Status is OrderStatus.New).ToList();
 
     public event PropertyChangedEventHandler PropertyChanged;
     protected void OnPropertyChanged(PropertyChangedEventArgs e) =>

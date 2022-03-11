@@ -9,15 +9,15 @@ public class GetByCache
     public GetByCache(AllCache cache) =>
         Cache = cache;
 
-    public GetNomenclature GetNomenclatureOperation() => new(Cache);
+    public GetNomenclature GetNomenclatureOperation => new(Cache);
 
-    public GetOrder GetOrder() => new(Cache);
+    public GetOrder Order => new(Cache);
 
-    public GetProduct GetProduct() => new(Cache);
+    public GetProduct Product => new(Cache);
 
-    public GetTable GetTable() => new(Cache);
+    public GetTable Table => new(Cache);
 
-    public GetWaiter GetWaiter() => new(Cache);
+    public GetWaiter Waiter => new(Cache);
 
-    public GetPaymentType GetPaymentType() => new(Cache);
+    public GetPaymentType PaymentType => new(Cache);
 }

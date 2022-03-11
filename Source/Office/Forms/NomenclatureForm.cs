@@ -32,12 +32,12 @@ public partial class NomenclatureForm : MaterialForm
     }
 
     private void NomenclatureUpdateButton_Click(object sender, EventArgs e) =>
-        DataGridHelper.FillTable(NomenclatureDgv, Client.GetByCacheOperation.GetNomenclatureOperation().GetNomenclaturesByParentId(Product.Id));
+        DataGridHelper.FillTable(NomenclatureDgv, Client.GetByCacheOperation.GetNomenclatureOperation.GetNomenclaturesByParentId(Product.Id));
 
     private void AddNomenclatureButton_Click(object sender, EventArgs e)
     {
         _ = new AddNomenclatureForm(Product.Id,
-                                    Client.GetByCacheOperation.GetProduct()
+                                    Client.GetByCacheOperation.Product
                                     .GetProducts()
                                     .Where(x => x.IsItForSale is false)).GetNewNomenclature(Client.Creater);
         NomenclatureUpdateButton.PerformClick();
@@ -57,6 +57,13 @@ public partial class NomenclatureForm : MaterialForm
     {
         var childId = new RowHelper<Guid>(NomenclatureDgv).GetValueByColumnName("ChildId", false);
         if (childId is not null)
-            LoadInfo(Client.GetByCacheOperation.GetProduct().TryGetProductById(childId.Value), ChildInfoTextBox);
+            LoadInfo(Client.GetByCacheOperation.Product.GetProductById(childId.Value), ChildInfoTextBox);
+    }
+
+    private void CreateProductButton_Click(object sender, EventArgs e)
+    {
+        var addProductForm = new AddProductForm();
+        addProductForm.DisableCheckBox();
+        addProductForm.GetNewProduct(Client.Creater);
     }
 }

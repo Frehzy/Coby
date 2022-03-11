@@ -72,8 +72,12 @@
     <Compile Include="ClientOperation\Client.cs" />
     <Compile Include="ClientOperation\IClient.cs" />
     <Compile Include="Entities\GroupOrders.cs" />
-    <Compile Include="Entities\GroupTypeEnum.cs" />
+    <Compile Include="Entities\GroupProduct.cs" />
+    <Compile Include="Enums\GroupTypeEnum.cs" />
     <Compile Include="Entities\OfficeOrder.cs" />
+    <Compile Include="Forms\CustomControls\CustomDateTimePicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Forms\MessageForm\GroupByForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,6 +132,7 @@
     <Compile Include="Forms\StatisticsPage\ChartsForm.Designer.cs">
       <DependentUpon>ChartsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper\BitmapHelper.cs" />
     <Compile Include="Helper\DataGridHelper.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
@@ -147,6 +152,7 @@
     <Compile Include="Forms\NomenclatureForm.Designer.cs">
       <DependentUpon>NomenclatureForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper\GroupByHelper.cs" />
     <Compile Include="Helper\RowHelper.cs" />
     <Compile Include="Helper\FormHelper.cs" />
     <Compile Include="Program.cs" />
@@ -195,6 +201,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.manifest" />
     <None Include="packages.config" />
@@ -221,6 +228,8 @@
       <Name>Shared</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\calendar.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

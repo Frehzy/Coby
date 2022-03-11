@@ -51,8 +51,8 @@ public partial class OrderForm : MaterialForm, INotifyPropertyChanged
     {
         InitializeComponent();
         Client = client;
-        Order = Client.GetByCacheOperation.GetOrder().GetOrderById(orderId);
-        Products = Client.GetByCacheOperation.GetProduct().GetProducts();
+        Order = Client.GetByCacheOperation.Order.GetOrderById(orderId);
+        Products = Client.GetByCacheOperation.Product.GetProducts();
         Page = 0;
         _ = FormHelper.CreateMaterialSkinManager(this);
         FormHelper.SetFullScreen(this);
@@ -176,7 +176,7 @@ public partial class OrderForm : MaterialForm, INotifyPropertyChanged
         payOrder.FormClosing += (sender, e) =>
         {
             Enabled = true;
-            Order = Client.GetByCacheOperation.GetOrder().GetOrderById(Order.Id);
+            Order = Client.GetByCacheOperation.Order.GetOrderById(Order.Id);
             if (Order.Status is OrderStatus.Closed)
                 Close();
         };

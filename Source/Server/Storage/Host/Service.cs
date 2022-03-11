@@ -193,8 +193,8 @@ public class Service : IService
 
             foreach (var closeOrder in closeOrders)
             {
-                var table = getBy.GetTable().GetTableById(closeOrder.TableId);
-                var waiter = getBy.GetWaiter().GetWaiterById(closeOrder.WaiterId);
+                var table = getBy.Table.GetTableById(closeOrder.TableId);
+                var waiter = getBy.Waiter.GetWaiterById(closeOrder.WaiterId);
                 var orderGuests = guests.Where(x => x.OrderId.Equals(closeOrder.Id));
                 var orderProduts = products.Where(x => x.OrderId.Equals(closeOrder.Id));
                 var orderPayments = payments.Where(x => x.OrderId.Equals(closeOrder.Id));

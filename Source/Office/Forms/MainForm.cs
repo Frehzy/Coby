@@ -22,7 +22,7 @@ public partial class MainForm : MaterialForm
     }
 
     private void UpdateWaitersButton_Click(object sender, EventArgs e) =>
-        DataGridHelper.FillTable(WaitersDgv, Client.GetByCacheOperation.GetWaiter().GetWaiters());
+        DataGridHelper.FillTable(WaitersDgv, Client.GetByCacheOperation.Waiter.GetWaiters());
 
     private void AddWaiterButton_Click(object sender, EventArgs e)
     {
@@ -40,7 +40,7 @@ public partial class MainForm : MaterialForm
     }
 
     private void TableUpdateButton_Click(object sender, EventArgs e) =>
-        DataGridHelper.FillTable(TablesDgv, Client.GetByCacheOperation.GetTable().GetTables());
+        DataGridHelper.FillTable(TablesDgv, Client.GetByCacheOperation.Table.GetTables());
 
     private void AddTableButton_Click(object sender, EventArgs e)
     {
@@ -58,7 +58,7 @@ public partial class MainForm : MaterialForm
     }
 
     private void ProductUpdateButton_Click(object sender, EventArgs e) =>
-        DataGridHelper.FillTable(ProductsDgv, Client.GetByCacheOperation.GetProduct().GetProducts());
+        DataGridHelper.FillTable(ProductsDgv, Client.GetByCacheOperation.Product.GetProducts());
 
     private void AddProductButton_Click(object sender, EventArgs e)
     {
@@ -71,10 +71,10 @@ public partial class MainForm : MaterialForm
         var result = new RowHelper<Guid>(ProductsDgv).GetValueByColumnName();
         if (result is not null)
         {
-            var product = Client.GetByCacheOperation.GetProduct().TryGetProductById(result.Value);
+            var product = Client.GetByCacheOperation.Product.GetProductById(result.Value);
             Client.Remover.RemoveProductById(result.Value);
             if (product.IsItForSale is true)
-                Client.GetByCacheOperation.GetNomenclatureOperation().GetNomenclatures()
+                Client.GetByCacheOperation.GetNomenclatureOperation.GetNomenclatures()
                                         .Where(x => x.ParentId.Equals(result))
                                         .Select(x => Client.Remover.RemoveNomenclatureByParentAndChildId(result.Value, x.ChildId));
             else
@@ -88,7 +88,7 @@ public partial class MainForm : MaterialForm
     {
         var parentId = new RowHelper<Guid>(ProductsDgv).GetIdBySelectedRow("Id");
 
-        var parentProduct = Client.GetByCacheOperation.GetProduct().TryGetProductById(parentId);
+        var parentProduct = Client.GetByCacheOperation.Product.GetProductById(parentId);
         if (parentProduct.IsItForSale is true)
             new NomenclatureForm(Client, parentProduct).Show();
         else
@@ -96,7 +96,7 @@ public partial class MainForm : MaterialForm
     }
 
     private void PaymentTypeUpdateButton_Click(object sender, EventArgs e) =>
-        DataGridHelper.FillTable(PaymentTypesDgv, Client.GetByCacheOperation.GetPaymentType().GetPaymentTypes());
+        DataGridHelper.FillTable(PaymentTypesDgv, Client.GetByCacheOperation.PaymentType.GetPaymentTypes());
 
     private void AddPaymentTypeButton_Click(object sender, EventArgs e)
     {
@@ -121,10 +121,13 @@ public partial class MainForm : MaterialForm
 
     private void CurrentSessionButton_Click(object sender, EventArgs e)
     {
-        Func<List<Order>> func = Client.GetByCacheOperation.GetOrder().GetOrders;
+        Func<List<Order>> func = Client.GetByCacheOperation.Order.GetOrders;
         new OrdersForm(Client, func).Show();
     }
 
     private void ChartsButton_Click(object sender, EventArgs e) =>
         new ChartsForm(Client).Show();
+
+    private void ReportButton_Click(object sender, EventArgs e) =>
+        new ReportsForm(Client).Show();
 }

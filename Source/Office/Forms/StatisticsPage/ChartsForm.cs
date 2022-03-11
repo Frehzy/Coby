@@ -13,9 +13,9 @@ namespace Office.Forms;
 
 public partial class ChartsForm : MaterialForm
 {
-    private Func<List<Order>> _getOpenOrders => _client.GetByCacheOperation.GetOrder().GetOrders;
+    private Func<List<Order>> _getOpenOrders => _client.GetByCacheOperation.Order.GetOrders;
     private Func<List<Order>> _getCloseOrders => _client.GetCloseOrders.Invoke;
-    private List<Order> _orders => _getOpenOrders.Invoke().Concat(_getCloseOrders.Invoke()).ToList();
+    private IEnumerable<Order> _orders => _getOpenOrders.Invoke().Concat(_getCloseOrders.Invoke());
     private readonly IClient _client;
 
     public ChartsForm(IClient client)
@@ -27,7 +27,7 @@ public partial class ChartsForm : MaterialForm
 
     private void UpdateCloseOrdersButton_Click(object sender, EventArgs e)
     {
-        var result = new GroupByForm(_orders).GetGroupOrders().ToList();
+        var result = new GroupByForm(_orders.ToList()).GetGroupOrders().ToList();
         ClearCharts(CloseOrdersCharts);
         if (result.Count == 0)
             return;

@@ -21,13 +21,10 @@ public class Creater
         return nomenclature;
     }
 
-    public PaymentType CreatePaymentType(string name)
-    {
-        if (Helper.PaymentTypeByName(Cache, name, out PaymentType paymentTypeOnCache) is not null)
-            throw new EntityAlreadyExistsException(paymentTypeOnCache.Id);
-
-        return Cache.PaymentTypesCache.AddPaymentType(new PaymentType(Guid.NewGuid(), name));
-    }
+    public PaymentType CreatePaymentType(string name) =>
+        Helper.PaymentTypeByName(Cache, name, out PaymentType paymentTypeOnCache) is not null
+        ? throw new EntityAlreadyExistsException(paymentTypeOnCache.Id)
+        : Cache.PaymentTypesCache.AddPaymentType(new PaymentType(Guid.NewGuid(), name));
 
     public Product CreateProduct(string productName, decimal price, bool isItForSale) =>
         Helper.ProductByName(Cache, productName, out Product productOnCache) is not null

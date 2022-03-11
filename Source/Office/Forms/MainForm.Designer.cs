@@ -596,6 +596,7 @@
             this.ReportButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.ReportButton.UseAccentColor = false;
             this.ReportButton.UseVisualStyleBackColor = true;
+            this.ReportButton.Click += new System.EventHandler(this.ReportButton_Click);
             // 
             // MainForm
             // 

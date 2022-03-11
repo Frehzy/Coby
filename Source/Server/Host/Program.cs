@@ -52,6 +52,9 @@ internal class Program
             var address = new EndpointAddress(tcpUri);
             var clientBinding = new NetTcpBinding();
             clientBinding.Security.Mode = SecurityMode.None;
+            clientBinding.MaxReceivedMessageSize = 2097152;
+            clientBinding.MaxBufferPoolSize = 2097152;
+            clientBinding.MaxBufferSize = 2097152;
             ChannelFactory<IService> factory = new(clientBinding, address);
             return factory;
         }

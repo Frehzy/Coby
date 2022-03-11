@@ -1,5 +1,6 @@
 ﻿using MaterialSkin.Controls;
 using Office.Entities;
+using Office.Enums;
 using Office.Helper;
 using Shared.Dto.Enities;
 using System;
@@ -33,8 +34,8 @@ public partial class GroupByForm : MaterialForm
             return default;
 
         return _selectedGroupType is GroupTypeEnum.Day
-            ? GroupOrderByDay(DateComboBox.SelectedIndex)
-            : GroupOrderByMonth(int.Parse(DateComboBox.SelectedItem.ToString()));
+            ? GroupByHelper.GroupOrderByDay(_orders, DateComboBox.SelectedIndex)
+            : GroupByHelper.GroupOrderByMonth(_orders, int.Parse(DateComboBox.SelectedItem.ToString()));
     }
 
     private void SaveButton_Click(object sender, EventArgs e)
@@ -58,16 +59,4 @@ public partial class GroupByForm : MaterialForm
 
         DateComboBox.Items.AddRange(addRangeItems);
     }
-
-    private IEnumerable<GroupOrders> GroupOrderByDay(int monthIndex) =>
-        _orders.Where(x => x.StartTime.Month.Equals(monthIndex + 1))
-               .GroupBy(x => x.StartTime.Day)
-               .OrderBy(x => x.Key)
-               .Select(x => new GroupOrders(x.Key.ToString(), _month[monthIndex], x.Select(x => x).ToList(), GroupTypeEnum.Day));
-
-    private IEnumerable<GroupOrders> GroupOrderByMonth(int year) =>
-        _orders.Where(x => x.StartTime.Year.Equals(year))
-               .GroupBy(x => x.StartTime.Month)
-               .OrderBy(x => x.Key)
-               .Select(x => new GroupOrders(_month[x.Key - 1], year.ToString(), x.Select(x => x).ToList(), GroupTypeEnum.Month));
 }

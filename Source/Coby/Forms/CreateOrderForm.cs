@@ -44,7 +44,7 @@ public partial class CreateOrderForm : MaterialForm
 
         void CreateOrder(object sender, EventArgs e, Guid tableId)
         {
-            var table = Client.GetByCacheOperation.GetTable().GetTableById(tableId);
+            var table = Client.GetByCacheOperation.Table.GetTableById(tableId);
             var order = Client.OrderOperation.CreateOrder(Credentials, table);
             Close();
         }

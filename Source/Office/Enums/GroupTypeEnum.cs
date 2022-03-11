@@ -1,4 +1,4 @@
-﻿namespace Office.Entities;
+﻿namespace Office.Enums;
 
 public enum GroupTypeEnum
 {

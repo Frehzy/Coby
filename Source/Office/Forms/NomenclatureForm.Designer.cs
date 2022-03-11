@@ -38,6 +38,7 @@
             this.AddNomenclatureButton = new MaterialSkin.Controls.MaterialButton();
             this.NomenclatureUpdateButton = new MaterialSkin.Controls.MaterialButton();
             this.NomenclatureDgv = new System.Windows.Forms.DataGridView();
+            this.CreateProductButton = new MaterialSkin.Controls.MaterialButton();
             this.ParentProductPanel.SuspendLayout();
             this.ButtonsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NomenclatureDgv)).BeginInit();
@@ -135,6 +136,7 @@
             // 
             // ButtonsPanel
             // 
+            this.ButtonsPanel.Controls.Add(this.CreateProductButton);
             this.ButtonsPanel.Controls.Add(this.RemoveNomenclatureButton);
             this.ButtonsPanel.Controls.Add(this.AddNomenclatureButton);
             this.ButtonsPanel.Controls.Add(this.NomenclatureUpdateButton);
@@ -223,6 +225,26 @@
             this.NomenclatureDgv.TabIndex = 16;
             this.NomenclatureDgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.NomenclatureDgv_CellContentClick);
             // 
+            // CreateProductButton
+            // 
+            this.CreateProductButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.CreateProductButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.CreateProductButton.Depth = 0;
+            this.CreateProductButton.HighEmphasis = true;
+            this.CreateProductButton.Icon = null;
+            this.CreateProductButton.Location = new System.Drawing.Point(683, 9);
+            this.CreateProductButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.CreateProductButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.CreateProductButton.Name = "CreateProductButton";
+            this.CreateProductButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.CreateProductButton.Size = new System.Drawing.Size(76, 36);
+            this.CreateProductButton.TabIndex = 18;
+            this.CreateProductButton.Text = "Create";
+            this.CreateProductButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.CreateProductButton.UseAccentColor = false;
+            this.CreateProductButton.UseVisualStyleBackColor = true;
+            this.CreateProductButton.Click += new System.EventHandler(this.CreateProductButton_Click);
+            // 
             // NomenclatureForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -256,5 +278,6 @@
         private MaterialSkin.Controls.MaterialLabel ParentLabel;
         private MaterialSkin.Controls.MaterialMultiLineTextBox2 ChildInfoTextBox;
         private MaterialSkin.Controls.MaterialLabel ChildLabel;
+        private MaterialSkin.Controls.MaterialButton CreateProductButton;
     }
 }

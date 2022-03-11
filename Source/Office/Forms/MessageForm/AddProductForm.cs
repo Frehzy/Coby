@@ -18,6 +18,9 @@ public partial class AddProductForm : MaterialForm
     public Product GetNewProduct(Creater creater) =>
         ShowDialog() is DialogResult.OK ? creater.CreateProduct(ProductNameTextBox.Text, decimal.Parse(PriceTextBox.Text), IsItForSaleCheckBox.Checked) : default;
 
+    public void DisableCheckBox() =>
+        IsItForSaleCheckBox.Enabled = false;
+
     private void SaveButton_Click(object sender, EventArgs e)
     {
         if (string.IsNullOrEmpty(ProductNameTextBox.Text) || string.IsNullOrEmpty(PriceTextBox.Text))

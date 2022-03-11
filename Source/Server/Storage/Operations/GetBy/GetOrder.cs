@@ -13,13 +13,10 @@ public class GetOrder
     public GetOrder(AllCache cache) =>
         Cache = cache;
 
-    public Order GetOrderById(Guid orderId)
-    {
-        if (Helper.OrderById(Cache, orderId, out Order orderOnCache) is null)
-            throw new EntityNotFound(orderId);
-
-        return orderOnCache;
-    }
+    public Order GetOrderById(Guid orderId) =>
+        Helper.OrderById(Cache, orderId, out Order orderOnCache) is null
+        ? throw new EntityNotFound(orderId)
+        : orderOnCache;
 
     public List<Order> GetOrders() =>
         Cache.OrdersCache.GetOrdersCache();
