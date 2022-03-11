@@ -124,4 +124,7 @@ public partial class MainForm : MaterialForm
         Func<List<Order>> func = Client.GetByCacheOperation.GetOrder().GetOrders;
         new OrdersForm(Client, func).Show();
     }
+
+    private void ChartsButton_Click(object sender, EventArgs e) =>
+        new ChartsForm(Client).Show();
 }

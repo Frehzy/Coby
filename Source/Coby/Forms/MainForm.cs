@@ -25,8 +25,8 @@ public partial class MainForm : MaterialForm, INotifyPropertyChanged
 
     public Credentials Credentials { get; }
 
-    public List<Order> Orders 
-    { 
+    public List<Order> Orders
+    {
         get => _orders;
         set
         {
@@ -167,7 +167,7 @@ public partial class MainForm : MaterialForm, INotifyPropertyChanged
         newForm.FormClosed += (sender, e) =>
         {
             Enabled = true;
-            Page = 0; 
+            Page = 0;
             UpdateOrders();
         };
     }

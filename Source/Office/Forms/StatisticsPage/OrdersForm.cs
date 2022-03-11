@@ -11,26 +11,25 @@ namespace Office.Forms.StatisticsPage;
 
 public partial class OrdersForm : MaterialForm
 {
-    public IClient Client { get; }
+    private readonly IClient _client;
+    private List<Order> _orders;
 
     public Func<List<Order>> GetOrders { get; private set; }
-
-    public List<Order> Orders { get; private set; }
 
     public OrdersForm(IClient client, Func<List<Order>> getOrders)
     {
         InitializeComponent();
-        Client = client;
+        _client = client;
         GetOrders = getOrders;
         _ = FormHelper.CreateMaterialSkinManager(this);
     }
 
     private void OrdersUpdateButton_Click(object sender, EventArgs e)
     {
-        Orders = GetOrders.Invoke();
+        _orders = GetOrders.Invoke();
 
         List<OfficeOrder> closeOrders = new();
-        closeOrders.AddRange(Orders.Select(x => new OfficeOrder(x.Id,
+        closeOrders.AddRange(_orders.Select(x => new OfficeOrder(x.Id,
                                                                 x.Waiter.Name,
                                                                 x.Table.TableNumber,
                                                                 x.Sum.Value,
@@ -43,8 +42,8 @@ public partial class OrdersForm : MaterialForm
     private void MoreInfoButton_Click(object sender, EventArgs e)
     {
         var orderId = new RowHelper<Guid>(CloseOrdersDgv).GetIdBySelectedRow("OrderId");
-        var order = Orders.First(x => x.Id.Equals(orderId));
-        var orderForm = new OrderForm(Client, order);
+        var order = _orders.First(x => x.Id.Equals(orderId));
+        var orderForm = new OrderForm(_client, order);
         orderForm.Show();
     }
 }
