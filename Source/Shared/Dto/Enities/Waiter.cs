@@ -1,5 +1,7 @@
 ﻿using Shared.Dto.Enums;
 using System;
+using System.Collections.Generic;
+using System.Drawing;
 
 namespace Shared.Dto.Enities;
 
@@ -14,6 +16,8 @@ public class Waiter
     public PermissionStatus PermissionStatus { get; set; }
 
     public WaiterSessionStatus Status { get; set; }
+
+    public List<Image> Faces { get; set; }
 
     public Waiter() { }
 

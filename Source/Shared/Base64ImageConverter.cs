@@ -2,9 +2,9 @@
 using System.Drawing;
 using System.IO;
 
-namespace FaceRecognition;
+namespace Shared;
 
-public static class Converter
+public static class Base64ImageConverter
 {
     public static string ConvertToBase64(Image face)
     {

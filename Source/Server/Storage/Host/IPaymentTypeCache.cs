@@ -14,7 +14,7 @@ public interface IPaymentTypeCache
     List<PaymentType> GetPaymentTypesCache();
 
     [OperationContract]
-    PaymentType AddPaymentType(PaymentType paymentType);
+    PaymentType AddOrUpdatePaymentType(PaymentType paymentType);
 
     [OperationContract]
     PaymentType? RemovePaymentType(Guid paymentTypeId);

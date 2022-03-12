@@ -14,7 +14,7 @@ public interface ITableCache
     List<Table> GetTablesCache();
 
     [OperationContract]
-    Table AddTable(Table table);
+    Table AddOrUpdateTable(Table table);
 
     [OperationContract]
     Table? RemoveTable(Guid tableId);

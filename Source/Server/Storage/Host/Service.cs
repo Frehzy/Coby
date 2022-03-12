@@ -54,16 +54,16 @@ public class Service : IService
         }
     }
 
-    public PaymentType AddPaymentType(PaymentType paymentType) =>
+    public PaymentType AddOrUpdatePaymentType(PaymentType paymentType) =>
         _paymentTypes.AddOrUpdateDB(paymentType.Id, paymentType, GetDBInteraction(), "paymenttypes");
 
-    public Product AddProduct(Product product) =>
+    public Product AddOrUpdateProduct(Product product) =>
         _productsCache.AddOrUpdateDB(product.Id, product, GetDBInteraction(), "products");
 
-    public Table AddTable(Table table) =>
+    public Table AddOrUpdateTable(Table table) =>
         _tablesCache.AddOrUpdateDB(table.Id, table, GetDBInteraction(), "tables");
 
-    public Waiter AddWaiter(Waiter waiter) =>
+    public Waiter AddOrUpdateWaiter(Waiter waiter) =>
         _waitersCache.AddOrUpdateDB(waiter.Id, waiter, GetDBInteraction(), "waiters");
 
     public void AddNomenclature(Nomenclature nomenclature) =>
@@ -157,7 +157,7 @@ public class Service : IService
             db = GetDBInteraction();
             GetTables().ForEach(x => _tablesCache.TryAdd(x.Id, x));
             GetPaymentTypes().ForEach(x => _paymentTypes.TryAdd(x.Id, x));
-            GetWaiters().ForEach(x => _waitersCache.TryAdd(x.Id, WaiterConverter.Converter(x)));
+            GetWaiters().ForEach(x => _waitersCache.TryAdd(x.Id, WaiterConverter.Converter(x, GetWaiterFaces())));
             GetProducts().ForEach(x => _productsCache.TryAdd(x.Id, x));
             GetNomenclature().ForEach(x => _nomenclatureCache.Add(x));
             Task.Run(() => LoadCloseOrdersAsync().ConfigureAwait(false));
@@ -173,6 +173,9 @@ public class Service : IService
 
         List<WaiterDB> GetWaiters() =>
             db.SqlQuery<WaiterDB>("SELECT * FROM waiters");
+
+        List<WaiterFacesDB> GetWaiterFaces() =>
+            db.SqlQuery<WaiterFacesDB>("SELECT * FROM waiterfaces");
 
         List<Product> GetProducts() =>
             db.SqlQuery<Product>("SELECT * FROM products");

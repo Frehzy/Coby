@@ -14,7 +14,7 @@ public interface IProductCache
     List<Product> GetProductsCache();
 
     [OperationContract]
-    Product AddProduct(Product product);
+    Product AddOrUpdateProduct(Product product);
 
     [OperationContract]
     Product? RemoveProduct(Guid productId);

@@ -4,6 +4,7 @@ using Shared.Dto.Exceptions;
 using Storage.Cache;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace Storage.Operations.CreateRemove;
 
@@ -24,20 +25,28 @@ public class Creater
     public PaymentType CreatePaymentType(string name) =>
         Helper.PaymentTypeByName(Cache, name, out PaymentType paymentTypeOnCache) is not null
         ? throw new EntityAlreadyExistsException(paymentTypeOnCache.Id)
-        : Cache.PaymentTypesCache.AddPaymentType(new PaymentType(Guid.NewGuid(), name));
+        : Cache.PaymentTypesCache.AddOrUpdatePaymentType(new PaymentType(Guid.NewGuid(), name));
 
     public Product CreateProduct(string productName, decimal price, bool isItForSale) =>
         Helper.ProductByName(Cache, productName, out Product productOnCache) is not null
         ? throw new EntityAlreadyExistsException(productOnCache.Id)
-        : Cache.ProductsCache.AddProduct(new Product(Guid.NewGuid(), productName, price, isItForSale));
+        : Cache.ProductsCache.AddOrUpdateProduct(new Product(Guid.NewGuid(), productName, price, isItForSale));
 
     public Table CreateTable(int tableNumber) =>
         Helper.TableByNumber(Cache, tableNumber, out Table tableOnCache) is not null
             ? throw new EntityAlreadyExistsException(tableOnCache.Id)
-            : Cache.TablesCache.AddTable(new Table(Guid.NewGuid(), tableNumber));
+            : Cache.TablesCache.AddOrUpdateTable(new Table(Guid.NewGuid(), tableNumber));
 
     public Waiter CreateWaiter(string name, string password, PermissionStatus permissionStatus) =>
         Helper.WaiterByPassword(Cache, password, out Waiter waiterOnCache) is not null
             ? throw new EntityAlreadyExistsException(waiterOnCache.Id)
-            : Cache.WaitersCache.AddWaiter(new Waiter(Guid.NewGuid(), name, password, permissionStatus, WaiterSessionStatus.Closed));
+            : Cache.WaitersCache.AddOrUpdateWaiter(new Waiter(Guid.NewGuid(), name, password, permissionStatus, WaiterSessionStatus.Closed));
+
+    public Waiter AddWaiterFacesById(Guid waiterId, List<Image> faces)
+    {
+        if (Helper.WaiterById(Cache, waiterId, out Waiter waiterOnCache) is null)
+            throw new EntityNotFound(waiterId);
+        waiterOnCache.Faces = faces;
+        return Cache.WaitersCache.AddOrUpdateWaiter(waiterOnCache);
+    }
 }

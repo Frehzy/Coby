@@ -15,7 +15,7 @@ public interface IWaiterCache
     List<Waiter> GetWaitersCache();
 
     [OperationContract]
-    Waiter AddWaiter(Waiter waiter);
+    Waiter AddOrUpdateWaiter(Waiter waiter);
 
     [OperationContract]
     Waiter? RemoveWaiter(Guid waiterId);
