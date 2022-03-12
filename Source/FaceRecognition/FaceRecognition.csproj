@@ -98,6 +98,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converter.cs" />
     <Compile Include="DetectFace.cs" />
     <Compile Include="Enums\FaceDetectStatusEnum.cs" />
     <Compile Include="Entities\FaceEntity.cs" />

@@ -10,6 +10,8 @@ public class FaceEntity
 {
     public string Name { get; private set; }
 
+    public Image DefaultFace { get; private set; }
+
     public Image<Gray, byte> Face { get; private set; }
 
     public double DetectValue { get; private set; }
@@ -22,6 +24,7 @@ public class FaceEntity
             throw new ArgumentNullException(nameof(face));
 
         Name = name;
+        DefaultFace = face;
         Face = new Image<Gray, byte>(new Bitmap(face));
         DetectValue = detectValue;
     }
