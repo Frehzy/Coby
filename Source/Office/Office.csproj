@@ -219,6 +219,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FaceRecognition\FaceRecognition.csproj">
+      <Project>{8cdb5b84-28b6-4dc1-9e8e-aa3d8851da9c}</Project>
+      <Name>FaceRecognition</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Server\Storage\Storage.csproj">
       <Project>{3d5fd935-7ec3-4124-ad51-36dd8914e8c7}</Project>
       <Name>Storage</Name>
