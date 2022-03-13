@@ -9,7 +9,7 @@ internal static class ConcurrentDictionaryExtentions
 {
     public static TValue AddOrUpdateDB<Guid, TValue>(this ConcurrentDictionary<Guid, TValue> dictionary, Guid key, TValue value, DBInteraction db, string tableName)
     {
-        if (dictionary.TryRemove(key, out TValue oldValue))
+        if (dictionary.TryRemove(key, out _))
             db.ExecuteNonQuery(SQLString.GetDeleteSqlString(tableName, System.Guid.Parse(key.ToString())));
 
         db.ExecuteNonQuery(SQLString.GetInsertSqlString(value, tableName));

@@ -8,7 +8,6 @@ namespace Storage.Operations.GetBy;
 
 public class GetWaiter
 {
-
     public AllCache Cache { get; }
 
     public GetWaiter(AllCache cache) =>

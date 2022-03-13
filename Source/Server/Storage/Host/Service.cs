@@ -29,6 +29,7 @@ public class Service : IService
     private readonly ConcurrentDictionary<Guid, Table> _tablesCache = new();
     private readonly ConcurrentDictionary<Guid, Waiter> _waitersCache = new();
     private readonly ConcurrentDictionary<Guid, Order> _closeOrders = new();
+    private readonly List<WaiterFace> _waiterFacesCache = new();
     private readonly List<Nomenclature> _nomenclatureCache = new();
     private bool _canWork = true;
 
@@ -69,6 +70,9 @@ public class Service : IService
     public void AddNomenclature(Nomenclature nomenclature) =>
         _nomenclatureCache.AddDB(nomenclature, GetDBInteraction(), "nomenclature");
 
+    public WaiterFace AddOrUpdateWaiterFace(WaiterFace waiterFace) =>
+        _waiterFacesCache.AddDB(waiterFace, GetDBInteraction(), "waiterfaces");
+
     public List<License> GetLicensesCache() =>
         _licensesCache.Values.ToList();
 
@@ -90,6 +94,9 @@ public class Service : IService
     public List<Nomenclature> GetNomenclaturesCache() =>
         _nomenclatureCache.ToList();
 
+    public List<WaiterFace> GetWaiterFacesCache() =>
+        _waiterFacesCache.ToList();
+
     public List<Order> GetCloseOrders() =>
         _closeOrders.Values.ToList();
 
@@ -104,6 +111,18 @@ public class Service : IService
     public Table? RemoveTable(Guid tableId) => _tablesCache.TryRemoveDB(tableId, GetDBInteraction(), "tables");
 
     public Waiter? RemoveWaiter(Guid waiterId) => _waitersCache.TryRemoveDB(waiterId, GetDBInteraction(), "waiters");
+
+    public List<WaiterFace>? RemoveWaiterFace(Guid waiterFaceId)
+    {
+        var removeFaces = _waiterFacesCache.Where(x => x.Id.Equals(waiterFaceId)).ToList();
+        var db = GetDBInteraction();
+        foreach (var face in removeFaces)
+        {
+            _waiterFacesCache.Remove(face);
+            db.ExecuteNonQuery($"DELETE FROM waiterfaces WHERE Id = '{face.Id}'");
+        }
+        return removeFaces;
+    }
 
     public List<Nomenclature> RemoveNomenclatureByParentAndChildId(Guid parentId, Guid childId)
     {
@@ -157,7 +176,8 @@ public class Service : IService
             db = GetDBInteraction();
             GetTables().ForEach(x => _tablesCache.TryAdd(x.Id, x));
             GetPaymentTypes().ForEach(x => _paymentTypes.TryAdd(x.Id, x));
-            GetWaiters().ForEach(x => _waitersCache.TryAdd(x.Id, WaiterConverter.Converter(x, GetWaiterFaces())));
+            GetWaiters().ForEach(x => _waitersCache.TryAdd(x.Id, WaiterConverter.Converter(x)));
+            GetWaiterFaces().ForEach(x => _waiterFacesCache.Add(x));
             GetProducts().ForEach(x => _productsCache.TryAdd(x.Id, x));
             GetNomenclature().ForEach(x => _nomenclatureCache.Add(x));
             Task.Run(() => LoadCloseOrdersAsync().ConfigureAwait(false));
@@ -174,8 +194,8 @@ public class Service : IService
         List<WaiterDB> GetWaiters() =>
             db.SqlQuery<WaiterDB>("SELECT * FROM waiters");
 
-        List<WaiterFacesDB> GetWaiterFaces() =>
-            db.SqlQuery<WaiterFacesDB>("SELECT * FROM waiterfaces");
+        List<WaiterFace> GetWaiterFaces() =>
+            db.SqlQuery<WaiterFace>("SELECT * FROM waiterfaces");
 
         List<Product> GetProducts() =>
             db.SqlQuery<Product>("SELECT * FROM products");

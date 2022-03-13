@@ -2,6 +2,7 @@
 
 using Shared.Dto.Enities;
 using Storage.Cache;
+using Storage.DataBase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -59,6 +60,12 @@ internal static class Helper
     {
         CheckCacheOnNull(cache);
         return cache.LicensesCache.GetLicensesCache().FirstOrDefault(x => x.Id.Equals(credentials.WaiterId));
+    }
+
+    public static List<WaiterFace> WaiterFaceById(AllCache cache, Guid waiterFaceId, out List<WaiterFace> waiterFaceOnCache)
+    {
+        CheckCacheOnNull(cache);
+        return waiterFaceOnCache = cache.WaiterFaceCache.GetWaiterFacesCache().Where(x => x.Id.Equals(waiterFaceId)).ToList();
     }
 
     public static Order OrderById(AllCache cache, Guid orderId, out Order order)

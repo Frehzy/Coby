@@ -64,6 +64,6 @@ public partial class NomenclatureForm : MaterialForm
     {
         var addProductForm = new AddProductForm();
         addProductForm.DisableCheckBox();
-        addProductForm.GetNewProduct(Client.Creater);
+        addProductForm.GetNewProduct(Client.Creater.CreateProduct);
     }
 }

@@ -59,6 +59,7 @@
     <Compile Include="Dto\Enities\Request.cs" />
     <Compile Include="Dto\Enities\Table.cs" />
     <Compile Include="Dto\Enities\Waiter.cs" />
+    <Compile Include="Dto\Enities\WaiterFace.cs" />
     <Compile Include="Dto\Enums\ActionsEnum.cs" />
     <Compile Include="Dto\Enums\CafeSessionStatus.cs" />
     <Compile Include="Dto\Enums\DBConnectionStatus.cs" />

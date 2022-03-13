@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Storage.Host;
 
 [ServiceContract]
-public interface IService : ILicenseCache, IOrderCache, IPaymentTypeCache, IProductCache, ITableCache, IWaiterCache, INomenclatureCache
+public interface IService : ILicenseCache, IOrderCache, IPaymentTypeCache, IProductCache, ITableCache, IWaiterCache, INomenclatureCache, IWaiterFaceCache
 {
     [OperationContract]
     LicenseOperation GetLicenseOperation(AllCache cache);

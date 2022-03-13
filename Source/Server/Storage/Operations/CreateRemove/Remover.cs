@@ -2,6 +2,7 @@
 
 using Shared.Dto.Enities;
 using Storage.Cache;
+using Storage.DataBase;
 using System;
 using System.Collections.Generic;
 
@@ -28,4 +29,8 @@ public class Remover
 
     public Waiter? RemoveWaiterById(Guid waiterId) =>
         Cache.WaitersCache.RemoveWaiter(waiterId);
+
+    public List<WaiterFace> RemoveWaiterFacesById(Guid waiterId) =>
+        Cache.WaiterFaceCache.RemoveWaiterFace(waiterId);
+
 }

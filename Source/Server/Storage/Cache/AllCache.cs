@@ -20,6 +20,8 @@ public class AllCache
 
     public INomenclatureCache NomenclatureCache { get; }
 
+    public IWaiterFaceCache WaiterFaceCache { get; }
+
 #pragma warning disable CS8618 // Поле, не допускающее значения NULL, должно содержать значение, отличное от NULL, при выходе из конструктора. Возможно, стоит объявить поле как допускающее значения NULL.
     public AllCache() { }
 #pragma warning restore CS8618 // Поле, не допускающее значения NULL, должно содержать значение, отличное от NULL, при выходе из конструктора. Возможно, стоит объявить поле как допускающее значения NULL.
@@ -33,5 +35,6 @@ public class AllCache
         TablesCache = service;
         WaitersCache = service;
         NomenclatureCache = service;
+        WaiterFaceCache = service;
     }
 }

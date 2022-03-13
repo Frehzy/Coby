@@ -8,6 +8,8 @@ namespace FaceRecognition.Entities;
 
 public class FaceEntity
 {
+    public Guid WaiterId { get; set; }
+
     public string Name { get; private set; }
 
     public Image DefaultFace { get; private set; }
@@ -18,11 +20,12 @@ public class FaceEntity
 
     public FaceDetectStatusEnum FaceDetectStatus { get; private set; }
 
-    public FaceEntity(string name, Image face, double detectValue = default)
+    public FaceEntity(Guid waiterId, string name, Image face, double detectValue = default)
     {
         if (face is null)
             throw new ArgumentNullException(nameof(face));
 
+        WaiterId = waiterId;
         Name = name;
         DefaultFace = face;
         Face = new Image<Gray, byte>(new Bitmap(face));

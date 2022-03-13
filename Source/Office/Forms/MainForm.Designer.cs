@@ -56,6 +56,7 @@
             this.CloseOrdersButton = new MaterialSkin.Controls.MaterialButton();
             this.OpenOrdersButton = new MaterialSkin.Controls.MaterialButton();
             this.ReportButton = new MaterialSkin.Controls.MaterialButton();
+            this.AddWaiterFaceButton = new MaterialSkin.Controls.MaterialButton();
             this.TabControl.SuspendLayout();
             this.WaitersPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.WaitersDgv)).BeginInit();
@@ -88,6 +89,7 @@
             // 
             // WaitersPage
             // 
+            this.WaitersPage.Controls.Add(this.AddWaiterFaceButton);
             this.WaitersPage.Controls.Add(this.WaitersDgv);
             this.WaitersPage.Controls.Add(this.DeleteWaiterButton);
             this.WaitersPage.Controls.Add(this.AddWaiterButton);
@@ -147,14 +149,14 @@
             this.AddWaiterButton.Depth = 0;
             this.AddWaiterButton.HighEmphasis = true;
             this.AddWaiterButton.Icon = null;
-            this.AddWaiterButton.Location = new System.Drawing.Point(625, 10);
+            this.AddWaiterButton.Location = new System.Drawing.Point(582, 10);
             this.AddWaiterButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.AddWaiterButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.AddWaiterButton.Name = "AddWaiterButton";
             this.AddWaiterButton.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.AddWaiterButton.Size = new System.Drawing.Size(64, 36);
+            this.AddWaiterButton.Size = new System.Drawing.Size(107, 36);
             this.AddWaiterButton.TabIndex = 1;
-            this.AddWaiterButton.Text = "Add";
+            this.AddWaiterButton.Text = "Add waiter";
             this.AddWaiterButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.AddWaiterButton.UseAccentColor = false;
             this.AddWaiterButton.UseVisualStyleBackColor = true;
@@ -598,6 +600,27 @@
             this.ReportButton.UseVisualStyleBackColor = true;
             this.ReportButton.Click += new System.EventHandler(this.ReportButton_Click);
             // 
+            // AddWaiterFaceButton
+            // 
+            this.AddWaiterFaceButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddWaiterFaceButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.AddWaiterFaceButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.AddWaiterFaceButton.Depth = 0;
+            this.AddWaiterFaceButton.HighEmphasis = true;
+            this.AddWaiterFaceButton.Icon = null;
+            this.AddWaiterFaceButton.Location = new System.Drawing.Point(484, 10);
+            this.AddWaiterFaceButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.AddWaiterFaceButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.AddWaiterFaceButton.Name = "AddWaiterFaceButton";
+            this.AddWaiterFaceButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.AddWaiterFaceButton.Size = new System.Drawing.Size(90, 36);
+            this.AddWaiterFaceButton.TabIndex = 4;
+            this.AddWaiterFaceButton.Text = "Add face";
+            this.AddWaiterFaceButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.AddWaiterFaceButton.UseAccentColor = false;
+            this.AddWaiterFaceButton.UseVisualStyleBackColor = true;
+            this.AddWaiterFaceButton.Click += new System.EventHandler(this.AddWaiterFaceButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -663,6 +686,7 @@
         private MaterialSkin.Controls.MaterialButton ChartsButton;
         private MaterialSkin.Controls.MaterialButton OpenOrdersButton;
         private MaterialSkin.Controls.MaterialButton ReportButton;
+        private MaterialSkin.Controls.MaterialButton AddWaiterFaceButton;
     }
 }
 

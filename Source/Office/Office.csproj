@@ -78,6 +78,18 @@
     <Compile Include="Forms\CustomControls\CustomDateTimePicker.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Forms\MessageForm\Face\FaceDetectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MessageForm\Face\FaceDetectionForm.Designer.cs">
+      <DependentUpon>FaceDetectionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MessageForm\Face\AddWaiterFaceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MessageForm\Face\AddWaiterFaceForm.Designer.cs">
+      <DependentUpon>AddWaiterFaceForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MessageForm\GroupByForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -157,6 +169,12 @@
     <Compile Include="Helper\FormHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\MessageForm\Face\FaceDetectionForm.resx">
+      <DependentUpon>FaceDetectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MessageForm\Face\AddWaiterFaceForm.resx">
+      <DependentUpon>AddWaiterFaceForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MessageForm\GroupByForm.resx">
       <DependentUpon>GroupByForm.cs</DependentUpon>
     </EmbeddedResource>

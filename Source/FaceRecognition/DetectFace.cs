@@ -142,8 +142,8 @@ public class DetectFace : IDisposable
             _device.Stop();
     }
 
-    public void AddFace(string name, Image face) =>
-        Faces.Add(new(name, face));
+    public void AddFace(Guid waiterId, string name, Image face) =>
+        Faces.Add(new(waiterId, name, face));
 
     public Image ScreenFace() =>
         _resultFrame?.Resize(100, 100, INTER.CV_INTER_CUBIC).ToBitmap();

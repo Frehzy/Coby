@@ -1,6 +1,7 @@
 ﻿using MaterialSkin.Controls;
 using Office.ClientOperation;
 using Office.Forms.MessageForm;
+using Office.Forms.MessageForm.Face;
 using Office.Forms.StatisticsPage;
 using Office.Helper;
 using Shared.Dto.Enities;
@@ -26,8 +27,14 @@ public partial class MainForm : MaterialForm
 
     private void AddWaiterButton_Click(object sender, EventArgs e)
     {
-        _ = new AddWaiterForm().GetNewWaiter(Client.Creater);
+        _ = new AddWaiterForm().GetNewWaiter(Client.Creater.CreateWaiter);
         UpdateWaitersButton.PerformClick();
+    }
+
+    private void AddWaiterFaceButton_Click(object sender, EventArgs e)
+    {
+        var waiterId = new RowHelper<Guid>(WaitersDgv).GetValueByColumnName("Id", false).Value;
+        new AddWaiterFaceForm(waiterId, Client).Show();
     }
 
     private void DeleteWaiterButton_Click(object sender, EventArgs e)
@@ -44,7 +51,7 @@ public partial class MainForm : MaterialForm
 
     private void AddTableButton_Click(object sender, EventArgs e)
     {
-        _ = new AddTableForm().GetNewTable(Client.Creater);
+        _ = new AddTableForm().GetNewTable(Client.Creater.CreateTable);
         TableUpdateButton.PerformClick();
     }
 
@@ -62,7 +69,7 @@ public partial class MainForm : MaterialForm
 
     private void AddProductButton_Click(object sender, EventArgs e)
     {
-        _ = new AddProductForm().GetNewProduct(Client.Creater);
+        _ = new AddProductForm().GetNewProduct(Client.Creater.CreateProduct);
         ProductUpdateButton.PerformClick();
     }
 
@@ -100,7 +107,7 @@ public partial class MainForm : MaterialForm
 
     private void AddPaymentTypeButton_Click(object sender, EventArgs e)
     {
-        _ = new AddPaymentTypeForm().GetNewPaymentType(Client.Creater);
+        _ = new AddPaymentTypeForm().GetNewPaymentType(Client.Creater.CreatePaymentType);
         PaymentTypeUpdateButton.PerformClick();
     }
 

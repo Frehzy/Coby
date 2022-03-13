@@ -104,7 +104,6 @@
     <Compile Include="DataBase\ProductDB.cs" />
     <Compile Include="DataBase\SQLString.cs" />
     <Compile Include="DataBase\WaiterDB.cs" />
-    <Compile Include="DataBase\WaiterFacesDB.cs" />
     <Compile Include="Extention\ConcurrentDictionaryExtentions.cs" />
     <Compile Include="Extention\DictionaryExtentions.cs" />
     <Compile Include="Extention\ListExtentions.cs" />
@@ -116,6 +115,7 @@
     <Compile Include="Host\IService.cs" />
     <Compile Include="Host\ITableCache.cs" />
     <Compile Include="Host\IWaiterCache.cs" />
+    <Compile Include="Host\IWaiterFaceCache.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Operations\CreateRemove\Creater.cs" />
     <Compile Include="Operations\CreateRemove\Remover.cs" />
@@ -124,6 +124,7 @@
     <Compile Include="Operations\GetBy\GetPaymentType.cs" />
     <Compile Include="Operations\GetBy\GetProduct.cs" />
     <Compile Include="Operations\GetBy\GetTable.cs" />
+    <Compile Include="Operations\GetBy\GetWaiterFace.cs" />
     <Compile Include="Operations\GetBy\GetWaiter.cs" />
     <Compile Include="Operations\HistoryHelper.cs" />
     <Compile Include="Operations\OrderOperation\GuestOperations.cs" />

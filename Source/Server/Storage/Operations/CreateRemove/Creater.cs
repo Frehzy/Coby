@@ -2,9 +2,11 @@
 using Shared.Dto.Enums;
 using Shared.Dto.Exceptions;
 using Storage.Cache;
+using Storage.DataBase;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 
 namespace Storage.Operations.CreateRemove;
 
@@ -42,11 +44,9 @@ public class Creater
             ? throw new EntityAlreadyExistsException(waiterOnCache.Id)
             : Cache.WaitersCache.AddOrUpdateWaiter(new Waiter(Guid.NewGuid(), name, password, permissionStatus, WaiterSessionStatus.Closed));
 
-    public Waiter AddWaiterFacesById(Guid waiterId, List<Image> faces)
-    {
-        if (Helper.WaiterById(Cache, waiterId, out Waiter waiterOnCache) is null)
-            throw new EntityNotFound(waiterId);
-        waiterOnCache.Faces = faces;
-        return Cache.WaitersCache.AddOrUpdateWaiter(waiterOnCache);
-    }
+    public WaiterFace AddWaiterFacesById(Guid waiterFaceId, Image face) =>
+        Helper.WaiterFaceById(Cache, waiterFaceId, out List<WaiterFace> waiterFaceOnCache) is null
+            ? throw new EntityAlreadyExistsException(waiterFaceOnCache.Select(x => x.Id).First())
+            : Cache.WaiterFaceCache.AddOrUpdateWaiterFace(new(waiterFaceId, face));
+
 }
