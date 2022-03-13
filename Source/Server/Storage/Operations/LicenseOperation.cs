@@ -1,4 +1,5 @@
 ﻿using Shared.Dto.Enities;
+using Shared.Dto.Exceptions;
 using Storage.Cache;
 
 namespace Storage.Operations;
@@ -7,9 +8,8 @@ public class LicenseOperation
 {
     public AllCache Cache { get; set; }
 
-    public Credentials GetCredentials(string password, out Credentials credentials)
-    {
-        var waiter = Helper.WaiterByPassword(Cache, password, out _);
-        return credentials = waiter is not null ? new Credentials(waiter.Id) : default;
-    }
+    public Credentials GetCredentials(string password, out Credentials credentials) =>
+        credentials = Helper.WaiterByPassword(Cache, password, out var waiterOnCache) is null
+            ? throw new EntityNotFound(default)
+            : new Credentials(waiterOnCache.Id);
 }

@@ -7,6 +7,7 @@ using FaceRecognition.Entities;
 using FaceRecognition.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,7 +15,7 @@ using System.Windows.Forms;
 
 namespace FaceRecognition;
 
-public class DetectFace : IDisposable
+public class DetectFace : INotifyPropertyChanged, IDisposable
 {
     private readonly HaarCascade _haar = new("haarcascade_frontalface_default.xml");
     private readonly int _cameraIndex;
@@ -27,8 +28,19 @@ public class DetectFace : IDisposable
 
     private MCvFont _font = new(FONT.CV_FONT_HERSHEY_TRIPLEX, 0.6d, 0.6d);
     private Image<Gray, byte> _resultFrame;
+    private FaceEntity _foundFace;
 
-    public FaceEntity FoundFace { get; private set; }
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    public FaceEntity FoundFace
+    {
+        get => _foundFace;
+        private set
+        {
+            _foundFace = value;
+            OnPropertyChanged(nameof(FoundFace));
+        }
+    }
 
     public List<FaceEntity> Faces { get; private set; } = new();
 
@@ -37,7 +49,7 @@ public class DetectFace : IDisposable
                       double maxFaceDetectValue,
                       int resolutionX,
                       int resolutionY,
-                      MethodTypeEnum methodType)
+                      FaceDetectMethodEnum methodType)
     {
         _cameraIndex = cameraIndex;
         _cameraBox = cameraBox;
@@ -49,7 +61,7 @@ public class DetectFace : IDisposable
 
         _device.NewFrame += (sender, e) =>
         {
-            _cameraBox.Image = methodType is MethodTypeEnum.Sync
+            _cameraBox.Image = methodType is FaceDetectMethodEnum.Sync
                 ? Device_NewFrame(sender, e)
                 : Device_NewFrame_Parallel(sender, e);
         };
@@ -142,8 +154,8 @@ public class DetectFace : IDisposable
             _device.Stop();
     }
 
-    public void AddFace(Guid waiterId, string name, Image face) =>
-        Faces.Add(new(waiterId, name, face));
+    public void AddFace(Guid waiterId, string name, string password, Image face) =>
+        Faces.Add(new(waiterId, name, password, face));
 
     public Image ScreenFace() =>
         _resultFrame?.Resize(100, 100, INTER.CV_INTER_CUBIC).ToBitmap();
@@ -162,6 +174,12 @@ public class DetectFace : IDisposable
         _haar.Dispose();
         _filter.Clear();
     }
+
+    protected void OnPropertyChanged(PropertyChangedEventArgs e) =>
+        PropertyChanged?.Invoke(this, e);
+
+    protected void OnPropertyChanged(string propertyName) =>
+        OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
 
     private FaceEntity TryGetFaceByMaxValue(double maxFaceValue)
     {

@@ -1,6 +1,6 @@
 ﻿namespace FaceRecognition.Enums;
 
-public enum MethodTypeEnum
+public enum FaceDetectMethodEnum
 {
     Sync = 0,
     Async = 1

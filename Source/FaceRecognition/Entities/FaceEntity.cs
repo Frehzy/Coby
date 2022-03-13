@@ -12,6 +12,8 @@ public class FaceEntity
 
     public string Name { get; private set; }
 
+    public string Password { get; private set; }
+
     public Image DefaultFace { get; private set; }
 
     public Image<Gray, byte> Face { get; private set; }
@@ -20,13 +22,14 @@ public class FaceEntity
 
     public FaceDetectStatusEnum FaceDetectStatus { get; private set; }
 
-    public FaceEntity(Guid waiterId, string name, Image face, double detectValue = default)
+    public FaceEntity(Guid waiterId, string name, string password, Image face, double detectValue = default)
     {
         if (face is null)
             throw new ArgumentNullException(nameof(face));
 
         WaiterId = waiterId;
         Name = name;
+        Password = password;
         DefaultFace = face;
         Face = new Image<Gray, byte>(new Bitmap(face));
         DetectValue = detectValue;

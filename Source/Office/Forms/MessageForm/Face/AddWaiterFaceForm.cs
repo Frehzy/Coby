@@ -37,7 +37,7 @@ public partial class AddWaiterFaceForm : MaterialForm
         var resolutions = WebcamHelper.GetResolutions();
         ResolutionsComboBox.DataSource = resolutions;
         ResolutionsComboBox.DisplayMember = "FullResolution";
-        MethodComboBox.DataSource = Enum.GetValues(typeof(MethodTypeEnum));
+        MethodComboBox.DataSource = Enum.GetValues(typeof(FaceDetectMethodEnum));
     }
 
     private void CheckExistenceFaces()
@@ -69,7 +69,7 @@ public partial class AddWaiterFaceForm : MaterialForm
                                                       cameraIndex,
                                                       maxFaceDetect,
                                                       resolution,
-                                                      (MethodTypeEnum)method,
+                                                      (FaceDetectMethodEnum)method,
                                                       _client.Creater.AddWaiterFacesById);
         faceDetectionForm.Show();
         Enabled = false;

@@ -88,6 +88,19 @@
     <Compile Include="Forms\CustomControls\CustomProgressBar.Designer.cs">
       <DependentUpon>CustomProgressBar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Face\FaceDetectionSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Face\FaceDetectionSettingsForm.Designer.cs">
+      <DependentUpon>FaceDetectionSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Face\FaceDetectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Face\FaceDetectionForm.Designer.cs">
+      <DependentUpon>FaceDetectionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Face\FaceDetectionSettings.cs" />
     <Compile Include="Forms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,6 +151,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CustomControls\CustomProgressBar.resx">
       <DependentUpon>CustomProgressBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Face\FaceDetectionSettingsForm.resx">
+      <DependentUpon>FaceDetectionSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Face\FaceDetectionForm.resx">
+      <DependentUpon>FaceDetectionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -199,6 +218,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\mainImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
