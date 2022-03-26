@@ -20,4 +20,9 @@ public class GetPaymentType
 
     public List<PaymentType> GetPaymentTypes() =>
         Cache.PaymentTypesCache.GetPaymentTypesCache();
+
+    public PaymentType? TryGetPaymentTypeById(Guid paymentTypeId) =>
+        Helper.PaymentTypeById(Cache, paymentTypeId, out PaymentType paymentTypeOnCache) is null
+            ? default
+            : paymentTypeOnCache;
 }

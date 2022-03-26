@@ -34,11 +34,11 @@
             this.ParentInfoTextBox = new MaterialSkin.Controls.MaterialMultiLineTextBox2();
             this.ParentLabel = new MaterialSkin.Controls.MaterialLabel();
             this.ButtonsPanel = new System.Windows.Forms.Panel();
+            this.CreateProductButton = new MaterialSkin.Controls.MaterialButton();
             this.RemoveNomenclatureButton = new MaterialSkin.Controls.MaterialButton();
             this.AddNomenclatureButton = new MaterialSkin.Controls.MaterialButton();
             this.NomenclatureUpdateButton = new MaterialSkin.Controls.MaterialButton();
             this.NomenclatureDgv = new System.Windows.Forms.DataGridView();
-            this.CreateProductButton = new MaterialSkin.Controls.MaterialButton();
             this.ParentProductPanel.SuspendLayout();
             this.ButtonsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NomenclatureDgv)).BeginInit();
@@ -70,7 +70,8 @@
             // 
             // ChildInfoTextBox
             // 
-            this.ChildInfoTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ChildInfoTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.ChildInfoTextBox.AnimateReadOnly = true;
             this.ChildInfoTextBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ChildInfoTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
@@ -97,7 +98,8 @@
             // 
             // ParentInfoTextBox
             // 
-            this.ParentInfoTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ParentInfoTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.ParentInfoTextBox.AnimateReadOnly = true;
             this.ParentInfoTextBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ParentInfoTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
@@ -145,6 +147,27 @@
             this.ButtonsPanel.Name = "ButtonsPanel";
             this.ButtonsPanel.Size = new System.Drawing.Size(916, 54);
             this.ButtonsPanel.TabIndex = 1;
+            // 
+            // CreateProductButton
+            // 
+            this.CreateProductButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CreateProductButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.CreateProductButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.CreateProductButton.Depth = 0;
+            this.CreateProductButton.HighEmphasis = true;
+            this.CreateProductButton.Icon = null;
+            this.CreateProductButton.Location = new System.Drawing.Point(683, 9);
+            this.CreateProductButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.CreateProductButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.CreateProductButton.Name = "CreateProductButton";
+            this.CreateProductButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.CreateProductButton.Size = new System.Drawing.Size(76, 36);
+            this.CreateProductButton.TabIndex = 18;
+            this.CreateProductButton.Text = "Create";
+            this.CreateProductButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.CreateProductButton.UseAccentColor = false;
+            this.CreateProductButton.UseVisualStyleBackColor = true;
+            this.CreateProductButton.Click += new System.EventHandler(this.CreateProductButton_Click);
             // 
             // RemoveNomenclatureButton
             // 
@@ -224,26 +247,6 @@
             this.NomenclatureDgv.Size = new System.Drawing.Size(916, 360);
             this.NomenclatureDgv.TabIndex = 16;
             this.NomenclatureDgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.NomenclatureDgv_CellContentClick);
-            // 
-            // CreateProductButton
-            // 
-            this.CreateProductButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.CreateProductButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.CreateProductButton.Depth = 0;
-            this.CreateProductButton.HighEmphasis = true;
-            this.CreateProductButton.Icon = null;
-            this.CreateProductButton.Location = new System.Drawing.Point(683, 9);
-            this.CreateProductButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.CreateProductButton.MouseState = MaterialSkin.MouseState.HOVER;
-            this.CreateProductButton.Name = "CreateProductButton";
-            this.CreateProductButton.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.CreateProductButton.Size = new System.Drawing.Size(76, 36);
-            this.CreateProductButton.TabIndex = 18;
-            this.CreateProductButton.Text = "Create";
-            this.CreateProductButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.CreateProductButton.UseAccentColor = false;
-            this.CreateProductButton.UseVisualStyleBackColor = true;
-            this.CreateProductButton.Click += new System.EventHandler(this.CreateProductButton_Click);
             // 
             // NomenclatureForm
             // 

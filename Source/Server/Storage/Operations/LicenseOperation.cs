@@ -12,4 +12,9 @@ public class LicenseOperation
         credentials = Helper.WaiterByPassword(Cache, password, out var waiterOnCache) is null
             ? throw new EntityNotFound(default)
             : new Credentials(waiterOnCache.Id);
+
+    public Credentials? TryGetCredentials(string password) =>
+        Helper.WaiterByPassword(Cache, password, out var waiterOnCache) is null
+            ? default
+            : new Credentials(waiterOnCache.Id);
 }

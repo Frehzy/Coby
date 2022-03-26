@@ -13,10 +13,11 @@ public partial class FaceDetectionSettingsForm : MaterialForm
     {
         InitializeComponent();
         _ = FormHelper.CreateMaterialSkinManager(this);
-        LoadSettings();
+        LoadConfiguration();
+        LoadSaveSettings();
     }
 
-    private void LoadSettings()
+    private void LoadConfiguration()
     {
         CamerasComboBox.DataSource = WebcamHelper.TakeAllWebCamera();
         var resolutions = WebcamHelper.GetResolutions();
@@ -25,10 +26,18 @@ public partial class FaceDetectionSettingsForm : MaterialForm
         MethodComboBox.DataSource = Enum.GetValues(typeof(FaceDetectMethodEnum));
     }
 
+    private void LoadSaveSettings()
+    {
+        CamerasComboBox.SelectedIndex = FaceDetectionSettings.CameraIndex;
+        MaxFaceDetectValueSlider.Value = Convert.ToInt32(FaceDetectionSettings.MaxFaceDetect * 100);
+        ResolutionsComboBox.SelectedItem = FaceDetectionSettings.Resolution;
+        MethodComboBox.SelectedItem = FaceDetectionSettings.FaceDetectMethod;
+    }
+
     private void SaveButton_Click(object sender, EventArgs e)
     {
         FaceDetectionSettings.CameraIndex = CamerasComboBox.SelectedIndex;
-        FaceDetectionSettings.MaxFaceDetect = MaxFaceDetectValueSlider.Value / 100;
+        FaceDetectionSettings.MaxFaceDetect = (double)Math.Round(decimal.Divide(MaxFaceDetectValueSlider.Value, 100), 2);
         FaceDetectionSettings.Resolution = ResolutionsComboBox.SelectedItem as Resolution;
         FaceDetectionSettings.FaceDetectMethod = (FaceDetectMethodEnum)MethodComboBox.SelectedItem;
         Close();

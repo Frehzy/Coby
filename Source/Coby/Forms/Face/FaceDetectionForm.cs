@@ -1,5 +1,6 @@
 ﻿using Coby.ClientOperation;
 using FaceRecognition;
+using FaceRecognition.Entities;
 using FaceRecognition.Enums;
 using FaceRecognition.Transcription;
 using MaterialSkin.Controls;
@@ -16,6 +17,7 @@ public partial class FaceDetectionForm : MaterialForm
 {
     private readonly IClient _client;
     private readonly DetectFace _detectFace;
+    private FaceEntity _foundFace;
 
     public FaceDetectionForm(IClient client)
     {
@@ -44,13 +46,16 @@ public partial class FaceDetectionForm : MaterialForm
 
     public Credentials GetCredentials() =>
         ShowDialog() is DialogResult.OK
-            ? _client.LicenseOperation.GetCredentials(_detectFace.FoundFace.Password, out _)
+            ? _client.LicenseOperation.GetCredentials(_foundFace.Password, out _)
             : default;
 
     private void _detectFace_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
-        if (e.PropertyName is nameof(_detectFace.FoundFace) && _detectFace.FoundFace.FaceDetectStatus is FaceDetectStatusEnum.Detect)
+        if (e.PropertyName is nameof(_detectFace.FoundFace) && _detectFace.FoundFace?.FaceDetectStatus is FaceDetectStatusEnum.Detect)
+        {
+            _foundFace = _detectFace.FoundFace;
             DialogResult = DialogResult.OK;
+        }
     }
 
     private void FaceDetectionForm_FormClosing(object sender, FormClosingEventArgs e)

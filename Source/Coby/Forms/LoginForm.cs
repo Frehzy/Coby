@@ -1,7 +1,9 @@
 ﻿using Coby.ClientOperation;
 using Coby.Forms.Face;
+using Coby.Forms.MessageForms;
 using MaterialSkin.Controls;
 using Office.Helper;
+using Shared.Dto.Enums;
 using System;
 
 namespace Coby.Forms;
@@ -50,6 +52,18 @@ public partial class LoginForm : MaterialForm
 
     private void FaceDetectSettingsButton_Click(object sender, EventArgs e)
     {
+        var credentials = new EnterPinForm().GetCredentials(_client.LicenseOperation.TryGetCredentials);
+        if (credentials is null)
+        {
+            MaterialMessageBox.Show($"Пароль не найден.", false, FlexibleMaterialForm.ButtonsPosition.Center);
+            return;
+        }
+        if (_client.GetByCacheOperation.Waiter.GetWaiterById(credentials.WaiterId).PermissionStatus is not PermissionStatus.Admin)
+        {
+            MaterialMessageBox.Show($"Недостаточно прав.", false, FlexibleMaterialForm.ButtonsPosition.Center);
+            return;
+        }
+
         var settingsForm = new FaceDetectionSettingsForm();
         settingsForm.Show();
         Enabled = false;

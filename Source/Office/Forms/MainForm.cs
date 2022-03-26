@@ -133,8 +133,8 @@ public partial class MainForm : MaterialForm
     }
 
     private void ChartsButton_Click(object sender, EventArgs e) =>
-        new ChartsForm(Client).Show();
+        new ChartsForm(Client).ShowDialog();
 
     private void ReportButton_Click(object sender, EventArgs e) =>
-        new ReportsForm(Client).Show();
+        new ReportsForm(Client).ShowDialog();
 }

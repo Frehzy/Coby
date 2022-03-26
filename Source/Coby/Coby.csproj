@@ -107,6 +107,12 @@
     <Compile Include="Forms\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\MessageForms\EnterPinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MessageForms\EnterPinForm.Designer.cs">
+      <DependentUpon>EnterPinForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MessageForms\AddPaymentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -160,6 +166,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MessageForms\EnterPinForm.resx">
+      <DependentUpon>EnterPinForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MessageForms\AddPaymentForm.resx">
       <DependentUpon>AddPaymentForm.cs</DependentUpon>

@@ -33,17 +33,17 @@
             this.ExitButton = new MaterialSkin.Controls.MaterialButton();
             this.MainPanel = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.FaceDetectSettingsButton = new MaterialSkin.Controls.MaterialButton();
             this.LoginByFaceButton = new MaterialSkin.Controls.MaterialButton();
-            this.MainImagePictureBox = new System.Windows.Forms.PictureBox();
             this.PasswordTextBox = new MaterialSkin.Controls.MaterialTextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.LoginByPinButton = new MaterialSkin.Controls.MaterialButton();
+            this.FaceDetectSettingsButton = new MaterialSkin.Controls.MaterialButton();
+            this.MainImagePictureBox = new System.Windows.Forms.PictureBox();
             this.ExitPanel.SuspendLayout();
             this.MainPanel.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.MainImagePictureBox)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MainImagePictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // ExitPanel
@@ -106,27 +106,6 @@
             this.panel2.Size = new System.Drawing.Size(507, 44);
             this.panel2.TabIndex = 10;
             // 
-            // FaceDetectSettingsButton
-            // 
-            this.FaceDetectSettingsButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.FaceDetectSettingsButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.FaceDetectSettingsButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.FaceDetectSettingsButton.Depth = 0;
-            this.FaceDetectSettingsButton.HighEmphasis = true;
-            this.FaceDetectSettingsButton.Icon = global::Coby.Properties.Resources.settings;
-            this.FaceDetectSettingsButton.Location = new System.Drawing.Point(324, 3);
-            this.FaceDetectSettingsButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.FaceDetectSettingsButton.MouseState = MaterialSkin.MouseState.HOVER;
-            this.FaceDetectSettingsButton.Name = "FaceDetectSettingsButton";
-            this.FaceDetectSettingsButton.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.FaceDetectSettingsButton.Size = new System.Drawing.Size(118, 36);
-            this.FaceDetectSettingsButton.TabIndex = 2;
-            this.FaceDetectSettingsButton.Text = "Settings";
-            this.FaceDetectSettingsButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.FaceDetectSettingsButton.UseAccentColor = false;
-            this.FaceDetectSettingsButton.UseVisualStyleBackColor = true;
-            this.FaceDetectSettingsButton.Click += new System.EventHandler(this.FaceDetectSettingsButton_Click);
-            // 
             // LoginByFaceButton
             // 
             this.LoginByFaceButton.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -148,25 +127,13 @@
             this.LoginByFaceButton.UseVisualStyleBackColor = true;
             this.LoginByFaceButton.Click += new System.EventHandler(this.LoginByFaceButton_Click);
             // 
-            // MainImagePictureBox
-            // 
-            this.MainImagePictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainImagePictureBox.Image = ((System.Drawing.Image)(resources.GetObject("MainImagePictureBox.Image")));
-            this.MainImagePictureBox.InitialImage = null;
-            this.MainImagePictureBox.Location = new System.Drawing.Point(3, 3);
-            this.MainImagePictureBox.Name = "MainImagePictureBox";
-            this.MainImagePictureBox.Size = new System.Drawing.Size(507, 15);
-            this.MainImagePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.MainImagePictureBox.TabIndex = 8;
-            this.MainImagePictureBox.TabStop = false;
-            // 
             // PasswordTextBox
             // 
             this.PasswordTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.PasswordTextBox.AnimateReadOnly = false;
             this.PasswordTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.PasswordTextBox.Depth = 0;
-            this.PasswordTextBox.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.PasswordTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.PasswordTextBox.Hint = "Password";
             this.PasswordTextBox.LeadingIcon = null;
             this.PasswordTextBox.Location = new System.Drawing.Point(3, 24);
@@ -209,6 +176,39 @@
             this.LoginByPinButton.UseVisualStyleBackColor = true;
             this.LoginByPinButton.Click += new System.EventHandler(this.LoginByPinButton_Click);
             // 
+            // FaceDetectSettingsButton
+            // 
+            this.FaceDetectSettingsButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.FaceDetectSettingsButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.FaceDetectSettingsButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.FaceDetectSettingsButton.Depth = 0;
+            this.FaceDetectSettingsButton.HighEmphasis = true;
+            this.FaceDetectSettingsButton.Icon = global::Coby.Properties.Resources.settings;
+            this.FaceDetectSettingsButton.Location = new System.Drawing.Point(324, 3);
+            this.FaceDetectSettingsButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.FaceDetectSettingsButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.FaceDetectSettingsButton.Name = "FaceDetectSettingsButton";
+            this.FaceDetectSettingsButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.FaceDetectSettingsButton.Size = new System.Drawing.Size(118, 36);
+            this.FaceDetectSettingsButton.TabIndex = 2;
+            this.FaceDetectSettingsButton.Text = "Settings";
+            this.FaceDetectSettingsButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.FaceDetectSettingsButton.UseAccentColor = false;
+            this.FaceDetectSettingsButton.UseVisualStyleBackColor = true;
+            this.FaceDetectSettingsButton.Click += new System.EventHandler(this.FaceDetectSettingsButton_Click);
+            // 
+            // MainImagePictureBox
+            // 
+            this.MainImagePictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainImagePictureBox.Image = ((System.Drawing.Image)(resources.GetObject("MainImagePictureBox.Image")));
+            this.MainImagePictureBox.InitialImage = null;
+            this.MainImagePictureBox.Location = new System.Drawing.Point(3, 3);
+            this.MainImagePictureBox.Name = "MainImagePictureBox";
+            this.MainImagePictureBox.Size = new System.Drawing.Size(507, 15);
+            this.MainImagePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.MainImagePictureBox.TabIndex = 8;
+            this.MainImagePictureBox.TabStop = false;
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -230,9 +230,9 @@
             this.MainPanel.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.MainImagePictureBox)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MainImagePictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -24,8 +24,8 @@ public class DetectFace : INotifyPropertyChanged, IDisposable
     private readonly int _resolutionX;
     private readonly int _resolutionY;
     private readonly FilterInfoCollection _filter;
-    private readonly VideoCaptureDevice _device;
 
+    private VideoCaptureDevice _device;
     private MCvFont _font = new(FONT.CV_FONT_HERSHEY_TRIPLEX, 0.6d, 0.6d);
     private Image<Gray, byte> _resultFrame;
     private FaceEntity _foundFace;
@@ -91,7 +91,9 @@ public class DetectFace : INotifyPropertyChanged, IDisposable
                 if (FoundFace?.DetectValue >= _maxFaceDetectValue)
                 {
                     MCvTermCriteria termCriterias = new(Faces.Count, 0.001);
-                    EigenObjectRecognizer recognizer = new(Faces.Select(x => x.Face).ToArray(), Faces.Select(x => x.Name).ToArray(), 1500, ref termCriterias);
+                    var faces = Faces.Select(x => x.Face).ToArray();
+                    var names = Faces.Select(x => x.Name).ToArray();
+                    EigenObjectRecognizer recognizer = new(faces, names, 1500, ref termCriterias);
 
                     name = recognizer.Recognize(_resultFrame);
                     frame.Draw(name, ref _font, new Point(f.rect.X - 2, f.rect.Y - 2), new Bgr(Color.Red));
@@ -130,7 +132,9 @@ public class DetectFace : INotifyPropertyChanged, IDisposable
                 if (FoundFace?.DetectValue >= _maxFaceDetectValue)
                 {
                     MCvTermCriteria termCriterias = new(Faces.Count, 0.001);
-                    EigenObjectRecognizer recognizer = new(Faces.Select(x => x.Face).ToArray(), Faces.Select(x => x.Name).ToArray(), 1500, ref termCriterias);
+                    var faces = Faces.Select(x => x.Face).ToArray();
+                    var names = Faces.Select(x => x.Name).ToArray();
+                    EigenObjectRecognizer recognizer = new(faces, names, 1500, ref termCriterias);
 
                     name = recognizer.Recognize(_resultFrame);
                     frame.Draw(name, ref _font, new Point(f.rect.X - 2, f.rect.Y - 2), new Bgr(Color.Red));
@@ -151,7 +155,10 @@ public class DetectFace : INotifyPropertyChanged, IDisposable
     public void Stop()
     {
         if (_device.IsRunning)
-            _device.Stop();
+        {
+            _device.SignalToStop();
+            _device = null;
+        }
     }
 
     public void AddFace(Guid waiterId, string name, string password, Image face) =>
@@ -169,7 +176,6 @@ public class DetectFace : INotifyPropertyChanged, IDisposable
     public void Dispose()
     {
         Stop();
-        ClearAllFace();
         _cameraBox.Dispose();
         _haar.Dispose();
         _filter.Clear();

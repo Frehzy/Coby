@@ -20,4 +20,9 @@ public class GetProduct
 
     public List<Product> GetProducts() =>
         Cache.ProductsCache.GetProductsCache();
+
+    public Product? TryGetProductById(Guid productId) =>
+        Helper.ProductById(Cache, productId, out Product productOnCache) is null
+            ? default
+            : productOnCache;
 }
