@@ -42,9 +42,10 @@
             this.PersonalShiftController = new MaterialSkin.Controls.MaterialButton();
             this.CafeSessionClose = new MaterialSkin.Controls.MaterialButton();
             this.CloseOrdersButton = new MaterialSkin.Controls.MaterialButton();
+            this.TabControlImageList = new System.Windows.Forms.ImageList(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.LockButton = new MaterialSkin.Controls.MaterialButton();
-            this.TabControlImageList = new System.Windows.Forms.ImageList(this.components);
+            this.WaiterLabel = new MaterialSkin.Controls.MaterialLabel();
             this.MainFormTabController.SuspendLayout();
             this.OrdersPage.SuspendLayout();
             this.CreateOrderPanel.SuspendLayout();
@@ -285,8 +286,16 @@
             this.CloseOrdersButton.UseVisualStyleBackColor = true;
             this.CloseOrdersButton.Click += new System.EventHandler(this.CloseOrdersButton_Click);
             // 
+            // TabControlImageList
+            // 
+            this.TabControlImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("TabControlImageList.ImageStream")));
+            this.TabControlImageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.TabControlImageList.Images.SetKeyName(0, "order.png");
+            this.TabControlImageList.Images.SetKeyName(1, "settings.png");
+            // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.WaiterLabel);
             this.panel1.Controls.Add(this.LockButton);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -315,12 +324,17 @@
             this.LockButton.UseVisualStyleBackColor = true;
             this.LockButton.Click += new System.EventHandler(this.LockButton_Click);
             // 
-            // TabControlImageList
+            // WaiterLabel
             // 
-            this.TabControlImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("TabControlImageList.ImageStream")));
-            this.TabControlImageList.TransparentColor = System.Drawing.Color.Transparent;
-            this.TabControlImageList.Images.SetKeyName(0, "order.png");
-            this.TabControlImageList.Images.SetKeyName(1, "settings.png");
+            this.WaiterLabel.AutoSize = true;
+            this.WaiterLabel.Depth = 0;
+            this.WaiterLabel.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.WaiterLabel.Location = new System.Drawing.Point(4, 14);
+            this.WaiterLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.WaiterLabel.Name = "WaiterLabel";
+            this.WaiterLabel.Size = new System.Drawing.Size(46, 19);
+            this.WaiterLabel.TabIndex = 3;
+            this.WaiterLabel.Text = "Waiter";
             // 
             // MainForm
             // 
@@ -377,5 +391,6 @@
         private MaterialSkin.Controls.MaterialButton UpButton;
         private MaterialSkin.Controls.MaterialButton CloseOrdersButton;
         private System.Windows.Forms.ImageList TabControlImageList;
+        private MaterialSkin.Controls.MaterialLabel WaiterLabel;
     }
 }

@@ -40,7 +40,7 @@ public partial class ChartsForm : MaterialForm
         CloseOrdersCharts.LegendLocation = LegendLocation.Right;
         CloseOrdersCharts.Series.Add(new LineSeries()
         {
-            Title = "Count",
+            Title = "Orders count",
             Values = new ChartValues<int>(result.Select(x => x.Orders.Count()))
         });
     }

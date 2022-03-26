@@ -52,6 +52,7 @@ public partial class MainForm : MaterialForm, INotifyPropertyChanged
         Client = client;
         Credentials = credentials;
         Waiter = Client.GetByCacheOperation.Waiter.GetWaiterById(Credentials.WaiterId);
+        WaiterLabel.Text = $"{Waiter.PermissionStatus}: {Waiter.Name}";
         _openOrderLayoutPanelCellCount = OpenOrderLayoutPanel.ColumnCount * OpenOrderLayoutPanel.RowCount;
         _ = FormHelper.CreateMaterialSkinManager(this);
         FormHelper.SetFullScreen(this);
@@ -155,7 +156,7 @@ public partial class MainForm : MaterialForm, INotifyPropertyChanged
         void OpenOrder(object sender, MouseEventArgs e, Guid orderId, int y)
         {
             if (e.Y <= y)
-                OpenForm(new OrderForm(Client, orderId));
+                OpenForm(new OrderForm(Client, Waiter, orderId));
         }
     }
 

@@ -47,10 +47,11 @@ public partial class OrderForm : MaterialForm, INotifyPropertyChanged
 
     public List<Product> Products { get; private set; }
 
-    public OrderForm(IClient client, Guid orderId)
+    public OrderForm(IClient client, Waiter waiter, Guid orderId)
     {
         InitializeComponent();
         Client = client;
+        Waiter = waiter;
         Order = Client.GetByCacheOperation.Order.GetOrderById(orderId);
         Products = Client.GetByCacheOperation.Product.GetProducts();
         Page = 0;
@@ -159,6 +160,14 @@ public partial class OrderForm : MaterialForm, INotifyPropertyChanged
     {
         if (Order.Status is OrderStatus.Closed)
             return;
+
+        if (Waiter.PermissionStatus is not PermissionStatus.Admin)
+        {
+            MaterialMessageBox.Show($"Недостаточно прав.",
+                                    false,
+                                    FlexibleMaterialForm.ButtonsPosition.Center);
+            return;
+        }
 
         if (Order.Sum <= 0)
         {
