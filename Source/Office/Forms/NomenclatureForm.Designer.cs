@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NomenclatureForm));
             this.ParentProductPanel = new System.Windows.Forms.Panel();
             this.ChildLabel = new MaterialSkin.Controls.MaterialLabel();
             this.ChildInfoTextBox = new MaterialSkin.Controls.MaterialMultiLineTextBox2();
@@ -256,6 +257,7 @@
             this.Controls.Add(this.NomenclatureDgv);
             this.Controls.Add(this.ButtonsPanel);
             this.Controls.Add(this.ParentProductPanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "NomenclatureForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GroupByForm));
             this.SaveButton = new MaterialSkin.Controls.MaterialButton();
             this.GroupByComboBox = new MaterialSkin.Controls.MaterialComboBox();
             this.DateComboBox = new MaterialSkin.Controls.MaterialComboBox();
@@ -107,6 +108,7 @@
             this.Controls.Add(this.DateComboBox);
             this.Controls.Add(this.GroupByComboBox);
             this.Controls.Add(this.SaveButton);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "GroupByForm";

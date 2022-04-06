@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FaceDetectionForm));
             this.CameraBox = new System.Windows.Forms.PictureBox();
             this.ExitPanel = new System.Windows.Forms.Panel();
             this.ExitButton = new MaterialSkin.Controls.MaterialButton();
@@ -83,6 +84,7 @@
             this.Controls.Add(this.CameraBox);
             this.Controls.Add(this.ExitPanel);
             this.FormStyle = MaterialSkin.Controls.MaterialForm.FormStyles.StatusAndActionBar_None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FaceDetectionForm";

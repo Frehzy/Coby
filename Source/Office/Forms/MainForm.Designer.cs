@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.TabControl = new MaterialSkin.Controls.MaterialTabControl();
             this.WaitersPage = new System.Windows.Forms.TabPage();
+            this.AddWaiterFaceButton = new MaterialSkin.Controls.MaterialButton();
             this.WaitersDgv = new System.Windows.Forms.DataGridView();
             this.DeleteWaiterButton = new MaterialSkin.Controls.MaterialButton();
             this.AddWaiterButton = new MaterialSkin.Controls.MaterialButton();
@@ -56,7 +58,6 @@
             this.CloseOrdersButton = new MaterialSkin.Controls.MaterialButton();
             this.OpenOrdersButton = new MaterialSkin.Controls.MaterialButton();
             this.ReportButton = new MaterialSkin.Controls.MaterialButton();
-            this.AddWaiterFaceButton = new MaterialSkin.Controls.MaterialButton();
             this.TabControl.SuspendLayout();
             this.WaitersPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.WaitersDgv)).BeginInit();
@@ -101,6 +102,27 @@
             this.WaitersPage.TabIndex = 0;
             this.WaitersPage.Text = "Waiters";
             this.WaitersPage.UseVisualStyleBackColor = true;
+            // 
+            // AddWaiterFaceButton
+            // 
+            this.AddWaiterFaceButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddWaiterFaceButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.AddWaiterFaceButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.AddWaiterFaceButton.Depth = 0;
+            this.AddWaiterFaceButton.HighEmphasis = true;
+            this.AddWaiterFaceButton.Icon = null;
+            this.AddWaiterFaceButton.Location = new System.Drawing.Point(484, 10);
+            this.AddWaiterFaceButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.AddWaiterFaceButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.AddWaiterFaceButton.Name = "AddWaiterFaceButton";
+            this.AddWaiterFaceButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.AddWaiterFaceButton.Size = new System.Drawing.Size(90, 36);
+            this.AddWaiterFaceButton.TabIndex = 4;
+            this.AddWaiterFaceButton.Text = "Add face";
+            this.AddWaiterFaceButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.AddWaiterFaceButton.UseAccentColor = false;
+            this.AddWaiterFaceButton.UseVisualStyleBackColor = true;
+            this.AddWaiterFaceButton.Click += new System.EventHandler(this.AddWaiterFaceButton_Click);
             // 
             // WaitersDgv
             // 
@@ -600,27 +622,6 @@
             this.ReportButton.UseVisualStyleBackColor = true;
             this.ReportButton.Click += new System.EventHandler(this.ReportButton_Click);
             // 
-            // AddWaiterFaceButton
-            // 
-            this.AddWaiterFaceButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.AddWaiterFaceButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.AddWaiterFaceButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.AddWaiterFaceButton.Depth = 0;
-            this.AddWaiterFaceButton.HighEmphasis = true;
-            this.AddWaiterFaceButton.Icon = null;
-            this.AddWaiterFaceButton.Location = new System.Drawing.Point(484, 10);
-            this.AddWaiterFaceButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.AddWaiterFaceButton.MouseState = MaterialSkin.MouseState.HOVER;
-            this.AddWaiterFaceButton.Name = "AddWaiterFaceButton";
-            this.AddWaiterFaceButton.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.AddWaiterFaceButton.Size = new System.Drawing.Size(90, 36);
-            this.AddWaiterFaceButton.TabIndex = 4;
-            this.AddWaiterFaceButton.Text = "Add face";
-            this.AddWaiterFaceButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.AddWaiterFaceButton.UseAccentColor = false;
-            this.AddWaiterFaceButton.UseVisualStyleBackColor = true;
-            this.AddWaiterFaceButton.Click += new System.EventHandler(this.AddWaiterFaceButton_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -632,6 +633,7 @@
             this.DrawerIndicatorWidth = 5;
             this.DrawerTabControl = this.TabControl;
             this.DrawerWidth = 300;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

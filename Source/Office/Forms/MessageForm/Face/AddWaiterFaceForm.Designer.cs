@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddWaiterFaceForm));
             this.CreateWaiterFaceButton = new MaterialSkin.Controls.MaterialButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.WaiterTextBox = new MaterialSkin.Controls.MaterialMultiLineTextBox2();
@@ -242,6 +243,7 @@
             this.ClientSize = new System.Drawing.Size(613, 474);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.CreateWaiterFaceButton);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AddWaiterFaceForm";

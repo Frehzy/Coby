@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddNomenclatureForm));
             this.SaveButton = new MaterialSkin.Controls.MaterialButton();
             this.AmountTextBox = new MaterialSkin.Controls.MaterialTextBox();
             this.ChildProductComboBox = new MaterialSkin.Controls.MaterialComboBox();
@@ -102,6 +103,7 @@
             this.Controls.Add(this.ChildProductComboBox);
             this.Controls.Add(this.AmountTextBox);
             this.Controls.Add(this.SaveButton);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AddNomenclatureForm";

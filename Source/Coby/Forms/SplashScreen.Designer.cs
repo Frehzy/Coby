@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SplashScreen));
             this.ProgressBar = new Coby.Forms.CustomControls.CustomProgressBar();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.SuspendLayout();
@@ -62,6 +63,7 @@
             this.Controls.Add(this.materialLabel1);
             this.Controls.Add(this.ProgressBar);
             this.FormStyle = MaterialSkin.Controls.MaterialForm.FormStyles.StatusAndActionBar_None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SplashScreen";

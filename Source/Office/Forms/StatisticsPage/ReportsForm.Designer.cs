@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportsForm));
             this.TabControl = new MaterialSkin.Controls.MaterialTabControl();
             this.RevisionPage = new System.Windows.Forms.TabPage();
-            this.RevisionDgv = new System.Windows.Forms.DataGridView();
-            this.UpdateRevisionButton = new MaterialSkin.Controls.MaterialButton();
             this.EndDateTimePicker = new Office.Forms.CustomControls.CustomDateTimePicker();
             this.StartDateTimePicker = new Office.Forms.CustomControls.CustomDateTimePicker();
+            this.UpdateRevisionButton = new MaterialSkin.Controls.MaterialButton();
+            this.RevisionDgv = new System.Windows.Forms.DataGridView();
             this.TabControl.SuspendLayout();
             this.RevisionPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RevisionDgv)).BeginInit();
@@ -66,44 +67,6 @@
             this.RevisionPage.Text = "Revision";
             this.RevisionPage.UseVisualStyleBackColor = true;
             // 
-            // RevisionDgv
-            // 
-            this.RevisionDgv.AllowUserToAddRows = false;
-            this.RevisionDgv.AllowUserToDeleteRows = false;
-            this.RevisionDgv.AllowUserToResizeRows = false;
-            this.RevisionDgv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.RevisionDgv.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.RevisionDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.RevisionDgv.Location = new System.Drawing.Point(12, 54);
-            this.RevisionDgv.Name = "RevisionDgv";
-            this.RevisionDgv.ReadOnly = true;
-            this.RevisionDgv.RowHeadersWidth = 51;
-            this.RevisionDgv.RowTemplate.Height = 24;
-            this.RevisionDgv.Size = new System.Drawing.Size(768, 344);
-            this.RevisionDgv.TabIndex = 12;
-            // 
-            // UpdateRevisionButton
-            // 
-            this.UpdateRevisionButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.UpdateRevisionButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.UpdateRevisionButton.Depth = 0;
-            this.UpdateRevisionButton.HighEmphasis = true;
-            this.UpdateRevisionButton.Icon = null;
-            this.UpdateRevisionButton.Location = new System.Drawing.Point(12, 9);
-            this.UpdateRevisionButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.UpdateRevisionButton.MouseState = MaterialSkin.MouseState.HOVER;
-            this.UpdateRevisionButton.Name = "UpdateRevisionButton";
-            this.UpdateRevisionButton.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.UpdateRevisionButton.Size = new System.Drawing.Size(77, 36);
-            this.UpdateRevisionButton.TabIndex = 13;
-            this.UpdateRevisionButton.Text = "Update";
-            this.UpdateRevisionButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.UpdateRevisionButton.UseAccentColor = false;
-            this.UpdateRevisionButton.UseVisualStyleBackColor = true;
-            this.UpdateRevisionButton.Click += new System.EventHandler(this.UpdateRevisionButton_Click);
-            // 
             // EndDateTimePicker
             // 
             this.EndDateTimePicker.BorderColor = System.Drawing.Color.PaleVioletRed;
@@ -130,6 +93,44 @@
             this.StartDateTimePicker.TabIndex = 14;
             this.StartDateTimePicker.TextColor = System.Drawing.Color.White;
             // 
+            // UpdateRevisionButton
+            // 
+            this.UpdateRevisionButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.UpdateRevisionButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.UpdateRevisionButton.Depth = 0;
+            this.UpdateRevisionButton.HighEmphasis = true;
+            this.UpdateRevisionButton.Icon = null;
+            this.UpdateRevisionButton.Location = new System.Drawing.Point(12, 9);
+            this.UpdateRevisionButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.UpdateRevisionButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.UpdateRevisionButton.Name = "UpdateRevisionButton";
+            this.UpdateRevisionButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.UpdateRevisionButton.Size = new System.Drawing.Size(77, 36);
+            this.UpdateRevisionButton.TabIndex = 13;
+            this.UpdateRevisionButton.Text = "Update";
+            this.UpdateRevisionButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.UpdateRevisionButton.UseAccentColor = false;
+            this.UpdateRevisionButton.UseVisualStyleBackColor = true;
+            this.UpdateRevisionButton.Click += new System.EventHandler(this.UpdateRevisionButton_Click);
+            // 
+            // RevisionDgv
+            // 
+            this.RevisionDgv.AllowUserToAddRows = false;
+            this.RevisionDgv.AllowUserToDeleteRows = false;
+            this.RevisionDgv.AllowUserToResizeRows = false;
+            this.RevisionDgv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.RevisionDgv.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.RevisionDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.RevisionDgv.Location = new System.Drawing.Point(12, 54);
+            this.RevisionDgv.Name = "RevisionDgv";
+            this.RevisionDgv.ReadOnly = true;
+            this.RevisionDgv.RowHeadersWidth = 51;
+            this.RevisionDgv.RowTemplate.Height = 24;
+            this.RevisionDgv.Size = new System.Drawing.Size(768, 344);
+            this.RevisionDgv.TabIndex = 12;
+            // 
             // ReportsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -141,6 +142,7 @@
             this.DrawerIndicatorWidth = 5;
             this.DrawerTabControl = this.TabControl;
             this.DrawerWidth = 300;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "ReportsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

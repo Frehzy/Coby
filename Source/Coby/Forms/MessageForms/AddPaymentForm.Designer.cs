@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddPaymentForm));
             this.PaymentTypeTextBox = new MaterialSkin.Controls.MaterialTextBox();
             this.AddPaymentButton = new MaterialSkin.Controls.MaterialButton();
             this.AmountTextBox = new MaterialSkin.Controls.MaterialTextBox();
@@ -100,6 +101,7 @@
             this.Controls.Add(this.AmountTextBox);
             this.Controls.Add(this.AddPaymentButton);
             this.Controls.Add(this.PaymentTypeTextBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AddPaymentForm";

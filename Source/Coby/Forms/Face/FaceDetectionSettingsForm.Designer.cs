@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FaceDetectionSettingsForm));
             this.SaveSettingsButton = new MaterialSkin.Controls.MaterialButton();
             this.ResolutionToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.ResolutionsComboBox = new MaterialSkin.Controls.MaterialComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.MethodComboBox = new MaterialSkin.Controls.MaterialComboBox();
             this.MethodLabel = new MaterialSkin.Controls.MaterialLabel();
             this.ResolutionLabel = new MaterialSkin.Controls.MaterialLabel();
-            this.ResolutionsComboBox = new MaterialSkin.Controls.MaterialComboBox();
             this.MaxFaceDetectValueSlider = new MaterialSkin.Controls.MaterialSlider();
             this.CamerasComboBox = new MaterialSkin.Controls.MaterialComboBox();
             this.panel1.SuspendLayout();
@@ -69,6 +70,29 @@
             this.ResolutionToolTip.IsBalloon = true;
             this.ResolutionToolTip.ReshowDelay = 100;
             this.ResolutionToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Warning;
+            // 
+            // ResolutionsComboBox
+            // 
+            this.ResolutionsComboBox.AutoResize = false;
+            this.ResolutionsComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.ResolutionsComboBox.Depth = 0;
+            this.ResolutionsComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.ResolutionsComboBox.DropDownHeight = 174;
+            this.ResolutionsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ResolutionsComboBox.DropDownWidth = 121;
+            this.ResolutionsComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.ResolutionsComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.ResolutionsComboBox.FormattingEnabled = true;
+            this.ResolutionsComboBox.IntegralHeight = false;
+            this.ResolutionsComboBox.ItemHeight = 43;
+            this.ResolutionsComboBox.Location = new System.Drawing.Point(120, 105);
+            this.ResolutionsComboBox.MaxDropDownItems = 4;
+            this.ResolutionsComboBox.MouseState = MaterialSkin.MouseState.OUT;
+            this.ResolutionsComboBox.Name = "ResolutionsComboBox";
+            this.ResolutionsComboBox.Size = new System.Drawing.Size(478, 49);
+            this.ResolutionsComboBox.StartIndex = 0;
+            this.ResolutionsComboBox.TabIndex = 2;
+            this.ResolutionToolTip.SetToolTip(this.ResolutionsComboBox, "Высокое разрешение может негативно сказаться на производительности");
             // 
             // panel1
             // 
@@ -130,29 +154,6 @@
             this.ResolutionLabel.TabIndex = 4;
             this.ResolutionLabel.Text = "Resolution (X,Y)";
             // 
-            // ResolutionsComboBox
-            // 
-            this.ResolutionsComboBox.AutoResize = false;
-            this.ResolutionsComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.ResolutionsComboBox.Depth = 0;
-            this.ResolutionsComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.ResolutionsComboBox.DropDownHeight = 174;
-            this.ResolutionsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ResolutionsComboBox.DropDownWidth = 121;
-            this.ResolutionsComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.ResolutionsComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.ResolutionsComboBox.FormattingEnabled = true;
-            this.ResolutionsComboBox.IntegralHeight = false;
-            this.ResolutionsComboBox.ItemHeight = 43;
-            this.ResolutionsComboBox.Location = new System.Drawing.Point(120, 105);
-            this.ResolutionsComboBox.MaxDropDownItems = 4;
-            this.ResolutionsComboBox.MouseState = MaterialSkin.MouseState.OUT;
-            this.ResolutionsComboBox.Name = "ResolutionsComboBox";
-            this.ResolutionsComboBox.Size = new System.Drawing.Size(478, 49);
-            this.ResolutionsComboBox.StartIndex = 0;
-            this.ResolutionsComboBox.TabIndex = 2;
-            this.ResolutionToolTip.SetToolTip(this.ResolutionsComboBox, "Высокое разрешение может негативно сказаться на производительности");
-            // 
             // MaxFaceDetectValueSlider
             // 
             this.MaxFaceDetectValueSlider.Depth = 0;
@@ -197,6 +198,7 @@
             this.ClientSize = new System.Drawing.Size(613, 322);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.SaveSettingsButton);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FaceDetectionSettingsForm";

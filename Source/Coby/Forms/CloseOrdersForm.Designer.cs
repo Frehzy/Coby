@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CloseOrdersForm));
             this.CloseOrdersTableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.BackPanel = new System.Windows.Forms.Panel();
             this.BackButton = new MaterialSkin.Controls.MaterialButton();
@@ -145,6 +146,7 @@
             this.Controls.Add(this.CreateOrderPanel);
             this.Controls.Add(this.BackPanel);
             this.FormStyle = MaterialSkin.Controls.MaterialForm.FormStyles.StatusAndActionBar_None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "CloseOrdersForm";

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddWaiterForm));
             this.UsernameTextBox = new MaterialSkin.Controls.MaterialTextBox();
             this.PasswordTextBox = new MaterialSkin.Controls.MaterialTextBox();
             this.SaveButton = new MaterialSkin.Controls.MaterialButton();
@@ -116,6 +117,7 @@
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.PasswordTextBox);
             this.Controls.Add(this.UsernameTextBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AddWaiterForm";

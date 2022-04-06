@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EnterPinForm));
             this.PinTextBox = new MaterialSkin.Controls.MaterialTextBox();
             this.EnterPinButton = new MaterialSkin.Controls.MaterialButton();
             this.SuspendLayout();
@@ -79,6 +80,7 @@
             this.ClientSize = new System.Drawing.Size(243, 161);
             this.Controls.Add(this.EnterPinButton);
             this.Controls.Add(this.PinTextBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "EnterPinForm";

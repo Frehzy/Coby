@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChartsForm));
             this.TabControl = new MaterialSkin.Controls.MaterialTabControl();
             this.CloseOrdersPage = new System.Windows.Forms.TabPage();
             this.UpdateCloseOrdersButton = new MaterialSkin.Controls.MaterialButton();
@@ -103,6 +104,7 @@
             this.DrawerIndicatorWidth = 5;
             this.DrawerTabControl = this.TabControl;
             this.DrawerWidth = 300;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "ChartsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

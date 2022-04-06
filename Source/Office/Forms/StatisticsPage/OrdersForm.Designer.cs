@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrdersForm));
             this.ButtonsPanel = new System.Windows.Forms.Panel();
             this.MoreInfoButton = new MaterialSkin.Controls.MaterialButton();
             this.OrdersUpdateButton = new MaterialSkin.Controls.MaterialButton();
@@ -103,15 +104,16 @@
             this.CloseOrdersDgv.Size = new System.Drawing.Size(916, 466);
             this.CloseOrdersDgv.TabIndex = 16;
             // 
-            // CloseOrdersForm
+            // OrdersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(922, 587);
             this.Controls.Add(this.CloseOrdersDgv);
             this.Controls.Add(this.ButtonsPanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(800, 500);
-            this.Name = "CloseOrdersForm";
+            this.Name = "OrdersForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Close orders";
             this.ButtonsPanel.ResumeLayout(false);

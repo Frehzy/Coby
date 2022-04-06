@@ -44,8 +44,8 @@
             this.CloseOrdersButton = new MaterialSkin.Controls.MaterialButton();
             this.TabControlImageList = new System.Windows.Forms.ImageList(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
-            this.LockButton = new MaterialSkin.Controls.MaterialButton();
             this.WaiterLabel = new MaterialSkin.Controls.MaterialLabel();
+            this.LockButton = new MaterialSkin.Controls.MaterialButton();
             this.MainFormTabController.SuspendLayout();
             this.OrdersPage.SuspendLayout();
             this.CreateOrderPanel.SuspendLayout();
@@ -303,6 +303,18 @@
             this.panel1.Size = new System.Drawing.Size(797, 45);
             this.panel1.TabIndex = 1;
             // 
+            // WaiterLabel
+            // 
+            this.WaiterLabel.AutoSize = true;
+            this.WaiterLabel.Depth = 0;
+            this.WaiterLabel.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.WaiterLabel.Location = new System.Drawing.Point(4, 14);
+            this.WaiterLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.WaiterLabel.Name = "WaiterLabel";
+            this.WaiterLabel.Size = new System.Drawing.Size(46, 19);
+            this.WaiterLabel.TabIndex = 3;
+            this.WaiterLabel.Text = "Waiter";
+            // 
             // LockButton
             // 
             this.LockButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -324,18 +336,6 @@
             this.LockButton.UseVisualStyleBackColor = true;
             this.LockButton.Click += new System.EventHandler(this.LockButton_Click);
             // 
-            // WaiterLabel
-            // 
-            this.WaiterLabel.AutoSize = true;
-            this.WaiterLabel.Depth = 0;
-            this.WaiterLabel.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.WaiterLabel.Location = new System.Drawing.Point(4, 14);
-            this.WaiterLabel.MouseState = MaterialSkin.MouseState.HOVER;
-            this.WaiterLabel.Name = "WaiterLabel";
-            this.WaiterLabel.Size = new System.Drawing.Size(46, 19);
-            this.WaiterLabel.TabIndex = 3;
-            this.WaiterLabel.Text = "Waiter";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -352,6 +352,7 @@
             this.DrawerUseColors = true;
             this.DrawerWidth = 300;
             this.FormStyle = MaterialSkin.Controls.MaterialForm.FormStyles.StatusAndActionBar_None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";

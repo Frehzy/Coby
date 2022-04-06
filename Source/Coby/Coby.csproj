@@ -163,6 +163,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Face\FaceDetectionForm.resx">
       <DependentUpon>FaceDetectionForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -230,6 +231,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\coby.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
