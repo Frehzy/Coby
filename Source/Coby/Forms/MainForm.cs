@@ -142,6 +142,7 @@ public partial class MainForm : MaterialForm, INotifyPropertyChanged
             string products = string.Join($"{Environment.NewLine}-", order.GetGuests().SelectMany(x => x.GetProducts()).Take(6).Select(x => x.ProductName));
             view.TextDescrition = $"GuestCount: {order.GetGuests().Count()}\n" +
                                   $"Sum: {order.Sum}\n" +
+                                  $"Waiter: {order.Waiter.Name}\n" +
                                   $"StartTime: {order.StartTime}\n" +
                                   $"Products: \n-{products}";
             view.Tag = order.StartTime;
