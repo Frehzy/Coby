@@ -1,6 +1,7 @@
 ﻿using Coby.ClientOperation;
 using Coby.Forms.CustomControls.CardView;
 using Coby.Forms.CustomControls.CardView.Anim;
+using Coby.Forms.MessageForms;
 using MaterialSkin.Controls;
 using Office.Helper;
 using Shared.Dto.Enities;
@@ -78,18 +79,22 @@ public partial class MainForm : MaterialForm, INotifyPropertyChanged
 
     private async void CafeSessionClose_Click(object sender, EventArgs e)
     {
+        var cashRegister = new CashRegister(new EnterRemainderCashForm().GetRemainderCash());
+        if (cashRegister.CashOnRegister is decimal.Zero)
+            return;
+
         var splashScreen = new SplashScreen();
         splashScreen.Show();
         Enabled = false;
         splashScreen.FormClosing += (sender, e) => { Enabled = true; };
 
-        var request = await Client.CloseCafeShift(Credentials);
+        var request = await Client.CloseCafeShift(Credentials, cashRegister);
+        splashScreen.Close();
+
         if (request.Status is not RequestStatus.OK)
             MaterialMessageBox.Show($"Id: {request.Id}\nStatus: {request.Status}\nMessage: {request.Message}\nException:{request.Exception}");
         Waiter = Client.GetByCacheOperation.Waiter.GetWaiterById(Waiter.Id);
         AfterUpdateStatus();
-
-        splashScreen.Close();
     }
 
     private void CreateOrderButton_Click(object sender, EventArgs e) =>

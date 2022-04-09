@@ -47,7 +47,9 @@
   <ItemGroup>
     <Compile Include="Base64ImageConverter.cs" />
     <Compile Include="Dto\DGVEntities\OrderInfo.cs" />
+    <Compile Include="Dto\Enities\CashRegister.cs" />
     <Compile Include="Dto\Enities\Credentials.cs" />
+    <Compile Include="Dto\Enities\DangerousOperationsDto.cs" />
     <Compile Include="Dto\Enities\Guest.cs" />
     <Compile Include="Dto\Enities\License.cs" />
     <Compile Include="Dto\Enities\Nomenclature.cs" />

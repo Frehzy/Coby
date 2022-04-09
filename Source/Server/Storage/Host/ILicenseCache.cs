@@ -16,5 +16,4 @@ public interface ILicenseCache
 
     [OperationContract]
     bool RemoveLicense(Guid licenseId);
-
 }

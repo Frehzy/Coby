@@ -29,6 +29,7 @@ public class Service : IService
     private readonly ConcurrentDictionary<Guid, Table> _tablesCache = new();
     private readonly ConcurrentDictionary<Guid, Waiter> _waitersCache = new();
     private readonly ConcurrentDictionary<Guid, Order> _closeOrders = new();
+    private readonly ConcurrentDictionary<Guid, DangerousOperationsDto> _dangerousOperations = new();
     private readonly List<WaiterFace> _waiterFacesCache = new();
     private readonly List<Nomenclature> _nomenclatureCache = new();
     private bool _canWork = true;
@@ -73,6 +74,9 @@ public class Service : IService
     public WaiterFace AddOrUpdateWaiterFace(WaiterFace waiterFace) =>
         _waiterFacesCache.AddDB(waiterFace, GetDBInteraction(), "waiterfaces");
 
+    public DangerousOperationsDto AddDangerousOperations(DangerousOperationsDto dangerousOperations) =>
+        _dangerousOperations.AddOrUpdateDB(dangerousOperations.OperationId, dangerousOperations, GetDBInteraction(), "dangerousoperations");
+
     public List<License> GetLicensesCache() =>
         _licensesCache.Values.ToList();
 
@@ -97,6 +101,9 @@ public class Service : IService
     public List<WaiterFace> GetWaiterFacesCache() =>
         _waiterFacesCache.ToList();
 
+    public List<DangerousOperationsDto> GetDangerousOperationsCache() =>
+        _dangerousOperations.Values.ToList();
+
     public List<Order> GetCloseOrders() =>
         _closeOrders.Values.ToList();
 
@@ -111,6 +118,9 @@ public class Service : IService
     public Table? RemoveTable(Guid tableId) => _tablesCache.TryRemoveDB(tableId, GetDBInteraction(), "tables");
 
     public Waiter? RemoveWaiter(Guid waiterId) => _waitersCache.TryRemoveDB(waiterId, GetDBInteraction(), "waiters");
+
+    public DangerousOperationsDto? RemoveDangerousOperations(Guid dangerousOperationsId) =>
+        _dangerousOperations.TryRemoveDB(dangerousOperationsId, GetDBInteraction(), "dangerousoperations");
 
     public List<WaiterFace>? RemoveWaiterFace(Guid waiterFaceId)
     {
@@ -181,6 +191,8 @@ public class Service : IService
             GetProducts().ForEach(x => _productsCache.TryAdd(x.Id, x));
             GetNomenclature().ForEach(x => _nomenclatureCache.Add(x));
             Task.Run(() => LoadCloseOrdersAsync().ConfigureAwait(false));
+            Task.Run(() => LoadDangerousOperationAsync().ConfigureAwait(false));
+            _licensesCache.TryAdd(Guid.Empty, new(Guid.Empty));
 
             _canWork = false;
         }
@@ -203,7 +215,7 @@ public class Service : IService
         List<Nomenclature> GetNomenclature() =>
             db.SqlQuery<Nomenclature>("SELECT * FROM nomenclature");
 
-        async Task LoadCloseOrdersAsync()
+        Task LoadCloseOrdersAsync()
         {
             List<OrderDB> closeOrders = db.SqlQuery<OrderDB>("SELECT * FROM orders");
             List<GuestDB> guests = db.SqlQuery<GuestDB>("SELECT * FROM ordersguests");
@@ -229,13 +241,13 @@ public class Service : IService
 
                 foreach (var guest in orderGuests)
                 {
-                    guestOperations.AddGuestOnOrder(guest.GuestId, guest.Name);
+                    guestOperations.AddGuestOnOrder(GetAdminCredentials(), guest.GuestId, guest.Name);
                     foreach (var product in orderProduts)
-                        productOperation.AddProductOnOrder(guest.GuestId, product.ProductId);
+                        productOperation.AddProductOnOrder(GetAdminCredentials(), guest.GuestId, product.ProductId);
                 }
 
                 foreach (var payment in orderPayments)
-                    paymentOperation.AddPaymentOnOrder(payment.PaymentId, payment.Sum);
+                    paymentOperation.AddPaymentOnOrder(GetAdminCredentials(), payment.PaymentId, payment.Sum);
 
                 order.OrderHistories.Clear();
                 foreach (var history in histories.Where(x => x.OrderId.Equals(order.Id)))
@@ -243,31 +255,47 @@ public class Service : IService
 
                 _closeOrders.TryAdd(order.Id, order);
             }
+            return Task.CompletedTask;
+        }
+
+        Task LoadDangerousOperationAsync()
+        {
+            db.SqlQuery<DangerousOperationsDto>("SELECT * FROM dangerousoperations")
+              .ForEach(x => _dangerousOperations.TryAdd(x.OperationId, x));
+            return Task.CompletedTask;
         }
     }
 
-    public async Task<Request> CloseCafeShift(Credentials credentials)
+    public async Task<Request> CloseCafeShift(Credentials credentials, CashRegister cashRegister)
     {
         var waiter = GetWaitersCache().First(x => x.Id.Equals(credentials.WaiterId));
         if (waiter.PermissionStatus is PermissionStatus.Waiter)
             return new(waiter.Id, RequestStatus.DeniedPermission, "Недостаточно прав.");
 
         if (GetOrdersCache().Where(x => x.Status is OrderStatus.Closed).Count() <= 0)
-            return new(default, RequestStatus.EntityNotFound, "Должен быть закрыт хотя-бы один заказ.");
+            return new(waiter.Id, RequestStatus.EntityNotFound, "Количество закрытых заказов должно быть больше 0.");
 
         if (GetOrdersCache().Where(x => x.Status is OrderStatus.New).Count() > 0)
-            return new(default, RequestStatus.EntityNotFound, "Все заказы должны быть закрыты.");
+            return new(waiter.Id, RequestStatus.EntityNotFound, "Все заказы должны быть закрыты.");
 
+        var remainderCasheOnCache = _ordersCache.Values.Sum(x => x.Sum);
+        if (cashRegister.CashOnRegister.Equals(remainderCasheOnCache) is false)
+            AddDangerousOperations(new(waiter.Id,
+                                       $"The entered balance does not correspond to the actual balance in the cash register. " +
+                                       $"Waiter [{waiter.Id}]. " +
+                                       $"Entered cash balance: {cashRegister.CashOnRegister}"));
+
+        var db = GetDBInteraction();
         LoadClosedOrderOnDB();
+        LoadDangerousOperationOnDB();
         CloseAllWaiterShift();
         _ordersCache.Clear();
         _licensesCache.Clear();
 
-        return new(default, RequestStatus.OK, default);
+        return new(waiter.Id, RequestStatus.OK, default);
 
         void LoadClosedOrderOnDB()
         {
-            var db = GetDBInteraction();
             foreach (var order in _ordersCache.Values.Where(x => x.Status is OrderStatus.Closed))
             {
                 var orderDB = new OrderDB(order.Id, order.Table.Id, order.Waiter.Id, (decimal)order.Sum, order.StartTime, DateTime.Now);
@@ -295,12 +323,21 @@ public class Service : IService
             }
         }
 
+        void LoadDangerousOperationOnDB()
+        {
+            foreach (var dangerousOperation in _dangerousOperations.Values)
+                db.ExecuteNonQuery(SQLString.GetInsertSqlString(dangerousOperation, "dangerousoperations"));
+        }
+
         void CloseAllWaiterShift()
         {
             foreach (var waiter in _waitersCache.Values)
                 waiter.Status = WaiterSessionStatus.Closed;
         }
     }
+
+    private Credentials GetAdminCredentials() =>
+        new(_licensesCache.Values.First(x => x.Equals(Guid.Empty)).Id);
 
     private DBInteraction GetDBInteraction() =>
         new("localhost", "coby", 3306, "coby", "1234");

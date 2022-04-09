@@ -107,6 +107,7 @@
     <Compile Include="Extention\ConcurrentDictionaryExtentions.cs" />
     <Compile Include="Extention\DictionaryExtentions.cs" />
     <Compile Include="Extention\ListExtentions.cs" />
+    <Compile Include="Host\IDangerousOperation.cs" />
     <Compile Include="Host\ILicenseCache.cs" />
     <Compile Include="Host\INomenclatureCache.cs" />
     <Compile Include="Host\IOrderCache.cs" />
@@ -124,6 +125,7 @@
     <Compile Include="Operations\GetBy\GetPaymentType.cs" />
     <Compile Include="Operations\GetBy\GetProduct.cs" />
     <Compile Include="Operations\GetBy\GetTable.cs" />
+    <Compile Include="Operations\GetBy\GetDangerousOperation.cs" />
     <Compile Include="Operations\GetBy\GetWaiterFace.cs" />
     <Compile Include="Operations\GetBy\GetWaiter.cs" />
     <Compile Include="Operations\HistoryHelper.cs" />

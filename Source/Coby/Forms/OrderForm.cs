@@ -102,7 +102,8 @@ public partial class OrderForm : MaterialForm, INotifyPropertyChanged
                 MaterialMessageBox.Show("Не выбран гость.", false, FlexibleMaterialForm.ButtonsPosition.Center);
                 return;
             }
-            Client.OrderOperation.GetProductOperation(Order).AddProductOnOrder(OrderInfoListView.Selected.GuestId, productId);
+            var credentials = Client.LicenseOperation.GetCredentials(Waiter.Password, out _);
+            Client.OrderOperation.GetProductOperation(Order).AddProductOnOrder(credentials, OrderInfoListView.Selected.GuestId, productId);
             LoadOrderInfo();
         }
     }
@@ -111,7 +112,8 @@ public partial class OrderForm : MaterialForm, INotifyPropertyChanged
 
     private void CreateGuestButton_Click(object sender, EventArgs e)
     {
-        Client.OrderOperation.GetGuestOperations(Order).AddGuestOnOrder();
+        var credentials = Client.LicenseOperation.GetCredentials(Waiter.Password, out _);
+        Client.OrderOperation.GetGuestOperations(Order).AddGuestOnOrder(credentials);
         LoadOrderInfo();
     }
 
@@ -142,6 +144,7 @@ public partial class OrderForm : MaterialForm, INotifyPropertyChanged
             MaterialMessageBox.Show("Не выбран элемент для удаления.", false, FlexibleMaterialForm.ButtonsPosition.Center);
             return;
         }
+        var credentials = Client.LicenseOperation.GetCredentials(Waiter.Password, out _);
         if (selected.ProductId.Equals(Guid.Empty))
         {
             if (Order.GetGuests().First(x => x.Id.Equals(selected.GuestId)).GetProducts().Count() > 0)
@@ -149,10 +152,10 @@ public partial class OrderForm : MaterialForm, INotifyPropertyChanged
                 MaterialMessageBox.Show("Невозможно удалить гостя, у которого есть продукты.", false, FlexibleMaterialForm.ButtonsPosition.Center);
                 return;
             }
-            Client.OrderOperation.GetGuestOperations(Order).RemoveGuestOnOrderById(selected.GuestId);
+            Client.OrderOperation.GetGuestOperations(Order).RemoveGuestOnOrderById(credentials, selected.GuestId);
         }
         else
-            Client.OrderOperation.GetProductOperation(Order).RemoveProductOnOrder(selected.GuestId, selected.ProductId, selected.Rank);
+            Client.OrderOperation.GetProductOperation(Order).RemoveProductOnOrder(credentials, selected.GuestId, selected.ProductId, selected.Rank);
         LoadOrderInfo();
     }
 
@@ -179,7 +182,7 @@ public partial class OrderForm : MaterialForm, INotifyPropertyChanged
 
         Enabled = false;
         Client.OrderOperation.SaveOrder(Order);
-        var payOrder = new PayOrder(Client, Order.Id);
+        var payOrder = new PayOrder(Client, Order.Id, Client.LicenseOperation.GetCredentials(Waiter.Password, out _));
         payOrder.Show();
 
         payOrder.FormClosing += (sender, e) =>

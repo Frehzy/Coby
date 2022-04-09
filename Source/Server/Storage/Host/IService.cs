@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Storage.Host;
 
 [ServiceContract]
-public interface IService : ILicenseCache, IOrderCache, IPaymentTypeCache, IProductCache, ITableCache, IWaiterCache, INomenclatureCache, IWaiterFaceCache
+public interface IService : ILicenseCache, IOrderCache, IPaymentTypeCache, IProductCache, ITableCache, IWaiterCache, INomenclatureCache, IWaiterFaceCache, IDangerousOperation
 {
     [OperationContract]
     LicenseOperation GetLicenseOperation(AllCache cache);
@@ -33,5 +33,5 @@ public interface IService : ILicenseCache, IOrderCache, IPaymentTypeCache, IProd
     void SetCache();
 
     [OperationContract]
-    Task<Request> CloseCafeShift(Credentials credentials);
+    Task<Request> CloseCafeShift(Credentials credentials, CashRegister cashRegister);
 }

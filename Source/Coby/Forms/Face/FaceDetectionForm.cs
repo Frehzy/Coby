@@ -41,7 +41,7 @@ public partial class FaceDetectionForm : MaterialForm
                                                                       x.ConvertToImage(x.Face));
                                               });
         _detectFace.Start();
-        _detectFace.PropertyChanged += _detectFace_PropertyChanged;
+        _detectFace.PropertyChanged += FoundFacePropertyChanged;
     }
 
     public Credentials GetCredentials() =>
@@ -49,7 +49,7 @@ public partial class FaceDetectionForm : MaterialForm
             ? _client.LicenseOperation.GetCredentials(_foundFace.Password, out _)
             : default;
 
-    private void _detectFace_PropertyChanged(object sender, PropertyChangedEventArgs e)
+    private void FoundFacePropertyChanged(object sender, PropertyChangedEventArgs e)
     {
         if (e.PropertyName is nameof(_detectFace.FoundFace) && _detectFace.FoundFace?.FaceDetectStatus is FaceDetectStatusEnum.Detect)
         {
@@ -61,7 +61,7 @@ public partial class FaceDetectionForm : MaterialForm
     private void FaceDetectionForm_FormClosing(object sender, FormClosingEventArgs e)
     {
         Enabled = false;
-        _detectFace.PropertyChanged -= _detectFace_PropertyChanged;
+        _detectFace.PropertyChanged -= FoundFacePropertyChanged;
         _detectFace?.Dispose();
     }
 

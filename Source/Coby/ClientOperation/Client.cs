@@ -14,7 +14,7 @@ namespace Coby.ClientOperation;
 public class Client : IClient
 {
     private readonly IService _service;
-    public delegate Task<Request> CloseCafeShiftDelegate(Credentials credentials);
+    public delegate Task<Request> CloseCafeShiftDelegate(Credentials credentials, CashRegister cashRegister);
 
     public LicenseOperation LicenseOperation { get; }
 

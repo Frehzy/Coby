@@ -15,7 +15,7 @@ public class Order
 
     public Waiter Waiter { get; set; }
 
-    public decimal? Sum => Guests?.Values.Select(x => x.Products.Values.Sum(x => x.Price)).Sum();
+    public decimal? Sum => GetGuests().Select(x => x.Products.Values.Sum(x => x.Price)).Sum();
 
     public Dictionary<Guid, Payment> Payment { get; set; } = new();
 
@@ -50,9 +50,9 @@ public class Order
         EndTime = endTime;
     }
 
-    public List<Payment>? GetPayments() => (Payment?.Values ?? Enumerable.Empty<Payment>()).ToList();
+    public List<Payment> GetPayments() => (Payment?.Values ?? Enumerable.Empty<Payment>()).ToList();
 
-    public List<Guest>? GetGuests() => (Guests?.Values ?? Enumerable.Empty<Guest>()).ToList();
+    public List<Guest> GetGuests() => (Guests?.Values ?? Enumerable.Empty<Guest>()).ToList();
 
-    public List<History>? GetHistories() => (OrderHistories?.Values ?? Enumerable.Empty<History>()).ToList();
+    public List<History> GetHistories() => (OrderHistories?.Values ?? Enumerable.Empty<History>()).ToList();
 }

@@ -1,6 +1,7 @@
 ﻿using Shared.Dto.Enities;
 using Shared.Dto.Enums;
 using Shared.Dto.Exceptions;
+using Storage.Cache;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,18 +10,24 @@ namespace Storage.Operations.OrderOperation;
 
 public class ProductOperation
 {
+    public AllCache Cache { get; }
+
     public Order Order { get; }
 
     public List<Product> Products { get; }
 
-    public ProductOperation(Order order, List<Product> products)
+    public ProductOperation(AllCache cache, Order order, List<Product> products)
     {
+        Cache = cache;
         Order = order;
         Products = products;
     }
 
-    public Product AddProductOnOrder(Guid guestId, Guid productId)
+    public Product AddProductOnOrder(Credentials credentials, Guid guestId, Guid productId)
     {
+        if (Helper.CheckLicense(Cache, credentials, out var license) is null)
+            throw new EntityNotFound(credentials.WaiterId);
+
         if (Order.Guests.TryGetValue(guestId, out var guests) is false)
             throw new EntityNotFound(guestId);
 
@@ -35,11 +42,15 @@ public class ProductOperation
         return product;
     }
 
-    public void RemoveProductOnOrder(Guid guestId, Guid productId, int rank)
+    public void RemoveProductOnOrder(Credentials credentials, Guid guestId, Guid productId, int rank)
     {
+        if (Helper.CheckLicense(Cache, credentials, out var license) is null)
+            throw new EntityNotFound(credentials.WaiterId);
+
         if (Order.Guests.TryGetValue(guestId, out var guests) is false)
             throw new EntityNotFound(guestId);
 
+        Cache.DangerousOperationCache.AddDangerousOperations(new(license.Id, $"Remove product [{productId}] on order [{Order.Id}]"));
         guests.Products.Remove(rank);
         HistoryHelper.OrderHistory(Order, productId, Entities.Product, ActionsEnum.Remove);
     }

@@ -16,9 +16,9 @@ public partial class AddPaymentForm : MaterialForm
         PaymentTypeTextBox.Text = paymentTypeName;
     }
 
-    public Payment AddPayment(PaymentOperations paymentOperation, Guid paymentTypeId) =>
+    public Payment AddPayment(Credentials credentials, PaymentOperations paymentOperation, Guid paymentTypeId) =>
         ShowDialog() is DialogResult.OK
-        ? paymentOperation.AddPaymentOnOrder(paymentTypeId, decimal.Parse(AmountTextBox.Text))
+        ? paymentOperation.AddPaymentOnOrder(credentials, paymentTypeId, decimal.Parse(AmountTextBox.Text))
         : default;
 
     private void AddPaymentButton_Click(object sender, EventArgs e)

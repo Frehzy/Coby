@@ -14,15 +14,15 @@ public class GetPaymentType
         Cache = cache;
 
     public PaymentType GetPaymentTypeById(Guid paymentTypeId) =>
-        Helper.PaymentTypeById(Cache, paymentTypeId, out PaymentType paymentTypeOnCache) is null
-            ? throw new EntityNotFound(paymentTypeId)
-            : paymentTypeOnCache;
+        Helper.PaymentTypeById(Cache, paymentTypeId, out PaymentType paymentTypeOnCache) is not null
+            ? paymentTypeOnCache
+            : throw new EntityNotFound(paymentTypeId);
 
     public List<PaymentType> GetPaymentTypes() =>
         Cache.PaymentTypesCache.GetPaymentTypesCache();
 
-    public PaymentType? TryGetPaymentTypeById(Guid paymentTypeId) =>
-        Helper.PaymentTypeById(Cache, paymentTypeId, out PaymentType paymentTypeOnCache) is null
-            ? default
-            : paymentTypeOnCache;
+    public PaymentType TryGetPaymentTypeById(Guid paymentTypeId) =>
+        Helper.PaymentTypeById(Cache, paymentTypeId, out PaymentType paymentTypeOnCache) is not null
+            ? paymentTypeOnCache
+            : default;
 }

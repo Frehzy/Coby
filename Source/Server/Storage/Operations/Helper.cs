@@ -56,10 +56,10 @@ internal static class Helper
                                                      .FirstOrDefault(x => x.ParentId.Equals(parentId) && x.ChildId.Equals(childId));
     }
 
-    public static License CheckLicense(AllCache cache, Credentials credentials)
+    public static License CheckLicense(AllCache cache, Credentials credentials, out License license)
     {
         CheckCacheOnNull(cache);
-        return cache.LicensesCache.GetLicensesCache().FirstOrDefault(x => x.Id.Equals(credentials.WaiterId));
+        return license = cache.LicensesCache.GetLicensesCache().FirstOrDefault(x => x.Id.Equals(credentials.WaiterId));
     }
 
     public static List<WaiterFace> WaiterFaceById(AllCache cache, Guid waiterFaceId, out List<WaiterFace> waiterFaceOnCache)
@@ -96,6 +96,13 @@ internal static class Helper
     {
         CheckCacheOnNull(cache);
         return paymentType = cache.PaymentTypesCache.GetPaymentTypesCache().FirstOrDefault(x => x.Name.Equals(name));
+    }
+
+    public static DangerousOperationsDto? DangerousOperationsByWaiterId(AllCache cache, Guid waiterId, out DangerousOperationsDto dangerousOperations)
+    {
+        CheckCacheOnNull(cache);
+        return dangerousOperations = cache.DangerousOperationCache.GetDangerousOperationsCache()
+                                                                  .FirstOrDefault(x => x.WaiterId.Equals(waiterId));
     }
 
     private static bool CheckCacheOnNull(AllCache cache) =>

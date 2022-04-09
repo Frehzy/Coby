@@ -14,15 +14,15 @@ public class GetProduct
         Cache = cache;
 
     public Product GetProductById(Guid productId) =>
-        Helper.ProductById(Cache, productId, out Product productOnCache) is null
-            ? throw new EntityNotFound(productId)
-            : productOnCache;
+        Helper.ProductById(Cache, productId, out Product productOnCache) is not null
+            ? productOnCache
+            : throw new EntityNotFound(productId);
 
     public List<Product> GetProducts() =>
         Cache.ProductsCache.GetProductsCache();
 
-    public Product? TryGetProductById(Guid productId) =>
-        Helper.ProductById(Cache, productId, out Product productOnCache) is null
-            ? default
-            : productOnCache;
+    public Product TryGetProductById(Guid productId) =>
+        Helper.ProductById(Cache, productId, out Product productOnCache) is not null
+            ? productOnCache
+            : default;
 }

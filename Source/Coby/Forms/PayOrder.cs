@@ -14,7 +14,10 @@ namespace Coby.Forms;
 
 public partial class PayOrder : MaterialForm
 {
+    private readonly Credentials _credentials;
+
     private int _page;
+
     public BindingList<OrderInfo> OrderInfoBinding { get; set; }
 
     public IClient Client { get; }
@@ -36,12 +39,14 @@ public partial class PayOrder : MaterialForm
         }
     }
 
-    public PayOrder(IClient client, Guid orderId)
+    public PayOrder(IClient client, Guid orderId, Credentials credentials)
     {
         InitializeComponent();
         Client = client;
         Order = Client.GetByCacheOperation.Order.GetOrderById(orderId);
         PaymentTypes = Client.GetByCacheOperation.PaymentType.GetPaymentTypes();
+        _credentials = credentials;
+        Waiter = Client.GetByCacheOperation.Waiter.GetWaiterById(credentials.WaiterId);
         _ = FormHelper.CreateMaterialSkinManager(this);
         FormHelper.SetFullScreen(this);
         OrderInfoListView.SetDataBinding("DataSource", this, nameof(OrderInfoBinding));
@@ -86,7 +91,7 @@ public partial class PayOrder : MaterialForm
         void AddPaymentTypeOnOrder(object sender, EventArgs e, Guid paymentTypeId)
         {
             var paymentType = PaymentTypes.First(x => x.Id.Equals(paymentTypeId));
-            var payment = new AddPaymentForm(paymentType.Name).AddPayment(Client.OrderOperation.GetPaymentOperations(Order), paymentTypeId);
+            var payment = new AddPaymentForm(paymentType.Name).AddPayment(_credentials, Client.OrderOperation.GetPaymentOperations(Order), paymentTypeId);
             if (payment is not null)
             {
                 PaymentTypes.RemoveAll(x => x.Id.Equals(paymentTypeId));
@@ -113,7 +118,7 @@ public partial class PayOrder : MaterialForm
 
         void RemovePaymentOnOrder(object sender, EventArgs e, Guid paymentId)
         {
-            Client.OrderOperation.GetPaymentOperations(Order).RemovePaymentOnOrder(paymentId);
+            Client.OrderOperation.GetPaymentOperations(Order).RemovePaymentOnOrder(_credentials, paymentId);
             UpdatePaymentLayoutPanel();
             UpdateRemainderTextBox();
             var paymenttype = Client.GetByCacheOperation.PaymentType.GetPaymentTypeById(paymentId);
@@ -151,7 +156,7 @@ public partial class PayOrder : MaterialForm
             return;
         }
         Client.OrderOperation.SaveOrder(Order);
-        Client.OrderOperation.CloseOrder(Order.Id);
+        Client.OrderOperation.CloseOrder(_credentials, Order.Id);
         Close();
     }
 }

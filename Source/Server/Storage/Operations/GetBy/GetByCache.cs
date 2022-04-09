@@ -22,4 +22,6 @@ public class GetByCache
     public GetPaymentType PaymentType => new(Cache);
 
     public GetWaiterFace WaiterFace => new(Cache);
+
+    public GetDangerousOperation DangerousOperation => new(Cache);
 }

@@ -24,8 +24,8 @@ public partial class ReportsForm : MaterialForm
 
     private void UpdateRevisionButton_Click(object sender, EventArgs e)
     {
-        var orders = GetOrdersByDate(_getCloseOrders, StartDateTimePicker.Value, EndDateTimePicker.Value).ToList();
-        var productsId = orders.SelectMany(x => x.GetGuests()).SelectMany(x => x.GetProducts()).Select(x => x.Id).ToList();
+        var orders = GetOrdersByDate(_getCloseOrders, StartDateTimePicker.Value, EndDateTimePicker.Value);
+        var productsId = orders.SelectMany(x => x.GetGuests()).SelectMany(x => x.GetProducts()).Select(x => x.Id);
 
         var groupProducts = GroupByHelper.GroupNomenclatureById(_client.GetByCacheOperation.GetNomenclatureOperation.GetNomenclaturesByParentId,
                                                                 _client.GetByCacheOperation.Product.GetProductById,
@@ -34,8 +34,23 @@ public partial class ReportsForm : MaterialForm
         {
             return new { ProductId = x.Product.Id, Name = x.Product.ProductName, x.Product.Price, Remainder = x.Sum, x.Count };
         }).ToList());
+
+        static IEnumerable<Order> GetOrdersByDate(IEnumerable<Order> orders, DateTime startDate, DateTime endDate) =>
+            orders.Where(x => x.StartTime.Date >= startDate.Date && x.StartTime.Date <= endDate.Date.AddDays(1));
     }
 
-    private IEnumerable<Order> GetOrdersByDate(IEnumerable<Order> orders, DateTime startDate, DateTime endDate) =>
-        orders.Where(x => x.StartTime.Date >= startDate.Date && x.StartTime.Date <= endDate.Date);
+    private void UpdateDangerousOperationsButton_Click(object sender, EventArgs e)
+    {
+        var dangerousOperations = GetDangerousOperationsByDate(_client.GetByCacheOperation.DangerousOperation.GetDangerousOperations(),
+                                                               StartDateTimePicker.Value,
+                                                               EndDateTimePicker.Value);
+        DataGridHelper.FillTable(DangerousDgv, dangerousOperations.Select(x =>
+        {
+            return new { Waiter = _client.GetByCacheOperation.Waiter.GetWaiterById(x.WaiterId).Name, x.Message, x.Created };
+        }).ToList());
+
+
+        static IEnumerable<DangerousOperationsDto> GetDangerousOperationsByDate(IEnumerable<DangerousOperationsDto> dangerousOperationsDto, DateTime startDate, DateTime endDate) =>
+            dangerousOperationsDto.Where(x => x.GetTime() >= startDate.Date && x.GetTime() <= endDate.Date.AddDays(1));
+    }
 }

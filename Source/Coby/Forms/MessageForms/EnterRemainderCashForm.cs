@@ -1,27 +1,26 @@
 ﻿using MaterialSkin.Controls;
 using Office.Helper;
-using Shared.Dto.Enities;
 using System;
 using System.Windows.Forms;
 
 namespace Coby.Forms.MessageForms;
 
-public partial class EnterPinForm : MaterialForm
+public partial class EnterRemainderCashForm : MaterialForm
 {
-    public EnterPinForm()
+    public EnterRemainderCashForm()
     {
         InitializeComponent();
         _ = FormHelper.CreateMaterialSkinManager(this);
     }
 
-    public Credentials GetCredentials(Func<string, Credentials> tryGetCredentials) =>
+    public decimal GetRemainderCash() =>
         ShowDialog() is DialogResult.OK
-        ? tryGetCredentials(PinTextBox.Text)
+        ? decimal.Parse(CashBalanceTextBox.Text)
         : default;
 
     private void EnterPinButton_Click(object sender, EventArgs e)
     {
-        if (string.IsNullOrEmpty(PinTextBox.Text) is true)
+        if (string.IsNullOrEmpty(CashBalanceTextBox.Text) is true && decimal.TryParse(CashBalanceTextBox.Text, out _) is false)
             return;
 
         DialogResult = DialogResult.OK;

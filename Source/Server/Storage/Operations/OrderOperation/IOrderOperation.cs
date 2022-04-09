@@ -14,5 +14,5 @@ public interface IOrderOperation
 
     Order SaveOrder(Order order);
 
-    void CloseOrder(Guid orderId);
+    void CloseOrder(Credentials credentials, Guid orderId);
 }

@@ -49,4 +49,6 @@ public class Creater
             ? throw new EntityAlreadyExistsException(waiterFaceOnCache.Select(x => x.Id).First())
             : Cache.WaiterFaceCache.AddOrUpdateWaiterFace(new(waiterFaceId, face));
 
+    public DangerousOperationsDto AddDangerousOperations(Guid waiterId, string message) =>
+        Cache.DangerousOperationCache.AddDangerousOperations(new(waiterId, message));
 }

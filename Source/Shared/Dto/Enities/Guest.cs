@@ -23,5 +23,5 @@ public class Guest
         Products = new Dictionary<int, Product>();
     }
 
-    public List<Product>? GetProducts() => (Products?.Values ?? Enumerable.Empty<Product>()).ToList();
+    public List<Product> GetProducts() => (Products?.Values ?? Enumerable.Empty<Product>()).ToList();
 }
