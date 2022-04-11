@@ -16,15 +16,14 @@ namespace Coby.Forms;
 
 public partial class MainForm : MaterialForm, INotifyPropertyChanged
 {
+    private readonly int _openOrderLayoutPanelCellCount;
+    private readonly IClient _client;
+    private readonly Credentials _credentials;
+
     private int _page;
     private List<Order> _orders;
-    private readonly int _openOrderLayoutPanelCellCount;
-
-    public IClient Client { get; }
 
     public Waiter Waiter { get; private set; }
-
-    public Credentials Credentials { get; }
 
     public List<Order> Orders
     {
@@ -50,9 +49,9 @@ public partial class MainForm : MaterialForm, INotifyPropertyChanged
     public MainForm(IClient client, Credentials credentials)
     {
         InitializeComponent();
-        Client = client;
-        Credentials = credentials;
-        Waiter = Client.GetByCacheOperation.Waiter.GetWaiterById(Credentials.WaiterId);
+        _client = client;
+        _credentials = credentials;
+        Waiter = _client.GetByCacheOperation.Waiter.GetWaiterById(_credentials.WaiterId);
         WaiterLabel.Text = $"{Waiter.PermissionStatus}: {Waiter.Name}";
         _openOrderLayoutPanelCellCount = OpenOrderLayoutPanel.ColumnCount * OpenOrderLayoutPanel.RowCount;
         _ = FormHelper.CreateMaterialSkinManager(this);
@@ -65,15 +64,15 @@ public partial class MainForm : MaterialForm, INotifyPropertyChanged
     private void ChangePersonalShiftStatus_Click(object sender, EventArgs e)
     {
         Waiter = Waiter.Status is WaiterSessionStatus.Open
-            ? Client.WaiterOperation.ClosePersonalShift(Waiter.Id)
-            : Client.WaiterOperation.OpenPersonalShift(Waiter.Id);
+            ? _client.WaiterOperation.ClosePersonalShift(Waiter.Id)
+            : _client.WaiterOperation.OpenPersonalShift(Waiter.Id);
         AfterUpdateStatus();
         MaterialMessageBox.Show($"Личная смена имеет статус: {Waiter.Status}", false, FlexibleMaterialForm.ButtonsPosition.Center);
     }
 
     private void LockButton_Click(object sender, EventArgs e)
     {
-        new LoginForm(Client).Show();
+        new LoginForm(_client).Show();
         Hide();
     }
 
@@ -88,17 +87,17 @@ public partial class MainForm : MaterialForm, INotifyPropertyChanged
         Enabled = false;
         splashScreen.FormClosing += (sender, e) => { Enabled = true; };
 
-        var request = await Client.CloseCafeShift(Credentials, cashRegister);
+        var request = await _client.CloseCafeShift(_credentials, cashRegister);
         splashScreen.Close();
 
         if (request.Status is not RequestStatus.OK)
             MaterialMessageBox.Show($"Id: {request.Id}\nStatus: {request.Status}\nMessage: {request.Message}\nException:{request.Exception}");
-        Waiter = Client.GetByCacheOperation.Waiter.GetWaiterById(Waiter.Id);
+        Waiter = _client.GetByCacheOperation.Waiter.GetWaiterById(Waiter.Id);
         AfterUpdateStatus();
     }
 
     private void CreateOrderButton_Click(object sender, EventArgs e) =>
-        OpenForm(new CreateOrderForm(Client, Credentials));
+        OpenForm(new CreateOrderForm(_client, _credentials));
 
     private void MainFormTabController_Selecting(object sender, TabControlCancelEventArgs e)
     {
@@ -162,7 +161,7 @@ public partial class MainForm : MaterialForm, INotifyPropertyChanged
         void OpenOrder(object sender, MouseEventArgs e, Guid orderId, int y)
         {
             if (e.Y <= y)
-                OpenForm(new OrderForm(Client, Waiter, orderId));
+                OpenForm(new OrderForm(_client, Waiter, orderId));
         }
     }
 
@@ -191,11 +190,36 @@ public partial class MainForm : MaterialForm, INotifyPropertyChanged
         UpdateOrdersLayoutPanel(Page);
     }
 
+    private void StatisticsButton_Click(object sender, EventArgs e)
+    {
+        var orders = _client.GetByCacheOperation.Order.GetOrders();
+        var openOrders = orders.Where(x => x.Status is OrderStatus.New);
+        var closedOrders = orders.Where(x => x.Status is OrderStatus.Closed);
+
+        var cash = orders.SelectMany(x => x.GetPayments()).Where(x => x.PaymentEnum is PaymentEnum.Cash).Sum(x => x.Sum);
+        var realCash = orders.Sum(x => x.Sum) - orders.SelectMany(x => x.GetPayments())
+                                                      .Where(x => x.PaymentEnum is not PaymentEnum.Cash)
+                                                      .Sum(x => x.Sum);
+        var nonCash = orders.SelectMany(x => x.GetPayments()).Where(x => x.PaymentEnum is PaymentEnum.NonCash).Sum(x => x.Sum);
+        var other = orders.SelectMany(x => x.GetPayments()).Where(x => x.PaymentEnum is PaymentEnum.Other).Sum(x => x.Sum);
+
+        var reserveLicence = _client.GetByCacheOperation.Cache.LicensesCache.GetLicensesCache();
+
+        string message = $"Open orders: {openOrders.Count()}\n" +
+                         $"Closed orders: {closedOrders.Count()}\n" +
+                         $"Cash: {cash}\n" +
+                         $"Real cash: {realCash}\n" +
+                         $"Non cash: {nonCash}\n" +
+                         $"Other: {other}\n" +
+                         $"Reserve license: {reserveLicence.Count()}";
+        MaterialMessageBox.Show(message, false, FlexibleMaterialForm.ButtonsPosition.Center);
+    }
+
     private void CloseOrdersButton_Click(object sender, EventArgs e) =>
-        OpenForm(new CloseOrdersForm(Client, Client.GetByCacheOperation.Order.GetOrders().Where(x => x.Status is OrderStatus.Closed)));
+        OpenForm(new CloseOrdersForm(_client, _client.GetByCacheOperation.Order.GetOrders().Where(x => x.Status is OrderStatus.Closed)));
 
     private void UpdateOrders() =>
-        Orders = Client.GetByCacheOperation.Order.GetOrders().Where(x => x.Status is OrderStatus.New).ToList();
+        Orders = _client.GetByCacheOperation.Order.GetOrders().Where(x => x.Status is OrderStatus.New).ToList();
 
     public event PropertyChangedEventHandler PropertyChanged;
     protected void OnPropertyChanged(PropertyChangedEventArgs e) =>

@@ -10,7 +10,7 @@ public class WaiterDB
 
     public string Password { get; set; }
 
-    public bool PermissionStatus { get; set; }
+    public string PermissionStatus { get; set; }
 
     public WaiterDB() { }
 }

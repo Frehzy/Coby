@@ -26,6 +26,8 @@ public class Client : IClient
 
     public GetByCache GetByCacheOperation { get; }
 
+    public DangerousOperation DangerousOperation { get; }
+
     public Creater Creater { get; }
 
     public CloseCafeShiftDelegate CloseCafeShift { get; }
@@ -46,6 +48,8 @@ public class Client : IClient
         OrderOperation.Cache = cache;
         Creater = _service.GetCreater(cache);
         Creater.Cache = cache;
+        DangerousOperation = _service.GetDangerousOperation(cache);
+        DangerousOperation.Cache = cache;
     }
 
     public IService CreateClient()

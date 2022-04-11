@@ -21,6 +21,8 @@ public interface IClient
 
     GetByCache GetByCacheOperation { get; }
 
+    DangerousOperation DangerousOperation { get; }
+
     CloseCafeShiftDelegate CloseCafeShift { get; }
 
     IService CreateClient();

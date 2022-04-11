@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shared.Dto.Enums;
+using System;
 
 namespace Shared.Dto.Enities;
 
@@ -8,11 +9,14 @@ public class PaymentType
 
     public string Name { get; set; }
 
+    public PaymentEnum PaymentEnum { get; set; }
+
     public PaymentType() { }
 
-    public PaymentType(Guid paymentId, string name)
+    public PaymentType(Guid paymentId, string name, PaymentEnum paymentEnum)
     {
         Id = paymentId;
         Name = name;
+        PaymentEnum = paymentEnum;
     }
 }

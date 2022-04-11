@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddPaymentTypeForm));
             this.PaymentTypeTextBox = new MaterialSkin.Controls.MaterialTextBox();
             this.SaveButton = new MaterialSkin.Controls.MaterialButton();
+            this.PaymentEnumComboBox = new MaterialSkin.Controls.MaterialComboBox();
             this.SuspendLayout();
             // 
             // PaymentTypeTextBox
@@ -59,7 +60,7 @@
             this.SaveButton.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.SaveButton.HighEmphasis = true;
             this.SaveButton.Icon = null;
-            this.SaveButton.Location = new System.Drawing.Point(3, 125);
+            this.SaveButton.Location = new System.Drawing.Point(3, 182);
             this.SaveButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.SaveButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.SaveButton.Name = "SaveButton";
@@ -72,11 +73,34 @@
             this.SaveButton.UseVisualStyleBackColor = true;
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
+            // PaymentEnumComboBox
+            // 
+            this.PaymentEnumComboBox.AutoResize = false;
+            this.PaymentEnumComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.PaymentEnumComboBox.Depth = 0;
+            this.PaymentEnumComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.PaymentEnumComboBox.DropDownHeight = 174;
+            this.PaymentEnumComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.PaymentEnumComboBox.DropDownWidth = 121;
+            this.PaymentEnumComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.PaymentEnumComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.PaymentEnumComboBox.FormattingEnabled = true;
+            this.PaymentEnumComboBox.IntegralHeight = false;
+            this.PaymentEnumComboBox.ItemHeight = 43;
+            this.PaymentEnumComboBox.Location = new System.Drawing.Point(9, 123);
+            this.PaymentEnumComboBox.MaxDropDownItems = 4;
+            this.PaymentEnumComboBox.MouseState = MaterialSkin.MouseState.OUT;
+            this.PaymentEnumComboBox.Name = "PaymentEnumComboBox";
+            this.PaymentEnumComboBox.Size = new System.Drawing.Size(231, 49);
+            this.PaymentEnumComboBox.StartIndex = 0;
+            this.PaymentEnumComboBox.TabIndex = 5;
+            // 
             // AddPaymentTypeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(243, 164);
+            this.ClientSize = new System.Drawing.Size(243, 221);
+            this.Controls.Add(this.PaymentEnumComboBox);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.PaymentTypeTextBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -95,5 +119,6 @@
 
         private MaterialSkin.Controls.MaterialTextBox PaymentTypeTextBox;
         private MaterialSkin.Controls.MaterialButton SaveButton;
+        private MaterialSkin.Controls.MaterialComboBox PaymentEnumComboBox;
     }
 }

@@ -36,11 +36,12 @@ public partial class CreateOrderForm : MaterialForm
             MaterialButton button = new();
             button.Click += (sender, e) => CreateOrder(sender, e, item.Id);
             button.Text = $"Стол #{item.TableNumber}";
+            button.Tag = item.TableNumber;
             button.Dock = DockStyle.Fill;
             buttons.Add(button);
         }
 
-        CreateOrderLayoutPanel.Controls.AddRange(buttons.OrderBy(x => x.Text).ToArray());
+        CreateOrderLayoutPanel.Controls.AddRange(buttons.OrderBy(x => int.Parse(x.Tag.ToString())).ToArray());
 
         void CreateOrder(object sender, EventArgs e, Guid tableId)
         {

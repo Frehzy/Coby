@@ -30,27 +30,29 @@ public class Client : IClient
 
     public Remover Remover { get; }
 
-    public AllCache AllCache { get; }
+    public DangerousOperation DangerousOperation { get; }
 
     public GetCloseOrdersDelegate GetCloseOrders { get; }
 
     public Client()
     {
         _service = CreateClient();
-        AllCache = new(_service);
-        GetByCacheOperation = new(AllCache);
-        LicenseOperation = _service.GetLicenseOperation(AllCache);
-        LicenseOperation.Cache = AllCache;
-        TableOperation = _service.GetTableOperation(AllCache);
-        TableOperation.Cache = AllCache;
-        WaiterOperation = _service.GetWaiterOperation(AllCache);
-        WaiterOperation.Cache = AllCache;
-        OrderOperation = _service.GetOrderOperation(AllCache);
-        OrderOperation.Cache = AllCache;
-        Creater = _service.GetCreater(AllCache);
-        Creater.Cache = AllCache;
-        Remover = _service.GetRemover(AllCache);
-        Remover.Cache = AllCache;
+        var cache = new AllCache(_service);
+        GetByCacheOperation = new(cache);
+        LicenseOperation = _service.GetLicenseOperation(cache);
+        LicenseOperation.Cache = cache;
+        TableOperation = _service.GetTableOperation(cache);
+        TableOperation.Cache = cache;
+        WaiterOperation = _service.GetWaiterOperation(cache);
+        WaiterOperation.Cache = cache;
+        OrderOperation = _service.GetOrderOperation(cache);
+        OrderOperation.Cache = cache;
+        Creater = _service.GetCreater(cache);
+        Creater.Cache = cache;
+        Remover = _service.GetRemover(cache);
+        Remover.Cache = cache;
+        DangerousOperation = _service.GetDangerousOperation(cache);
+        DangerousOperation.Cache = cache;
         GetCloseOrders = _service.GetCloseOrders;
     }
 

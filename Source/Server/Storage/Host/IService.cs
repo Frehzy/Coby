@@ -24,6 +24,9 @@ public interface IService : ILicenseCache, IOrderCache, IPaymentTypeCache, IProd
     WaiterOperation GetWaiterOperation(AllCache cache);
 
     [OperationContract]
+    DangerousOperation GetDangerousOperation(AllCache cache);
+
+    [OperationContract]
     Creater GetCreater(AllCache cache);
 
     [OperationContract]

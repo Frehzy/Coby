@@ -96,11 +96,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cache\AllCache.cs" />
+    <Compile Include="DataBase\Converter\DangerousOperationConverter.cs" />
+    <Compile Include="DataBase\Converter\PaymentTypeConverter.cs" />
     <Compile Include="DataBase\Converter\WaiterConverter.cs" />
+    <Compile Include="DataBase\DangerousOperationDB.cs" />
     <Compile Include="DataBase\DBInteraction.cs" />
     <Compile Include="DataBase\GuestDB.cs" />
     <Compile Include="DataBase\OrderDB.cs" />
     <Compile Include="DataBase\PaymentDB.cs" />
+    <Compile Include="DataBase\PaymentTypeDB.cs" />
     <Compile Include="DataBase\ProductDB.cs" />
     <Compile Include="DataBase\SQLString.cs" />
     <Compile Include="DataBase\WaiterDB.cs" />
@@ -120,6 +124,7 @@
     <Compile Include="Log.cs" />
     <Compile Include="Operations\CreateRemove\Creater.cs" />
     <Compile Include="Operations\CreateRemove\Remover.cs" />
+    <Compile Include="Operations\DangerousOperation.cs" />
     <Compile Include="Operations\GetBy\GetByCache.cs" />
     <Compile Include="Operations\GetBy\GetOrder.cs" />
     <Compile Include="Operations\GetBy\GetPaymentType.cs" />

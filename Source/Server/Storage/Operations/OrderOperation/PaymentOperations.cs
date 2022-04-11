@@ -35,14 +35,10 @@ public class PaymentOperations
         if (paymentType is null)
             throw new EntityNotFound(paymentTypeId);
 
-        var paymentSum = Order.GetPayments().Sum(x => x.Sum);
-        if (paymentSum + sum > Order.Sum)
-            sum = (decimal)Order.Sum - paymentSum;
-
         if (sum <= 0)
             throw new ArgumentException("Сумма не может быть меньше или равна 0.");
 
-        var payment = new Payment(paymentType.Id, paymentType.Name, sum);
+        var payment = new Payment(paymentType.Id, paymentType.Name, paymentType.PaymentEnum, sum);
         Order.Payment.Add(payment.Id, payment);
         HistoryHelper.OrderHistory(Order, payment.Id, Entities.Payment, ActionsEnum.Added);
         return payment;
@@ -56,7 +52,7 @@ public class PaymentOperations
         if (Order.Payment.TryGetValue(paymentId, out var payment) is false)
             throw new EntityNotFound(paymentId);
 
-        Cache.DangerousOperationCache.AddDangerousOperations(new(license.Id, $"Remove payment [{paymentId}] on order [{Order.Id}]"));
+        Cache.DangerousOperationCache.AddDangerousOperations(new(license.Id, $"Remove payment [{payment.Name}]:[{payment.Id}] on order [{Order.Id}]"));
         Order.Payment.Remove(payment.Id);
         HistoryHelper.OrderHistory(Order, paymentId, Entities.Payment, ActionsEnum.Remove);
     }

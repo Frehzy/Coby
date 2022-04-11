@@ -2,7 +2,7 @@
 
 public class CashRegister
 {
-    public decimal CashOnRegister { get; }
+    public decimal CashOnRegister { get; set; }
 
     public CashRegister() { }
 

@@ -20,7 +20,7 @@ public partial class EnterRemainderCashForm : MaterialForm
 
     private void EnterPinButton_Click(object sender, EventArgs e)
     {
-        if (string.IsNullOrEmpty(CashBalanceTextBox.Text) is true && decimal.TryParse(CashBalanceTextBox.Text, out _) is false)
+        if (decimal.TryParse(CashBalanceTextBox.Text, out _) is false)
             return;
 
         DialogResult = DialogResult.OK;

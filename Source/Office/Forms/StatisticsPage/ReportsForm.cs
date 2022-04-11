@@ -51,6 +51,6 @@ public partial class ReportsForm : MaterialForm
 
 
         static IEnumerable<DangerousOperationsDto> GetDangerousOperationsByDate(IEnumerable<DangerousOperationsDto> dangerousOperationsDto, DateTime startDate, DateTime endDate) =>
-            dangerousOperationsDto.Where(x => x.GetTime() >= startDate.Date && x.GetTime() <= endDate.Date.AddDays(1));
+            dangerousOperationsDto.Where(x => x.Created >= startDate.Date && x.Created <= endDate.Date.AddDays(1));
     }
 }

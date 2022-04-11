@@ -12,8 +12,8 @@ public interface IDangerousOperation
     List<DangerousOperationsDto> GetDangerousOperationsCache();
 
     [OperationContract]
-    DangerousOperationsDto AddDangerousOperations(DangerousOperationsDto dangerousOperations);
+    bool AddDangerousOperations(DangerousOperationsDto dangerousOperations);
 
     [OperationContract]
-    DangerousOperationsDto RemoveDangerousOperations(Guid dangerousOperationsId);
+    bool RemoveDangerousOperations(Guid dangerousOperationsId);
 }

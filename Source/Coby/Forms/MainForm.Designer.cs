@@ -46,6 +46,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.WaiterLabel = new MaterialSkin.Controls.MaterialLabel();
             this.LockButton = new MaterialSkin.Controls.MaterialButton();
+            this.StatisticsButton = new MaterialSkin.Controls.MaterialButton();
             this.MainFormTabController.SuspendLayout();
             this.OrdersPage.SuspendLayout();
             this.CreateOrderPanel.SuspendLayout();
@@ -210,6 +211,7 @@
             this.OptionsLayoutPanel.Controls.Add(this.PersonalShiftController, 0, 0);
             this.OptionsLayoutPanel.Controls.Add(this.CafeSessionClose, 0, 1);
             this.OptionsLayoutPanel.Controls.Add(this.CloseOrdersButton, 2, 0);
+            this.OptionsLayoutPanel.Controls.Add(this.StatisticsButton, 2, 1);
             this.OptionsLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.OptionsLayoutPanel.Location = new System.Drawing.Point(3, 3);
             this.OptionsLayoutPanel.Name = "OptionsLayoutPanel";
@@ -336,6 +338,27 @@
             this.LockButton.UseVisualStyleBackColor = true;
             this.LockButton.Click += new System.EventHandler(this.LockButton_Click);
             // 
+            // StatisticsButton
+            // 
+            this.StatisticsButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.StatisticsButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.StatisticsButton.Depth = 0;
+            this.StatisticsButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.StatisticsButton.HighEmphasis = true;
+            this.StatisticsButton.Icon = null;
+            this.StatisticsButton.Location = new System.Drawing.Point(525, 76);
+            this.StatisticsButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.StatisticsButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.StatisticsButton.Name = "StatisticsButton";
+            this.StatisticsButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.StatisticsButton.Size = new System.Drawing.Size(254, 58);
+            this.StatisticsButton.TabIndex = 3;
+            this.StatisticsButton.Text = "Statistics";
+            this.StatisticsButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.StatisticsButton.UseAccentColor = false;
+            this.StatisticsButton.UseVisualStyleBackColor = true;
+            this.StatisticsButton.Click += new System.EventHandler(this.StatisticsButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -393,5 +416,6 @@
         private MaterialSkin.Controls.MaterialButton CloseOrdersButton;
         private System.Windows.Forms.ImageList TabControlImageList;
         private MaterialSkin.Controls.MaterialLabel WaiterLabel;
+        private MaterialSkin.Controls.MaterialButton StatisticsButton;
     }
 }

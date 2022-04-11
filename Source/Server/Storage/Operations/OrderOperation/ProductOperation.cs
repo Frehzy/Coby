@@ -50,7 +50,8 @@ public class ProductOperation
         if (Order.Guests.TryGetValue(guestId, out var guests) is false)
             throw new EntityNotFound(guestId);
 
-        Cache.DangerousOperationCache.AddDangerousOperations(new(license.Id, $"Remove product [{productId}] on order [{Order.Id}]"));
+        var product = guests.GetProducts().First(x => x.Id.Equals(productId));
+        Cache.DangerousOperationCache.AddDangerousOperations(new(license.Id, $"Remove product [{product.ProductName}]:[{product.Id}] on order [{Order.Id}]"));
         guests.Products.Remove(rank);
         HistoryHelper.OrderHistory(Order, productId, Entities.Product, ActionsEnum.Remove);
     }

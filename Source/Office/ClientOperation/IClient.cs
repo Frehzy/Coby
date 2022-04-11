@@ -1,5 +1,4 @@
-﻿using Storage.Cache;
-using Storage.Host;
+﻿using Storage.Host;
 using Storage.Operations;
 using Storage.Operations.CreateRemove;
 using Storage.Operations.GetBy;
@@ -10,8 +9,6 @@ namespace Office.ClientOperation;
 
 public interface IClient
 {
-    AllCache AllCache { get; }
-
     LicenseOperation LicenseOperation { get; }
 
     Creater Creater { get; }
@@ -25,6 +22,8 @@ public interface IClient
     OrderOperation OrderOperation { get; }
 
     GetByCache GetByCacheOperation { get; }
+
+    DangerousOperation DangerousOperation { get; }
 
     GetCloseOrdersDelegate GetCloseOrders { get; }
 

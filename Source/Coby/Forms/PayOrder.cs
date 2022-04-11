@@ -127,7 +127,13 @@ public partial class PayOrder : MaterialForm
         }
     }
 
-    private void UpdateRemainderTextBox() => RemainderTextBox.Text = $"Remainder: {Order.Sum - Order.GetPayments().Sum(x => x.Sum)}";
+    private void UpdateRemainderTextBox()
+    {
+        var orderSum = Order.Sum - Order.GetPayments().Sum(x => x.Sum);
+        RemainderTextBox.Text = orderSum >= 0
+            ? $"Remainder: {orderSum}"
+            : $"Change: {orderSum * (-1)}";
+    }
 
     private void UpdateSumTextBox() => SumTextBox.Text = $"Total price: {Order.Sum}";
 
@@ -148,9 +154,9 @@ public partial class PayOrder : MaterialForm
 
     private void PayButton_Click(object sender, EventArgs e)
     {
-        if (Order.Sum - Order.GetPayments().Sum(x => x.Sum) != 0)
+        if (Order.Sum - Order.GetPayments().Sum(x => x.Sum) > 0)
         {
-            MaterialMessageBox.Show($"Невозможно закрыть заказ, пока сумма на остатке не будет равна 0.",
+            MaterialMessageBox.Show($"Невозможно закрыть заказ, пока внесённая сумма меньше 0.",
                                     false,
                                     FlexibleMaterialForm.ButtonsPosition.Center);
             return;

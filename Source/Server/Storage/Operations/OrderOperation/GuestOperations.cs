@@ -49,7 +49,8 @@ public class GuestOperations
         if (Helper.CheckLicense(Cache, credentials, out var license) is null)
             throw new EntityNotFound(credentials.WaiterId);
 
-        Cache.DangerousOperationCache.AddDangerousOperations(new(license.Id, $"Remove guest [{guestId}] on order [{Order.Id}]"));
+        var guest = Order.GetGuests().First(x => x.Id.Equals(guestId));
+        Cache.DangerousOperationCache.AddDangerousOperations(new(license.Id, $"Remove guest [{guest.Name}]:[{guest.Id}] on order [{Order.Id}]"));
         Order.Guests.Remove(guestId);
         HistoryHelper.OrderHistory(Order, guestId, Entities.Guest, ActionsEnum.Remove);
     }

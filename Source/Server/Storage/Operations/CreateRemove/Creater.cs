@@ -24,31 +24,28 @@ public class Creater
         return nomenclature;
     }
 
-    public PaymentType CreatePaymentType(string name) =>
-        Helper.PaymentTypeByName(Cache, name, out PaymentType paymentTypeOnCache) is not null
-        ? throw new EntityAlreadyExistsException(paymentTypeOnCache.Id)
-        : Cache.PaymentTypesCache.AddOrUpdatePaymentType(new PaymentType(Guid.NewGuid(), name));
+    public PaymentType CreatePaymentType(string name, PaymentEnum paymentEnum) =>
+        Helper.PaymentTypeByName(Cache, name, out PaymentType paymentTypeOnCache) is null
+        ? Cache.PaymentTypesCache.AddOrUpdatePaymentType(new PaymentType(Guid.NewGuid(), name, paymentEnum))
+        : throw new EntityAlreadyExistsException(paymentTypeOnCache.Id);
 
     public Product CreateProduct(string productName, decimal price, bool isItForSale) =>
-        Helper.ProductByName(Cache, productName, out Product productOnCache) is not null
-        ? throw new EntityAlreadyExistsException(productOnCache.Id)
-        : Cache.ProductsCache.AddOrUpdateProduct(new Product(Guid.NewGuid(), productName, price, isItForSale));
+        Helper.ProductByName(Cache, productName, out Product productOnCache) is null
+        ? Cache.ProductsCache.AddOrUpdateProduct(new Product(Guid.NewGuid(), productName, price, isItForSale))
+        : throw new EntityAlreadyExistsException(productOnCache.Id);
 
     public Table CreateTable(int tableNumber) =>
-        Helper.TableByNumber(Cache, tableNumber, out Table tableOnCache) is not null
-            ? throw new EntityAlreadyExistsException(tableOnCache.Id)
-            : Cache.TablesCache.AddOrUpdateTable(new Table(Guid.NewGuid(), tableNumber));
+        Helper.TableByNumber(Cache, tableNumber, out Table tableOnCache) is null
+            ? Cache.TablesCache.AddOrUpdateTable(new Table(Guid.NewGuid(), tableNumber))
+            : throw new EntityAlreadyExistsException(tableOnCache.Id);
 
     public Waiter CreateWaiter(string name, string password, PermissionStatus permissionStatus) =>
-        Helper.WaiterByPassword(Cache, password, out Waiter waiterOnCache) is not null
-            ? throw new EntityAlreadyExistsException(waiterOnCache.Id)
-            : Cache.WaitersCache.AddOrUpdateWaiter(new Waiter(Guid.NewGuid(), name, password, permissionStatus, WaiterSessionStatus.Closed));
+        Helper.WaiterByPassword(Cache, password, out Waiter waiterOnCache) is null
+            ? Cache.WaitersCache.AddOrUpdateWaiter(new Waiter(Guid.NewGuid(), name, password, permissionStatus, WaiterSessionStatus.Closed))
+            : throw new EntityAlreadyExistsException(waiterOnCache.Id);
 
     public WaiterFace AddWaiterFacesById(Guid waiterFaceId, Image face) =>
-        Helper.WaiterFaceById(Cache, waiterFaceId, out List<WaiterFace> waiterFaceOnCache) is null
-            ? throw new EntityAlreadyExistsException(waiterFaceOnCache.Select(x => x.Id).First())
-            : Cache.WaiterFaceCache.AddOrUpdateWaiterFace(new(waiterFaceId, face));
-
-    public DangerousOperationsDto AddDangerousOperations(Guid waiterId, string message) =>
-        Cache.DangerousOperationCache.AddDangerousOperations(new(waiterId, message));
+        Helper.WaiterFaceById(Cache, waiterFaceId, out List<WaiterFace> waiterFaceOnCache) is not null
+            ? Cache.WaiterFaceCache.AddOrUpdateWaiterFace(new(waiterFaceId, face))
+            : throw new EntityAlreadyExistsException(waiterFaceOnCache.Select(x => x.Id).First());
 }
