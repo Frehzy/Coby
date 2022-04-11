@@ -16,7 +16,7 @@ public partial class EnterRemainderCashForm : MaterialForm
     public decimal GetRemainderCash() =>
         ShowDialog() is DialogResult.OK
         ? decimal.Parse(CashBalanceTextBox.Text)
-        : default;
+        : decimal.MinValue;
 
     private void EnterPinButton_Click(object sender, EventArgs e)
     {

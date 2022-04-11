@@ -22,6 +22,13 @@ public partial class ReportsForm : MaterialForm
         _ = FormHelper.CreateMaterialSkinManager(this);
     }
 
+    private void ReportsForm_Load(object sender, EventArgs e)
+    {
+        var waiters = _client.GetByCacheOperation.Waiter.GetWaiters();
+        WaitersComboBox.DataSource = waiters;
+        WaitersComboBox.DisplayMember = nameof(Waiter.Name);
+    }
+
     private void UpdateRevisionButton_Click(object sender, EventArgs e)
     {
         var orders = GetOrdersByDate(_getCloseOrders, StartDateTimePicker.Value, EndDateTimePicker.Value);
@@ -44,6 +51,10 @@ public partial class ReportsForm : MaterialForm
         var dangerousOperations = GetDangerousOperationsByDate(_client.GetByCacheOperation.DangerousOperation.GetDangerousOperations(),
                                                                StartDateTimePicker.Value,
                                                                EndDateTimePicker.Value);
+        var selectedWaiter = WaitersComboBox.SelectedItem as Waiter;
+        if (selectedWaiter is not null)
+            dangerousOperations = dangerousOperations.Where(x => x.WaiterId.Equals(selectedWaiter.Id));
+
         DataGridHelper.FillTable(DangerousDgv, dangerousOperations.Select(x =>
         {
             return new { Waiter = _client.GetByCacheOperation.Waiter.GetWaiterById(x.WaiterId).Name, x.Message, x.Created };
@@ -52,5 +63,10 @@ public partial class ReportsForm : MaterialForm
 
         static IEnumerable<DangerousOperationsDto> GetDangerousOperationsByDate(IEnumerable<DangerousOperationsDto> dangerousOperationsDto, DateTime startDate, DateTime endDate) =>
             dangerousOperationsDto.Where(x => x.Created >= startDate.Date && x.Created <= endDate.Date.AddDays(1));
+    }
+
+    private void WaiterComboBoxClearButton_Click(object sender, EventArgs e)
+    {
+        WaitersComboBox.SelectedItem = default;
     }
 }

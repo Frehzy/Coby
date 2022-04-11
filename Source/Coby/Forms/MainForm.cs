@@ -79,7 +79,7 @@ public partial class MainForm : MaterialForm, INotifyPropertyChanged
     private async void CafeSessionClose_Click(object sender, EventArgs e)
     {
         var cashRegister = new CashRegister(new EnterRemainderCashForm().GetRemainderCash());
-        if (cashRegister.CashOnRegister is decimal.Zero)
+        if (cashRegister.CashOnRegister is decimal.MinValue)
             return;
 
         var splashScreen = new SplashScreen();

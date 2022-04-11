@@ -22,7 +22,7 @@ public partial class FaceDetectionSettingsForm : MaterialForm
         CamerasComboBox.DataSource = WebcamHelper.TakeAllWebCamera();
         var resolutions = WebcamHelper.GetResolutions();
         ResolutionsComboBox.DataSource = resolutions;
-        ResolutionsComboBox.DisplayMember = "FullResolution";
+        ResolutionsComboBox.DisplayMember = nameof(Resolution.FullResolution);
         MethodComboBox.DataSource = Enum.GetValues(typeof(FaceDetectMethodEnum));
     }
 
