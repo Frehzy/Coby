@@ -63,6 +63,9 @@ public partial class CloseOrdersForm : MaterialForm
             view.TextDescrition = $"GuestCount: {order.GetGuests().Count()}\n" +
                                   $"Sum: {order.Sum}\n" +
                                   $"StartTime: {order.StartTime}\n" +
+                                  $"EndTime: {order.EndTime}\n" +
+                                  $"PaymentTypes: [{string.Join("], [", order.GetPayments().Select(x => $"{x.Name}-{x.Sum}"))}]\n" +
+                                  $"Change cash: {order.GetPayments().Sum(x => x.Sum) - order.Sum}\n" +
                                   $"Products: \n-{products}";
             view.MouseClick += (sender, e) => OpenOrder(sender, e, order.Id, view.CurtainHeight);
             view.Dock = DockStyle.Fill;

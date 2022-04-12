@@ -166,7 +166,7 @@
             this.PasswordTextBox.AnimateReadOnly = false;
             this.PasswordTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.PasswordTextBox.Depth = 0;
-            this.PasswordTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.PasswordTextBox.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.PasswordTextBox.Hint = "Password";
             this.PasswordTextBox.LeadingIcon = null;
             this.PasswordTextBox.Location = new System.Drawing.Point(3, 24);
