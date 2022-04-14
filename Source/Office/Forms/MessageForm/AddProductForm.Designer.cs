@@ -79,8 +79,8 @@
             this.PriceTextBox.AnimateReadOnly = false;
             this.PriceTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.PriceTextBox.Depth = 0;
-            this.PriceTextBox.Font = new System.Drawing.Font("Roboto Medium", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.PriceTextBox.Hint = "Price";
+            this.PriceTextBox.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.PriceTextBox.Hint = "Cost price";
             this.PriceTextBox.LeadingIcon = null;
             this.PriceTextBox.Location = new System.Drawing.Point(6, 123);
             this.PriceTextBox.MaxLength = 50;
@@ -107,6 +107,7 @@
             this.IsItForSaleCheckBox.TabIndex = 5;
             this.IsItForSaleCheckBox.Text = "Is It For Sale";
             this.IsItForSaleCheckBox.UseVisualStyleBackColor = true;
+            this.IsItForSaleCheckBox.CheckedChanged += new System.EventHandler(this.IsItForSaleCheckBox_CheckedChanged);
             // 
             // AddProductForm
             // 

@@ -19,7 +19,7 @@ public partial class AddNomenclatureForm : MaterialForm
         InitializeComponent();
         _ = FormHelper.CreateMaterialSkinManager(this);
         _parentId = parentId;
-        ComboBoxSet(products.ToList());
+        ComboBoxSet(products.OrderBy(x => x.ProductName));
         SelectedItem = ChildProductComboBox.Items.Count > 0
             ? (Product)ChildProductComboBox.Items[0]
             : default;
@@ -30,9 +30,9 @@ public partial class AddNomenclatureForm : MaterialForm
         ? creater.CreateNomenclature(_parentId, SelectedItem.Id, decimal.Parse(AmountTextBox.Text))
         : default;
 
-    private void ComboBoxSet(List<Product> products)
+    private void ComboBoxSet(IEnumerable<Product> products)
     {
-        ChildProductComboBox.DataSource = products;
+        ChildProductComboBox.DataSource = products.ToList();
         ChildProductComboBox.DisplayMember = "ProductName";
 
         ChildProductComboBox.SelectedIndexChanged += ChildProductComboBox_SelectedIndexChanged;

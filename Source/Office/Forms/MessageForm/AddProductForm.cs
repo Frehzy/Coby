@@ -27,4 +27,7 @@ public partial class AddProductForm : MaterialForm
         DialogResult = DialogResult.OK;
         Close();
     }
+
+    private void IsItForSaleCheckBox_CheckedChanged(object sender, EventArgs e) =>
+        PriceTextBox.Hint = IsItForSaleCheckBox.Checked ? "Price" : "Cost price";
 }

@@ -29,113 +29,19 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NomenclatureForm));
-            this.ParentProductPanel = new System.Windows.Forms.Panel();
-            this.ChildLabel = new MaterialSkin.Controls.MaterialLabel();
-            this.ChildInfoTextBox = new MaterialSkin.Controls.MaterialMultiLineTextBox2();
-            this.ParentInfoTextBox = new MaterialSkin.Controls.MaterialMultiLineTextBox2();
-            this.ParentLabel = new MaterialSkin.Controls.MaterialLabel();
             this.ButtonsPanel = new System.Windows.Forms.Panel();
             this.CreateProductButton = new MaterialSkin.Controls.MaterialButton();
             this.RemoveNomenclatureButton = new MaterialSkin.Controls.MaterialButton();
             this.AddNomenclatureButton = new MaterialSkin.Controls.MaterialButton();
             this.NomenclatureUpdateButton = new MaterialSkin.Controls.MaterialButton();
             this.NomenclatureDgv = new System.Windows.Forms.DataGridView();
-            this.ParentProductPanel.SuspendLayout();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.ParentInfoTextBox = new MaterialSkin.Controls.MaterialMultiLineTextBox2();
+            this.ChildInfoTextBox = new MaterialSkin.Controls.MaterialMultiLineTextBox2();
             this.ButtonsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NomenclatureDgv)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // ParentProductPanel
-            // 
-            this.ParentProductPanel.Controls.Add(this.ChildLabel);
-            this.ParentProductPanel.Controls.Add(this.ChildInfoTextBox);
-            this.ParentProductPanel.Controls.Add(this.ParentInfoTextBox);
-            this.ParentProductPanel.Controls.Add(this.ParentLabel);
-            this.ParentProductPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ParentProductPanel.Location = new System.Drawing.Point(3, 64);
-            this.ParentProductPanel.Name = "ParentProductPanel";
-            this.ParentProductPanel.Size = new System.Drawing.Size(916, 106);
-            this.ParentProductPanel.TabIndex = 0;
-            // 
-            // ChildLabel
-            // 
-            this.ChildLabel.AutoSize = true;
-            this.ChildLabel.Depth = 0;
-            this.ChildLabel.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.ChildLabel.Location = new System.Drawing.Point(470, 3);
-            this.ChildLabel.MouseState = MaterialSkin.MouseState.HOVER;
-            this.ChildLabel.Name = "ChildLabel";
-            this.ChildLabel.Size = new System.Drawing.Size(65, 19);
-            this.ChildLabel.TabIndex = 19;
-            this.ChildLabel.Text = "ChildInfo";
-            // 
-            // ChildInfoTextBox
-            // 
-            this.ChildInfoTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.ChildInfoTextBox.AnimateReadOnly = true;
-            this.ChildInfoTextBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ChildInfoTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
-            this.ChildInfoTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.ChildInfoTextBox.Depth = 0;
-            this.ChildInfoTextBox.HideSelection = true;
-            this.ChildInfoTextBox.Location = new System.Drawing.Point(541, 3);
-            this.ChildInfoTextBox.MaxLength = 32767;
-            this.ChildInfoTextBox.MouseState = MaterialSkin.MouseState.OUT;
-            this.ChildInfoTextBox.Name = "ChildInfoTextBox";
-            this.ChildInfoTextBox.PasswordChar = '\0';
-            this.ChildInfoTextBox.ReadOnly = true;
-            this.ChildInfoTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.ChildInfoTextBox.SelectedText = "";
-            this.ChildInfoTextBox.SelectionLength = 0;
-            this.ChildInfoTextBox.SelectionStart = 0;
-            this.ChildInfoTextBox.ShortcutsEnabled = true;
-            this.ChildInfoTextBox.Size = new System.Drawing.Size(375, 100);
-            this.ChildInfoTextBox.TabIndex = 18;
-            this.ChildInfoTextBox.TabStop = false;
-            this.ChildInfoTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.ChildInfoTextBox.UseAccent = false;
-            this.ChildInfoTextBox.UseSystemPasswordChar = false;
-            // 
-            // ParentInfoTextBox
-            // 
-            this.ParentInfoTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.ParentInfoTextBox.AnimateReadOnly = true;
-            this.ParentInfoTextBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ParentInfoTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
-            this.ParentInfoTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.ParentInfoTextBox.Depth = 0;
-            this.ParentInfoTextBox.HideSelection = true;
-            this.ParentInfoTextBox.Location = new System.Drawing.Point(84, 3);
-            this.ParentInfoTextBox.MaxLength = 32767;
-            this.ParentInfoTextBox.MouseState = MaterialSkin.MouseState.OUT;
-            this.ParentInfoTextBox.Name = "ParentInfoTextBox";
-            this.ParentInfoTextBox.PasswordChar = '\0';
-            this.ParentInfoTextBox.ReadOnly = true;
-            this.ParentInfoTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.ParentInfoTextBox.SelectedText = "";
-            this.ParentInfoTextBox.SelectionLength = 0;
-            this.ParentInfoTextBox.SelectionStart = 0;
-            this.ParentInfoTextBox.ShortcutsEnabled = true;
-            this.ParentInfoTextBox.Size = new System.Drawing.Size(375, 100);
-            this.ParentInfoTextBox.TabIndex = 17;
-            this.ParentInfoTextBox.TabStop = false;
-            this.ParentInfoTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.ParentInfoTextBox.UseAccent = false;
-            this.ParentInfoTextBox.UseSystemPasswordChar = false;
-            // 
-            // ParentLabel
-            // 
-            this.ParentLabel.AutoSize = true;
-            this.ParentLabel.Depth = 0;
-            this.ParentLabel.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.ParentLabel.Location = new System.Drawing.Point(3, 3);
-            this.ParentLabel.MouseState = MaterialSkin.MouseState.HOVER;
-            this.ParentLabel.Name = "ParentLabel";
-            this.ParentLabel.Size = new System.Drawing.Size(75, 19);
-            this.ParentLabel.TabIndex = 0;
-            this.ParentLabel.Text = "ParentInfo";
             // 
             // ButtonsPanel
             // 
@@ -144,7 +50,7 @@
             this.ButtonsPanel.Controls.Add(this.AddNomenclatureButton);
             this.ButtonsPanel.Controls.Add(this.NomenclatureUpdateButton);
             this.ButtonsPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ButtonsPanel.Location = new System.Drawing.Point(3, 170);
+            this.ButtonsPanel.Location = new System.Drawing.Point(3, 193);
             this.ButtonsPanel.Name = "ButtonsPanel";
             this.ButtonsPanel.Size = new System.Drawing.Size(916, 54);
             this.ButtonsPanel.TabIndex = 1;
@@ -240,14 +146,88 @@
             this.NomenclatureDgv.BackgroundColor = System.Drawing.SystemColors.Control;
             this.NomenclatureDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.NomenclatureDgv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.NomenclatureDgv.Location = new System.Drawing.Point(3, 224);
+            this.NomenclatureDgv.Location = new System.Drawing.Point(3, 247);
             this.NomenclatureDgv.Name = "NomenclatureDgv";
             this.NomenclatureDgv.ReadOnly = true;
             this.NomenclatureDgv.RowHeadersWidth = 51;
             this.NomenclatureDgv.RowTemplate.Height = 24;
-            this.NomenclatureDgv.Size = new System.Drawing.Size(916, 360);
+            this.NomenclatureDgv.Size = new System.Drawing.Size(916, 337);
             this.NomenclatureDgv.TabIndex = 16;
             this.NomenclatureDgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.NomenclatureDgv_CellContentClick);
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.ChildInfoTextBox, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.ParentInfoTextBox, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 64);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(916, 129);
+            this.tableLayoutPanel1.TabIndex = 17;
+            // 
+            // ParentInfoTextBox
+            // 
+            this.ParentInfoTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ParentInfoTextBox.AnimateReadOnly = true;
+            this.ParentInfoTextBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ParentInfoTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
+            this.ParentInfoTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.ParentInfoTextBox.Depth = 0;
+            this.ParentInfoTextBox.HideSelection = true;
+            this.ParentInfoTextBox.Location = new System.Drawing.Point(3, 3);
+            this.ParentInfoTextBox.MaxLength = 32767;
+            this.ParentInfoTextBox.MouseState = MaterialSkin.MouseState.OUT;
+            this.ParentInfoTextBox.Name = "ParentInfoTextBox";
+            this.ParentInfoTextBox.PasswordChar = '\0';
+            this.ParentInfoTextBox.ReadOnly = true;
+            this.ParentInfoTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.ParentInfoTextBox.SelectedText = "";
+            this.ParentInfoTextBox.SelectionLength = 0;
+            this.ParentInfoTextBox.SelectionStart = 0;
+            this.ParentInfoTextBox.ShortcutsEnabled = true;
+            this.ParentInfoTextBox.Size = new System.Drawing.Size(452, 123);
+            this.ParentInfoTextBox.TabIndex = 18;
+            this.ParentInfoTextBox.TabStop = false;
+            this.ParentInfoTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.ParentInfoTextBox.UseAccent = false;
+            this.ParentInfoTextBox.UseSystemPasswordChar = false;
+            // 
+            // ChildInfoTextBox
+            // 
+            this.ChildInfoTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ChildInfoTextBox.AnimateReadOnly = true;
+            this.ChildInfoTextBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ChildInfoTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
+            this.ChildInfoTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.ChildInfoTextBox.Depth = 0;
+            this.ChildInfoTextBox.HideSelection = true;
+            this.ChildInfoTextBox.Location = new System.Drawing.Point(461, 3);
+            this.ChildInfoTextBox.MaxLength = 32767;
+            this.ChildInfoTextBox.MouseState = MaterialSkin.MouseState.OUT;
+            this.ChildInfoTextBox.Name = "ChildInfoTextBox";
+            this.ChildInfoTextBox.PasswordChar = '\0';
+            this.ChildInfoTextBox.ReadOnly = true;
+            this.ChildInfoTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.ChildInfoTextBox.SelectedText = "";
+            this.ChildInfoTextBox.SelectionLength = 0;
+            this.ChildInfoTextBox.SelectionStart = 0;
+            this.ChildInfoTextBox.ShortcutsEnabled = true;
+            this.ChildInfoTextBox.Size = new System.Drawing.Size(452, 123);
+            this.ChildInfoTextBox.TabIndex = 19;
+            this.ChildInfoTextBox.TabStop = false;
+            this.ChildInfoTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.ChildInfoTextBox.UseAccent = false;
+            this.ChildInfoTextBox.UseSystemPasswordChar = false;
             // 
             // NomenclatureForm
             // 
@@ -256,33 +236,29 @@
             this.ClientSize = new System.Drawing.Size(922, 587);
             this.Controls.Add(this.NomenclatureDgv);
             this.Controls.Add(this.ButtonsPanel);
-            this.Controls.Add(this.ParentProductPanel);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "NomenclatureForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nomenclature";
-            this.ParentProductPanel.ResumeLayout(false);
-            this.ParentProductPanel.PerformLayout();
             this.ButtonsPanel.ResumeLayout(false);
             this.ButtonsPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NomenclatureDgv)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel ParentProductPanel;
         private System.Windows.Forms.Panel ButtonsPanel;
         private System.Windows.Forms.DataGridView NomenclatureDgv;
         private MaterialSkin.Controls.MaterialButton RemoveNomenclatureButton;
         private MaterialSkin.Controls.MaterialButton AddNomenclatureButton;
         private MaterialSkin.Controls.MaterialButton NomenclatureUpdateButton;
-        private MaterialSkin.Controls.MaterialMultiLineTextBox2 ParentInfoTextBox;
-        private MaterialSkin.Controls.MaterialLabel ParentLabel;
-        private MaterialSkin.Controls.MaterialMultiLineTextBox2 ChildInfoTextBox;
-        private MaterialSkin.Controls.MaterialLabel ChildLabel;
         private MaterialSkin.Controls.MaterialButton CreateProductButton;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private MaterialSkin.Controls.MaterialMultiLineTextBox2 ChildInfoTextBox;
+        private MaterialSkin.Controls.MaterialMultiLineTextBox2 ParentInfoTextBox;
     }
 }
