@@ -29,7 +29,8 @@ public partial class LoginForm : MaterialForm
             return;
         }
 
-        if (_client.LicenseOperation.GetCredentials(password, out var credentials) is null)
+        var credentials = _client.LicenseOperation.TryGetCredentials(password);
+        if (credentials is null)
         {
             MaterialMessageBox.Show($"Пароль не найден. {password}", false, FlexibleMaterialForm.ButtonsPosition.Center);
             return;
@@ -41,7 +42,7 @@ public partial class LoginForm : MaterialForm
     private void LoginByFaceButton_Click(object sender, EventArgs e)
     {
         Enabled = false;
-        var credentials = new FaceDetectionForm(_client).GetCredentials();
+        var credentials = new FaceDetectionForm(_client).TryGetCredentials();
         Enabled = true;
         if (credentials is null)
             return;

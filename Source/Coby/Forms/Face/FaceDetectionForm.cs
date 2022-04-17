@@ -44,9 +44,9 @@ public partial class FaceDetectionForm : MaterialForm
         _detectFace.PropertyChanged += FoundFacePropertyChanged;
     }
 
-    public Credentials GetCredentials() =>
+    public Credentials TryGetCredentials() =>
         ShowDialog() is DialogResult.OK
-            ? _client.LicenseOperation.GetCredentials(_foundFace.Password, out _)
+            ? _client.LicenseOperation.TryGetCredentials(_foundFace.Password)
             : default;
 
     private void FoundFacePropertyChanged(object sender, PropertyChangedEventArgs e)
