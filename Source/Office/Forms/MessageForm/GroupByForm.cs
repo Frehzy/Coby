@@ -31,7 +31,7 @@ public partial class GroupByForm : MaterialForm
     public IEnumerable<GroupOrders> GetGroupOrders()
     {
         if (ShowDialog() is not DialogResult.OK)
-            return default;
+            return Enumerable.Empty<GroupOrders>();
 
         return _selectedGroupType is GroupTypeEnum.Day
             ? GroupByHelper.GroupOrderByDay(_orders, DateComboBox.SelectedIndex)
