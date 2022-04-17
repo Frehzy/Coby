@@ -250,6 +250,7 @@
             this.Sizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add waiter face";
+            this.Load += new System.EventHandler(this.AddWaiterFaceForm_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

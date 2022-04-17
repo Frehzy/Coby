@@ -34,7 +34,8 @@ public partial class MainForm : MaterialForm
     private void AddWaiterFaceButton_Click(object sender, EventArgs e)
     {
         var waiterId = new RowHelper<Guid>(WaitersDgv).GetValueByColumnName("Id", false).Value;
-        new AddWaiterFaceForm(waiterId, Client).Show();
+        var waiterForm = new AddWaiterFaceForm(waiterId, Client);
+        waiterForm.ShowDialog();
     }
 
     private void DeleteWaiterButton_Click(object sender, EventArgs e)

@@ -53,7 +53,7 @@ public partial class OrderForm : MaterialForm, INotifyPropertyChanged
         Client = client;
         Waiter = waiter;
         Order = Client.GetByCacheOperation.Order.GetOrderById(orderId);
-        Products = Client.GetByCacheOperation.Product.GetProducts();
+        Products = Client.GetByCacheOperation.Product.GetProducts().Where(x => x.IsItForSale is true).ToList();
         Page = 0;
         _ = FormHelper.CreateMaterialSkinManager(this);
         FormHelper.SetFullScreen(this);

@@ -26,6 +26,10 @@ public partial class AddWaiterFaceForm : MaterialForm
         _waiter = _client.GetByCacheOperation.Waiter.GetWaiterById(waiterId);
         _waiterFace = _client.GetByCacheOperation.WaiterFace.GetWaiterFaceById(waiterId);
         _ = FormHelper.CreateMaterialSkinManager(this);
+    }
+
+    private void AddWaiterFaceForm_Load(object sender, EventArgs e)
+    {
         CheckExistenceFaces();
         LoadInfo(_waiter, WaiterTextBox);
         LoadSettings();
