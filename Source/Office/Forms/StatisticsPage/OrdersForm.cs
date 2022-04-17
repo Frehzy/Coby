@@ -16,11 +16,12 @@ public partial class OrdersForm : MaterialForm
 
     public Func<List<Order>> GetOrders { get; private set; }
 
-    public OrdersForm(IClient client, Func<List<Order>> getOrders)
+    public OrdersForm(IClient client, Func<List<Order>> getOrders, string formHeader = "Orders")
     {
         InitializeComponent();
         _client = client;
         GetOrders = getOrders;
+        Text = formHeader;
         _ = FormHelper.CreateMaterialSkinManager(this);
     }
 

@@ -124,13 +124,13 @@ public partial class MainForm : MaterialForm
     private void CloseOrdersButton_Click(object sender, EventArgs e)
     {
         Func<List<Order>> func = Client.GetCloseOrders.Invoke;
-        new OrdersForm(Client, func).Show();
+        new OrdersForm(Client, func, "Close orders").Show();
     }
 
     private void CurrentSessionButton_Click(object sender, EventArgs e)
     {
         Func<List<Order>> func = Client.GetByCacheOperation.Order.GetOrders;
-        new OrdersForm(Client, func).Show();
+        new OrdersForm(Client, func, "Open orders").Show();
     }
 
     private void ChartsButton_Click(object sender, EventArgs e) =>

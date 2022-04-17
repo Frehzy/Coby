@@ -115,7 +115,7 @@
             this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "OrdersForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Close orders";
+            this.Text = "Orders";
             this.ButtonsPanel.ResumeLayout(false);
             this.ButtonsPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CloseOrdersDgv)).EndInit();
