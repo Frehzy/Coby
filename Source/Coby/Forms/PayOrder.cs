@@ -91,13 +91,22 @@ public partial class PayOrder : MaterialForm
         void AddPaymentTypeOnOrder(object sender, EventArgs e, Guid paymentTypeId)
         {
             var paymentType = PaymentTypes.First(x => x.Id.Equals(paymentTypeId));
-            var payment = new AddPaymentForm(paymentType.Name).AddPayment(_credentials, Client.OrderOperation.GetPaymentOperations(Order), paymentTypeId);
-            if (payment is not null)
+            try
             {
-                PaymentTypes.RemoveAll(x => x.Id.Equals(paymentTypeId));
-                LoadPaymentTypesInfo(Page);
-                CreatePaymentInfo(payment);
+                var payment = new AddPaymentForm(paymentType.Name).AddPayment(_credentials, Client.OrderOperation.GetPaymentOperations(Order), paymentTypeId);
+                if (payment is not null)
+                {
+                    PaymentTypes.RemoveAll(x => x.Id.Equals(paymentTypeId));
+                    LoadPaymentTypesInfo(Page);
+                    CreatePaymentInfo(payment);
+                }
             }
+            catch (Exception ex)
+            {
+                MaterialMessageBox.Show(ex.Message,
+                                        false,
+                                        FlexibleMaterialForm.ButtonsPosition.Center);
+            } 
         }
     }
 

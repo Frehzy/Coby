@@ -35,8 +35,15 @@ public class PaymentOperations
         if (paymentType is null)
             throw new EntityNotFound(paymentTypeId);
 
+        if (paymentType.PaymentEnum is not PaymentEnum.Cash)
+        {
+            var paymentSum = Order.GetPayments().Sum(x => x.Sum);
+            if (paymentSum + sum > Order.Sum)
+                sum = (decimal)Order.Sum - paymentSum;
+        }
+
         if (sum <= 0)
-            throw new ArgumentException("Сумма не может быть меньше или равна 0.");
+            throw new ArgumentException("Внесённая сумма не может быть меньше или равна 0.");
 
         var payment = new Payment(paymentType.Id, paymentType.Name, paymentType.PaymentEnum, sum);
         Order.Payment.Add(payment.Id, payment);
