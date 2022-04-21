@@ -30,6 +30,10 @@ public class DetectFace : INotifyPropertyChanged, IDisposable
     private Image<Gray, byte> _resultFrame;
     private FaceEntity _foundFace;
 
+    private delegate Image FaceDelegate(object sender, NewFrameEventArgs e);
+    private FaceDelegate _syncFaceDelegate;
+    private FaceDelegate _asyncFaceDelegate;
+
     public event PropertyChangedEventHandler PropertyChanged;
 
     public FaceEntity FoundFace
@@ -59,11 +63,14 @@ public class DetectFace : INotifyPropertyChanged, IDisposable
         _filter = new FilterInfoCollection(FilterCategory.VideoInputDevice);
         _device = new VideoCaptureDevice(_filter[_cameraIndex].MonikerString);
 
+        _syncFaceDelegate = Device_NewFrame;
+        _asyncFaceDelegate = Device_NewFrame_Parallel;
+
         _device.NewFrame += (sender, e) =>
         {
             _cameraBox.Image = methodType is FaceDetectMethodEnum.Sync
-                ? Device_NewFrame(sender, e)
-                : Device_NewFrame_Parallel(sender, e);
+                ? _syncFaceDelegate(sender, e)
+                : _asyncFaceDelegate(sender, e);
         };
     }
 
@@ -175,10 +182,20 @@ public class DetectFace : INotifyPropertyChanged, IDisposable
 
     public void Dispose()
     {
-        Stop();
+        Unsubscribe(_syncFaceDelegate);
+        Unsubscribe(_asyncFaceDelegate);
+
+        if (_device is not null)
+            Stop();
+
         _cameraBox.Dispose();
-        _haar.Dispose();
         _filter.Clear();
+
+        static void Unsubscribe(FaceDelegate faceDelegate)
+        {
+            foreach (var d in faceDelegate.GetInvocationList())
+                faceDelegate -= (FaceDelegate)d;
+        }
     }
 
     protected void OnPropertyChanged(PropertyChangedEventArgs e) =>
