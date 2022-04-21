@@ -27,21 +27,21 @@ public partial class ChartsForm : MaterialForm
 
     private void UpdateCloseOrdersButton_Click(object sender, EventArgs e)
     {
-        var result = new GroupByForm(_orders.ToList()).GetGroupOrders().ToList();
+        var groupCloseOrders = new GroupByForm(_orders.ToList()).GetGroupOrders().ToList();
         ClearCharts(CloseOrdersCharts);
-        if (result.Count == 0)
+        if (groupCloseOrders.Count == 0)
             return;
 
         CloseOrdersCharts.AxisX.Add(new Axis
         {
-            Title = result.First().TitleLabel,
-            Labels = result.Select(x => x.AxisXLabel.ToString()).ToArray()
+            Title = groupCloseOrders.First().TitleLabel,
+            Labels = groupCloseOrders.Select(x => x.AxisXLabel.ToString()).ToArray()
         });
         CloseOrdersCharts.LegendLocation = LegendLocation.Right;
         CloseOrdersCharts.Series.Add(new LineSeries()
         {
             Title = "Orders count",
-            Values = new ChartValues<int>(result.Select(x => x.Orders.Count()))
+            Values = new ChartValues<int>(groupCloseOrders.Select(x => x.Orders.Count()))
         });
     }
 
