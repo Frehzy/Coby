@@ -34,13 +34,14 @@
             this.UpdateRevisionButton = new MaterialSkin.Controls.MaterialButton();
             this.RevisionDgv = new System.Windows.Forms.DataGridView();
             this.DangerousOperationsPage = new System.Windows.Forms.TabPage();
+            this.WaiterComboBoxClearButton = new MaterialSkin.Controls.MaterialButton();
+            this.WaitersComboBox = new MaterialSkin.Controls.MaterialComboBox();
             this.UpdateDangerousOperationsButton = new MaterialSkin.Controls.MaterialButton();
             this.DangerousDgv = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.WaitersComboBox = new MaterialSkin.Controls.MaterialComboBox();
-            this.WaiterComboBoxClearButton = new MaterialSkin.Controls.MaterialButton();
             this.EndDateTimePicker = new Office.Forms.CustomControls.CustomDateTimePicker();
             this.StartDateTimePicker = new Office.Forms.CustomControls.CustomDateTimePicker();
+            this.RevisionExcelButton = new MaterialSkin.Controls.MaterialButton();
             this.TabControl.SuspendLayout();
             this.RevisionPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RevisionDgv)).BeginInit();
@@ -65,6 +66,7 @@
             // 
             // RevisionPage
             // 
+            this.RevisionPage.Controls.Add(this.RevisionExcelButton);
             this.RevisionPage.Controls.Add(this.UpdateRevisionButton);
             this.RevisionPage.Controls.Add(this.RevisionDgv);
             this.RevisionPage.Location = new System.Drawing.Point(4, 25);
@@ -110,7 +112,7 @@
             this.RevisionDgv.ReadOnly = true;
             this.RevisionDgv.RowHeadersWidth = 51;
             this.RevisionDgv.RowTemplate.Height = 24;
-            this.RevisionDgv.Size = new System.Drawing.Size(768, 304);
+            this.RevisionDgv.Size = new System.Drawing.Size(768, 259);
             this.RevisionDgv.TabIndex = 12;
             // 
             // DangerousOperationsPage
@@ -126,6 +128,52 @@
             this.DangerousOperationsPage.TabIndex = 6;
             this.DangerousOperationsPage.Text = "Dangerous operations";
             this.DangerousOperationsPage.UseVisualStyleBackColor = true;
+            // 
+            // WaiterComboBoxClearButton
+            // 
+            this.WaiterComboBoxClearButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.WaiterComboBoxClearButton.AutoSize = false;
+            this.WaiterComboBoxClearButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.WaiterComboBoxClearButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.WaiterComboBoxClearButton.Depth = 0;
+            this.WaiterComboBoxClearButton.HighEmphasis = true;
+            this.WaiterComboBoxClearButton.Icon = null;
+            this.WaiterComboBoxClearButton.Location = new System.Drawing.Point(657, 9);
+            this.WaiterComboBoxClearButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.WaiterComboBoxClearButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.WaiterComboBoxClearButton.Name = "WaiterComboBoxClearButton";
+            this.WaiterComboBoxClearButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.WaiterComboBoxClearButton.Size = new System.Drawing.Size(123, 49);
+            this.WaiterComboBoxClearButton.TabIndex = 16;
+            this.WaiterComboBoxClearButton.Text = "Waiter clear";
+            this.WaiterComboBoxClearButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.WaiterComboBoxClearButton.UseAccentColor = false;
+            this.WaiterComboBoxClearButton.UseVisualStyleBackColor = true;
+            this.WaiterComboBoxClearButton.Click += new System.EventHandler(this.WaiterComboBoxClearButton_Click);
+            // 
+            // WaitersComboBox
+            // 
+            this.WaitersComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.WaitersComboBox.AutoResize = false;
+            this.WaitersComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.WaitersComboBox.Depth = 0;
+            this.WaitersComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.WaitersComboBox.DropDownHeight = 174;
+            this.WaitersComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.WaitersComboBox.DropDownWidth = 121;
+            this.WaitersComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.WaitersComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.WaitersComboBox.FormattingEnabled = true;
+            this.WaitersComboBox.IntegralHeight = false;
+            this.WaitersComboBox.ItemHeight = 43;
+            this.WaitersComboBox.Location = new System.Drawing.Point(129, 9);
+            this.WaitersComboBox.MaxDropDownItems = 4;
+            this.WaitersComboBox.MouseState = MaterialSkin.MouseState.OUT;
+            this.WaitersComboBox.Name = "WaitersComboBox";
+            this.WaitersComboBox.Size = new System.Drawing.Size(521, 49);
+            this.WaitersComboBox.StartIndex = 0;
+            this.WaitersComboBox.TabIndex = 15;
             // 
             // UpdateDangerousOperationsButton
             // 
@@ -176,52 +224,6 @@
             this.panel1.Size = new System.Drawing.Size(794, 40);
             this.panel1.TabIndex = 1;
             // 
-            // WaitersComboBox
-            // 
-            this.WaitersComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.WaitersComboBox.AutoResize = false;
-            this.WaitersComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.WaitersComboBox.Depth = 0;
-            this.WaitersComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.WaitersComboBox.DropDownHeight = 174;
-            this.WaitersComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.WaitersComboBox.DropDownWidth = 121;
-            this.WaitersComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.WaitersComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.WaitersComboBox.FormattingEnabled = true;
-            this.WaitersComboBox.IntegralHeight = false;
-            this.WaitersComboBox.ItemHeight = 43;
-            this.WaitersComboBox.Location = new System.Drawing.Point(129, 9);
-            this.WaitersComboBox.MaxDropDownItems = 4;
-            this.WaitersComboBox.MouseState = MaterialSkin.MouseState.OUT;
-            this.WaitersComboBox.Name = "WaitersComboBox";
-            this.WaitersComboBox.Size = new System.Drawing.Size(521, 49);
-            this.WaitersComboBox.StartIndex = 0;
-            this.WaitersComboBox.TabIndex = 15;
-            // 
-            // WaiterComboBoxClearButton
-            // 
-            this.WaiterComboBoxClearButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.WaiterComboBoxClearButton.AutoSize = false;
-            this.WaiterComboBoxClearButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.WaiterComboBoxClearButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.WaiterComboBoxClearButton.Depth = 0;
-            this.WaiterComboBoxClearButton.HighEmphasis = true;
-            this.WaiterComboBoxClearButton.Icon = null;
-            this.WaiterComboBoxClearButton.Location = new System.Drawing.Point(657, 9);
-            this.WaiterComboBoxClearButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.WaiterComboBoxClearButton.MouseState = MaterialSkin.MouseState.HOVER;
-            this.WaiterComboBoxClearButton.Name = "WaiterComboBoxClearButton";
-            this.WaiterComboBoxClearButton.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.WaiterComboBoxClearButton.Size = new System.Drawing.Size(123, 49);
-            this.WaiterComboBoxClearButton.TabIndex = 16;
-            this.WaiterComboBoxClearButton.Text = "Waiter clear";
-            this.WaiterComboBoxClearButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.WaiterComboBoxClearButton.UseAccentColor = false;
-            this.WaiterComboBoxClearButton.UseVisualStyleBackColor = true;
-            this.WaiterComboBoxClearButton.Click += new System.EventHandler(this.WaiterComboBoxClearButton_Click);
-            // 
             // EndDateTimePicker
             // 
             this.EndDateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -249,6 +251,27 @@
             this.StartDateTimePicker.SkinColor = System.Drawing.Color.MediumSlateBlue;
             this.StartDateTimePicker.TabIndex = 14;
             this.StartDateTimePicker.TextColor = System.Drawing.Color.White;
+            // 
+            // RevisionExcelButton
+            // 
+            this.RevisionExcelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.RevisionExcelButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.RevisionExcelButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.RevisionExcelButton.Depth = 0;
+            this.RevisionExcelButton.HighEmphasis = true;
+            this.RevisionExcelButton.Icon = null;
+            this.RevisionExcelButton.Location = new System.Drawing.Point(715, 322);
+            this.RevisionExcelButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.RevisionExcelButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.RevisionExcelButton.Name = "RevisionExcelButton";
+            this.RevisionExcelButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.RevisionExcelButton.Size = new System.Drawing.Size(65, 36);
+            this.RevisionExcelButton.TabIndex = 19;
+            this.RevisionExcelButton.Text = "Excel";
+            this.RevisionExcelButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.RevisionExcelButton.UseAccentColor = false;
+            this.RevisionExcelButton.UseVisualStyleBackColor = true;
+            this.RevisionExcelButton.Click += new System.EventHandler(this.RevisionExcelButton_Click);
             // 
             // ReportsForm
             // 
@@ -293,6 +316,7 @@
         private MaterialSkin.Controls.MaterialButton UpdateDangerousOperationsButton;
         private MaterialSkin.Controls.MaterialComboBox WaitersComboBox;
         private MaterialSkin.Controls.MaterialButton WaiterComboBoxClearButton;
+        private MaterialSkin.Controls.MaterialButton RevisionExcelButton;
     }
 }
 

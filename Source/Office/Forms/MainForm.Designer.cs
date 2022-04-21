@@ -32,7 +32,6 @@
             this.TabControl = new MaterialSkin.Controls.MaterialTabControl();
             this.WaitersPage = new System.Windows.Forms.TabPage();
             this.AddWaiterFaceButton = new MaterialSkin.Controls.MaterialButton();
-            this.WaitersDgv = new System.Windows.Forms.DataGridView();
             this.DeleteWaiterButton = new MaterialSkin.Controls.MaterialButton();
             this.AddWaiterButton = new MaterialSkin.Controls.MaterialButton();
             this.UpdateWaitersButton = new MaterialSkin.Controls.MaterialButton();
@@ -52,23 +51,28 @@
             this.RemovePaymentTypeButton = new MaterialSkin.Controls.MaterialButton();
             this.AddPaymentTypeButton = new MaterialSkin.Controls.MaterialButton();
             this.PaymentTypeUpdateButton = new MaterialSkin.Controls.MaterialButton();
-            this.StatPage = new System.Windows.Forms.TabPage();
+            this.StatisticPage = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.ChartsButton = new MaterialSkin.Controls.MaterialButton();
             this.CloseOrdersButton = new MaterialSkin.Controls.MaterialButton();
             this.OpenOrdersButton = new MaterialSkin.Controls.MaterialButton();
             this.ReportButton = new MaterialSkin.Controls.MaterialButton();
+            this.WaiterExcelButton = new MaterialSkin.Controls.MaterialButton();
+            this.TableExcelButton = new MaterialSkin.Controls.MaterialButton();
+            this.WaitersDgv = new System.Windows.Forms.DataGridView();
+            this.ProductExcelButton = new MaterialSkin.Controls.MaterialButton();
+            this.PaymentTypeExcelButton = new MaterialSkin.Controls.MaterialButton();
             this.TabControl.SuspendLayout();
             this.WaitersPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.WaitersDgv)).BeginInit();
             this.TablesPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TablesDgv)).BeginInit();
             this.ProductsPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ProductsDgv)).BeginInit();
             this.PaymentTypesPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PaymentTypesDgv)).BeginInit();
-            this.StatPage.SuspendLayout();
+            this.StatisticPage.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.WaitersDgv)).BeginInit();
             this.SuspendLayout();
             // 
             // TabControl
@@ -77,7 +81,7 @@
             this.TabControl.Controls.Add(this.TablesPage);
             this.TabControl.Controls.Add(this.ProductsPage);
             this.TabControl.Controls.Add(this.PaymentTypesPage);
-            this.TabControl.Controls.Add(this.StatPage);
+            this.TabControl.Controls.Add(this.StatisticPage);
             this.TabControl.Depth = 0;
             this.TabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TabControl.Location = new System.Drawing.Point(3, 64);
@@ -90,8 +94,9 @@
             // 
             // WaitersPage
             // 
-            this.WaitersPage.Controls.Add(this.AddWaiterFaceButton);
             this.WaitersPage.Controls.Add(this.WaitersDgv);
+            this.WaitersPage.Controls.Add(this.WaiterExcelButton);
+            this.WaitersPage.Controls.Add(this.AddWaiterFaceButton);
             this.WaitersPage.Controls.Add(this.DeleteWaiterButton);
             this.WaitersPage.Controls.Add(this.AddWaiterButton);
             this.WaitersPage.Controls.Add(this.UpdateWaitersButton);
@@ -111,7 +116,7 @@
             this.AddWaiterFaceButton.Depth = 0;
             this.AddWaiterFaceButton.HighEmphasis = true;
             this.AddWaiterFaceButton.Icon = null;
-            this.AddWaiterFaceButton.Location = new System.Drawing.Point(484, 10);
+            this.AddWaiterFaceButton.Location = new System.Drawing.Point(489, 9);
             this.AddWaiterFaceButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.AddWaiterFaceButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.AddWaiterFaceButton.Name = "AddWaiterFaceButton";
@@ -124,24 +129,6 @@
             this.AddWaiterFaceButton.UseVisualStyleBackColor = true;
             this.AddWaiterFaceButton.Click += new System.EventHandler(this.AddWaiterFaceButton_Click);
             // 
-            // WaitersDgv
-            // 
-            this.WaitersDgv.AllowUserToAddRows = false;
-            this.WaitersDgv.AllowUserToDeleteRows = false;
-            this.WaitersDgv.AllowUserToResizeRows = false;
-            this.WaitersDgv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.WaitersDgv.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.WaitersDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.WaitersDgv.Location = new System.Drawing.Point(7, 55);
-            this.WaitersDgv.Name = "WaitersDgv";
-            this.WaitersDgv.ReadOnly = true;
-            this.WaitersDgv.RowHeadersWidth = 51;
-            this.WaitersDgv.RowTemplate.Height = 24;
-            this.WaitersDgv.Size = new System.Drawing.Size(763, 343);
-            this.WaitersDgv.TabIndex = 3;
-            // 
             // DeleteWaiterButton
             // 
             this.DeleteWaiterButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -150,7 +137,7 @@
             this.DeleteWaiterButton.Depth = 0;
             this.DeleteWaiterButton.HighEmphasis = true;
             this.DeleteWaiterButton.Icon = null;
-            this.DeleteWaiterButton.Location = new System.Drawing.Point(697, 10);
+            this.DeleteWaiterButton.Location = new System.Drawing.Point(702, 9);
             this.DeleteWaiterButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.DeleteWaiterButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.DeleteWaiterButton.Name = "DeleteWaiterButton";
@@ -171,7 +158,7 @@
             this.AddWaiterButton.Depth = 0;
             this.AddWaiterButton.HighEmphasis = true;
             this.AddWaiterButton.Icon = null;
-            this.AddWaiterButton.Location = new System.Drawing.Point(582, 10);
+            this.AddWaiterButton.Location = new System.Drawing.Point(587, 9);
             this.AddWaiterButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.AddWaiterButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.AddWaiterButton.Name = "AddWaiterButton";
@@ -191,7 +178,7 @@
             this.UpdateWaitersButton.Depth = 0;
             this.UpdateWaitersButton.HighEmphasis = true;
             this.UpdateWaitersButton.Icon = null;
-            this.UpdateWaitersButton.Location = new System.Drawing.Point(7, 10);
+            this.UpdateWaitersButton.Location = new System.Drawing.Point(12, 9);
             this.UpdateWaitersButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.UpdateWaitersButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.UpdateWaitersButton.Name = "UpdateWaitersButton";
@@ -206,6 +193,7 @@
             // 
             // TablesPage
             // 
+            this.TablesPage.Controls.Add(this.TableExcelButton);
             this.TablesPage.Controls.Add(this.TablesDgv);
             this.TablesPage.Controls.Add(this.RemoveTableButton);
             this.TablesPage.Controls.Add(this.AddTableButton);
@@ -233,7 +221,7 @@
             this.TablesDgv.ReadOnly = true;
             this.TablesDgv.RowHeadersWidth = 51;
             this.TablesDgv.RowTemplate.Height = 24;
-            this.TablesDgv.Size = new System.Drawing.Size(763, 343);
+            this.TablesDgv.Size = new System.Drawing.Size(763, 296);
             this.TablesDgv.TabIndex = 7;
             // 
             // RemoveTableButton
@@ -300,6 +288,7 @@
             // 
             // ProductsPage
             // 
+            this.ProductsPage.Controls.Add(this.ProductExcelButton);
             this.ProductsPage.Controls.Add(this.OpenNomenclature);
             this.ProductsPage.Controls.Add(this.ProductsDgv);
             this.ProductsPage.Controls.Add(this.RemoveProductButton);
@@ -348,7 +337,7 @@
             this.ProductsDgv.ReadOnly = true;
             this.ProductsDgv.RowHeadersWidth = 51;
             this.ProductsDgv.RowTemplate.Height = 24;
-            this.ProductsDgv.Size = new System.Drawing.Size(763, 343);
+            this.ProductsDgv.Size = new System.Drawing.Size(763, 299);
             this.ProductsDgv.TabIndex = 15;
             // 
             // RemoveProductButton
@@ -359,7 +348,7 @@
             this.RemoveProductButton.Depth = 0;
             this.RemoveProductButton.HighEmphasis = true;
             this.RemoveProductButton.Icon = null;
-            this.RemoveProductButton.Location = new System.Drawing.Point(702, 8);
+            this.RemoveProductButton.Location = new System.Drawing.Point(702, 9);
             this.RemoveProductButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.RemoveProductButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.RemoveProductButton.Name = "RemoveProductButton";
@@ -415,6 +404,7 @@
             // 
             // PaymentTypesPage
             // 
+            this.PaymentTypesPage.Controls.Add(this.PaymentTypeExcelButton);
             this.PaymentTypesPage.Controls.Add(this.PaymentTypesDgv);
             this.PaymentTypesPage.Controls.Add(this.RemovePaymentTypeButton);
             this.PaymentTypesPage.Controls.Add(this.AddPaymentTypeButton);
@@ -441,7 +431,7 @@
             this.PaymentTypesDgv.ReadOnly = true;
             this.PaymentTypesDgv.RowHeadersWidth = 51;
             this.PaymentTypesDgv.RowTemplate.Height = 24;
-            this.PaymentTypesDgv.Size = new System.Drawing.Size(763, 343);
+            this.PaymentTypesDgv.Size = new System.Drawing.Size(763, 299);
             this.PaymentTypesDgv.TabIndex = 11;
             // 
             // RemovePaymentTypeButton
@@ -506,15 +496,15 @@
             this.PaymentTypeUpdateButton.UseVisualStyleBackColor = true;
             this.PaymentTypeUpdateButton.Click += new System.EventHandler(this.PaymentTypeUpdateButton_Click);
             // 
-            // StatPage
+            // StatisticPage
             // 
-            this.StatPage.Controls.Add(this.tableLayoutPanel1);
-            this.StatPage.Location = new System.Drawing.Point(4, 25);
-            this.StatPage.Name = "StatPage";
-            this.StatPage.Size = new System.Drawing.Size(786, 404);
-            this.StatPage.TabIndex = 0;
-            this.StatPage.Text = "Statistics";
-            this.StatPage.UseVisualStyleBackColor = true;
+            this.StatisticPage.Controls.Add(this.tableLayoutPanel1);
+            this.StatisticPage.Location = new System.Drawing.Point(4, 25);
+            this.StatisticPage.Name = "StatisticPage";
+            this.StatisticPage.Size = new System.Drawing.Size(786, 404);
+            this.StatisticPage.TabIndex = 0;
+            this.StatisticPage.Text = "Statistics";
+            this.StatisticPage.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel1
             // 
@@ -622,6 +612,108 @@
             this.ReportButton.UseVisualStyleBackColor = true;
             this.ReportButton.Click += new System.EventHandler(this.ReportButton_Click);
             // 
+            // WaiterExcelButton
+            // 
+            this.WaiterExcelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.WaiterExcelButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.WaiterExcelButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.WaiterExcelButton.Depth = 0;
+            this.WaiterExcelButton.HighEmphasis = true;
+            this.WaiterExcelButton.Icon = null;
+            this.WaiterExcelButton.Location = new System.Drawing.Point(710, 359);
+            this.WaiterExcelButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.WaiterExcelButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.WaiterExcelButton.Name = "WaiterExcelButton";
+            this.WaiterExcelButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.WaiterExcelButton.Size = new System.Drawing.Size(65, 36);
+            this.WaiterExcelButton.TabIndex = 5;
+            this.WaiterExcelButton.Text = "Excel";
+            this.WaiterExcelButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.WaiterExcelButton.UseAccentColor = false;
+            this.WaiterExcelButton.UseVisualStyleBackColor = true;
+            this.WaiterExcelButton.Click += new System.EventHandler(this.WaiterExcelButton_Click);
+            // 
+            // TableExcelButton
+            // 
+            this.TableExcelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.TableExcelButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.TableExcelButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.TableExcelButton.Depth = 0;
+            this.TableExcelButton.HighEmphasis = true;
+            this.TableExcelButton.Icon = null;
+            this.TableExcelButton.Location = new System.Drawing.Point(710, 359);
+            this.TableExcelButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.TableExcelButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.TableExcelButton.Name = "TableExcelButton";
+            this.TableExcelButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.TableExcelButton.Size = new System.Drawing.Size(65, 36);
+            this.TableExcelButton.TabIndex = 8;
+            this.TableExcelButton.Text = "Excel";
+            this.TableExcelButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.TableExcelButton.UseAccentColor = false;
+            this.TableExcelButton.UseVisualStyleBackColor = true;
+            this.TableExcelButton.Click += new System.EventHandler(this.TableExcelButton_Click);
+            // 
+            // WaitersDgv
+            // 
+            this.WaitersDgv.AllowUserToAddRows = false;
+            this.WaitersDgv.AllowUserToDeleteRows = false;
+            this.WaitersDgv.AllowUserToResizeRows = false;
+            this.WaitersDgv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.WaitersDgv.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.WaitersDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.WaitersDgv.Location = new System.Drawing.Point(12, 54);
+            this.WaitersDgv.Name = "WaitersDgv";
+            this.WaitersDgv.ReadOnly = true;
+            this.WaitersDgv.RowHeadersWidth = 51;
+            this.WaitersDgv.RowTemplate.Height = 24;
+            this.WaitersDgv.Size = new System.Drawing.Size(763, 296);
+            this.WaitersDgv.TabIndex = 8;
+            // 
+            // ProductExcelButton
+            // 
+            this.ProductExcelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProductExcelButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ProductExcelButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.ProductExcelButton.Depth = 0;
+            this.ProductExcelButton.HighEmphasis = true;
+            this.ProductExcelButton.Icon = null;
+            this.ProductExcelButton.Location = new System.Drawing.Point(710, 362);
+            this.ProductExcelButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.ProductExcelButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.ProductExcelButton.Name = "ProductExcelButton";
+            this.ProductExcelButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.ProductExcelButton.Size = new System.Drawing.Size(65, 36);
+            this.ProductExcelButton.TabIndex = 17;
+            this.ProductExcelButton.Text = "Excel";
+            this.ProductExcelButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.ProductExcelButton.UseAccentColor = false;
+            this.ProductExcelButton.UseVisualStyleBackColor = true;
+            this.ProductExcelButton.Click += new System.EventHandler(this.ProductExcelButton_Click);
+            // 
+            // PaymentTypeExcelButton
+            // 
+            this.PaymentTypeExcelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.PaymentTypeExcelButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.PaymentTypeExcelButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.PaymentTypeExcelButton.Depth = 0;
+            this.PaymentTypeExcelButton.HighEmphasis = true;
+            this.PaymentTypeExcelButton.Icon = null;
+            this.PaymentTypeExcelButton.Location = new System.Drawing.Point(710, 362);
+            this.PaymentTypeExcelButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.PaymentTypeExcelButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.PaymentTypeExcelButton.Name = "PaymentTypeExcelButton";
+            this.PaymentTypeExcelButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.PaymentTypeExcelButton.Size = new System.Drawing.Size(65, 36);
+            this.PaymentTypeExcelButton.TabIndex = 12;
+            this.PaymentTypeExcelButton.Text = "Excel";
+            this.PaymentTypeExcelButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.PaymentTypeExcelButton.UseAccentColor = false;
+            this.PaymentTypeExcelButton.UseVisualStyleBackColor = true;
+            this.PaymentTypeExcelButton.Click += new System.EventHandler(this.PaymentTypeExcelButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -641,7 +733,6 @@
             this.TabControl.ResumeLayout(false);
             this.WaitersPage.ResumeLayout(false);
             this.WaitersPage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.WaitersDgv)).EndInit();
             this.TablesPage.ResumeLayout(false);
             this.TablesPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TablesDgv)).EndInit();
@@ -651,9 +742,10 @@
             this.PaymentTypesPage.ResumeLayout(false);
             this.PaymentTypesPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PaymentTypesDgv)).EndInit();
-            this.StatPage.ResumeLayout(false);
+            this.StatisticPage.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.WaitersDgv)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -668,7 +760,6 @@
         private MaterialSkin.Controls.MaterialButton UpdateWaitersButton;
         private MaterialSkin.Controls.MaterialButton DeleteWaiterButton;
         private MaterialSkin.Controls.MaterialButton AddWaiterButton;
-        private System.Windows.Forms.DataGridView WaitersDgv;
         private System.Windows.Forms.DataGridView TablesDgv;
         private MaterialSkin.Controls.MaterialButton RemoveTableButton;
         private MaterialSkin.Controls.MaterialButton AddTableButton;
@@ -682,13 +773,18 @@
         private MaterialSkin.Controls.MaterialButton AddProductButton;
         private MaterialSkin.Controls.MaterialButton ProductUpdateButton;
         private MaterialSkin.Controls.MaterialButton OpenNomenclature;
-        private System.Windows.Forms.TabPage StatPage;
+        private System.Windows.Forms.TabPage StatisticPage;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private MaterialSkin.Controls.MaterialButton CloseOrdersButton;
         private MaterialSkin.Controls.MaterialButton ChartsButton;
         private MaterialSkin.Controls.MaterialButton OpenOrdersButton;
         private MaterialSkin.Controls.MaterialButton ReportButton;
         private MaterialSkin.Controls.MaterialButton AddWaiterFaceButton;
+        private MaterialSkin.Controls.MaterialButton WaiterExcelButton;
+        private System.Windows.Forms.DataGridView WaitersDgv;
+        private MaterialSkin.Controls.MaterialButton TableExcelButton;
+        private MaterialSkin.Controls.MaterialButton ProductExcelButton;
+        private MaterialSkin.Controls.MaterialButton PaymentTypeExcelButton;
     }
 }
 

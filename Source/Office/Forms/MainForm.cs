@@ -4,10 +4,12 @@ using Office.Forms.MessageForm;
 using Office.Forms.MessageForm.Face;
 using Office.Forms.StatisticsPage;
 using Office.Helper;
+using Office.Helper.Excel;
 using Shared.Dto.Enities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace Office.Forms;
 
@@ -47,6 +49,13 @@ public partial class MainForm : MaterialForm
         UpdateWaitersButton.PerformClick();
     }
 
+    private void WaiterExcelButton_Click(object sender, EventArgs e)
+    {
+        var dgv = new DataGridView() { Name = nameof(Waiter) };
+        DataGridHelper.FillTable(dgv, Client.GetByCacheOperation.Waiter.GetWaiters());
+        ExcelHelper.DataTableToExcel(dgv);
+    }
+
     private void TableUpdateButton_Click(object sender, EventArgs e) =>
         DataGridHelper.FillTable(TablesDgv, Client.GetByCacheOperation.Table.GetTables());
 
@@ -63,6 +72,13 @@ public partial class MainForm : MaterialForm
             Client.Remover.RemoveTableById(result.Value);
 
         TableUpdateButton.PerformClick();
+    }
+
+    private void TableExcelButton_Click(object sender, EventArgs e)
+    {
+        var dgv = new DataGridView() { Name = nameof(Table) };
+        DataGridHelper.FillTable(dgv, Client.GetByCacheOperation.Table.GetTables());
+        ExcelHelper.DataTableToExcel(dgv);
     }
 
     private void ProductUpdateButton_Click(object sender, EventArgs e) =>
@@ -92,6 +108,13 @@ public partial class MainForm : MaterialForm
         ProductUpdateButton.PerformClick();
     }
 
+    private void ProductExcelButton_Click(object sender, EventArgs e)
+    {
+        var dgv = new DataGridView() { Name = nameof(Product) };
+        DataGridHelper.FillTable(dgv, Client.GetByCacheOperation.Product.GetProducts());
+        ExcelHelper.DataTableToExcel(dgv);
+    }
+
     private void OpenNomenclature_Click(object sender, EventArgs e)
     {
         var parentId = new RowHelper<Guid>(ProductsDgv).GetIdBySelectedRow("Id");
@@ -119,6 +142,13 @@ public partial class MainForm : MaterialForm
             Client.Remover.RemovePaymentTypeById(result.Value);
 
         PaymentTypeUpdateButton.PerformClick();
+    }
+
+    private void PaymentTypeExcelButton_Click(object sender, EventArgs e)
+    {
+        var dgv = new DataGridView() { Name = nameof(PaymentType) };
+        DataGridHelper.FillTable(dgv, Client.GetByCacheOperation.PaymentType.GetPaymentTypes());
+        ExcelHelper.DataTableToExcel(dgv);
     }
 
     private void CloseOrdersButton_Click(object sender, EventArgs e)

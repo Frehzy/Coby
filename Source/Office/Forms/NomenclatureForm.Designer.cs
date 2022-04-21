@@ -36,8 +36,9 @@
             this.NomenclatureUpdateButton = new MaterialSkin.Controls.MaterialButton();
             this.NomenclatureDgv = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.ParentInfoTextBox = new MaterialSkin.Controls.MaterialMultiLineTextBox2();
             this.ChildInfoTextBox = new MaterialSkin.Controls.MaterialMultiLineTextBox2();
+            this.ParentInfoTextBox = new MaterialSkin.Controls.MaterialMultiLineTextBox2();
+            this.NomenclatureExcelButton = new MaterialSkin.Controls.MaterialButton();
             this.ButtonsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NomenclatureDgv)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -143,15 +144,17 @@
             this.NomenclatureDgv.AllowUserToAddRows = false;
             this.NomenclatureDgv.AllowUserToDeleteRows = false;
             this.NomenclatureDgv.AllowUserToResizeRows = false;
+            this.NomenclatureDgv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.NomenclatureDgv.BackgroundColor = System.Drawing.SystemColors.Control;
             this.NomenclatureDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.NomenclatureDgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.NomenclatureDgv.Location = new System.Drawing.Point(3, 247);
             this.NomenclatureDgv.Name = "NomenclatureDgv";
             this.NomenclatureDgv.ReadOnly = true;
             this.NomenclatureDgv.RowHeadersWidth = 51;
             this.NomenclatureDgv.RowTemplate.Height = 24;
-            this.NomenclatureDgv.Size = new System.Drawing.Size(916, 337);
+            this.NomenclatureDgv.Size = new System.Drawing.Size(916, 286);
             this.NomenclatureDgv.TabIndex = 16;
             this.NomenclatureDgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.NomenclatureDgv_CellContentClick);
             // 
@@ -167,38 +170,9 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 129F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(916, 129);
             this.tableLayoutPanel1.TabIndex = 17;
-            // 
-            // ParentInfoTextBox
-            // 
-            this.ParentInfoTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ParentInfoTextBox.AnimateReadOnly = true;
-            this.ParentInfoTextBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ParentInfoTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
-            this.ParentInfoTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.ParentInfoTextBox.Depth = 0;
-            this.ParentInfoTextBox.HideSelection = true;
-            this.ParentInfoTextBox.Location = new System.Drawing.Point(3, 3);
-            this.ParentInfoTextBox.MaxLength = 32767;
-            this.ParentInfoTextBox.MouseState = MaterialSkin.MouseState.OUT;
-            this.ParentInfoTextBox.Name = "ParentInfoTextBox";
-            this.ParentInfoTextBox.PasswordChar = '\0';
-            this.ParentInfoTextBox.ReadOnly = true;
-            this.ParentInfoTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.ParentInfoTextBox.SelectedText = "";
-            this.ParentInfoTextBox.SelectionLength = 0;
-            this.ParentInfoTextBox.SelectionStart = 0;
-            this.ParentInfoTextBox.ShortcutsEnabled = true;
-            this.ParentInfoTextBox.Size = new System.Drawing.Size(452, 123);
-            this.ParentInfoTextBox.TabIndex = 18;
-            this.ParentInfoTextBox.TabStop = false;
-            this.ParentInfoTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.ParentInfoTextBox.UseAccent = false;
-            this.ParentInfoTextBox.UseSystemPasswordChar = false;
             // 
             // ChildInfoTextBox
             // 
@@ -229,11 +203,62 @@
             this.ChildInfoTextBox.UseAccent = false;
             this.ChildInfoTextBox.UseSystemPasswordChar = false;
             // 
+            // ParentInfoTextBox
+            // 
+            this.ParentInfoTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ParentInfoTextBox.AnimateReadOnly = true;
+            this.ParentInfoTextBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ParentInfoTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
+            this.ParentInfoTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.ParentInfoTextBox.Depth = 0;
+            this.ParentInfoTextBox.HideSelection = true;
+            this.ParentInfoTextBox.Location = new System.Drawing.Point(3, 3);
+            this.ParentInfoTextBox.MaxLength = 32767;
+            this.ParentInfoTextBox.MouseState = MaterialSkin.MouseState.OUT;
+            this.ParentInfoTextBox.Name = "ParentInfoTextBox";
+            this.ParentInfoTextBox.PasswordChar = '\0';
+            this.ParentInfoTextBox.ReadOnly = true;
+            this.ParentInfoTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.ParentInfoTextBox.SelectedText = "";
+            this.ParentInfoTextBox.SelectionLength = 0;
+            this.ParentInfoTextBox.SelectionStart = 0;
+            this.ParentInfoTextBox.ShortcutsEnabled = true;
+            this.ParentInfoTextBox.Size = new System.Drawing.Size(452, 123);
+            this.ParentInfoTextBox.TabIndex = 18;
+            this.ParentInfoTextBox.TabStop = false;
+            this.ParentInfoTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.ParentInfoTextBox.UseAccent = false;
+            this.ParentInfoTextBox.UseSystemPasswordChar = false;
+            // 
+            // NomenclatureExcelButton
+            // 
+            this.NomenclatureExcelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.NomenclatureExcelButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.NomenclatureExcelButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.NomenclatureExcelButton.Depth = 0;
+            this.NomenclatureExcelButton.HighEmphasis = true;
+            this.NomenclatureExcelButton.Icon = null;
+            this.NomenclatureExcelButton.Location = new System.Drawing.Point(854, 542);
+            this.NomenclatureExcelButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.NomenclatureExcelButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.NomenclatureExcelButton.Name = "NomenclatureExcelButton";
+            this.NomenclatureExcelButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.NomenclatureExcelButton.Size = new System.Drawing.Size(65, 36);
+            this.NomenclatureExcelButton.TabIndex = 18;
+            this.NomenclatureExcelButton.Text = "Excel";
+            this.NomenclatureExcelButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.NomenclatureExcelButton.UseAccentColor = false;
+            this.NomenclatureExcelButton.UseVisualStyleBackColor = true;
+            this.NomenclatureExcelButton.Click += new System.EventHandler(this.NomenclatureExcelButton_Click);
+            // 
             // NomenclatureForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(922, 587);
+            this.Controls.Add(this.NomenclatureExcelButton);
             this.Controls.Add(this.NomenclatureDgv);
             this.Controls.Add(this.ButtonsPanel);
             this.Controls.Add(this.tableLayoutPanel1);
@@ -247,6 +272,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.NomenclatureDgv)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -260,5 +286,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private MaterialSkin.Controls.MaterialMultiLineTextBox2 ChildInfoTextBox;
         private MaterialSkin.Controls.MaterialMultiLineTextBox2 ParentInfoTextBox;
+        private MaterialSkin.Controls.MaterialButton NomenclatureExcelButton;
     }
 }
