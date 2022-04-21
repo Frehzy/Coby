@@ -245,7 +245,7 @@ public class Service : IService
                 foreach (var guest in orderGuests)
                 {
                     guestOperations.AddGuestOnOrder(GetAdminCredentials(), guest.GuestId, guest.Name);
-                    foreach (var product in orderProduts)
+                    foreach (var product in orderProduts.Where(x => x.GuestId.Equals(guest.GuestId)))
                         productOperation.AddProductOnOrder(GetAdminCredentials(), guest.GuestId, product.ProductId);
                 }
 
@@ -320,7 +320,7 @@ public class Service : IService
                     db.ExecuteNonQuery(SQLString.GetInsertSqlString(guestDB, "ordersguests"));
                     foreach (var product in guest.GetProducts())
                     {
-                        var productDB = new ProductDB(order.Id, product.Id);
+                        var productDB = new ProductDB(order.Id, guest.Id, product.Id);
                         db.ExecuteNonQuery(SQLString.GetInsertSqlString(productDB, "ordersproducts"));
                     }
                 }

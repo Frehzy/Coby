@@ -18,6 +18,13 @@ public partial class GroupByForm : MaterialForm
     private readonly List<string> _year;
     private readonly List<Order> _orders;
 
+    private bool _drawOrders = false;
+    private bool _drawPayment = false;
+
+    public bool DrawOrders => _drawOrders;
+
+    public bool DrawPayment => _drawPayment;
+
     public GroupByForm(List<Order> orders)
     {
         InitializeComponent();
@@ -42,6 +49,10 @@ public partial class GroupByForm : MaterialForm
     {
         if (DateComboBox.SelectedItem is null)
             return;
+
+        _drawOrders = OrdersCheckBox.Checked;
+        _drawPayment = PaymentCheckBox.Checked;
+
         DialogResult = DialogResult.OK;
         Close();
     }

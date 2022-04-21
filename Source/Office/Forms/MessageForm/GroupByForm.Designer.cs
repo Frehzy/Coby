@@ -32,6 +32,8 @@
             this.SaveButton = new MaterialSkin.Controls.MaterialButton();
             this.GroupByComboBox = new MaterialSkin.Controls.MaterialComboBox();
             this.DateComboBox = new MaterialSkin.Controls.MaterialComboBox();
+            this.OrdersCheckBox = new MaterialSkin.Controls.MaterialCheckbox();
+            this.PaymentCheckBox = new MaterialSkin.Controls.MaterialCheckbox();
             this.SuspendLayout();
             // 
             // SaveButton
@@ -42,7 +44,7 @@
             this.SaveButton.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.SaveButton.HighEmphasis = true;
             this.SaveButton.Icon = null;
-            this.SaveButton.Location = new System.Drawing.Point(3, 177);
+            this.SaveButton.Location = new System.Drawing.Point(3, 258);
             this.SaveButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.SaveButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.SaveButton.Name = "SaveButton";
@@ -100,11 +102,45 @@
             this.DateComboBox.StartIndex = 0;
             this.DateComboBox.TabIndex = 5;
             // 
+            // OrdersCheckBox
+            // 
+            this.OrdersCheckBox.AutoSize = true;
+            this.OrdersCheckBox.Depth = 0;
+            this.OrdersCheckBox.Location = new System.Drawing.Point(6, 175);
+            this.OrdersCheckBox.Margin = new System.Windows.Forms.Padding(0);
+            this.OrdersCheckBox.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.OrdersCheckBox.MouseState = MaterialSkin.MouseState.HOVER;
+            this.OrdersCheckBox.Name = "OrdersCheckBox";
+            this.OrdersCheckBox.ReadOnly = false;
+            this.OrdersCheckBox.Ripple = true;
+            this.OrdersCheckBox.Size = new System.Drawing.Size(128, 37);
+            this.OrdersCheckBox.TabIndex = 6;
+            this.OrdersCheckBox.Text = "Draw orders?";
+            this.OrdersCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // PaymentCheckBox
+            // 
+            this.PaymentCheckBox.AutoSize = true;
+            this.PaymentCheckBox.Depth = 0;
+            this.PaymentCheckBox.Location = new System.Drawing.Point(6, 212);
+            this.PaymentCheckBox.Margin = new System.Windows.Forms.Padding(0);
+            this.PaymentCheckBox.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.PaymentCheckBox.MouseState = MaterialSkin.MouseState.HOVER;
+            this.PaymentCheckBox.Name = "PaymentCheckBox";
+            this.PaymentCheckBox.ReadOnly = false;
+            this.PaymentCheckBox.Ripple = true;
+            this.PaymentCheckBox.Size = new System.Drawing.Size(146, 37);
+            this.PaymentCheckBox.TabIndex = 7;
+            this.PaymentCheckBox.Text = "Draw payment?";
+            this.PaymentCheckBox.UseVisualStyleBackColor = true;
+            // 
             // GroupByForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(243, 216);
+            this.ClientSize = new System.Drawing.Size(243, 297);
+            this.Controls.Add(this.PaymentCheckBox);
+            this.Controls.Add(this.OrdersCheckBox);
             this.Controls.Add(this.DateComboBox);
             this.Controls.Add(this.GroupByComboBox);
             this.Controls.Add(this.SaveButton);
@@ -124,5 +160,7 @@
         private MaterialSkin.Controls.MaterialButton SaveButton;
         private MaterialSkin.Controls.MaterialComboBox GroupByComboBox;
         private MaterialSkin.Controls.MaterialComboBox DateComboBox;
+        private MaterialSkin.Controls.MaterialCheckbox OrdersCheckBox;
+        private MaterialSkin.Controls.MaterialCheckbox PaymentCheckBox;
     }
 }
