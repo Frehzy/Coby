@@ -309,6 +309,8 @@ public class Service : IService
         {
             foreach (var order in _ordersCache.Values.Where(x => x.Status is OrderStatus.Closed))
             {
+                Log.Info($"{nameof(Order)} loading on database. {Log.SerializeInstance(order)}");
+
                 var orderDB = new OrderDB(order.Id, order.Table.Id, order.Waiter.Id, (decimal)order.Sum, order.StartTime, (DateTime)order.EndTime);
                 db.ExecuteNonQuery(SQLString.GetInsertSqlString(orderDB, "orders"));
                 foreach (var payment in order.GetPayments())

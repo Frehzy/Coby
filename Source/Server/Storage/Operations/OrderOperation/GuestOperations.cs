@@ -29,7 +29,7 @@ public class GuestOperations
         var guest = new Guest(Guid.NewGuid(), $"Гость {guestCount++}");
         Order.Guests.Add(guest.Id, guest);
         HistoryHelper.OrderHistory(Order, guest.Id, Entities.Guest, ActionsEnum.Added);
-        Log.Info($"{nameof(Guest)} added on order {Order.Id}. {Log.GetFormatProperties(guest)}");
+        Log.Info($"{nameof(Guest)} added on order {Order.Id}. {Log.SerializeInstance(guest)}");
         return guest;
     }
 
@@ -43,7 +43,7 @@ public class GuestOperations
 
         var guest = new Guest(guestId, name);
         Order.Guests.Add(guest.Id, guest);
-        Log.Info($"{nameof(Guest)} added on order {Order.Id}. {Log.GetFormatProperties(guest)}");
+        Log.Info($"{nameof(Guest)} added on order {Order.Id}. {Log.SerializeInstance(guest)}");
         return guest;
     }
 
@@ -55,7 +55,7 @@ public class GuestOperations
         var guest = Order.GetGuests().First(x => x.Id.Equals(guestId));
         Cache.DangerousOperationCache.AddDangerousOperations(new(license.Id, $"Remove guest [{guest.Name}]:[{guest.Id}] on order [{Order.Id}]"));
         Order.Guests.Remove(guestId);
-        Log.Info($"{nameof(Guest)} remove on order {Order.Id}. {Log.GetFormatProperties(guest)}");
+        Log.Info($"{nameof(Guest)} remove on order {Order.Id}. {Log.SerializeInstance(guest)}");
         HistoryHelper.OrderHistory(Order, guestId, Entities.Guest, ActionsEnum.Remove);
     }
 }

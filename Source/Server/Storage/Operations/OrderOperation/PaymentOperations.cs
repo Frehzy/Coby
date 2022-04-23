@@ -49,7 +49,7 @@ public class PaymentOperations
         var payment = new Payment(paymentType.Id, paymentType.Name, paymentType.PaymentEnum, sum);
         Order.Payment.Add(payment.Id, payment);
         HistoryHelper.OrderHistory(Order, payment.Id, Entities.Payment, ActionsEnum.Added);
-        Log.Info($"{nameof(Payment)} added on order {Order.Id}. {Log.GetFormatProperties(payment)}");
+        Log.Info($"{nameof(Payment)} added on order {Order.Id}. {Log.SerializeInstance(payment)}");
         return payment;
     }
 
@@ -63,7 +63,7 @@ public class PaymentOperations
 
         Cache.DangerousOperationCache.AddDangerousOperations(new(license.Id, $"Remove payment [{payment.Name}]:[{payment.Id}] on order [{Order.Id}]"));
         Order.Payment.Remove(payment.Id);
-        Log.Info($"{nameof(Payment)} added on order {Order.Id}. {Log.GetFormatProperties(payment)}");
+        Log.Info($"{nameof(Payment)} added on order {Order.Id}. {Log.SerializeInstance(payment)}");
         HistoryHelper.OrderHistory(Order, paymentId, Entities.Payment, ActionsEnum.Remove);
     }
 }

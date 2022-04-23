@@ -27,7 +27,7 @@ public class OrderOperation : IOrderOperation
         Helper.WaiterById(Cache, credentials.WaiterId, out Waiter waiterOnCache);
 
         var order = new Order(Guid.NewGuid(), table, waiterOnCache);
-        Log.Info($"{nameof(Order)} create. {Log.GetFormatProperties(order)}");
+        Log.Info($"{nameof(Order)} create. {Log.SerializeInstance(order)}");
         return Cache.OrdersCache.AddOrUpdateOrder(order);
     }
 
@@ -43,7 +43,7 @@ public class OrderOperation : IOrderOperation
             throw new EntityNotFound(orderId);
 
         Cache.DangerousOperationCache.AddDangerousOperations(new(license.Id, $"Remove order [{orderId}]"));
-        Log.Info($"{nameof(Order)} remove. {Log.GetFormatProperties(order)}");
+        Log.Info($"{nameof(Order)} remove. {Log.SerializeInstance(order)}");
         return Cache.OrdersCache.RemoveOrder(orderId);
     }
 
@@ -61,6 +61,6 @@ public class OrderOperation : IOrderOperation
         order.Status = OrderStatus.Closed;
         order.EndTime = DateTime.Now;
         Cache.OrdersCache.AddOrUpdateOrder(order);
-        Log.Info($"{nameof(Order)} closed. {Log.GetFormatProperties(order)}");
+        Log.Info($"{nameof(Order)} closed. {Log.SerializeInstance(order)}");
     }
 }

@@ -13,7 +13,7 @@ public class DangerousOperation
     {
         var dangerousOperation = new DangerousOperationsDto(waiterId, message);
         Cache.DangerousOperationCache.AddDangerousOperations(dangerousOperation);
-        Log.Info($"{nameof(DangerousOperationsDto)} added. {Log.GetFormatProperties(dangerousOperation)}");
+        Log.Info($"{nameof(DangerousOperationsDto)} added. {Log.SerializeInstance(dangerousOperation)}");
     }
 
     public void GetDangerousOperations() =>

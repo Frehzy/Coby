@@ -22,7 +22,7 @@ public class Creater
 
         var nomenclature = new Nomenclature(parentId, childId, amount);
         Cache.NomenclatureCache.AddNomenclature(nomenclature);
-        Log.Info($"{nameof(Nomenclature)} create. {Log.GetFormatProperties(nomenclature)}");
+        Log.Info($"{nameof(Nomenclature)} create. {Log.SerializeInstance(nomenclature)}");
         return nomenclature;
     }
 
@@ -32,7 +32,7 @@ public class Creater
             throw new EntityAlreadyExistsException(paymentTypeOnCache.Id);
 
         var paymentType = new PaymentType(Guid.NewGuid(), name, paymentEnum);
-        Log.Info($"{nameof(PaymentType)} create. {Log.GetFormatProperties(paymentType)}");
+        Log.Info($"{nameof(PaymentType)} create. {Log.SerializeInstance(paymentType)}");
         return Cache.PaymentTypesCache.AddOrUpdatePaymentType(paymentType);
     }
 
@@ -42,7 +42,7 @@ public class Creater
             throw new EntityAlreadyExistsException(productOnCache.Id);
 
         var product = new Product(Guid.NewGuid(), productName, price, isItForSale);
-        Log.Info($"{nameof(Product)} create. {Log.GetFormatProperties(product)}");
+        Log.Info($"{nameof(Product)} create. {Log.SerializeInstance(product)}");
         return Cache.ProductsCache.AddOrUpdateProduct(product);
     }
 
@@ -52,7 +52,7 @@ public class Creater
             throw new EntityAlreadyExistsException(tableOnCache.Id);
 
         var table = new Table(Guid.NewGuid(), tableNumber);
-        Log.Info($"{nameof(Table)} create. {Log.GetFormatProperties(table)}");
+        Log.Info($"{nameof(Table)} create. {Log.SerializeInstance(table)}");
         return Cache.TablesCache.AddOrUpdateTable(table);
     }
 
@@ -62,7 +62,7 @@ public class Creater
             throw new EntityAlreadyExistsException(waiterOnCache.Id);
 
         var waiter = new Waiter(Guid.NewGuid(), name, password, permissionStatus, WaiterSessionStatus.Closed);
-        Log.Info($"{nameof(Waiter)} create. {Log.GetFormatProperties(waiter)}");
+        Log.Info($"{nameof(Waiter)} create. {Log.SerializeInstance(waiter)}");
         return Cache.WaitersCache.AddOrUpdateWaiter(waiter);
     }
 
@@ -72,7 +72,7 @@ public class Creater
             throw new EntityAlreadyExistsException(waiterFaceOnCache.Select(x => x.Id).First());
 
         var waiterFace = new WaiterFace(waiterFaceId, face);
-        Log.Info($"{nameof(WaiterFace)} create. {Log.GetFormatProperties(waiterFace)}");
+        Log.Info($"{nameof(WaiterFace)} create. {Log.SerializeInstance(waiterFace)}");
         return Cache.WaiterFaceCache.AddOrUpdateWaiterFace(waiterFace);
     }
 }

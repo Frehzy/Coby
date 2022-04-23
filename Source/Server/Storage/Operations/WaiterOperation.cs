@@ -17,7 +17,7 @@ public class WaiterOperation
             throw new EntityNotFound(waiterId);
 
         Cache.LicensesCache.AddLicense(new License(waiterId));
-        Log.Info($"{nameof(Waiter)} open personal shift. {Log.GetFormatProperties(waiter)}");
+        Log.Info($"{nameof(Waiter)} open personal shift. {Log.SerializeInstance(waiter)}");
         return Cache.WaitersCache.ChangeWaiterStatus(waiterId, WaiterSessionStatus.Open);
     }
 
@@ -27,7 +27,7 @@ public class WaiterOperation
             throw new EntityNotFound(waiterId);
 
         Cache.LicensesCache.RemoveLicense(waiterId);
-        Log.Info($"{nameof(Waiter)} close personal shift. {Log.GetFormatProperties(waiter)}");
+        Log.Info($"{nameof(Waiter)} close personal shift. {Log.SerializeInstance(waiter)}");
         return Cache.WaitersCache.ChangeWaiterStatus(waiterId, WaiterSessionStatus.Closed);
     }
 }

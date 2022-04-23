@@ -39,7 +39,7 @@ public class ProductOperation
         int maxRank = guests.Products.DefaultIfEmpty().Max(x => x.Key);
         guests.Products.Add(maxRank + 1, product);
         HistoryHelper.OrderHistory(Order, product.Id, Entities.Product, ActionsEnum.Added);
-        Log.Info($"{nameof(Product)} added on order {Order.Id}. {Log.GetFormatProperties(product)}");
+        Log.Info($"{nameof(Product)} added on order {Order.Id}. {Log.SerializeInstance(product)}");
         return product;
     }
 
@@ -54,7 +54,7 @@ public class ProductOperation
         var product = guests.GetProducts().First(x => x.Id.Equals(productId));
         Cache.DangerousOperationCache.AddDangerousOperations(new(license.Id, $"Remove product [{product.ProductName}]:[{product.Id}] on order [{Order.Id}]"));
         guests.Products.Remove(rank);
-        Log.Info($"{nameof(Product)} remove on order {Order.Id}. {Log.GetFormatProperties(product)}");
+        Log.Info($"{nameof(Product)} remove on order {Order.Id}. {Log.SerializeInstance(product)}");
         HistoryHelper.OrderHistory(Order, productId, Entities.Product, ActionsEnum.Remove);
     }
 }
