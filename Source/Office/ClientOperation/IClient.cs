@@ -15,8 +15,6 @@ public interface IClient
 
     Remover Remover { get; }
 
-    TableOperation TableOperation { get; }
-
     WaiterOperation WaiterOperation { get; }
 
     OrderOperation OrderOperation { get; }

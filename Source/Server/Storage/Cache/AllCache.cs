@@ -1,6 +1,4 @@
-﻿#nullable enable
-
-using Storage.Host;
+﻿using Storage.Host;
 
 namespace Storage.Cache;
 

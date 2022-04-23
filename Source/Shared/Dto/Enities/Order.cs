@@ -1,6 +1,4 @@
-﻿#nullable enable
-
-using Shared.Dto.Enums;
+﻿using Shared.Dto.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;

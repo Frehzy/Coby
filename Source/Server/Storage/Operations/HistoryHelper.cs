@@ -1,4 +1,5 @@
-﻿using Shared.Dto.Enities;
+﻿using Shared;
+using Shared.Dto.Enities;
 using Shared.Dto.Enums;
 using System;
 
@@ -10,5 +11,6 @@ internal static class HistoryHelper
     {
         var history = new History(Guid.NewGuid(), order.Id, targetId, targetEntity, actions);
         order.OrderHistories.Add(history.HistoryId, history);
+        Log.Info($"{nameof(History)} added. {Log.GetFormatProperties(history)}");
     }
 }

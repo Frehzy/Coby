@@ -13,8 +13,6 @@ public interface IClient
 
     Creater Creater { get; }
 
-    TableOperation TableOperation { get; }
-
     WaiterOperation WaiterOperation { get; }
 
     OrderOperation OrderOperation { get; }

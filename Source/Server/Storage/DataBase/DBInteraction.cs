@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Shared;
 using Shared.Dto.Enums;
 using System;
 using System.Collections.Generic;

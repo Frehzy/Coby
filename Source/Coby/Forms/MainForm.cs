@@ -219,10 +219,10 @@ public partial class MainForm : MaterialForm, INotifyPropertyChanged
         OpenForm(new CloseOrdersForm(_client, _client.GetByCacheOperation.Order.GetOrders().Where(x => x.Status is OrderStatus.Closed)));
 
     private void UpdateOrders() =>
-        Orders = Waiter.PermissionStatus is PermissionStatus.Admin 
+        Orders = Waiter.PermissionStatus is PermissionStatus.Admin
             ? _client.GetByCacheOperation.Order.GetOrders()
                                                .Where(x => x.Status is OrderStatus.New)
-                                               .ToList() 
+                                               .ToList()
             : _client.GetByCacheOperation.Order.GetOrders()
                                                .Where(x => x.Waiter.Id.Equals(Waiter.Id) && x.Status is OrderStatus.New)
                                                .ToList();

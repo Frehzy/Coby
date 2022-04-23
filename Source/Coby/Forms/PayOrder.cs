@@ -106,7 +106,7 @@ public partial class PayOrder : MaterialForm
                 MaterialMessageBox.Show(ex.Message,
                                         false,
                                         FlexibleMaterialForm.ButtonsPosition.Center);
-            } 
+            }
         }
     }
 

@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using Shared;
 using Shared.Dto.Enities;
 using Shared.Dto.Enums;
 using Storage.Cache;
@@ -162,8 +163,6 @@ public class Service : IService
 
     public OrderOperation GetOrderOperation(AllCache cache) => new() { Cache = cache };
 
-    public TableOperation GetTableOperation(AllCache cache) => new() { Cache = cache };
-
     public WaiterOperation GetWaiterOperation(AllCache cache) => new() { Cache = cache };
 
     public DangerousOperation GetDangerousOperation(AllCache cache) => new() { Cache = cache };
@@ -185,6 +184,8 @@ public class Service : IService
 
         if (_canWork)
         {
+            Log.Info("Loading database table on server cache...");
+
             db = GetDBInteraction();
             GetTables().ForEach(x => _tablesCache.TryAdd(x.Id, x));
             GetPaymentTypes().ForEach(x => _paymentTypes.TryAdd(x.Id, PaymentTypeConverter.Converter(x)));
@@ -295,6 +296,7 @@ public class Service : IService
                                        $"Waiter [{waiter.Name}]. " +
                                        $"Entered cash balance: {cashRegister.CashOnRegister}"));
 
+        Log.Info("Closing cafe shift...");
         var db = GetDBInteraction();
         LoadClosedOrderOnDB();
         LoadDangerousOperationOnDB();

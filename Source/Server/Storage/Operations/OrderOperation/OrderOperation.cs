@@ -1,4 +1,5 @@
-﻿using Shared.Dto.Enities;
+﻿using Shared;
+using Shared.Dto.Enities;
 using Shared.Dto.Enums;
 using Shared.Dto.Exceptions;
 using Storage.Cache;
@@ -24,7 +25,10 @@ public class OrderOperation : IOrderOperation
             throw new EntityNotFound(credentials.WaiterId);
 
         Helper.WaiterById(Cache, credentials.WaiterId, out Waiter waiterOnCache);
-        return Cache.OrdersCache.AddOrUpdateOrder(new Order(Guid.NewGuid(), table, waiterOnCache));
+
+        var order = new Order(Guid.NewGuid(), table, waiterOnCache);
+        Log.Info($"{nameof(Order)} create. {Log.GetFormatProperties(order)}");
+        return Cache.OrdersCache.AddOrUpdateOrder(order);
     }
 
     public List<Order> GetOrders() =>
@@ -35,10 +39,11 @@ public class OrderOperation : IOrderOperation
         if (Helper.CheckLicense(Cache, credentials, out var license) is null)
             throw new EntityNotFound(credentials.WaiterId);
 
-        if (Helper.OrderById(Cache, orderId, out _) is null)
+        if (Helper.OrderById(Cache, orderId, out var order) is null)
             throw new EntityNotFound(orderId);
 
         Cache.DangerousOperationCache.AddDangerousOperations(new(license.Id, $"Remove order [{orderId}]"));
+        Log.Info($"{nameof(Order)} remove. {Log.GetFormatProperties(order)}");
         return Cache.OrdersCache.RemoveOrder(orderId);
     }
 
@@ -50,11 +55,12 @@ public class OrderOperation : IOrderOperation
         if (Helper.CheckLicense(Cache, credentials, out _) is null)
             throw new EntityNotFound(credentials.WaiterId);
 
-        if (Helper.OrderById(Cache, orderId, out Order orderOnCache) is null)
+        if (Helper.OrderById(Cache, orderId, out Order order) is null)
             throw new EntityNotFound(orderId);
 
-        orderOnCache.Status = OrderStatus.Closed;
-        orderOnCache.EndTime = DateTime.Now;
-        Cache.OrdersCache.AddOrUpdateOrder(orderOnCache);
+        order.Status = OrderStatus.Closed;
+        order.EndTime = DateTime.Now;
+        Cache.OrdersCache.AddOrUpdateOrder(order);
+        Log.Info($"{nameof(Order)} closed. {Log.GetFormatProperties(order)}");
     }
 }

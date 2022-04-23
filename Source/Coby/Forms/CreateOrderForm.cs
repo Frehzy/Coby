@@ -2,6 +2,7 @@
 using MaterialSkin.Controls;
 using Office.Helper;
 using Shared.Dto.Enities;
+using Shared.Dto.Enums;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -22,11 +23,11 @@ public partial class CreateOrderForm : MaterialForm
     {
         InitializeComponent();
         Client = client;
-        Orders = client.GetByCacheOperation.Order.GetOrders();
+        Orders = client.GetByCacheOperation.Order.GetOrders().Where(x => x.Status is OrderStatus.New).ToList();
         Credentials = credentials;
         _ = FormHelper.CreateMaterialSkinManager(this);
         FormHelper.SetFullScreen(this);
-        UpdateTableLayoutPanel(Client.TableOperation.GetTables());
+        UpdateTableLayoutPanel(Client.GetByCacheOperation.Table.GetTables());
     }
 
     private void UpdateTableLayoutPanel(IEnumerable<Table> source)

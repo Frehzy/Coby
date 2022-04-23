@@ -78,6 +78,10 @@
     <None Include=".manifest" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Shared\Shared.csproj">
+      <Project>{0ef5552a-f509-4741-af0a-68392d1cd746}</Project>
+      <Name>Shared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Storage\Storage.csproj">
       <Project>{3d5fd935-7ec3-4124-ad51-36dd8914e8c7}</Project>
       <Name>Storage</Name>

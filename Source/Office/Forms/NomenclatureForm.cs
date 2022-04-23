@@ -81,11 +81,11 @@ public partial class NomenclatureForm : MaterialForm
         Client.GetByCacheOperation
             .GetNomenclatureOperation
             .GetNomenclaturesByParentId(Product.Id)
-            .ForEach(x => 
+            .ForEach(x =>
             {
                 AddToList(Client.GetByCacheOperation.Product.GetProductById(x.ChildId), x.Amount);
             });
-        
+
         DataGridHelper.FillTable(dgv, products);
         ExcelHelper.DataTableToExcel(dgv);
 

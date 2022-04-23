@@ -1,4 +1,5 @@
-﻿using Shared.Dto.Enities;
+﻿using Shared;
+using Shared.Dto.Enities;
 using Shared.Dto.Enums;
 using Shared.Dto.Exceptions;
 using Storage.Cache;
@@ -21,31 +22,57 @@ public class Creater
 
         var nomenclature = new Nomenclature(parentId, childId, amount);
         Cache.NomenclatureCache.AddNomenclature(nomenclature);
+        Log.Info($"{nameof(Nomenclature)} create. {Log.GetFormatProperties(nomenclature)}");
         return nomenclature;
     }
 
-    public PaymentType CreatePaymentType(string name, PaymentEnum paymentEnum) =>
-        Helper.PaymentTypeByName(Cache, name, out PaymentType paymentTypeOnCache) is null
-        ? Cache.PaymentTypesCache.AddOrUpdatePaymentType(new PaymentType(Guid.NewGuid(), name, paymentEnum))
-        : throw new EntityAlreadyExistsException(paymentTypeOnCache.Id);
+    public PaymentType CreatePaymentType(string name, PaymentEnum paymentEnum)
+    {
+        if (Helper.PaymentTypeByName(Cache, name, out PaymentType paymentTypeOnCache) is not null)
+            throw new EntityAlreadyExistsException(paymentTypeOnCache.Id);
 
-    public Product CreateProduct(string productName, decimal price, bool isItForSale) =>
-        Helper.ProductByName(Cache, productName, out Product productOnCache) is null
-        ? Cache.ProductsCache.AddOrUpdateProduct(new Product(Guid.NewGuid(), productName, price, isItForSale))
-        : throw new EntityAlreadyExistsException(productOnCache.Id);
+        var paymentType = new PaymentType(Guid.NewGuid(), name, paymentEnum);
+        Log.Info($"{nameof(PaymentType)} create. {Log.GetFormatProperties(paymentType)}");
+        return Cache.PaymentTypesCache.AddOrUpdatePaymentType(paymentType);
+    }
 
-    public Table CreateTable(int tableNumber) =>
-        Helper.TableByNumber(Cache, tableNumber, out Table tableOnCache) is null
-            ? Cache.TablesCache.AddOrUpdateTable(new Table(Guid.NewGuid(), tableNumber))
-            : throw new EntityAlreadyExistsException(tableOnCache.Id);
+    public Product CreateProduct(string productName, decimal price, bool isItForSale)
+    {
+        if (Helper.ProductByName(Cache, productName, out Product productOnCache) is not null)
+            throw new EntityAlreadyExistsException(productOnCache.Id);
 
-    public Waiter CreateWaiter(string name, string password, PermissionStatus permissionStatus) =>
-        Helper.WaiterByPassword(Cache, password, out Waiter waiterOnCache) is null
-            ? Cache.WaitersCache.AddOrUpdateWaiter(new Waiter(Guid.NewGuid(), name, password, permissionStatus, WaiterSessionStatus.Closed))
-            : throw new EntityAlreadyExistsException(waiterOnCache.Id);
+        var product = new Product(Guid.NewGuid(), productName, price, isItForSale);
+        Log.Info($"{nameof(Product)} create. {Log.GetFormatProperties(product)}");
+        return Cache.ProductsCache.AddOrUpdateProduct(product);
+    }
 
-    public WaiterFace AddWaiterFacesById(Guid waiterFaceId, Image face) =>
-        Helper.WaiterFaceById(Cache, waiterFaceId, out List<WaiterFace> waiterFaceOnCache) is not null
-            ? Cache.WaiterFaceCache.AddOrUpdateWaiterFace(new(waiterFaceId, face))
-            : throw new EntityAlreadyExistsException(waiterFaceOnCache.Select(x => x.Id).First());
+    public Table CreateTable(int tableNumber)
+    {
+        if (Helper.TableByNumber(Cache, tableNumber, out Table tableOnCache) is not null)
+            throw new EntityAlreadyExistsException(tableOnCache.Id);
+
+        var table = new Table(Guid.NewGuid(), tableNumber);
+        Log.Info($"{nameof(Table)} create. {Log.GetFormatProperties(table)}");
+        return Cache.TablesCache.AddOrUpdateTable(table);
+    }
+
+    public Waiter CreateWaiter(string name, string password, PermissionStatus permissionStatus)
+    {
+        if (Helper.WaiterByPassword(Cache, password, out Waiter waiterOnCache) is not null)
+            throw new EntityAlreadyExistsException(waiterOnCache.Id);
+
+        var waiter = new Waiter(Guid.NewGuid(), name, password, permissionStatus, WaiterSessionStatus.Closed);
+        Log.Info($"{nameof(Waiter)} create. {Log.GetFormatProperties(waiter)}");
+        return Cache.WaitersCache.AddOrUpdateWaiter(waiter);
+    }
+
+    public WaiterFace AddWaiterFacesById(Guid waiterFaceId, Image face)
+    {
+        if (Helper.WaiterFaceById(Cache, waiterFaceId, out List<WaiterFace> waiterFaceOnCache) is null)
+            throw new EntityAlreadyExistsException(waiterFaceOnCache.Select(x => x.Id).First());
+
+        var waiterFace = new WaiterFace(waiterFaceId, face);
+        Log.Info($"{nameof(WaiterFace)} create. {Log.GetFormatProperties(waiterFace)}");
+        return Cache.WaiterFaceCache.AddOrUpdateWaiterFace(waiterFace);
+    }
 }

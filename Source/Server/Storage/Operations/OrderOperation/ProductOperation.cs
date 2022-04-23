@@ -1,4 +1,5 @@
-﻿using Shared.Dto.Enities;
+﻿using Shared;
+using Shared.Dto.Enities;
 using Shared.Dto.Enums;
 using Shared.Dto.Exceptions;
 using Storage.Cache;
@@ -35,10 +36,10 @@ public class ProductOperation
         if (product is null)
             throw new EntityNotFound(productId);
 
-
         int maxRank = guests.Products.DefaultIfEmpty().Max(x => x.Key);
         guests.Products.Add(maxRank + 1, product);
         HistoryHelper.OrderHistory(Order, product.Id, Entities.Product, ActionsEnum.Added);
+        Log.Info($"{nameof(Product)} added on order {Order.Id}. {Log.GetFormatProperties(product)}");
         return product;
     }
 
@@ -53,6 +54,7 @@ public class ProductOperation
         var product = guests.GetProducts().First(x => x.Id.Equals(productId));
         Cache.DangerousOperationCache.AddDangerousOperations(new(license.Id, $"Remove product [{product.ProductName}]:[{product.Id}] on order [{Order.Id}]"));
         guests.Products.Remove(rank);
+        Log.Info($"{nameof(Product)} remove on order {Order.Id}. {Log.GetFormatProperties(product)}");
         HistoryHelper.OrderHistory(Order, productId, Entities.Product, ActionsEnum.Remove);
     }
 }

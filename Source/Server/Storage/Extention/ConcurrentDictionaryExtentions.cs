@@ -1,6 +1,4 @@
-﻿#nullable enable
-
-using Storage.DataBase;
+﻿using Storage.DataBase;
 using System.Collections.Concurrent;
 
 namespace Storage.Extention;

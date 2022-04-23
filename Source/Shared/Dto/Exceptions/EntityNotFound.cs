@@ -4,6 +4,9 @@ namespace Shared.Dto.Exceptions;
 
 public class EntityNotFound : BaseException
 {
-    public EntityNotFound(Guid id) =>
+    public EntityNotFound(Guid id)
+    {
         base.SetMessage($"Entity [{id}] not found.");
+        Log.Error($"{nameof(EntityNotFound)}: {base.Message}");
+    }
 }

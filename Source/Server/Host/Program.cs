@@ -1,4 +1,4 @@
-﻿using Storage;
+﻿using Shared;
 using Storage.Host;
 using System;
 using System.ServiceModel;
@@ -24,7 +24,7 @@ internal class Program
 
             var client = SetCache(serviceAddress, serviceName);
 
-            Log.Info("Сервер запущен по следующим адресам:");
+            Log.Info("The server is running on the following ip-addresses:");
             foreach (var uri in host.BaseAddresses)
                 Log.Info(uri.AbsoluteUri);
 
@@ -34,9 +34,9 @@ internal class Program
             host.Close();
         }
         else
-            Log.Fatal("Только один экземпляр сервера может быть запущен.");
+            Log.Fatal("Only one server instance can be running.");
 
-        Log.Info("Сервер выключен.");
+        Log.Info("Server is down.");
     }
 
     private static ChannelFactory<IService> SetCache(string serviceAddress, string serviceName)

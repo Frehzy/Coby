@@ -1,4 +1,5 @@
-﻿using Shared.Dto.Enities;
+﻿using Shared;
+using Shared.Dto.Enities;
 using Shared.Dto.Enums;
 using Shared.Dto.Exceptions;
 using Storage.Cache;
@@ -28,6 +29,7 @@ public class GuestOperations
         var guest = new Guest(Guid.NewGuid(), $"Гость {guestCount++}");
         Order.Guests.Add(guest.Id, guest);
         HistoryHelper.OrderHistory(Order, guest.Id, Entities.Guest, ActionsEnum.Added);
+        Log.Info($"{nameof(Guest)} added on order {Order.Id}. {Log.GetFormatProperties(guest)}");
         return guest;
     }
 
@@ -41,6 +43,7 @@ public class GuestOperations
 
         var guest = new Guest(guestId, name);
         Order.Guests.Add(guest.Id, guest);
+        Log.Info($"{nameof(Guest)} added on order {Order.Id}. {Log.GetFormatProperties(guest)}");
         return guest;
     }
 
@@ -52,6 +55,7 @@ public class GuestOperations
         var guest = Order.GetGuests().First(x => x.Id.Equals(guestId));
         Cache.DangerousOperationCache.AddDangerousOperations(new(license.Id, $"Remove guest [{guest.Name}]:[{guest.Id}] on order [{Order.Id}]"));
         Order.Guests.Remove(guestId);
+        Log.Info($"{nameof(Guest)} remove on order {Order.Id}. {Log.GetFormatProperties(guest)}");
         HistoryHelper.OrderHistory(Order, guestId, Entities.Guest, ActionsEnum.Remove);
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Coby.ClientOperation;
 using Coby.Forms;
-using Storage;
+using Shared;
 using System;
 using System.ServiceModel;
 using System.Threading;
@@ -29,11 +29,11 @@ internal static class Program
             }
             catch (EndpointNotFoundException ex)
             {
-                Log.Warn($"Не удалось создать экземпляр клиента. Ошибка: {ex}");
+                Log.Error($"Failed to instantiate client. Exception: {ex}");
             }
             catch (Exception ex)
             {
-                Log.Warn($"Неизвестная ошибка: {ex}");
+                Log.Error($"Unknown exception: {ex}");
             }
             Thread.Sleep(TimeSpan.FromSeconds(5));
         }
