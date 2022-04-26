@@ -50,15 +50,6 @@ internal static class Program
         {
             var ptr = FindWindow("Shell_TrayWnd", null);
             PostMessage(ptr, WM_USER + 436, (IntPtr)0, (IntPtr)0);
-
-            do
-            {
-                ptr = FindWindow("Shell_TrayWnd", null);
-
-                if (ptr.ToInt32() == 0)
-                    break;
-
-            } while (true);
         }
         catch (Exception ex)
         {
@@ -66,7 +57,7 @@ internal static class Program
         }
 
         string explorer = string.Format("{0}\\{1}", Environment.GetEnvironmentVariable("WINDIR"), "explorer.exe");
-        Process process = new Process();
+        Process process = new();
         process.StartInfo.FileName = explorer;
         process.StartInfo.UseShellExecute = true;
         process.Start();
