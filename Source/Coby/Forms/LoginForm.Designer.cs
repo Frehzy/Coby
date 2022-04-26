@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.ExitPanel = new System.Windows.Forms.Panel();
+            this.RestartExplorerButton = new MaterialSkin.Controls.MaterialButton();
             this.ExitButton = new MaterialSkin.Controls.MaterialButton();
             this.MainPanel = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -48,12 +49,34 @@
             // 
             // ExitPanel
             // 
+            this.ExitPanel.Controls.Add(this.RestartExplorerButton);
             this.ExitPanel.Controls.Add(this.ExitButton);
             this.ExitPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.ExitPanel.Location = new System.Drawing.Point(3, 0);
             this.ExitPanel.Name = "ExitPanel";
             this.ExitPanel.Size = new System.Drawing.Size(513, 45);
             this.ExitPanel.TabIndex = 6;
+            // 
+            // RestartExplorerButton
+            // 
+            this.RestartExplorerButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.RestartExplorerButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.RestartExplorerButton.Depth = 0;
+            this.RestartExplorerButton.Dock = System.Windows.Forms.DockStyle.Left;
+            this.RestartExplorerButton.HighEmphasis = true;
+            this.RestartExplorerButton.Icon = null;
+            this.RestartExplorerButton.Location = new System.Drawing.Point(0, 0);
+            this.RestartExplorerButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.RestartExplorerButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.RestartExplorerButton.Name = "RestartExplorerButton";
+            this.RestartExplorerButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.RestartExplorerButton.Size = new System.Drawing.Size(160, 45);
+            this.RestartExplorerButton.TabIndex = 4;
+            this.RestartExplorerButton.Text = "Restart explorer";
+            this.RestartExplorerButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.RestartExplorerButton.UseAccentColor = false;
+            this.RestartExplorerButton.UseVisualStyleBackColor = true;
+            this.RestartExplorerButton.Click += new System.EventHandler(this.RestartExplorerButton_Click);
             // 
             // ExitButton
             // 
@@ -249,5 +272,6 @@
         private System.Windows.Forms.Panel panel2;
         private MaterialSkin.Controls.MaterialButton LoginByFaceButton;
         private MaterialSkin.Controls.MaterialButton FaceDetectSettingsButton;
+        private MaterialSkin.Controls.MaterialButton RestartExplorerButton;
     }
 }
