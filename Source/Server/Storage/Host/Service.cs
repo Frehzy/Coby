@@ -232,32 +232,40 @@ public class Service : IService
 
             foreach (var closeOrder in closeOrders)
             {
-                var table = getBy.Table.GetTableById(closeOrder.TableId);
-                var waiter = getBy.Waiter.GetWaiterById(closeOrder.WaiterId);
-                var orderGuests = guests.Where(x => x.OrderId.Equals(closeOrder.Id));
-                var orderProduts = products.Where(x => x.OrderId.Equals(closeOrder.Id));
-                var orderPayments = payments.Where(x => x.OrderId.Equals(closeOrder.Id));
-
-                var order = new Order(closeOrder.Id, table, waiter, OrderStatus.Closed, closeOrder.GetStartTime(), closeOrder.GetEndTime());
-                var guestOperations = orderOperation.GetGuestOperations(order);
-                var productOperation = orderOperation.GetProductOperation(order);
-                var paymentOperation = orderOperation.GetPaymentOperations(order);
-
-                foreach (var guest in orderGuests)
+                try
                 {
-                    guestOperations.AddGuestOnOrder(GetAdminCredentials(), guest.GuestId, guest.Name);
-                    foreach (var product in orderProduts.Where(x => x.GuestId.Equals(guest.GuestId)))
-                        productOperation.AddProductOnOrder(GetAdminCredentials(), guest.GuestId, product.ProductId);
+                    var table = getBy.Table.GetTableById(closeOrder.TableId);
+                    var waiter = getBy.Waiter.GetWaiterById(closeOrder.WaiterId);
+                    var orderGuests = guests.Where(x => x.OrderId.Equals(closeOrder.Id));
+                    var orderProduts = products.Where(x => x.OrderId.Equals(closeOrder.Id));
+                    var orderPayments = payments.Where(x => x.OrderId.Equals(closeOrder.Id));
+
+                    var order = new Order(closeOrder.Id, table, waiter, OrderStatus.Closed, closeOrder.GetStartTime(), closeOrder.GetEndTime());
+                    var guestOperations = orderOperation.GetGuestOperations(order);
+                    var productOperation = orderOperation.GetProductOperation(order);
+                    var paymentOperation = orderOperation.GetPaymentOperations(order);
+
+                    foreach (var guest in orderGuests)
+                    {
+                        guestOperations.AddGuestOnOrder(GetAdminCredentials(), guest.GuestId, guest.Name);
+                        foreach (var product in orderProduts.Where(x => x.GuestId.Equals(guest.GuestId)))
+                            productOperation.AddProductOnOrder(GetAdminCredentials(), guest.GuestId, product.ProductId);
+                    }
+
+                    foreach (var payment in orderPayments)
+                        paymentOperation.AddPaymentOnOrder(GetAdminCredentials(), payment.PaymentId, payment.Sum);
+
+                    order.OrderHistories.Clear();
+                    foreach (var history in histories.Where(x => x.OrderId.Equals(order.Id)))
+                        order.OrderHistories.TryAdd(history.HistoryId, history);
+
+                    _closeOrders.TryAdd(order.Id, order);
+                    Log.Info($"{nameof(Order)} added. {Log.SerializeInstance(order)}");
                 }
-
-                foreach (var payment in orderPayments)
-                    paymentOperation.AddPaymentOnOrder(GetAdminCredentials(), payment.PaymentId, payment.Sum);
-
-                order.OrderHistories.Clear();
-                foreach (var history in histories.Where(x => x.OrderId.Equals(order.Id)))
-                    order.OrderHistories.TryAdd(history.HistoryId, history);
-
-                _closeOrders.TryAdd(order.Id, order);
+                catch (Exception ex)
+                {
+                    Log.Error($"{nameof(Order)} added exception. Message: {ex.Message}. StackTrace: {ex.StackTrace}");
+                }
             }
             _licensesCache.TryRemove(Guid.Empty, out _);
             return Task.CompletedTask;
