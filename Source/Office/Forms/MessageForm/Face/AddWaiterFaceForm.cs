@@ -1,6 +1,5 @@
 ﻿using FaceRecognition;
 using FaceRecognition.Entities;
-using FaceRecognition.Enums;
 using MaterialSkin.Controls;
 using Office.ClientOperation;
 using Office.Helper;
@@ -41,7 +40,6 @@ public partial class AddWaiterFaceForm : MaterialForm
         var resolutions = WebcamHelper.GetResolutions();
         ResolutionsComboBox.DataSource = resolutions;
         ResolutionsComboBox.DisplayMember = "FullResolution";
-        MethodComboBox.DataSource = Enum.GetValues(typeof(FaceDetectMethodEnum));
     }
 
     private void CheckExistenceFaces()
@@ -65,15 +63,13 @@ public partial class AddWaiterFaceForm : MaterialForm
     private void SaveButton_Click(object sender, EventArgs e)
     {
         var cameraIndex = CamerasComboBox.SelectedIndex;
-        var maxFaceDetect = (double)(MaxFaceDetectValueSlider.Value / 100);
+        var maxFaceDetect = (double)decimal.Divide(MaxFaceDetectValueSlider.Value, 100);
         var resolution = ResolutionsComboBox.SelectedItem as Resolution;
-        var method = MethodComboBox.SelectedItem as Enum;
 
         var faceDetectionForm = new FaceDetectionForm(_waiter,
                                                       cameraIndex,
                                                       maxFaceDetect,
                                                       resolution,
-                                                      (FaceDetectMethodEnum)method,
                                                       _client.Creater.AddWaiterFacesById);
         faceDetectionForm.Show();
         Enabled = false;

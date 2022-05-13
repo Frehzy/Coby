@@ -34,8 +34,6 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.WaiterTextBox = new MaterialSkin.Controls.MaterialMultiLineTextBox2();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.MethodComboBox = new MaterialSkin.Controls.MaterialComboBox();
-            this.MethodLabel = new MaterialSkin.Controls.MaterialLabel();
             this.ResolutionLabel = new MaterialSkin.Controls.MaterialLabel();
             this.ResolutionsComboBox = new MaterialSkin.Controls.MaterialComboBox();
             this.MaxFaceDetectValueSlider = new MaterialSkin.Controls.MaterialSlider();
@@ -53,7 +51,7 @@
             this.CreateWaiterFaceButton.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.CreateWaiterFaceButton.HighEmphasis = true;
             this.CreateWaiterFaceButton.Icon = null;
-            this.CreateWaiterFaceButton.Location = new System.Drawing.Point(3, 435);
+            this.CreateWaiterFaceButton.Location = new System.Drawing.Point(3, 338);
             this.CreateWaiterFaceButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.CreateWaiterFaceButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.CreateWaiterFaceButton.Name = "CreateWaiterFaceButton";
@@ -78,7 +76,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(607, 371);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(607, 274);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // WaiterTextBox
@@ -101,7 +99,7 @@
             this.WaiterTextBox.SelectionLength = 0;
             this.WaiterTextBox.SelectionStart = 0;
             this.WaiterTextBox.ShortcutsEnabled = true;
-            this.WaiterTextBox.Size = new System.Drawing.Size(601, 142);
+            this.WaiterTextBox.Size = new System.Drawing.Size(601, 103);
             this.WaiterTextBox.TabIndex = 18;
             this.WaiterTextBox.TabStop = false;
             this.WaiterTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -110,51 +108,15 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.MethodComboBox);
-            this.panel1.Controls.Add(this.MethodLabel);
             this.panel1.Controls.Add(this.ResolutionLabel);
             this.panel1.Controls.Add(this.ResolutionsComboBox);
             this.panel1.Controls.Add(this.MaxFaceDetectValueSlider);
             this.panel1.Controls.Add(this.CamerasComboBox);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 151);
+            this.panel1.Location = new System.Drawing.Point(3, 112);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(601, 217);
+            this.panel1.Size = new System.Drawing.Size(601, 159);
             this.panel1.TabIndex = 19;
-            // 
-            // MethodComboBox
-            // 
-            this.MethodComboBox.AutoResize = false;
-            this.MethodComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.MethodComboBox.Depth = 0;
-            this.MethodComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.MethodComboBox.DropDownHeight = 174;
-            this.MethodComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.MethodComboBox.DropDownWidth = 121;
-            this.MethodComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.MethodComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.MethodComboBox.FormattingEnabled = true;
-            this.MethodComboBox.IntegralHeight = false;
-            this.MethodComboBox.ItemHeight = 43;
-            this.MethodComboBox.Location = new System.Drawing.Point(120, 163);
-            this.MethodComboBox.MaxDropDownItems = 4;
-            this.MethodComboBox.MouseState = MaterialSkin.MouseState.OUT;
-            this.MethodComboBox.Name = "MethodComboBox";
-            this.MethodComboBox.Size = new System.Drawing.Size(478, 49);
-            this.MethodComboBox.StartIndex = 0;
-            this.MethodComboBox.TabIndex = 6;
-            // 
-            // MethodLabel
-            // 
-            this.MethodLabel.AutoSize = true;
-            this.MethodLabel.Depth = 0;
-            this.MethodLabel.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.MethodLabel.Location = new System.Drawing.Point(3, 167);
-            this.MethodLabel.MouseState = MaterialSkin.MouseState.HOVER;
-            this.MethodLabel.Name = "MethodLabel";
-            this.MethodLabel.Size = new System.Drawing.Size(55, 19);
-            this.MethodLabel.TabIndex = 5;
-            this.MethodLabel.Text = "Method";
             // 
             // ResolutionLabel
             // 
@@ -240,7 +202,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(613, 474);
+            this.ClientSize = new System.Drawing.Size(613, 377);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.CreateWaiterFaceButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -268,8 +230,6 @@
         private MaterialSkin.Controls.MaterialSlider MaxFaceDetectValueSlider;
         private MaterialSkin.Controls.MaterialComboBox ResolutionsComboBox;
         private MaterialSkin.Controls.MaterialLabel ResolutionLabel;
-        private MaterialSkin.Controls.MaterialComboBox MethodComboBox;
-        private MaterialSkin.Controls.MaterialLabel MethodLabel;
         private System.Windows.Forms.ToolTip ResolutionToolTip;
     }
 }

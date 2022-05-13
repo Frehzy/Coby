@@ -1,6 +1,5 @@
 ﻿using FaceRecognition;
 using FaceRecognition.Entities;
-using FaceRecognition.Enums;
 using MaterialSkin.Controls;
 using Office.Helper;
 using System;
@@ -23,7 +22,6 @@ public partial class FaceDetectionSettingsForm : MaterialForm
         var resolutions = WebcamHelper.GetResolutions();
         ResolutionsComboBox.DataSource = resolutions;
         ResolutionsComboBox.DisplayMember = nameof(Resolution.FullResolution);
-        MethodComboBox.DataSource = Enum.GetValues(typeof(FaceDetectMethodEnum));
     }
 
     private void LoadSaveSettings()
@@ -31,7 +29,6 @@ public partial class FaceDetectionSettingsForm : MaterialForm
         CamerasComboBox.SelectedIndex = FaceDetectionSettings.CameraIndex;
         MaxFaceDetectValueSlider.Value = Convert.ToInt32(FaceDetectionSettings.MaxFaceDetect * 100);
         ResolutionsComboBox.SelectedItem = FaceDetectionSettings.Resolution;
-        MethodComboBox.SelectedItem = FaceDetectionSettings.FaceDetectMethod;
     }
 
     private void SaveButton_Click(object sender, EventArgs e)
@@ -39,7 +36,6 @@ public partial class FaceDetectionSettingsForm : MaterialForm
         FaceDetectionSettings.CameraIndex = CamerasComboBox.SelectedIndex;
         FaceDetectionSettings.MaxFaceDetect = (double)Math.Round(decimal.Divide(MaxFaceDetectValueSlider.Value, 100), 2);
         FaceDetectionSettings.Resolution = ResolutionsComboBox.SelectedItem as Resolution;
-        FaceDetectionSettings.FaceDetectMethod = (FaceDetectMethodEnum)MethodComboBox.SelectedItem;
         Close();
     }
 }

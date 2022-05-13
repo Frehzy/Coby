@@ -22,6 +22,8 @@ public class FaceEntity
 
     public FaceDetectStatusEnum FaceDetectStatus { get; private set; }
 
+    public MCvAvgComp MCvAvgComp { get; private set; }
+
     public FaceEntity(Guid waiterId, string name, string password, Image face, double detectValue = default)
     {
         if (face is null)
@@ -35,7 +37,9 @@ public class FaceEntity
         DetectValue = detectValue;
     }
 
-    public void SetDetectValue(double value) => DetectValue = Math.Round(value, 1);
+    public void SetDetectValue(double value) => DetectValue = Math.Round(value, 2);
+
+    public void SetMCvAvgComp(MCvAvgComp value) => MCvAvgComp = value;
 
     public void SetStatus(FaceDetectStatusEnum status) => FaceDetectStatus = status;
 }

@@ -1,6 +1,5 @@
 ﻿using FaceRecognition;
 using FaceRecognition.Entities;
-using FaceRecognition.Enums;
 using FaceRecognition.Transcription;
 using MaterialSkin.Controls;
 using Office.Helper;
@@ -22,12 +21,11 @@ public partial class FaceDetectionForm : MaterialForm
                              int cameraIndex,
                              double maxFaceDetect,
                              Resolution resolution,
-                             FaceDetectMethodEnum method,
                              Func<Guid, Image, WaiterFace> addWaiterFace)
     {
         InitializeComponent();
         _waiter = waiter;
-        _detectFace = new(cameraIndex, CameraBox, maxFaceDetect, resolution.X, resolution.Y, method);
+        _detectFace = new(cameraIndex, CameraBox, maxFaceDetect, resolution.X, resolution.Y);
         _addWaiterFace = addWaiterFace;
         _ = FormHelper.CreateMaterialSkinManager(this);
         _detectFace.Start();

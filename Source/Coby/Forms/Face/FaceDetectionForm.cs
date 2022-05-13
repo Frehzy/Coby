@@ -27,8 +27,7 @@ public partial class FaceDetectionForm : MaterialForm
                           CameraBox,
                           FaceDetectionSettings.MaxFaceDetect,
                           FaceDetectionSettings.Resolution.X,
-                          FaceDetectionSettings.Resolution.Y,
-                          FaceDetectionSettings.FaceDetectMethod);
+                          FaceDetectionSettings.Resolution.Y);
         _ = FormHelper.CreateMaterialSkinManager(this);
         var waiters = _client.GetByCacheOperation.Waiter.GetWaiters();
         _client.GetByCacheOperation.WaiterFace.GetWaiterFaces()
