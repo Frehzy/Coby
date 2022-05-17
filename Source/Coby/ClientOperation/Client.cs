@@ -1,4 +1,5 @@
 ﻿using Shared.Dto.Enities;
+using Shared.IniManager;
 using Storage.Cache;
 using Storage.Host;
 using Storage.Operations;
@@ -50,10 +51,13 @@ public class Client : IClient
 
     public IService CreateClient()
     {
+        var manager = new Manager(Operations.GetIniFilePath());
+        var settings = Operations.GetSettings(manager);
+
         var serviceAddress = "127.0.0.1:10000";
         var serviceName = "CobyServer";
 
-        var tcpUri = new Uri($"net.tcp://{serviceAddress}/{serviceName}");
+        var tcpUri = new Uri($"net.tcp://{serviceAddress}/{serviceName}/{settings.OrganizationId}");
         var address = new EndpointAddress(tcpUri);
         var clientBinding = new NetTcpBinding();
         clientBinding.Security.Mode = SecurityMode.None;

@@ -89,6 +89,9 @@
     <Compile Include="Dto\Exceptions\EntityAlreadyExistsException.cs" />
     <Compile Include="Dto\Exceptions\EntityNotFound.cs" />
     <Compile Include="Dto\Exceptions\LicenseException.cs" />
+    <Compile Include="IniManager\Manager.cs" />
+    <Compile Include="Dto\Enities\Settings.cs" />
+    <Compile Include="IniManager\Operations.cs" />
     <Compile Include="IsExternalInit.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -101,6 +104,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="Settings.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
