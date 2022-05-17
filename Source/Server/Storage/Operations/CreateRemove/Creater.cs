@@ -18,7 +18,7 @@ public class Creater
     public Nomenclature CreateNomenclature(Guid parentId, Guid childId, decimal amount)
     {
         if (Helper.NomenclatureByParentAndChildId(Cache, parentId, childId, out Nomenclature nomenclatureOnCache) is not null)
-            throw new EntityAlreadyExistsException(new List<Guid>() { nomenclatureOnCache.ParentId, nomenclatureOnCache.ChildId });
+            throw new EntityAlreadyExistsException(new List<Guid>() { nomenclatureOnCache.ParentId, nomenclatureOnCache.ChildId }, typeof(Nomenclature));
 
         var nomenclature = new Nomenclature(parentId, childId, amount);
         Cache.NomenclatureCache.AddNomenclature(nomenclature);
@@ -29,7 +29,7 @@ public class Creater
     public PaymentType CreatePaymentType(string name, PaymentEnum paymentEnum)
     {
         if (Helper.PaymentTypeByName(Cache, name, out PaymentType paymentTypeOnCache) is not null)
-            throw new EntityAlreadyExistsException(paymentTypeOnCache.Id);
+            throw new EntityAlreadyExistsException(paymentTypeOnCache.Id, typeof(PaymentType));
 
         var paymentType = new PaymentType(Guid.NewGuid(), name, paymentEnum);
         Log.Info($"{nameof(PaymentType)} create. {Log.SerializeInstance(paymentType)}");
@@ -39,7 +39,7 @@ public class Creater
     public Product CreateProduct(string productName, decimal price, bool isItForSale)
     {
         if (Helper.ProductByName(Cache, productName, out Product productOnCache) is not null)
-            throw new EntityAlreadyExistsException(productOnCache.Id);
+            throw new EntityAlreadyExistsException(productOnCache.Id, typeof(Product));
 
         var product = new Product(Guid.NewGuid(), productName, price, isItForSale);
         Log.Info($"{nameof(Product)} create. {Log.SerializeInstance(product)}");
@@ -49,7 +49,7 @@ public class Creater
     public Table CreateTable(int tableNumber)
     {
         if (Helper.TableByNumber(Cache, tableNumber, out Table tableOnCache) is not null)
-            throw new EntityAlreadyExistsException(tableOnCache.Id);
+            throw new EntityAlreadyExistsException(tableOnCache.Id, typeof(Table));
 
         var table = new Table(Guid.NewGuid(), tableNumber);
         Log.Info($"{nameof(Table)} create. {Log.SerializeInstance(table)}");
@@ -59,7 +59,7 @@ public class Creater
     public Waiter CreateWaiter(string name, string password, PermissionStatus permissionStatus)
     {
         if (Helper.WaiterByPassword(Cache, password, out Waiter waiterOnCache) is not null)
-            throw new EntityAlreadyExistsException(waiterOnCache.Id);
+            throw new EntityAlreadyExistsException(waiterOnCache.Id, typeof(Waiter));
 
         var waiter = new Waiter(Guid.NewGuid(), name, password, permissionStatus, WaiterSessionStatus.Closed);
         Log.Info($"{nameof(Waiter)} create. {Log.SerializeInstance(waiter)}");
@@ -69,7 +69,7 @@ public class Creater
     public WaiterFace AddWaiterFacesById(Guid waiterFaceId, Image face)
     {
         if (Helper.WaiterFaceById(Cache, waiterFaceId, out List<WaiterFace> waiterFaceOnCache) is null)
-            throw new EntityAlreadyExistsException(waiterFaceOnCache.Select(x => x.Id).First());
+            throw new EntityAlreadyExistsException(waiterFaceOnCache.Select(x => x.Id).First(), typeof(WaiterFace));
 
         var waiterFace = new WaiterFace(waiterFaceId, face);
         Log.Info($"{nameof(WaiterFace)} create. {Log.SerializeInstance(waiterFace)}");

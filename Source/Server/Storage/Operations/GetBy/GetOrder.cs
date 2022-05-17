@@ -15,7 +15,7 @@ public class GetOrder
 
     public Order GetOrderById(Guid orderId) =>
         Helper.OrderById(Cache, orderId, out Order orderOnCache) is null
-        ? throw new EntityNotFound(orderId)
+        ? throw new EntityNotFoundException(orderId, typeof(Order))
         : orderOnCache;
 
     public List<Order> GetOrders() =>

@@ -22,7 +22,7 @@ public class OrderOperation : IOrderOperation
     public Order CreateOrder(Credentials credentials, Table table)
     {
         if (Helper.CheckLicense(Cache, credentials, out _) is null)
-            throw new EntityNotFound(credentials.WaiterId);
+            throw new EntityNotFoundException(credentials.WaiterId, typeof(Waiter));
 
         Helper.WaiterById(Cache, credentials.WaiterId, out Waiter waiterOnCache);
 
@@ -37,10 +37,10 @@ public class OrderOperation : IOrderOperation
     public bool RemoveOrder(Credentials credentials, Guid orderId)
     {
         if (Helper.CheckLicense(Cache, credentials, out var license) is null)
-            throw new EntityNotFound(credentials.WaiterId);
+            throw new EntityNotFoundException(credentials.WaiterId, typeof(Waiter));
 
         if (Helper.OrderById(Cache, orderId, out var order) is null)
-            throw new EntityNotFound(orderId);
+            throw new EntityNotFoundException(orderId, typeof(Order));
 
         Cache.DangerousOperationCache.AddDangerousOperations(new(license.Id, $"Remove order [{orderId}]"));
         Log.Info($"{nameof(Order)} remove. {Log.SerializeInstance(order)}");
@@ -53,10 +53,10 @@ public class OrderOperation : IOrderOperation
     public void CloseOrder(Credentials credentials, Guid orderId)
     {
         if (Helper.CheckLicense(Cache, credentials, out _) is null)
-            throw new EntityNotFound(credentials.WaiterId);
+            throw new EntityNotFoundException(credentials.WaiterId, typeof(Waiter));
 
         if (Helper.OrderById(Cache, orderId, out Order order) is null)
-            throw new EntityNotFound(orderId);
+            throw new EntityNotFoundException(orderId, typeof(Order));
 
         order.Status = OrderStatus.Closed;
         order.EndTime = DateTime.Now;

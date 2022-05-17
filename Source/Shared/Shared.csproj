@@ -84,11 +84,13 @@
     <Compile Include="Dto\Enums\OrderStatus.cs" />
     <Compile Include="Dto\Enums\PermissionStatus.cs" />
     <Compile Include="Dto\Enums\WaiterSessionStatus.cs" />
-    <Compile Include="Dto\Exceptions\BaseException.cs" />
-    <Compile Include="Dto\Exceptions\PermissionException.cs" />
+    <Compile Include="Dto\Exceptions\ApiException.cs" />
+    <Compile Include="Dto\Exceptions\EntityUsingException.cs" />
+    <Compile Include="Dto\Exceptions\PermissionDeniedException.cs" />
     <Compile Include="Dto\Exceptions\EntityAlreadyExistsException.cs" />
-    <Compile Include="Dto\Exceptions\EntityNotFound.cs" />
+    <Compile Include="Dto\Exceptions\EntityNotFoundException.cs" />
     <Compile Include="Dto\Exceptions\LicenseException.cs" />
+    <Compile Include="Dto\Exceptions\UserSessionInvalidException.cs" />
     <Compile Include="IniManager\Manager.cs" />
     <Compile Include="Dto\Enities\Settings.cs" />
     <Compile Include="IniManager\Operations.cs" />

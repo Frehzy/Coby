@@ -11,36 +11,45 @@ internal class Program
 {
     static void Main(string[] args)
     {
-        if (IsSingleInstance())
+        var mutex = new Mutex(false, "CobyServerMutex");
+        if (IsSingleInstance(mutex))
         {
-            var manager = new Manager(Operations.GetIniFilePath());
-            var settings = Operations.GetSettings(manager);
+            try
+            {
+                var manager = new Manager(Operations.GetIniFilePath());
+                var settings = Operations.GetSettings(manager);
 
-            var serviceAddress = "127.0.0.1:10000";
-            var serviceName = "CobyServer";
+                var serviceAddress = "127.0.0.1:10000";
+                var serviceName = "CobyServer";
 
-            var host = new ServiceHost(typeof(Service), new Uri($"net.tcp://{serviceAddress}/{serviceName}/{settings.OrganizationId}"));
-            var serverBinding = new NetTcpBinding();
-            serverBinding.Security.Mode = SecurityMode.None;
-            host.AddServiceEndpoint(typeof(IService), serverBinding, "");
-            host.Description.Behaviors.Find<ServiceBehaviorAttribute>().IncludeExceptionDetailInFaults = true;
-            host.Open();
+                var host = new ServiceHost(typeof(Service), new Uri($"net.tcp://{serviceAddress}/{serviceName}/{settings.OrganizationId}"));
+                var serverBinding = new NetTcpBinding();
+                serverBinding.Security.Mode = SecurityMode.None;
+                host.AddServiceEndpoint(typeof(IService), serverBinding, "");
+                host.Description.Behaviors.Find<ServiceBehaviorAttribute>().IncludeExceptionDetailInFaults = true;
+                host.Open();
 
-            var client = SetCache(serviceAddress, serviceName, settings);
+                var client = SetCache(serviceAddress, serviceName, settings);
 
-            Log.Info("The server is running on the following ip-addresses:");
-            foreach (var uri in host.BaseAddresses)
-                Log.Info(uri.AbsoluteUri);
+                Log.Info("The server is running on the following ip-addresses:");
+                foreach (var uri in host.BaseAddresses)
+                    Log.Info(uri.AbsoluteUri);
 
-            Console.ReadKey();
+                Console.ReadKey();
 
-            client.Close();
-            host.Close();
+                client.Close();
+                host.Close();
+            }
+            catch (Exception ex)
+            {
+                Log.Fatal(ex);
+            }
         }
         else
-            Log.Fatal("Only one server instance can be running.");
+            Log.Fatal(new Exception("Only one server instance can be running."));
 
         Log.Info("Server is down.");
+        mutex.ReleaseMutex();
     }
 
     private static ChannelFactory<IService> SetCache(string serviceAddress, string serviceName, Settings settings)
@@ -64,17 +73,5 @@ internal class Program
         }
     }
 
-    static bool IsSingleInstance()
-    {
-        try
-        {
-            Mutex.OpenExisting("CobyServerMutex");
-        }
-        catch
-        {
-            _ = new Mutex(true, "CobyServerMutex");
-            return true;
-        }
-        return false;
-    }
+    static bool IsSingleInstance(Mutex mutex) => mutex.WaitOne(TimeSpan.Zero);
 }

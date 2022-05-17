@@ -16,7 +16,7 @@ public class GetProduct
     public Product GetProductById(Guid productId) =>
         Helper.ProductById(Cache, productId, out Product productOnCache) is not null
             ? productOnCache
-            : throw new EntityNotFound(productId);
+            : throw new EntityNotFoundException(productId, typeof(Product));
 
     public List<Product> GetProducts() =>
         Cache.ProductsCache.GetProductsCache();

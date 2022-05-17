@@ -3,6 +3,7 @@
 using Shared;
 using Shared.Dto.Enities;
 using Shared.Dto.Enums;
+using Shared.Dto.Exceptions;
 using Storage.Cache;
 using Storage.DataBase;
 using Storage.DataBase.Converter;
@@ -264,7 +265,7 @@ public class Service : IService
                 }
                 catch (Exception ex)
                 {
-                    Log.Error($"{nameof(Order)} added exception. Message: {ex.Message}. StackTrace: {ex.StackTrace}");
+                    Log.Error(new EntityUsingException(closeOrder.Id, typeof(Order), "Loading order on cache exception", ex));
                 }
             }
             _licensesCache.TryRemove(Guid.Empty, out _);

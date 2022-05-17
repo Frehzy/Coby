@@ -15,7 +15,7 @@ public class GetTable
 
     public Table GetTableById(Guid tableId) =>
         Helper.TableById(Cache, tableId, out Table tableOnCache) is null
-            ? throw new EntityNotFound(tableId)
+            ? throw new EntityNotFoundException(tableId, typeof(Table))
             : tableOnCache;
 
     public List<Table> GetTables() =>

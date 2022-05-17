@@ -16,7 +16,7 @@ public class GetPaymentType
     public PaymentType GetPaymentTypeById(Guid paymentTypeId) =>
         Helper.PaymentTypeById(Cache, paymentTypeId, out PaymentType paymentTypeOnCache) is not null
             ? paymentTypeOnCache
-            : throw new EntityNotFound(paymentTypeId);
+            : throw new EntityNotFoundException(paymentTypeId, typeof(PaymentType));
 
     public List<PaymentType> GetPaymentTypes() =>
         Cache.PaymentTypesCache.GetPaymentTypesCache();

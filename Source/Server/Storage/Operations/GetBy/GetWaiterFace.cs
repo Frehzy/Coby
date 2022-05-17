@@ -15,7 +15,7 @@ public class GetWaiterFace
 
     public List<WaiterFace> GetWaiterFaceById(Guid waiterId) =>
         Helper.WaiterFaceById(Cache, waiterId, out var waiterOnCache) is null
-            ? throw new EntityNotFound(waiterId)
+            ? throw new EntityNotFoundException(waiterId, typeof(WaiterFace))
             : waiterOnCache;
 
     public List<WaiterFace> GetWaiterFaces() =>

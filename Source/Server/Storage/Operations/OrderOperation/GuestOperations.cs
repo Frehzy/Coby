@@ -23,7 +23,7 @@ public class GuestOperations
     public Guest AddGuestOnOrder(Credentials credentials)
     {
         if (Helper.CheckLicense(Cache, credentials, out _) is null)
-            throw new EntityNotFound(credentials.WaiterId);
+            throw new EntityNotFoundException(credentials.WaiterId, typeof(Waiter));
 
         var guestCount = Order.GetGuests().Count;
         var guest = new Guest(Guid.NewGuid(), $"Гость {guestCount++}");
@@ -36,10 +36,10 @@ public class GuestOperations
     public Guest AddGuestOnOrder(Credentials credentials, Guid guestId, string name)
     {
         if (Helper.CheckLicense(Cache, credentials, out _) is null)
-            throw new EntityNotFound(credentials.WaiterId);
+            throw new EntityNotFoundException(credentials.WaiterId, typeof(Waiter));
 
         if (Order.GetGuests().FirstOrDefault(x => x.Id.Equals(guestId)) is not null)
-            throw new EntityAlreadyExistsException(guestId);
+            throw new EntityAlreadyExistsException(guestId, typeof(Guest));
 
         var guest = new Guest(guestId, name);
         Order.Guests.Add(guest.Id, guest);
@@ -50,7 +50,7 @@ public class GuestOperations
     public void RemoveGuestOnOrderById(Credentials credentials, Guid guestId)
     {
         if (Helper.CheckLicense(Cache, credentials, out var license) is null)
-            throw new EntityNotFound(credentials.WaiterId);
+            throw new EntityNotFoundException(credentials.WaiterId, typeof(Waiter));
 
         var guest = Order.GetGuests().First(x => x.Id.Equals(guestId));
         Cache.DangerousOperationCache.AddDangerousOperations(new(license.Id, $"Remove guest [{guest.Name}]:[{guest.Id}] on order [{Order.Id}]"));

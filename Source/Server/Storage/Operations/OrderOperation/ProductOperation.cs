@@ -27,14 +27,14 @@ public class ProductOperation
     public Product AddProductOnOrder(Credentials credentials, Guid guestId, Guid productId)
     {
         if (Helper.CheckLicense(Cache, credentials, out var license) is null)
-            throw new EntityNotFound(credentials.WaiterId);
+            throw new EntityNotFoundException(credentials.WaiterId, typeof(Waiter));
 
         if (Order.Guests.TryGetValue(guestId, out var guests) is false)
-            throw new EntityNotFound(guestId);
+            throw new EntityNotFoundException(guestId, typeof(Guest));
 
         var product = Products.FirstOrDefault(x => x.Id.Equals(productId));
         if (product is null)
-            throw new EntityNotFound(productId);
+            throw new EntityNotFoundException(productId, typeof(Product));
 
         int maxRank = guests.Products.DefaultIfEmpty().Max(x => x.Key);
         guests.Products.Add(maxRank + 1, product);
@@ -46,10 +46,10 @@ public class ProductOperation
     public void RemoveProductOnOrder(Credentials credentials, Guid guestId, Guid productId, int rank)
     {
         if (Helper.CheckLicense(Cache, credentials, out var license) is null)
-            throw new EntityNotFound(credentials.WaiterId);
+            throw new EntityNotFoundException(credentials.WaiterId, typeof(Waiter));
 
         if (Order.Guests.TryGetValue(guestId, out var guests) is false)
-            throw new EntityNotFound(guestId);
+            throw new EntityNotFoundException(guestId, typeof(Guest));
 
         var product = guests.GetProducts().First(x => x.Id.Equals(productId));
         Cache.DangerousOperationCache.AddDangerousOperations(new(license.Id, $"Remove product [{product.ProductName}]:[{product.Id}] on order [{Order.Id}]"));

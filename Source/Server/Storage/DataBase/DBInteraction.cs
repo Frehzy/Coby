@@ -55,7 +55,7 @@ internal class DBInteraction
         }
         catch (Exception ex)
         {
-            Log.Error(ex.ToString());
+            Log.Error(ex);
             return DBConnectionStatus.Error;
         }
     }
@@ -78,7 +78,7 @@ internal class DBInteraction
         }
         catch (Exception ex)
         {
-            Log.Error(ex.ToString());
+            Log.Error(ex);
             return null;
         }
     }
@@ -136,7 +136,7 @@ internal class DBInteraction
         }
         catch (Exception ex)
         {
-            Log.Error(ex.ToString());
+            Log.Error(ex);
             return DBResponseStatus.Error;
         }
     }
@@ -154,7 +154,7 @@ internal class DBInteraction
         }
         catch (Exception ex)
         {
-            Log.Error(ex.ToString());
+            Log.Error(ex);
             return "";
         }
     }

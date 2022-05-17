@@ -3,17 +3,20 @@ using System.Collections.Generic;
 
 namespace Shared.Dto.Exceptions;
 
-public class EntityAlreadyExistsException : BaseException
+[Serializable]
+public class EntityAlreadyExistsException : EntityUsingException
 {
-    public EntityAlreadyExistsException(Guid id)
+    private EntityAlreadyExistsException() { }
+
+    public EntityAlreadyExistsException(Guid entityId, Type entityType)
+        : base(entityId, entityType, $"{entityType.Name} already exists.", new EntityAlreadyExistsException())
     {
-        base.SetMessage($"Entity [{id}] already exists.");
-        Log.Error($"{nameof(EntityAlreadyExistsException)}: {base.Message}");
+        Log.Error(this);
     }
 
-    public EntityAlreadyExistsException(List<Guid> ids)
+    public EntityAlreadyExistsException(List<Guid> entitiesId, Type entityType)
     {
-        base.SetMessage($"Entity [{string.Join("]-[", ids)}] already exists.");
-        Log.Error($"{nameof(EntityAlreadyExistsException)}: {base.Message}");
+        foreach (var entity in entitiesId)
+            new EntityAlreadyExistsException(entity, entityType);
     }
 }

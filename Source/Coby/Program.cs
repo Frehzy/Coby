@@ -29,11 +29,11 @@ internal static class Program
             }
             catch (EndpointNotFoundException ex)
             {
-                Log.Error($"Failed to instantiate client. Exception: {ex}");
+                Log.Error(new EndpointNotFoundException($"Failed to instantiate client.", ex));
             }
             catch (Exception ex)
             {
-                Log.Error($"Unknown exception: {ex}");
+                Log.Error(new Exception($"Unknown exception.", ex));
             }
             Thread.Sleep(TimeSpan.FromSeconds(5));
         }

@@ -16,7 +16,7 @@ public class GetDangerousOperation
     public DangerousOperationsDto GetDangerousOperationsByWaiterId(Guid waiterId) =>
         Helper.DangerousOperationsByWaiterId(Cache, waiterId, out var dangerousOperations) is not null
             ? dangerousOperations
-            : throw new EntityNotFound(waiterId);
+            : throw new EntityNotFoundException(waiterId, typeof(Waiter));
 
     public List<DangerousOperationsDto> GetDangerousOperations() =>
         Cache.DangerousOperationCache.GetDangerousOperationsCache();

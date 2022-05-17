@@ -2,11 +2,14 @@
 
 namespace Shared.Dto.Exceptions;
 
-public class LicenseException : BaseException
+[Serializable]
+public sealed class LicenseException : EntityUsingException
 {
-    public LicenseException(Guid licenceId)
+    private LicenseException() { }
+
+    public LicenseException(Guid entityId, Type entityType)
+        : base(entityId, entityType, $"Licence cannot be used.", new LicenseException())
     {
-        base.SetMessage($"License [{licenceId}] cannot be used.");
-        Log.Error($"{nameof(LicenseException)}: {base.Message}");
+        Log.Error(this);
     }
 }

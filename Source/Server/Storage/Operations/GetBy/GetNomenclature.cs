@@ -15,12 +15,12 @@ public class GetNomenclature
 
     public List<Nomenclature> GetNomenclaturesByChildId(Guid childId) =>
         Helper.NomenclatureByChildId(Cache, childId, out List<Nomenclature> nomenclatures) is null
-            ? throw new EntityNotFound(childId)
+            ? throw new EntityNotFoundException(childId, typeof(Nomenclature))
             : nomenclatures;
 
     public List<Nomenclature> GetNomenclaturesByParentId(Guid parentId) =>
         Helper.NomenclatureByParentId(Cache, parentId, out List<Nomenclature> nomenclatures) is null
-            ? throw new EntityNotFound(parentId)
+            ? throw new EntityNotFoundException(parentId, typeof(Nomenclature))
             : nomenclatures;
 
     public List<Nomenclature> GetNomenclatures() =>

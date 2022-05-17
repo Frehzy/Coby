@@ -27,14 +27,14 @@ public class PaymentOperations
     public Payment AddPaymentOnOrder(Credentials credentials, Guid paymentTypeId, decimal sum)
     {
         if (Helper.CheckLicense(Cache, credentials, out var license) is null)
-            throw new EntityNotFound(credentials.WaiterId);
+            throw new EntityNotFoundException(credentials.WaiterId, typeof(Waiter));
 
         if (Order.Payment.TryGetValue(paymentTypeId, out _) is true)
-            throw new EntityAlreadyExistsException(paymentTypeId);
+            throw new EntityAlreadyExistsException(paymentTypeId, typeof(Payment));
 
         var paymentType = PaymentTypes.FirstOrDefault(x => x.Id.Equals(paymentTypeId));
         if (paymentType is null)
-            throw new EntityNotFound(paymentTypeId);
+            throw new EntityNotFoundException(paymentTypeId, typeof(PaymentType));
 
         if (paymentType.PaymentEnum is not PaymentEnum.Cash)
         {
@@ -56,10 +56,10 @@ public class PaymentOperations
     public void RemovePaymentOnOrder(Credentials credentials, Guid paymentId)
     {
         if (Helper.CheckLicense(Cache, credentials, out var license) is null)
-            throw new EntityNotFound(credentials.WaiterId);
+            throw new EntityNotFoundException(credentials.WaiterId, typeof(Waiter));
 
         if (Order.Payment.TryGetValue(paymentId, out var payment) is false)
-            throw new EntityNotFound(paymentId);
+            throw new EntityAlreadyExistsException(paymentId, typeof(Payment));
 
         Cache.DangerousOperationCache.AddDangerousOperations(new(license.Id, $"Remove payment [{payment.Name}]:[{payment.Id}] on order [{Order.Id}]"));
         Order.Payment.Remove(payment.Id);

@@ -11,7 +11,7 @@ public class LicenseOperation
     public Credentials GetCredentials(string password, out Credentials credentials) =>
         credentials = Helper.WaiterByPassword(Cache, password, out var waiterOnCache) is not null
             ? new Credentials(waiterOnCache.Id)
-            : throw new EntityNotFound(default);
+            : throw new UserSessionInvalidException(password);
 
     public Credentials TryGetCredentials(string password) =>
         Helper.WaiterByPassword(Cache, password, out var waiterOnCache) is not null

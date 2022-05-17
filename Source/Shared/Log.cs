@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using NLog;
+using Shared.Dto.Exceptions;
 using System;
 using System.Diagnostics;
 
@@ -15,9 +16,55 @@ public class Log
 
     public static void Info(string message) { _logger.Info($"{ProgramName}\n{message}"); Console.WriteLine(message); }
 
-    public static void Error(string message) { _logger.Error($"{ProgramName}\n{message}"); Console.WriteLine(message); }
+    public static void Error(Exception ex)
+    {
+        _logger.Error($"{ProgramName}\n" +
+            $"Message: {ex.Message}\n" +
+            $"InnerException: {ex?.InnerException}\n" +
+            $"StackTrace: {ex?.StackTrace}\n" +
+            $"FullException: {ex}");
 
-    public static void Fatal(string message) { _logger.Fatal($"{ProgramName}\n{message}"); Console.WriteLine(message); }
+        Console.WriteLine(ex);
+    }
+
+    public static void Error(EntityUsingException ex)
+    {
+        _logger.Error($"{ProgramName}\n" +
+            $"EntityId: {ex.EntityId}\n" +
+            $"EntityType: {ex.EntityType}\n" +
+            $"Message: {ex.Message}\n" +
+            $"InnerException: {ex?.InnerException}\n" +
+            $"StackTrace: {ex?.StackTrace}\n" +
+            $"BaseException: {ex.GetBaseException()}\n" +
+            $"FullException: {ex}");
+
+        Console.WriteLine(ex);
+    }
+
+    public static void Fatal(Exception ex)
+    {
+        _logger.Fatal($"{ProgramName}\n" +
+            $"Message: {ex.Message}\n" +
+            $"InnerException: {ex?.InnerException}\n" +
+            $"StackTrace: {ex?.StackTrace}\n" +
+            $"FullException: {ex}");
+
+        Console.WriteLine(ex);
+    }
+
+    public static void Fatal(EntityUsingException ex)
+    {
+        _logger.Fatal($"{ProgramName}\n" +
+            $"EntityId: {ex.EntityId}\n" +
+            $"EntityType: {ex.EntityType}\n" +
+            $"Message: {ex.Message}\n" +
+            $"InnerException: {ex?.InnerException}\n" +
+            $"StackTrace: {ex?.StackTrace}\n" +
+            $"BaseException: {ex.GetBaseException()}\n" +
+            $"FullException: {ex}");
+
+        Console.WriteLine(ex);
+    }
 
     public static string SerializeInstance<T>(T instance) =>
         JsonConvert.SerializeObject(instance, Formatting.Indented);

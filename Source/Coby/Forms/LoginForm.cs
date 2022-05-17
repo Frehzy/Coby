@@ -87,7 +87,7 @@ public partial class LoginForm : MaterialForm
         }
         catch (Exception ex)
         {
-            Log.Error($"Exception restart explorer.\nMessage: {ex.Message}\nStackTrace: {ex.StackTrace}");
+            Log.Error(new Exception($"Exception restart explorer.", ex));
         }
 
         string explorer = string.Format("{0}\\{1}", Environment.GetEnvironmentVariable("WINDIR"), "explorer.exe");
